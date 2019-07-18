@@ -1,0 +1,82 @@
+<div class="chat-box">
+	<div class="chat-hdr" (click)="openchat()">Chat</div>
+	<div *ngIf="showChat" [ngClass]="chat_window">
+    <ul *ngIf="isDefaultUser == true">
+      <ng-container *ngFor="let user of user_data">
+        <li  (click)="chatUser(user)">
+        <img src="{{img_url}}{{user.profile_picture}}">
+        <span class="for-name">{{user.name}}</span>
+        <i *ngIf="user.isOnline != false" class="fas fa-circle green-icon"></i>
+      </li>
+      </ng-container>
+      </ul>
+      <ul *ngIf="isSearchUser == true">
+            <ng-container *ngFor="let search of search_user_data;">
+                <li (click)="chatUser(search)" *ngIf="search.id != user_id">
+                    <img src='{{img_url}}/{{search.profile_picture}}' class='picture' alt='' />
+                    <span class='name'>{{search.name | titlecase}}</span>
+                </li>
+            </ng-container>
+        </ul>
+        <div class="chat-search">
+                <input type="text" class="form-control"[(ngModel)]="search_people" (input)="onKeyPressSearch($event.target.value)" placeholder="Search People">
+        </div>
+  </div>
+</div>
+
+<div class="ballon-chat" *ngIf="ballonChat == true">
+    <a class='close-ballon' (click)='closeBallon()'>X</a>
+    <h2 class="chat-top-bar"><img src="{{img_url}}/{{sel_user_profile_pic}}" class=" img-responsive ">{{chat_with | titlecase}}</h2>
+    <div class='container-messages' #scrollMe>
+        <ng-container *ngFor="let msg of result">
+            <div class="date-chat" *ngIf="msg.date != '' && msg.date != undefined && msg.date != null">
+                <p ></p>
+            </div>
+            <div class="date-chat-today" *ngIf="msg.date == '' || msg.date == undefined || msg.date == null">
+                <p>Today</p>
+            </div>
+            <div *ngFor="let val of msg.values" [ngClass]="val.username == user_name ? 'base_sent' : 'msg_receive'" class="row msg_container">
+                <!-- *ngIf="user_id == val.send_to" -->
+                <div class="avatar" *ngIf="user_name != val.username">
+                    <img src="{{img_url}}/{{sel_user_profile_pic}}" class=" img-responsive ">
+                </div>
+                <div class="col-md-8 col-xs-8 p-0">
+                    <div class="messages msg_sent">
+                        <p [innerHTML] ="val.message"></p>
+                        <time *ngIf="val.sent_time != '' && val.sent_time != undefined && val.sent_time != null">{{timeFormat(val.sent_time)}}</time>
+                        <time *ngIf="val.sent_time == '' || val.sent_time == undefined || val.sent_time == null">{{now | date:'HH:mm'}}</time>
+                    </div>
+                </div>
+                <!-- <div class="col-md-2 col-xs-2 avatar" *ngIf="user_id != msg.send_to">
+                    <img src="{{profile_picture}}" class=" img-responsive ">
+                </div> -->
+            </div>
+        </ng-container>
+    </div>
+    <div class='form-message'>
+        <!-- <div class="upload-icon">
+            <i (click)="file.click()" class="fa fa-camera"></i>
+            <input type="file" #file (change)="fileChange($event)" style="display:none">
+        </div> -->
+        <form [formGroup]="msgForm" (ngSubmit)="sendMessage(msgForm.value)">
+            <div class="upload-icon">
+                <div *ngIf="emojiHide">
+                    <i class="far fa-smile" aria-hidden="true" (click)="onClickEmoji()"></i>
+                </div>
+                <div *ngIf="!emojiHide" id="max">
+                    <emoji-mart [style]="{ position: 'absolute', bottom: '20px' , width: '100% !important',right: '0',left: '0',height: '250px',overflow: 'auto' }" (emojiClick)="addEmoji($event)"></emoji-mart>
+                </div>
+                <div class="hide">
+                    <p id="close_emoji_btn" (click)=closeEmoji()></p>
+                </div>
+            </div>
+            <div class="input-group">
+                <textarea  (keyup.enter)="textareaEnter()" #message formControlName="message" [ngClass]="{ 'is-invalid': submitted && f.message.errors }" (keypress)="onKeyPress($event)" (focusout)="onKeyUp($event)" class="form-control" id="txt_msg" row="1" style="overflow-y:scroll" placeholder="Write your message here..."></textarea>
+                <span class="input-group-btn">
+                    <button class="btn btn-primary btn-sm" [disabled]="isBtnDisabled" >Send</button>
+                </span>
+                <div *ngIf="submitted && f.message.errors" class="invalid-feedback"></div>
+            </div>
+        </form>
+    </div>
+</div>

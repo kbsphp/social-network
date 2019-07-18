@@ -1,0 +1,88 @@
+<div class="create-post">
+  <div class="post-hdr">
+    <p>Create post</p>
+  </div>
+
+  <div class="create-write">
+    <div class="for-type">
+      <div class="icon-img">
+        <img src="{{profile_picture}}">
+      </div>
+      <div class="chat-text">
+        <textarea class="form-control" rows="5" id="comment" placeholder="Write Something here" (click)="open_modal()"></textarea>
+      </div>
+    </div>
+    <div class="for-pop-btn">
+      <span class="icon-btn" (click)="open_modal()">
+        <img src="assets/images/user.png">Add Photo
+      </span>
+      
+      <!-- <span class="icon-btn" data-toggle="modal" data-target="#Create-UserPost">
+        <img src="assets/images/user.png">Tag Friends
+      </span>
+       -->
+      <span class="icon-btn" (click)="open_modal()">
+          <i class="far fa-smile" aria-hidden="true" ></i>
+      </span>
+      
+    </div>
+  </div>
+</div>
+  <!-- <div   class="modal fade" id="Create-UserPost" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> -->
+    <div class="modal" id="myModal" backdrop="static" role="dialog" tabindex="-1" style="display: block; background-color: rgba(0, 0, 0, 0.32); z-index: 111111;" [style.display]="isPostModal ? 'block' : 'none'" *ngIf="isPostModal" aria-hidden="true">
+    
+          <div class="modal-dialog" role="document">
+              <form [formGroup]="postForm">
+              <div class="modal-content">
+                  <div class="create-post">
+              <div class="post-hdr">
+                <p>Create post<button type="button" class="close" (click)="close_modal()"><span aria-hidden="true">&times;</span></button></p>
+              </div>
+
+              <div class="create-write">
+                <div class="for-type">
+                  <div class="icon-img">
+                    <img src="{{profile_picture}}">
+                  </div>
+                  <div class="chat-text">
+                    <textarea class="form-control" [ngClass]="{'msgError': msgError?msgError:''}"
+                    rows="5" id="comment" (input)="onPostChange()"  #description formControlName="description" placeholder="Write Something here"></textarea>
+                  </div>
+                </div>
+                <div class="for-pop-btn">
+                  <span class="icon-btn" (click)="file.click()">
+                    <img src="/assets/images/user.png" />Add Photo
+                    <div class="attach_file" style="display:none">
+                      <input id="uploadFile" type="file" accept="image/*"  #file (change)="fileChange($event)" name="file" formControlName="file">
+                    </div>
+                  </span>
+                  <!--	<span class="icon-btn"  data-toggle="modal" data-target="#Create Post">
+                    <img src="/assets/images/user.png" />Tag Friends
+                  </span> -->
+                  
+                  <span class="icon-btn" (click)="onClickEmoji()">
+                      <i class="far fa-smile" aria-hidden="true" ></i>
+                  </span>	
+                  <span class="filename"> {{attachmentName}}</span>
+                </div>
+              </div>
+              
+            </div>
+            <div *ngIf="emojiHide">
+                <emoji-mart (emojiClick)="addEmoji($event)"></emoji-mart>
+              </div>
+           <div *ngIf="error_msg == true" class="pop-up-error">
+             * {{error}}
+           </div>
+              <div class="share-btn">
+                <button [disabled]="btnshare" class="btn btn-grey w-100 p-1" (click)="savePost('normal')">Share</button>
+              </div>
+          </div>
+          
+          
+        </form>
+        </div>
+        
+        
+      </div>
+      <div class="for-popup-layer" [ngClass]="isCLicked ? isCLicked :''"></div>

@@ -1,0 +1,355 @@
+<section class="main-body">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="top-profile-blk">
+						<div *ngIf="cover_pic"  class="cover-pic">
+								<img class="" src="{{img_url}}{{cover_pic}}" alt="Cover Photo"/>
+							</div>
+					<div class="inner-profile">
+						<!-- <button class="btn add"><span><i class="fas fa-camera"></i></span>Add Cover Photo</button> -->
+						<div class="name-blk">
+							<div class="overlay-blk">
+								<img src="{{profile_picture}}">
+								<!-- <div class="hover-layer">
+									<i class="fas fa-camera"></i>
+								</div> -->
+							</div>
+							<h3>{{ username }}</h3>
+						</div>
+						<div class="update-info for-banner-btn">
+							<button [disabled]="isSendDisabled" (click)="sendFriendReq()" *ngIf="user_status == 'Not Friend'" class="btn btn-grey"><i class="fas fa-user-plus"></i>Add Friend</button>
+							<button  *ngIf="user_status == 'Friend'" class="btn btn-grey"><i class="fas fa-check"></i>Friend</button>
+							<button *ngIf="user_status == 'Request Sent'" class="btn btn-grey"><i class="fas fa-check"></i>Friend Request Sent</button>
+							<button [disabled]="isAcceptDisabled" (click)="acceptReq()" *ngIf="user_status == 'Accept Request'" class="btn btn-grey">Confirm Request</button>
+							<!-- <button class="btn btn-grey"><span><i class="fas fa-list"></i></span>Activity log</button> -->
+						</div>
+ 					</div>
+				</div>
+				<!-- <div class="profile-nav">
+					<ul>
+					<li><a href="">Timeline</a></li>
+						<li><a href="">About</a></li>
+						<li><a href="http://web1.kindlebit.com/clientdemo/uzyth-social/find-friend.html">Friends</a></li>
+						<li><a href="http://web1.kindlebit.com/clientdemo/uzyth-social/photos.html">Photos</a></li>
+						<li><a href="">Achive</a></li> 
+						<li><a href="javascript:void(0)">More<span><i class="fas fa-caret-down"></i></span></a>
+							<ul class="drop-menu">
+								<li><a href=""><span><i class="fas fa-list"></i></span>Video</a></li>
+								<li><a href=""><span><i class="fas fa-th-large"></i></span>Photos</a></li>
+								<li><a href=""><span><i class="fas fa-th-large"></i></span>About</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div> -->
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<!-- <section class="slider-sec">
+	<div class="container">
+		<div class="inner-slider">
+			<div class="row">
+				<div class="col-12">
+					<div class="may-know">
+						<div class="top-know">
+							<p class="hdg">PEOPLE YOU MAY KNOW</p>
+							<a href="" class="see">See all friend suggestions</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12 col-xs-12 col-md-4 col-lg-2 col-xl-2">
+					<div class="view-info">
+						<div class="friends">
+						    <div class="pic">
+						        <img class="for-img" src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p148x148/52087607_1822524371184879_7168809280454262784_n.jpg?_nc_cat=104&_nc_ht=scontent-hkg3-2.xx&oh=2b50169e55889aa36df1a1ff97e6d6ea&oe=5D57B0E0">										
+						    </div>
+
+						    <div class="details">
+						        <h2 class="details-heading"><a href="#">Yog Raj</a></h2>
+						        <h6 class="mutual-frd"><a href="#">9 mutual friends</a></h6>
+						        <div class="add-class">
+						            <button type="button" class="btn btn-grey">Add Friends</button>
+						        </div>
+						    </div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-12 col-xs-12 col-md-4 col-lg-2 col-xl-2">
+					<div class="view-info">
+						<div class="friends">
+						    <div class="pic">
+						        <img class="for-img" src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p148x148/61208173_2222359191184049_4321205276981067776_n.jpg?_nc_cat=103&_nc_ht=scontent-hkg3-2.xx&oh=b1408bb586dfd478ee4efb6d5e517f65&oe=5D90351E">										
+						    </div>
+
+						    <div class="details">
+						        <h2 class="details-heading"><a href="#">Dimple</a></h2>
+						        <h6 class="mutual-frd"><a href="#">9 mutual friends</a></h6>
+						        <div class="add-class">
+						            <button type="button" class="btn btn-grey">Add Friends</button>
+						        </div>
+						    </div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-12 col-xs-12 col-md-4 col-lg-2 col-xl-2">
+					<div class="view-info">
+						<div class="friends">
+						    <div class="pic">
+						        <img class="for-img" src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p148x148/46043873_2034604363267140_8132273837694779392_n.jpg?_nc_cat=104&_nc_ht=scontent-hkg3-2.xx&oh=0d5d71e66e9273c9e9e9462a274a0279&oe=5D5C70AC">										
+						    </div>
+
+						    <div class="details">
+						        <h2 class="details-heading"><a href="#">Chami Roxx</a></h2>
+						        <h6 class="mutual-frd"><a href="#">9 mutual friends</a></h6>
+						        <div class="add-class">
+						            <button type="button" class="btn btn-grey">Add Friends</button>
+						        </div>
+						    </div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-12 col-xs-12 col-md-4 col-lg-2 col-xl-2">
+					<div class="view-info">
+						<div class="friends">
+						    <div class="pic">
+						        <img class="for-img" src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p148x148/21751368_523601961322530_1953418949232198059_n.jpg?_nc_cat=104&_nc_ht=scontent-hkg3-2.xx&oh=f61a3f5863ecc67995340830654b59cc&oe=5D5D6E76">										
+						    </div>
+
+						    <div class="details">
+						        <h2 class="details-heading"><a href="#">Rago</a></h2>
+						        <h6 class="mutual-frd"><a href="#">9 mutual friends</a></h6>
+						        <div class="add-class">
+						            <button type="button" class="btn btn-grey">Add Friends</button>
+						        </div>
+						    </div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-12 col-xs-12 col-md-4 col-lg-2 col-xl-2">
+					<div class="view-info">
+						<div class="friends">
+						    <div class="pic">
+						        <img class="for-img" src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/c0.15.148.148a/p148x148/53908277_10218596319048518_5949608020924170240_n.jpg?_nc_cat=104&_nc_ht=scontent-hkg3-2.xx&oh=60479df5abe9b70ae927cbc9e938e3e8&oe=5D629D94">										
+						    </div>
+
+						    <div class="details">
+						        <h2 class="details-heading"><a href="#">Cirius Lee Knaught</a></h2>
+						        <h6 class="mutual-frd"><a href="#">9 mutual friends</a></h6>
+						        <div class="add-class">
+						            <button type="button" class="btn btn-grey">Add Friends</button>
+						        </div>
+						    </div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-12 col-xs-12 col-md-4 col-lg-2 col-xl-2">
+					<div class="view-info">
+						<div class="friends">
+						    <div class="pic">
+						        <img class="for-img" src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/c0.58.148.148a/p148x148/33379638_2059064191017778_3383444947955875840_n.jpg?_nc_cat=102&_nc_ht=scontent-hkg3-2.xx&oh=0678250dca0b1a46ff1f8749817269dd&oe=5D5B8098">										
+						    </div>
+
+						    <div class="details">
+						        <h2 class="details-heading"><a href="#">Ayaj Ali</a></h2>
+						        <h6 class="mutual-frd"><a href="#">9 mutual friends</a></h6>
+						        <div class="add-class">
+						            <button type="button" class="btn btn-grey">Add Friends</button>
+						        </div>
+						    </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section> -->
+
+<section class="content-block">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 col-xs-12 col-md-4 col-lg-4 col-xl-4">
+				<div class="photos-blk">
+					<div class="inner-photo">
+						<div class="may-know">
+							<div class="top-know">
+								<p class="hdg"><span><i class="fas fa-camera-retro"></i></span>Photos</p>
+								<!-- <a href="" class="see">Add photo</a> -->
+							</div>
+							<div class="img-sec">
+								<div class="row">
+										<ng-container  *ngFor="let media of userMedia;let i=index;">
+												<div *ngIf="media.post_media != '' && i<9"  class="col-4 p-1">
+														<div class="photo-img">
+															<img src="{{img_url}}{{media.post_media}}">
+														</div>
+													</div>
+										</ng-container>			
+								</div>
+									
+							</div>	
+						</div>
+					</div>
+				</div>
+				<div class="friends-sec">
+					<div class="inner-photo">
+						<div class="may-know">
+							<div class="top-know">
+								<p class="hdg"><span><i class="fas fa-camera-retro"></i></span>Friends</p>
+								<!-- <a href="" class="see">Find Friends</a> -->
+							</div>
+							<div class="img-sec">
+								<div class="row" *ngFor="let user of user_data">
+									<a [routerLink]="['/profile',user.id]" *ngIf="user.user != user_id " class="col-4 p-1">
+										<div class="photo-img">
+											<img src="{{img_url}}/{{user.profile_picture}}">
+										</div>
+										<a href="">{{user.name}}</a>
+									</a>
+									<!-- <div class="col-4 p-1">
+										<div class="photo-img">
+											<img src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p100x100/12800126_1058806390843216_3071379490039593921_n.jpg?_nc_cat=101&_nc_ht=scontent-hkg3-2.xx&oh=0f70caff2956876ba6e998d771779c97&oe=5D52B403">
+										</div>
+									</div> -->
+									<!-- <div class="col-4 p-1">
+										<div class="photo-img">
+											<img src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p100x100/29196308_1911137489125289_7472688696366465024_n.jpg?_nc_cat=102&_nc_ht=scontent-hkg3-2.xx&oh=6cc1d9a1ae9a3f7391c9990e013b44d2&oe=5D933D6D">
+										</div>
+									</div> -->
+								</div>
+						<!-- 		<div class="row">
+									<div class="col-4 p-1">
+										<div class="photo-img">
+											<img src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p100x100/31732061_1657054954377181_4600341734193364992_n.jpg?_nc_cat=111&_nc_ht=scontent-hkg3-2.xx&oh=d28bfee7b04359f06771b4a0b1e4f0f8&oe=5D96F7CC">
+										</div>
+									</div>
+									<div class="col-4 p-1">
+										<div class="photo-img">
+											<img src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p100x100/43207430_2240145072680528_5959202337913307136_n.jpg?_nc_cat=101&_nc_ht=scontent-hkg3-2.xx&oh=fc739ffba1c74ca492d9605234127807&oe=5D5C0925">
+										</div>
+									</div>
+									<div class="col-4 p-1">
+										<div class="photo-img">
+											<img src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p100x100/12800126_1058806390843216_3071379490039593921_n.jpg?_nc_cat=101&_nc_ht=scontent-hkg3-2.xx&oh=0f70caff2956876ba6e998d771779c97&oe=5D52B403">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-4 p-1">
+										<div class="photo-img">
+											<img src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p100x100/43207430_2240145072680528_5959202337913307136_n.jpg?_nc_cat=101&_nc_ht=scontent-hkg3-2.xx&oh=fc739ffba1c74ca492d9605234127807&oe=5D5C0925">
+										</div>
+									</div>
+									<div class="col-4 p-1">
+										<div class="photo-img">
+											<img src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p100x100/43207430_2240145072680528_5959202337913307136_n.jpg?_nc_cat=101&_nc_ht=scontent-hkg3-2.xx&oh=fc739ffba1c74ca492d9605234127807&oe=5D5C0925">
+										</div>
+									</div>
+									<div class="col-4 p-1">
+										<div class="photo-img">
+											<img src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p100x100/43207430_2240145072680528_5959202337913307136_n.jpg?_nc_cat=101&_nc_ht=scontent-hkg3-2.xx&oh=fc739ffba1c74ca492d9605234127807&oe=5D5C0925">
+										</div>
+									</div>
+								</div> -->
+							</div>	
+						</div>
+					</div>
+					<div class="post-view">
+						<!-- <div class="friends">
+						    <div class="pic">
+						        <img class="for-img" src="assets/images/friends.jpg">										
+						    </div>
+
+						    <div class="details">
+						        <h6 class="mutual-frd">See what you have in common with your friends.</h6>
+						    </div>
+						    <div class="add-class">
+						        <button type="button" class="btn btn-grey">View</button>
+						    </div>
+						</div> -->
+					</div>
+				</div>
+
+				<!---div class="know-you">
+					<div class="friends">
+					    <div class="details">
+					        <h6 class="mutual-frd">Did you Know</h6>
+					    </div>
+					    <div class="add-class">
+					        <button type="button" class="btn btn-grey">View</button>
+					    </div>
+					</div>
+				</div>
+			</div--->
+		</div>
+			<div class="col-sm-12 col-xs-12 col-md-8 col-lg-8 col-xl-8 right-part1">
+					<div *ngIf="!showPosts" class="post-box"><h5 style="color:#f6ad21;text-align: center;padding-top: 12px"> No post yet</h5></div>
+				<ng-container *ngIf="showPosts">
+				<div class="post-box" *ngFor="let post of profile_new_post_data">
+					<div class="post-hdr">
+						<div class="icon-img">
+							<img src="{{img_url}}/{{profile_picture}}">
+						</div>
+						<div class="name-box">
+							<h1 class="hdg"><a href="">{{post.username}}</a></h1>
+							<p class="time"><a href="">{{toLocalDate(post.post_create_date)}}</a></p>
+						</div>
+					</div>
+					
+					<div class="post-des">
+						<p class="des">{{convetToEmoji(post.post_description)}}</p>
+					</div>
+					
+					<div class="post-data" *ngIf="post.post_media != ''">
+						<img class="img-fluid" src="{{img_url}}{{post.post_media}}">
+					</div>
+					
+					<div class="like-data">
+						<div class="like-total">
+							<div class="total-left">
+							<!-- 	<img class="for-img" src="assets/images/like.png">							 			
+								<a class="pop-val" href="">2</a> -->
+								<img *ngIf="post.is_likes == '0'" class="for-img" src="assets/images/like.png">
+								<img *ngIf="post.is_likes == '1'" class="for-img" src="assets/images/dis-like.png">										
+								<a *ngIf="post.is_likes != '0'" class="pop-val" href="javascript:void(0)">{{post.likes}}</a>
+							</div>
+							<!-- <div class="total-right">
+								<p class="rgt-val">2 shares</p>
+							</div> -->
+						</div>
+						
+						<div class="like-actual">
+							<div class="parts">
+								<img class="for-img" src="assets/images/like2.png">										
+								<span>Like</span>
+							</div>
+							
+						<!-- 	<div class="parts">
+								<img class="for-img" src="assets/images/like2.png">										
+								<span>Share</span>
+							</div> -->
+							
+							<div class="parts">
+								<img class="for-img" src="assets/images/like2.png">										
+								<span>Comments</span>
+							</div>
+							
+						</div>
+						
+					</div>
+					
+				</div>
+				</ng-container>
+			</div>
+		</div>
+	</div>
+</section>

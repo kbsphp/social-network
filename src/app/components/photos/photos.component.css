@@ -1,0 +1,9 @@
+.photo-view {
+    height: 180px;
+    margin-bottom: 30px;
+}
+
+.photo-view img{
+    object-fit: cover;
+}
+

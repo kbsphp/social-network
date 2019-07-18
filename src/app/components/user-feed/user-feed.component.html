@@ -1,0 +1,488 @@
+<div class="main-container">
+<section class="main-body">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="top-profile-blk">
+					<div class="cover-pic">
+						<img class="" src="{{cover_pic}}" alt="Cover Photo"/>
+					</div>
+					<div class="inner-profile">
+						<button class="btn add" (click)=filecover.click()><span><i class="fas fa-camera"></i></span>Add Cover Photo</button>
+						<div class="attach_file" style="display:none">
+							<input id="coverPhoto" type="file" accept="image/*"  #filecover (change)="coverPhoto($event)" name="filecover" >
+						  </div>
+						<div class="name-blk">
+							<div class="overlay-blk" (click)=file.click()>
+								<img src="{{profile_picture}}" alt="profile-pic">
+								<div class="hover-layer">
+									<i class="fas fa-camera"></i>
+								</div>
+								<div class="attach_file" style="display:none">
+									<input id="uploadFile" type="file" accept="image/*"  #file (change)="fileChange($event)" name="file" >
+								  </div>
+							</div>
+							<h3>{{username}}</h3>
+						</div>
+						<div class="update-info">
+							<!-- <button class="btn btn-grey">Update Info
+								<span class="badge badge-primary">5</span></button>
+							<button class="btn btn-grey"><span><i class="fas fa-list"></i></span>Activity log</button> -->
+						</div>
+					</div>
+				</div>
+				<!-- <div class="profile-nav">
+					<ul>
+						<li><a href="">Timeline</a></li>
+						<li><a href="">About</a></li>
+						<li><a href="http://web1.kindlebit.com/clientdemo/uzyth-social/find-friend.html">Friends</a></li>
+						<li><a href="http://web1.kindlebit.com/clientdemo/uzyth-social/photos.html">Photos</a></li>
+						<li><a href="">Achive</a></li>
+						<li><a href="javascript:void(0)">More<span><i class="fas fa-caret-down"></i></span></a>
+							<ul class="drop-menu">
+								<li><a href=""><span><i class="fas fa-list"></i></span>Video</a></li>
+								<li><a href=""><span><i class="fas fa-th-large"></i></span>Photos</a></li>
+								<li><a href=""><span><i class="fas fa-th-large"></i></span>About</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div> -->
+			</div>
+		</div>
+	</div>
+</section>
+<!-- <section class="slider-sec">
+	<div class="container">
+		<div class="inner-slider">
+			<div class="row">
+				<div class="col-12">
+					<div class="may-know">
+						<div class="top-know">
+							<p class="hdg">PEOPLE YOU MAY KNOW</p>
+							<a href="" class="see">See all friend suggestions</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12 col-xs-12 col-md-4 col-lg-2 col-xl-2">
+					<div class="view-info">
+						<div class="friends">
+						    <div class="pic">
+						        <img class="for-img" src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p148x148/52087607_1822524371184879_7168809280454262784_n.jpg?_nc_cat=104&_nc_ht=scontent-hkg3-2.xx&oh=2b50169e55889aa36df1a1ff97e6d6ea&oe=5D57B0E0">										
+						    </div>
+
+						    <div class="details">
+						        <h2 class="details-heading"><a href="#">Yog Raj</a></h2>
+						        <h6 class="mutual-frd"><a href="#">9 mutual friends</a></h6>
+						        <div class="add-class">
+						            <button type="button" class="btn btn-grey">Add Friends</button>
+						        </div>
+						    </div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-12 col-xs-12 col-md-4 col-lg-2 col-xl-2">
+					<div class="view-info">
+						<div class="friends">
+						    <div class="pic">
+						        <img class="for-img" src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p148x148/61208173_2222359191184049_4321205276981067776_n.jpg?_nc_cat=103&_nc_ht=scontent-hkg3-2.xx&oh=b1408bb586dfd478ee4efb6d5e517f65&oe=5D90351E">										
+						    </div>
+
+						    <div class="details">
+						        <h2 class="details-heading"><a href="#">Dimple</a></h2>
+						        <h6 class="mutual-frd"><a href="#">9 mutual friends</a></h6>
+						        <div class="add-class">
+						            <button type="button" class="btn btn-grey">Add Friends</button>
+						        </div>
+						    </div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-12 col-xs-12 col-md-4 col-lg-2 col-xl-2">
+					<div class="view-info">
+						<div class="friends">
+						    <div class="pic">
+						        <img class="for-img" src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p148x148/46043873_2034604363267140_8132273837694779392_n.jpg?_nc_cat=104&_nc_ht=scontent-hkg3-2.xx&oh=0d5d71e66e9273c9e9e9462a274a0279&oe=5D5C70AC">										
+						    </div>
+
+						    <div class="details">
+						        <h2 class="details-heading"><a href="#">Chami Roxx</a></h2>
+						        <h6 class="mutual-frd"><a href="#">9 mutual friends</a></h6>
+						        <div class="add-class">
+						            <button type="button" class="btn btn-grey">Add Friends</button>
+						        </div>
+						    </div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-12 col-xs-12 col-md-4 col-lg-2 col-xl-2">
+					<div class="view-info">
+						<div class="friends">
+						    <div class="pic">
+						        <img class="for-img" src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p148x148/21751368_523601961322530_1953418949232198059_n.jpg?_nc_cat=104&_nc_ht=scontent-hkg3-2.xx&oh=f61a3f5863ecc67995340830654b59cc&oe=5D5D6E76">										
+						    </div>
+
+						    <div class="details">
+						        <h2 class="details-heading"><a href="#">Rago</a></h2>
+						        <h6 class="mutual-frd"><a href="#">9 mutual friends</a></h6>
+						        <div class="add-class">
+						            <button type="button" class="btn btn-grey">Add Friends</button>
+						        </div>
+						    </div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-12 col-xs-12 col-md-4 col-lg-2 col-xl-2">
+					<div class="view-info">
+						<div class="friends">
+						    <div class="pic">
+						        <img class="for-img" src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/c0.15.148.148a/p148x148/53908277_10218596319048518_5949608020924170240_n.jpg?_nc_cat=104&_nc_ht=scontent-hkg3-2.xx&oh=60479df5abe9b70ae927cbc9e938e3e8&oe=5D629D94">										
+						    </div>
+
+						    <div class="details">
+						        <h2 class="details-heading"><a href="#">Cirius Lee Knaught</a></h2>
+						        <h6 class="mutual-frd"><a href="#">9 mutual friends</a></h6>
+						        <div class="add-class">
+						            <button type="button" class="btn btn-grey">Add Friends</button>
+						        </div>
+						    </div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-12 col-xs-12 col-md-4 col-lg-2 col-xl-2">
+					<div class="view-info">
+						<div class="friends">
+						    <div class="pic">
+						        <img class="for-img" src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/c0.58.148.148a/p148x148/33379638_2059064191017778_3383444947955875840_n.jpg?_nc_cat=102&_nc_ht=scontent-hkg3-2.xx&oh=0678250dca0b1a46ff1f8749817269dd&oe=5D5B8098">										
+						    </div>
+
+						    <div class="details">
+						        <h2 class="details-heading"><a href="#">Ayaj Ali</a></h2>
+						        <h6 class="mutual-frd"><a href="#">9 mutual friends</a></h6>
+						        <div class="add-class">
+						            <button type="button" class="btn btn-grey">Add Friends</button>
+						        </div>
+						    </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section> -->
+
+
+<section class="content-block">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 col-xs-12 col-md-4 col-lg-4 col-xl-4">
+				<!-- <div class="contact-left">
+					<div class="left-content">
+						<div class="friends">
+							<div class="pic">
+								<i class="fas fa-map-marker-alt"></i>									
+							</div>
+							
+							<div class="details">
+								<h2 class="details-heading"><a href="#">Sunny, which city do you live in?<span><i class="fas fa-times"></i></span></a></h2>
+								<div class="progress">
+								  <div class="progress-bar" role="progressbar" style="width: 65%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="location-blk">
+						<div class="friends">
+							<div class="pic">
+								<img class="for-img" src="https://external-hkg3-2.xx.fbcdn.net/safe_image.php?d=AQBrLPwPhI7nEppP&w=32&h=32&url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fa%2Fa0%2FOpen_Hand_Monument_in_Chandigarh.jpg&cfs=1&fallback=hub_city&f&_nc_hash=AQCBznyZkVvYcjT6">									
+							</div>
+							
+							<div class="details">
+								<h2 class="details-heading"><a href="#">Chandigarh, India</a></h2>
+							</div>
+						</div>
+
+						<div class="friends">
+							<div class="pic">
+								<img class="for-img" src="https://external-hkg3-2.xx.fbcdn.net/safe_image.php?d=AQDPKu_igiXOKwvV&w=32&h=32&url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F6%2F60%2FMysore_Palace%252C_India_%2528photo_-_Jim_Ankan_Deka%2529.jpg%2F720px-Mysore_Palace%252C_India_%2528photo_-_Jim_Ankan_Deka%2529.jpg&cfs=1&fallback=hub_city&f&_nc_hash=AQAxeD4W6B_SVSBp">									
+							</div>
+							
+							<div class="details">
+								<h2 class="details-heading"><a href="#">Mysore, Karnataka</a></h2>
+							</div>
+						</div>
+
+						<div class="friends">
+							<div class="pic">
+								<img class="for-img" src="https://external-hkg3-2.xx.fbcdn.net/safe_image.php?d=AQAxluFBYjton0ZE&w=32&h=32&url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F2%2F24%2FPCA_Stadium%252C_Mohali_1.jpg%2F720px-PCA_Stadium%252C_Mohali_1.jpg&cfs=1&fallback=hub_city&f&_nc_hash=AQBaO05ZTC0AM5RY">									
+							</div>
+							
+							<div class="details">
+								<h2 class="details-heading"><a href="#">Mohali, India</a></h2>
+							</div>
+						</div>
+
+						<div class="input-city">
+							<input type="text" placeholder="Enter Current City" name="">
+						</div>
+
+						<div class="public-btn">
+								<div class="may-know">
+									<div class="top-know">
+										<div class="dropdown">
+											  <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											    <span><i class="fas fa-globe-asia"></i></span>Public
+											  </button>
+											  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+											    <a class="dropdown-item" href="#">Action</a>
+											    <a class="dropdown-item" href="#">Another action</a>
+											    <a class="dropdown-item" href="#">Something else here</a>
+											  </div>
+											</div>
+										<div class="Stories-blk">
+											<a href="" class="btn-grey"> Skip</a>
+											<a href="" class="save-btn btn-grey"> Save</a>
+										</div>
+									</div>
+								</div>
+						</div>
+					</div>
+				</div> -->
+				<!-- <div class="intro-blk">
+					<div class="inner-intro-blk">
+						<div class="heading-intro">
+							<h2><i class="fas fa-globe-asia"></i>Intro</h2>
+						</div>
+						<div class="text-msg">
+							<span><i class="far fa-comment-alt"></i></span>
+							<p>Add a short bio to tell people more about yourself.</p>
+							 <button type="button" class="btn btn-grey">Add Bio</button>
+						</div>
+						<div class="follow-blk">
+							<p><i class="fas fa-rss"></i>Followed by <span>4 people</span></p>
+							<button type="button" class="btn btn-grey">Edit Details</button>
+						</div>
+						<div class="text-msg">
+							<span><i class="far fa-star"></i></span>
+							<p>Showcase what's important to you by adding photos, Pages, groups and more to your featured section on your public profile.</p>
+							 <button type="button" class="btn">Add to Featured</button>
+						</div>
+						<div class="add-insta">
+							<button type="button" class="btn btn-grey"><i class="fas fa-plus"></i>Add Instagram, Websites, Other Links</button>
+						</div>
+					</div>
+				</div> -->
+
+				<div class="photos-blk">
+					<div class="inner-photo">
+						<div class="may-know">
+							<div class="top-know">
+
+								<p class="hdg"><a href="javascript:void(0)" [routerLink]="['/photos']" ><span><i class="fas fa-camera-retro"></i></span>Photos</a></p>
+
+								<!-- <p class="hdg"><span><i class="fas fa-camera-retro"></i></span>Photos</p> -->
+
+								<!-- <a href="" class="see">Add photo</a> -->
+							<!-- 	<input type="file" class="see" name="file" > -->
+							<!-- <label for="file_input_id">Add Photo</label>
+                             <input type="file" id="file_input_id"> -->
+
+								<a href="javascript:void(0)" (click)="addphoto.click()" class="see">Add photo</a>
+								<div class="attach_file" style="display:none">
+										<input id="coverPhoto" type="file" accept="image/*"  #addphoto (change)="addPhoto($event)" name="filecover" >
+									  </div>
+
+							</div>
+							<div class="img-sec">
+								<div class="row" >
+										<ng-container  *ngFor="let media of userMedia;let i=index;">
+												<div *ngIf="media.post_media != '' && i<9"  class="col-4 p-1">
+														<div class="photo-img">
+															<img src="{{img_url}}{{media.post_media}}">
+														</div>
+													</div>
+										</ng-container>									
+								</div>								
+							</div>	
+						</div>
+					</div>
+				</div>
+				<div class="friends-sec">
+					<div class="inner-photo">
+						<div class="may-know">
+							<div class="top-know">
+								<p class="hdg"><span><i class="fas fa-camera-retro"></i></span>Friends</p>
+								<a href="" class="see">Find Friends</a>
+							</div>
+							<div class="img-sec">
+								<app-friend-list></app-friend-list>
+							</div>	
+						</div>
+					</div>
+			<!-- <div class="post-view">
+
+						<div class="friends">
+						    <div class="pic">
+						        <img class="for-img" src="assets/images/friends.jpg">										
+						    </div>
+
+						    <div class="details">
+						        <h6 class="mutual-frd">See what you have in common with your friends.</h6>
+						    </div>
+						    <div class="add-class">
+						        <button type="button" class="btn btn-grey">View</button>
+						    </div>
+						</div>
+					</div> -->
+				</div>
+
+				<!---div class="know-you">
+					<div class="friends">
+					    <div class="details">
+					        <h6 class="mutual-frd">Did you Know</h6>
+					    </div>
+					    <div class="add-class">
+					        <button type="button" class="btn btn-grey">View</button>
+					    </div>
+					</div>
+				</div>
+			</div--->
+		</div>
+	
+			<div class="col-sm-12 col-xs-12 col-md-8 col-lg-8 col-xl-8 right-part1">
+				<app-create-post></app-create-post>
+				<div *ngIf="!showPosts" class="post-box"><h5 style="color:#f6ad21;text-align: center;padding-top: 12px">No Post Available</h5></div>
+				<ng-container *ngIf="showPosts">
+				<div  class="post-box" *ngFor="let post of new_post_data">
+					<div class="post-hdr">
+						<div class="icon-img">
+							<img src="{{profile_picture}}">
+						</div>
+						<div class="name-box">
+							<h1 class="hdg"><a href="">{{post.username}}</a></h1>
+							<p class="time"><a href="#">{{toLocalDate(post.post_create_date)}}</a></p>
+						</div>
+					</div>
+					
+					<div *ngIf="post.post_description != ''" class="post-des">
+						<p class="des">{{convetToEmoji(post.post_description)}}</p>
+					</div>
+					
+					<div class="post-data" *ngIf="post.post_media != ''">
+						<img class="img-fluid" src="{{img_url}}{{post.post_media}}">
+					</div>
+					
+					<div class="like-data">
+						<div class="like-total">
+							<div class="total-left">
+								<img class="for-img" src="assets/images/like.png">									
+								<a *ngIf="post.likes != '0'" class="pop-val" href="javascript:void(0)">{{post.likes}}</a>
+							</div>
+						 <!--	<div class="total-right">
+								<p class="rgt-val">2 shares</p>
+							</div> -->
+						</div>
+						
+						<div class="like-actual">
+							<div class="parts" *ngIf="post.is_likes == '0'" (click)="like(post,'like')">
+								<img class="for-img" src="assets/images/like2.png">										
+								<span>Like</span>
+							</div>
+							<div class="parts" *ngIf="post.is_likes == '1'" (click)="like(post,'unlike')">
+								<img class="for-img" src="assets/images/dis-like2.png">										
+								<span>Unlike</span>
+							</div>
+							
+							<!-- <div class="parts">
+								<img class="for-img" src="assets/images/like2.png">										
+								<span>Share</span>
+							</div> -->
+							
+							<div class="parts" id="commentbox" (click)="comment_box(post.id)">
+								<img class="for-img" src="assets/images/chat.png">										
+								<span>Comments</span>
+							</div>
+							
+						</div>
+						  <div *ngIf="isComment == true && post.id==post_id" class="commant-data">
+							<div class="commant-total">
+									<div class="commant-list" *ngFor="let cmnt of cmnt_data">
+											<div class="media">
+												<img src="{{img_url}}{{cmnt.profile_picture}}">
+												<div class="media-body">
+													 <p  *ngIf="edit_comment != true || cmnt.id != cmtId"><strong>{{cmnt.username}}</strong>  {{cmnt.comment}}</p>
+													 <p class="msg-edit" *ngIf="edit_comment && cmnt.id == cmtId"> <input  class="form-control" (keyup.enter)="updateComment(cmnt)" [(ngModel)]="cmnt.comment" style="resize:none" type="text" ></p>
+													 <ul>
+															<li *ngIf="edit_comment != true || cmnt.id != cmtId"><a *ngIf="cmnt.user_id == user_id" href="javascript:void(0)" (click)="editComment(cmnt.id)">Edit</a></li>
+														   <li><a *ngIf="cmnt.user_id == user_id" href="javascript:void(0)" (click)="delete_comment(cmnt)">Delete</a></li>
+														   
+													</ul>
+												</div>
+											</div>
+										</div>
+								<div class="write-commant">
+									<div class="media">
+									  <img src="{{profile_picture}}">
+									  <div class="media-body">
+									   <input [disabled]="isPostComment" (keyup.enter)="post_comment()" class="form-control" [(ngModel)]="comment" name="comment"  style="resize:none" type="text" placeholder="Write a commant...">
+									   <!-- <span><i class="far fa-smile"></i></span> -->
+									  </div>
+									</div>
+								</div>
+							</div>
+						</div>
+					
+					</div>
+					
+				</div>
+			</ng-container>
+			</div>
+		</div>
+	</div>
+</section>
+</div>
+<div class="modal" id="myModal" backdrop="static" role="dialog" tabindex="-1" style="display: block; background-color: rgba(0, 0, 0, 0.32); z-index: 111111;" [style.display]="isPostModal ? 'block' : 'none'" *ngIf="isPostModal" aria-hidden="true">
+		
+			  <div class="modal-dialog" role="document">
+				  <div class="modal-content">
+					  <div class="create-post">
+				  <div class="post-hdr">
+					<p *ngIf="error_msg">Error<button type="button" class="close" (click)="close_modal()"><span aria-hidden="true">&times;</span></button></p>
+					<p *ngIf="sucess_msg">Success<button type="button" class="close" (click)="close_modal()"><span aria-hidden="true">&times;</span></button></p>  
+				</div>
+	
+				  <div class="create-write">
+					<div class="for-type">
+					  <div class="icon-img">
+						
+					  </div>
+					  <div *ngIf="error_msg" class="error-msg">
+					  {{error_msg}}
+					  </div>
+					  <div *ngIf="sucess_msg" class="sucess-msg">
+							{{sucess_msg}}
+							</div>
+					</div>
+					<div class="for-pop-btn">
+				
+					</div>
+				  </div>
+				  
+				</div>
+			
+			  </div>
+			  
+			  
+	
+			</div>
+			
+			
+		  </div>
+		  <div class="for-popup-layer" [ngClass]="isShow ? isShow :''"></div>
