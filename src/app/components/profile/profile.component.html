@@ -297,7 +297,7 @@
 				<div class="post-box" *ngFor="let post of profile_new_post_data">
 					<div class="post-hdr">
 						<div class="icon-img">
-							<img src="{{img_url}}/{{profile_picture}}">
+							<img src="{{profile_picture}}">
 						</div>
 						<div class="name-box">
 							<h1 class="hdg"><a href="">{{post.username}}</a></h1>
@@ -313,7 +313,7 @@
 						<img class="img-fluid" src="{{img_url}}{{post.post_media}}">
 					</div>
 					
-					<div class="like-data">
+					<div class="like-data" >
 						<div class="like-total">
 							<div class="total-left">
 							<!-- 	<img class="for-img" src="assets/images/like.png">							 			
@@ -327,22 +327,56 @@
 							</div> -->
 						</div>
 						
-						<div class="like-actual">
-							<div class="parts">
-								<img class="for-img" src="assets/images/like2.png">										
-								<span>Like</span>
-							</div>
+						<div class="like-actual"  *ngIf="user_status == 'Friend'">
+								<div class="parts" *ngIf="post.is_likes == '0'" (click)="like(post,'like')">
+										<img class="for-img" src="assets/images/like2.png">										
+										<span>Like</span>
+									</div>
+									<div class="parts" *ngIf="post.is_likes == '1'" (click)="like(post,'unlike')">
+										<img class="for-img" src="assets/images/dis-like2.png">										
+										<span>Unlike</span>
+									</div>
 							
 						<!-- 	<div class="parts">
 								<img class="for-img" src="assets/images/like2.png">										
 								<span>Share</span>
 							</div> -->
 							
-							<div class="parts">
-								<img class="for-img" src="assets/images/like2.png">										
-								<span>Comments</span>
+							<div class="parts" id="commentbox" (click)="comment_box(post.id)">
+									<img class="for-img" src="assets/images/chat.png">										
+									<span>Comments</span>
 							</div>
 							
+						</div>
+					  <div  *ngIf="user_status == 'Friend'">
+						<div *ngIf="isComment == true && post.id==post_id" class="commant-data">
+								<div class="commant-total">
+										<div class="commant-list" *ngFor="let cmnt of cmnt_data">
+												<div class="media">
+													<img src="{{img_url}}{{cmnt.profile_picture}}">
+													<div class="media-body">
+														 <p  *ngIf="edit_comment != true || cmnt.id != cmtId"><strong>{{cmnt.username}}</strong>  {{cmnt.comment}}</p>
+														 <p class="msg-edit" *ngIf="edit_comment && cmnt.id == cmtId"> <input  class="form-control" (keyup.enter)="updateComment(cmnt)" [(ngModel)]="cmnt.comment" style="resize:none" type="text" ></p>
+														 <ul>
+																<li *ngIf="edit_comment != true || cmnt.id != cmtId"><a *ngIf="cmnt.user_id == user_id" href="javascript:void(0)" (click)="editComment(cmnt.id)">Edit</a></li>
+															   <li><a *ngIf="cmnt.user_id == user_id" href="javascript:void(0)" (click)="delete_comment(cmnt)">Delete</a></li>
+															   <li  *ngIf="edit_comment && cmnt.id == cmtId"><a  href="javascript:void(0)" (click)="cancelComment(cmnt.id)">Cancel</a></li>
+															   
+														</ul>
+													</div>
+												</div>
+											</div>
+									<div class="write-commant">
+										<div class="media">
+										  <img src="{{profile_picture}}">
+										  <div class="media-body">
+										   <input [disabled]="isPostComment" (keyup.enter)="post_comment()" class="form-control" [(ngModel)]="comment" name="comment"  style="resize:none" type="text" placeholder="Write a commant...">
+										   <!-- <span><i class="far fa-smile"></i></span> -->
+										  </div>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 						
 					</div>
@@ -353,3 +387,42 @@
 		</div>
 	</div>
 </section>
+
+<div class="modal" id="myModal" backdrop="static" role="dialog" tabindex="-1" style="display: block; background-color: rgba(0, 0, 0, 0.32); z-index: 111111;" [style.display]="isPostModal ? 'block' : 'none'" *ngIf="isPostModal" aria-hidden="true">
+		
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="create-post">
+			<div class="post-hdr">
+			  <p *ngIf="error_msg">Error<button type="button" class="close" (click)="close_modal()"><span aria-hidden="true">&times;</span></button></p>
+			  <p *ngIf="sucess_msg">Success<button type="button" class="close" (click)="close_modal()"><span aria-hidden="true">&times;</span></button></p>  
+		  </div>
+
+			<div class="create-write">
+			  <div class="for-type">
+				<div class="icon-img">
+				  
+				</div>
+				<div *ngIf="error_msg" class="error-msg">
+				{{error_msg}}
+				</div>
+				<div *ngIf="sucess_msg" class="sucess-msg">
+					  {{sucess_msg}}
+					  </div>
+			  </div>
+			  <div class="for-pop-btn">
+		  
+			  </div>
+			</div>
+			
+		  </div>
+	  
+		</div>
+		
+		
+
+	  </div>
+	  
+	  
+	</div>
+	<div class="for-popup-layer" [ngClass]="isShow ? isShow :''"></div>
