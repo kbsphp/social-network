@@ -3316,6 +3316,42 @@ section.model-custom .modal {
     margin-bottom: 15px;
 }
 
+/* Loader CSS */
+.loader {
+    width: 50px;
+    height: 35px;
+    text-align: center;
+    font-size: 10px;
+    margin: auto;
+}
+
+.loader > div {
+    background-color: rgb(245, 188, 0);
+    height: 100%;
+    width: 3px;
+    display: inline-block;
+    margin: 0px 3px;
+    animation: 1.2s ease-in-out 0s infinite normal none running bar; 
+}
+
+.loader > .rect2 {
+    animation-delay: -1.1s;
+}
+
+.loader > .rect3 {
+    animation-delay: -1s;
+}
+
+.loader > .rect4 {
+    animation-delay: -0.9s;
+}
+
+.loader > .rect5 {
+    animation-delay: -0.8s;
+}
+
+@-webkit-keyframes bar{0%,40%,100%{-webkit-transform:scaleY(0.4);-ms-transform:scaleY(0.4);transform:scaleY(0.4);}20%{-webkit-transform:scaleY(1.0);-ms-transform:scaleY(1.0);transform:scaleY(1.0);}} @keyframes bar{0%,40%,100%{-webkit-transform:scaleY(0.4);-ms-transform:scaleY(0.4);transform:scaleY(0.4);}20%{-webkit-transform:scaleY(1.0);-ms-transform:scaleY(1.0);transform:scaleY(1.0);}}
+
 
 
 

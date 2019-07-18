@@ -71,10 +71,18 @@
 				<div class="row">
 					<div class="col-sm-12 col-md-12 col-lg-8 right-part1">
 						<app-create-post></app-create-post>
-						<div *ngIf="!showPosts" class="post-box"><h5 style="color:#f6ad21;text-align: center;padding-top: 12px">No News Available</h5> </div>
-						<i class="fas fa-spinner"></i>
+						<div *ngIf="loading" class="loader">
+								<div class="rect2"></div>
+								<div class="rect3"></div>
+								<div class="rect4"></div>
+								<div class="rect5"></div>
+							</div>
+						<!-- <div *ngIf="!showPosts" class="post-box">
+							<h5 style="color:#f6ad21;text-align: center;padding-top: 12px">No News Available</h5> </div> -->
+							
+						<!-- <i *ngIf="loading" class="fa fa-spinner fa-spin"></i> -->
 						<ng-container *ngIf="showPosts">
-						   <ng-template infinite-scroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="500" (scrolled)="generalPostAllList()" [scrollWindow]="true">
+						   <div infinite-scroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="500" (scrolled)="generalPostAllList()" [scrollWindow]="true">
 								<div class="post-box" *ngFor="let post of post_data;let index">
 									<div class="post-hdr">
 										<div class="icon-img">
@@ -130,10 +138,11 @@
 													<img src="{{img_url}}{{cmt.profile_picture}}">
 													<div class="media-body">
 														<p *ngIf="edit_comment != true || cmt.id != cmtId"><b>{{cmt.username}}</b>{{cmt.comment}}</p>
-														<p *ngIf="edit_comment && cmt.id == cmtId"> <input  class="form-control" (keyup.enter)="updateComment(cmt)" [(ngModel)]="cmt.comment" style="resize:none" type="text" ></p>
+														<div *ngIf="edit_comment && cmt.id == cmtId"> <input  class="form-control" (keyup.enter)="updateComment(cmt)" [(ngModel)]="cmt.comment" style="resize:none" type="text" ></div>
 														<ul>
 															<li *ngIf="edit_comment != true || cmt.id != cmtId"><a *ngIf="cmt.user_id == user_id" href="javascript:void(0)" (click)="editComment(cmt.id)">Edit</a></li>
 															<li><a *ngIf="cmt.user_id == user_id" href="javascript:void(0)" (click)="delete_comment(cmt)">Delete</a></li>
+															<li  *ngIf="edit_comment && cmt.id == cmtId"><a *ngIf="cmt.user_id == user_id" href="javascript:void(0)" (click)="cancelComment(cmt.id)">Cancel</a></li>
 														</ul>
 													</div>
 												</div>
@@ -152,7 +161,7 @@
 										</div>
 									</div>
 								</div>	
-							</ng-template>	
+							</div>	
 					</ng-container>			
 					</div>
 					<div class="col-sm-12 col-md-12 col-lg-4 right-part2">

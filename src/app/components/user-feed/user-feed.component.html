@@ -422,6 +422,7 @@
 													 <ul>
 															<li *ngIf="edit_comment != true || cmnt.id != cmtId"><a *ngIf="cmnt.user_id == user_id" href="javascript:void(0)" (click)="editComment(cmnt.id)">Edit</a></li>
 														   <li><a *ngIf="cmnt.user_id == user_id" href="javascript:void(0)" (click)="delete_comment(cmnt)">Delete</a></li>
+														   <li  *ngIf="edit_comment && cmnt.id == cmtId"><a  href="javascript:void(0)" (click)="cancelComment(cmnt.id)">Cancel</a></li>
 														   
 													</ul>
 												</div>

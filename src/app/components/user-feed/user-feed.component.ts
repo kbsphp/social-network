@@ -114,6 +114,7 @@ export class UserFeedComponent implements OnInit {
         if(this.post_data != "" && this.post_data != null){
           this.showPosts=true;
           this.new_post_data = this.post_data;
+          console.log(this.new_post_data);
 
         }else{
           this.showPosts=false;
@@ -233,7 +234,11 @@ export class UserFeedComponent implements OnInit {
       this.edit_comment=true;
       this.cmtId=pvrId;
    }
-
+   
+   cancelComment(pvrId){
+    this.cmtId=pvrId;
+    this.edit_comment=false;
+  }
 
    updateComment(pvrComment){
     if(pvrComment.comment == 'undefined' || pvrComment.comment == null || pvrComment.comment.trim() ==''){

@@ -118,24 +118,36 @@ export class GeneralFeedComponent implements OnInit {
 
 
   generalPostAllList(){
+    this.loading=true;
     this.chunk_Start = this.post_data.length == 0 ? 0 : this.post_data[this.post_data.length -1]['id'];
     const inputJson = {
       "limit": 5,
     	"start": this.chunk_Start,
     	"userID": this.user_id    	
     };
-    console.log(JSON.stringify(inputJson, undefined, 2));
+   // console.log(JSON.stringify(inputJson, undefined, 2));
     this.data_service.generalPostData(inputJson).subscribe((response)=>{
-      console.log(JSON.stringify(response, undefined, 2));
+     // console.log(JSON.stringify(response, undefined, 2));
         if(response['error']== false){
            this.newArray = this.newArray.concat(response['body']);
            this.showPosts=true;
+           this.loading=false;
            this.post_data = this.newArray;
-        }else{
 
+        }else{
+          if(this.post_data.length > 0){
+            this.showPosts=true;
+            this.loading=false;
+          }else{
+            this.showPosts=false;
+            this.loading=false;
+          }
+          console.log(response['msg']) 
         }
       },
       (error)=>{
+        this.loading=false;
+        this.showPosts=false;
         console.log(error);
       }
     )
@@ -201,10 +213,10 @@ export class GeneralFeedComponent implements OnInit {
         "post_id": postID,
         "comment": pvarCommnet
       }
-      console.log(input_data);
+     // console.log(input_data);
       this.data_service.commentOnPost(input_data).subscribe((response) => {
         if(response['error'] == false){
-          console.log(this.post_data[0]['comments']);
+         // console.log(this.post_data[0]['comments']);
           this.post_data[0]['comments'].push(response['body']);
           pvarCommnet ="";
         //  console.log(pvarCommnet);
@@ -227,7 +239,7 @@ export class GeneralFeedComponent implements OnInit {
     this.data_service.deleteComment(p_user_id,p_cmnt_id,p_post_id).subscribe((response) => {
       if(response['error'] == false){
         this.isDeleteComment = false;
-        console.log(this.post_data[0]['comments']);
+        //console.log(this.post_data[0]['comments']);
         this.post_data[0]['comments'].splice(this.post_data[0]['comments'].indexOf(cmnt), 1);
       }else{
         this.isDeleteComment = false;
@@ -237,6 +249,11 @@ export class GeneralFeedComponent implements OnInit {
       this.isDeleteComment = false;
       console.log('Please check the data and try again!');
     });
+  }
+
+  cancelComment(pvrId){
+    this.cmtId=pvrId;
+    this.edit_comment=false;
   }
 
   editComment(pvrId){
@@ -267,10 +284,10 @@ export class GeneralFeedComponent implements OnInit {
 
   findFriendList(){
     this.user_id = sessionStorage.getItem('user_id');
-    console.log(this.user_id);
+    //console.log(this.user_id);
     this.socket.emit('getMutualInfo', this.user_id)
     this.socket.on('Getinfo',(response) => {
-      console.log(response);
+     // console.log(response);
       if(response != 'undefined' || response !=null )
       {
         this.findFriends=true;
@@ -288,10 +305,10 @@ export class GeneralFeedComponent implements OnInit {
     const input_data = {"lang":"en","userID": parseInt(this.user_id), "friend_id": parseInt(newfreind)}
     this.isSendDisabled = true;
     this.friend=newfreind;
-    console.log(this.friend);
+   // console.log(this.friend);
     this.socket.emit('sendFriendRequest', input_data);
     this.socket.on('sendFriendRequestReturn', (response) =>{
-      console.log(response);
+    //  console.log(response);
     if(response['error'] == false){
      this.isSendDisabled = false;
      this.isSendReq = true;
@@ -318,7 +335,7 @@ export class GeneralFeedComponent implements OnInit {
   }
 
   openUserProfile(pvrId){
-    console.log(pvrId);
+    //console.log(pvrId);
     this.selected_user=CryptoJS.AES.encrypt(JSON.stringify(pvrId), 'gurpreet').toString();
     this.router.navigate(['/profile',this.selected_user]);
  }
@@ -346,7 +363,7 @@ export class GeneralFeedComponent implements OnInit {
     //var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), 'secret key 123').toString();
    //this.search_user_data = response;
 
-   console.log(JSON.stringify(this.search_user_data))
+   //console.log(JSON.stringify(this.search_user_data))
      //console.log(this.search_user_data)
    },error => {});
  }else{
