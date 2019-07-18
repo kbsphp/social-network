@@ -42,6 +42,7 @@ export class FindFriendsComponent implements OnInit {
     this.socket.on('Getinfo',(response) => {
       if(response != '' || response!=null || response !='undefined'){
         this.user_data=response;
+        console.log(this.user_data);
       }else{
         this.user_data=[];
       }

@@ -89,7 +89,7 @@
 											<img src="{{img_url}}{{post.profile_picture}}" />
 										</div>
 										<div class="name-box">
-											<h1 class="hdg"><a href="javascript:void(0)">{{post.username}}</a> </h1>
+											<h1 class="hdg" (click)="openUserProfile(post.user_id)"><a href="javascript:void(0)">{{post.username}}</a> </h1>
 											<p class="time"><a href="javascript:void(0)">{{toLocalDate(post.post_create_date)}}</a></p>
 										</div>
 									</div>
@@ -137,7 +137,7 @@
 												<div class="media">
 													<img src="{{img_url}}{{cmt.profile_picture}}">
 													<div class="media-body">
-														<p *ngIf="edit_comment != true || cmt.id != cmtId"><b>{{cmt.username}}</b>{{cmt.comment}}</p>
+														<p *ngIf="edit_comment != true || cmt.id != cmtId"><b (click)="openUserProfile(cmt.user_id)">{{cmt.username}}</b>{{cmt.comment}}</p>
 														<div *ngIf="edit_comment && cmt.id == cmtId"> <input  class="form-control" (keyup.enter)="updateComment(cmt)" [(ngModel)]="cmt.comment" style="resize:none" type="text" ></div>
 														<ul>
 															<li *ngIf="edit_comment != true || cmt.id != cmtId"><a *ngIf="cmt.user_id == user_id" href="javascript:void(0)" (click)="editComment(cmt.id)">Edit</a></li>
@@ -168,7 +168,7 @@
 							<div class="search-box">
 									<form>
 										<div class="input-group">
-											<input type="text" class="form-control" [(ngModel)]="search_people" (input)="onKeyPressSearch($event.target.value)" placeholder="Search" name="search_people">
+											<input type="text" class="form-control" [(ngModel)]="search_people" (input)="onKeyPressSearch($event.target.value)" placeholder="Search Friends" name="search_people">
 											 <ul *ngIf="isSearchUser == true">
 												<ng-container *ngFor="let search of search_user_data;">
 												   <!--  <li (click)="chatUser(search)" *ngIf="search.id != user_id">
@@ -184,6 +184,7 @@
 				
 												</ng-container>
 											</ul>
+											<!-- <div *ngIf="isSearchUser == false">{{search_msg}}</div> -->
 											<!-- <div class="input-group-append">
 												<button class="btn btn-success" type="submit">Go</button> 
 											</div> -->
@@ -205,6 +206,7 @@
 									
 									<div class="details">
 										<h2 class="details-heading" (click)="openUserProfile(user.new_users)"><a href="javascript:void(0)">{{user.first_name}} {{user.last_name}}</a></h2>
+										<h2 class="details-heading" (click)="openUserProfile(user.new_users)" *ngIf="user.first_name == null || user.first_name== ''"><a  href="javascript:void(0)">{{user.username}} </a></h2>
 										<h6 class="mutual-frd" (click)="openUserProfile(user.new_users)" *ngIf="user.mutualcount !=0"><a href="javascript:void(0)">{{user.mutualcount}} mutual friend</a></h6>
 										<div class="add-class">
 											<button *ngIf="isSendReq != true || user.new_users != friend" [disabled]="isSendDisabled" (click)="sendFriendReq(user.new_users)" type="button" class="btn btn-grey">Add Friends</button>

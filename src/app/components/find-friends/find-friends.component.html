@@ -18,7 +18,8 @@
 											</div>
 											
 											<div class="details">
-												<h2 class="details-heading" (click)="openUserProfile(user.user_id)"><a  href="javascript:void(0)">{{user.first_name}} {{user.last_name}}</a></h2>
+												<h2 class="details-heading" (click)="openUserProfile(user.user_id)" ><a  href="javascript:void(0)">{{user.first_name}} {{user.last_name}}</a></h2>
+												<h2 class="details-heading" (click)="openUserProfile(user.user_id)" *ngIf="user.first_name == null || user.first_name== ''"><a  href="javascript:void(0)">{{user.username}} </a></h2>
 											</div>
 											<div class="add-class">
 												<button *ngIf="isSendReq != true || user.new_users != friend"  type="button" (click)="confirmReq(user.user_id,user)" class="btn btn-grey">Confirm Request</button>
@@ -40,7 +41,8 @@
 										</div>
 										
 										<div class="details">
-											<h2 class="details-heading" (click)="openUserProfile(user.new_users)"><a  href="javascript:void(0)">{{user.first_name}} {{user.last_name}}</a></h2>
+											<h2 class="details-heading" (click)="openUserProfile(user.new_users)" ><a  href="javascript:void(0)">{{user.first_name}} {{user.last_name}}</a></h2>
+											<h2 class="details-heading" (click)="openUserProfile(user.new_users)" *ngIf="user.first_name == null || user.first_name== ''"><a  href="javascript:void(0)">{{user.username}} </a></h2>
 											<h6 class="mutual-frd" *ngIf="user.mutualcount !=0"><a href="javascript:void(0)">{{user.mutualcount}} mutual friends</a></h6>
 										</div>
 										<div class="add-class">

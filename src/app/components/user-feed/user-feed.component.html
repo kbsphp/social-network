@@ -5,7 +5,7 @@
 			<div class="col-md-12">
 				<div class="top-profile-blk">
 					<div class="cover-pic">
-						<img class="" src="{{cover_pic}}" alt="Cover Photo"/>
+						<img *ngIf="cover_pic" class="" src="{{cover_pic}}" alt="Cover Photo"/>
 					</div>
 					<div class="inner-profile">
 						<button class="btn add" (click)=filecover.click()><span><i class="fas fa-camera"></i></span>Add Cover Photo</button>
@@ -14,7 +14,7 @@
 						  </div>
 						<div class="name-blk">
 							<div class="overlay-blk" (click)=file.click()>
-								<img src="{{profile_picture}}" alt="profile-pic">
+								<img *ngIf="profile_picture" src="{{profile_picture}}" alt="profile-pic">
 								<div class="hover-layer">
 									<i class="fas fa-camera"></i>
 								</div>

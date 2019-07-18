@@ -210,6 +210,7 @@ UpdatePostData(data) {
 }
 
 fileChange(file) {
+  this.btnshare=false;
   if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null &&
     sessionStorage.getItem('user_id') != undefined && sessionStorage.getItem('user_id') != null){
     this.file = file.target.files[0];

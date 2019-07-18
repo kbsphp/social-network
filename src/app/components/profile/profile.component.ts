@@ -18,6 +18,7 @@ export class ProfileComponent implements OnInit {
   id:any;
   user_id:any;
   post_id;
+  name;
   cmtId;
   error_msg:string = "";
   sucess_msg:string="";
@@ -100,6 +101,7 @@ export class ProfileComponent implements OnInit {
       if(response['error'] == false){
       this.cover_pic=response['body'][0].cover_pic;
       this.username =response['body'][0].username;
+      this.name=response['body'][0].first_name+' '+ response['body'][0].last_name
       this.profile_picture=this.img_url+''+response['body'][0].profile_picture;
       }else{
        console.log(response['msg']);

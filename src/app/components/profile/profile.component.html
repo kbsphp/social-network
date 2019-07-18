@@ -10,12 +10,13 @@
 						<!-- <button class="btn add"><span><i class="fas fa-camera"></i></span>Add Cover Photo</button> -->
 						<div class="name-blk">
 							<div class="overlay-blk">
-								<img src="{{profile_picture}}">
+								<img *ngIf="profile_picture" src="{{profile_picture}}">
 								<!-- <div class="hover-layer">
 									<i class="fas fa-camera"></i>
 								</div> -->
 							</div>
-							<h3>{{ username }}</h3>
+							<h3 *ngIf="name">{{ name }}</h3>
+							<h3 *ngIf="name == '' && name==null">{{ username }}</h3>
 						</div>
 						<div class="update-info for-banner-btn">
 							<button [disabled]="isSendDisabled" (click)="sendFriendReq()" *ngIf="user_status == 'Not Friend'" class="btn btn-grey"><i class="fas fa-user-plus"></i>Add Friend</button>

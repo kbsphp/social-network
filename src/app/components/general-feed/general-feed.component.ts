@@ -39,6 +39,7 @@ export class GeneralFeedComponent implements OnInit {
   isSendReq:boolean=false;
   search_user_data : any = [];
   search_people : string = "";
+  search_msg:string= "";
   isSearchUser : boolean = false;
   isDefaultUser : boolean = true;
   post_start:number;
@@ -78,6 +79,7 @@ export class GeneralFeedComponent implements OnInit {
       if(response['error'] == false){
       this.username =response['body'][0].username;
       this.fullname= response['body'][0].first_name+ ' '+response['body'][0].last_name;
+      this.fullname=this.fullname?this.fullname:this.username;
       this.currentUser_picture=this.img_url+''+response['body'][0].profile_picture;
       }else{
        console.log(response['msg']);
@@ -87,34 +89,6 @@ export class GeneralFeedComponent implements OnInit {
     })
  
    }
-
-
-  // generalPostAllList(){
-  //   this.user_id = sessionStorage.getItem('user_id');
-  //   this.data_service.generalPostData(this.user_id).subscribe((response) => {
-  //     //console.log(response);
-  //     if(response['error'] == false){
-  //       this.post_data = response['body'];
-  //        console.log(this.post_data);
-  //       if(this.post_data != "" && this.post_data != null){
-  //         this.showPosts=true;
-  //         this.post_data = this.post_data;
-  //        this.post_start=this.post_data[0].id
-  //        //console.log(this.post_start);
-  //         let input_data={"userId":this.user_id,"start":this.post_start,"limit":5}
-
-  //       }else{
-  //         this.showPosts=false;
-  //       }
-  //     }else{
-  //       this.showPosts=false;
-        
-  //      console.log(response['msg']);
-  //     }
-  //   },error =>{
-  //     console.log(error);
-  //   });
-  // }
 
 
   generalPostAllList(){
@@ -335,36 +309,43 @@ export class GeneralFeedComponent implements OnInit {
   }
 
   openUserProfile(pvrId){
-    //console.log(pvrId);
-    this.selected_user=CryptoJS.AES.encrypt(JSON.stringify(pvrId), 'gurpreet').toString();
-    this.router.navigate(['/profile',this.selected_user]);
+    if(this.user_id == pvrId)
+    {
+      this.router.navigate(['/profile']);
+    }else{
+      this.selected_user=CryptoJS.AES.encrypt(JSON.stringify(pvrId), 'gurpreet').toString();
+      this.router.navigate(['/profile',this.selected_user]);
+    }
+    
  }
 
  onKeyPressSearch(searchValue: string){
   //console.log(searchValue)
  if(this.search_people != ""){
-   this.isSearchUser = true;
    this.isDefaultUser = false;
    this.search_user_data = [];
    const input_data = {"userID": parseInt(this.user_id), "search_str": this.search_people}
    this.socket.emit('UsersSearchlist', input_data);
    this.socket.on('GetUsersSearchlist',(response) => {
-   console.log(response)
-//let other = [];
-   response.map(item => {
-     this.search_user_data=[ {
-       name:item.name,
-       id:CryptoJS.AES.encrypt(JSON.stringify(item.id), 'gurpreet').toString(),
-       profile_picture:item.profile_picture,
-       room:item.room
-     }
-     ]
-   })
-    //var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), 'secret key 123').toString();
-   //this.search_user_data = response;
-
-   //console.log(JSON.stringify(this.search_user_data))
-     //console.log(this.search_user_data)
+   console.log("Search");
+    if(response)
+    {
+      this.isSearchUser = true;
+        response.map(item => {
+          this.search_user_data=[ {
+            name:item.name,
+            id:CryptoJS.AES.encrypt(JSON.stringify(item.id), 'gurpreet').toString(),
+            profile_picture:item.profile_picture,
+            room:item.room
+          }
+          ]
+          
+        })
+    }else{
+         this.search_msg="No Friend Found";
+         this.isSearchUser = false;
+         this.isDefaultUser = true;  
+    }
    },error => {});
  }else{
    this.search_user_data = [];
