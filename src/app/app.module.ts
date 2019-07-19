@@ -16,7 +16,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { FriendListComponent } from './components/friend-list/friend-list.component';
-
+import { AboutComponent } from './components/about/about.component';
+import { AdvertiseComponent } from './components/advertise/advertise.component';
 
 
 import { CreatePostComponent } from './components/create-post/create-post.component';
@@ -41,7 +42,9 @@ import { ChatComponent } from './components/chat/chat.component';
      ProfileComponent,
      FindFriendsComponent,
      PhotosComponent,
-     ChatComponent
+     ChatComponent,
+     AboutComponent,
+     AdvertiseComponent
     
   ],
   imports: [

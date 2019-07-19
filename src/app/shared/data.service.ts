@@ -100,6 +100,22 @@ headers : any;
     .catch((error:Error) => {return Observable.throw(error);});
   }
 
+  deletePost(postId){
+    if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null){
+      this.token = sessionStorage.getItem('token');
+    }
+    const httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json', 'authorization': this.token })};
+    return this._http.get(this.base_url+'deletePost/'+postId,httpOptions)
+    .map((response:Response)=>{const data = response;return data;})
+    .catch((error:Error) => {return Observable.throw(error);});
+  }
+
+  spamPost(postId){
+    return this._http.get(this.base_url+'postAsSpam/'+postId)
+    .map((response:Response)=>{const data = response;return data;})
+    .catch((error:Error) => {return Observable.throw(error);});
+  }
+
   getPostmedia(pvarId){
     return this._http.get(this.base_url+'getUsermedia/'+pvarId)
     .map((response:Response)=>{const data = response;return data;})
@@ -215,6 +231,36 @@ headers : any;
       .catch((error:Error) => {return Observable.throw(error);});
     
   }
+
+
+  getUserAboutInfo(userId) {
+    //console.log(userId)
+        if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null){
+        this.token = sessionStorage.getItem('token');
+     }
+     const httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json','authorization': this.token })};
+     return this._http.get(this.base_url+'getAboutinfo/'+userId, httpOptions);
+   }
+
+   userAboutinfo(formData) {
+    //console.log(userId)
+        if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null){
+       this.token = sessionStorage.getItem('token');
+     }
+     const httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json','authorization': this.token })};
+     return this._http.post(this.base_url+'userAboutinfo/',formData, httpOptions);
+   }
+
+   saveAdInfo(formData) {
+
+    //console.log(formData)
+     if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null){
+     this.token = sessionStorage.getItem('token');
+   }
+    const httpOptions = { headers: new HttpHeaders({'authorization': this.token })};
+   return this._http.post(this.base_url+'yourInfoAdPref', formData, httpOptions);
+
+ }
 
 
 }

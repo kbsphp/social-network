@@ -21,7 +21,7 @@
 							</li>
 							
 							<li>
-								<a class="direct"  href="javascript:void(0)"><img class="img-bar-list" src="assets/images/about.png"> <span class="for-name">About</span></a>
+								<a class="direct" [routerLink]="['/about']" href="javascript:void(0)"><img class="img-bar-list" src="assets/images/about.png"> <span class="for-name">About</span></a>
 							</li>
 							
 							<li>
@@ -89,8 +89,16 @@
 											<img src="{{img_url}}{{post.profile_picture}}" />
 										</div>
 										<div class="name-box">
-											<h1 class="hdg" (click)="openUserProfile(post.user_id)"><a href="javascript:void(0)">{{post.username}}</a> </h1>
-											<p class="time"><a href="javascript:void(0)">{{toLocalDate(post.post_create_date)}}</a></p>
+											<h1 class="hdg" (click)="openUserProfile(post.user_id)"><a href="javascript:void(0)">{{post.username}}</a> <p class="time"><a href="javascript:void(0)">{{toLocalDate(post.post_create_date)}}</a></p></h1>
+											<div class="dropdown dots-dd">
+												<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+												  <i class="fas fa-ellipsis-h"></i>
+												</button>
+												<div class="dropdown-menu" x-placement="bottom-start">
+													<p class="time" (click)="reportSpamPost(post.id,post)" *ngIf="post.user_id != user_id"><a href="javascript:void(0)">Report as spam</a></p>
+													<p class="time" (click)="deletePost(post.id,post)" *ngIf="post.user_id == user_id"><a href="javascript:void(0)">Delete post</a></p>
+												</div>
+											  </div>
 										</div>
 									</div>
 									
@@ -124,7 +132,7 @@
 												</div>
 											
 											<div class="parts">
-												<img class="for-img" src="assets/images/like2.png" />										
+												<img class="for-img" src="assets/images/chat.png" />										
 												<span>Comments</span>
 											</div>
 											

@@ -319,6 +319,42 @@ export class GeneralFeedComponent implements OnInit {
     
  }
 
+ reportSpamPost(postId,post){
+   this.data_service.spamPost(postId).subscribe(response=>{
+       if(response['error']==false){
+        this.post_data.splice(this.post_data.indexOf(post), 1);
+        this.sucess_msg="Post has been blocked.";
+        this.isPostModal=true;
+        this.isShow="modal-backdrop fade show";
+       }else{
+         this.error_msg=response['msg'];
+         this.isPostModal=true;
+         this.isShow="modal-backdrop fade show";
+       }
+   },error=>{
+    this.isPostModal=false;
+     console.log(error);
+   })
+ }
+
+ deletePost(postId,post){
+ // console.log(post);
+  this.data_service.deletePost(postId).subscribe(response=>{
+   if(response['error']==false){
+    this.post_data.splice(this.post_data.indexOf(post), 1);
+    this.sucess_msg="Post has been deleted";
+    this.isPostModal=true;
+    this.isShow="modal-backdrop fade show";
+   }else{
+     this.error_msg=response['msg'];
+     this.isPostModal=true;
+     this.isShow="modal-backdrop fade show";
+   }
+  },error=>{
+    console.log(error);
+  })
+ }
+
  onKeyPressSearch(searchValue: string){
   //console.log(searchValue)
  if(this.search_people != ""){

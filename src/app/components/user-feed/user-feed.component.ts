@@ -198,6 +198,24 @@ export class UserFeedComponent implements OnInit {
 
     //getProfilePic()
 
+    deletePost(postId,post){
+      // console.log(post);
+       this.data_service.deletePost(postId).subscribe(response=>{
+        if(response['error']==false){
+         this.new_post_data.splice(this.new_post_data.indexOf(post), 1);
+         this.sucess_msg="Post has been deleted";
+         this.isPostModal=true;
+         this.isShow="modal-backdrop fade show";
+        }else{
+          this.error_msg=response['msg'];
+          this.isPostModal=true;
+          this.isShow="modal-backdrop fade show";
+        }
+       },error=>{
+         console.log(error);
+       })
+      }
+
     post_comment(){
       if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null &&
       sessionStorage.getItem('user_id') != undefined && sessionStorage.getItem('user_id') != null){

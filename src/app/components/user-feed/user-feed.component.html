@@ -319,7 +319,7 @@
 						<div class="may-know">
 							<div class="top-know">
 								<p class="hdg"><span><i class="fas fa-camera-retro"></i></span>Friends</p>
-								<a href="" class="see">Find Friends</a>
+								<a href="javascript:void(0)" [routerLink]="['/find-friends']" class="see">Find Friends</a>
 							</div>
 							<div class="img-sec">
 								<app-friend-list></app-friend-list>
@@ -366,8 +366,17 @@
 							<img src="{{profile_picture}}">
 						</div>
 						<div class="name-box">
-							<h1 class="hdg"><a href="">{{post.username}}</a></h1>
-							<p class="time"><a href="#">{{toLocalDate(post.post_create_date)}}</a></p>
+							<h1 class="hdg" (click)="openUserProfile(post.user_id)"><a href="javascript:void(0)">{{post.username}}</a> <p class="time"><a href="javascript:void(0)">{{toLocalDate(post.post_create_date)}}</a></p></h1>
+							<!-- <p class="time"><a href="#">{{toLocalDate(post.post_create_date)}}</a></p> -->
+							<div class="dropdown dots-dd">
+								<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+								  <i class="fas fa-ellipsis-h"></i>
+								</button>
+								<div class="dropdown-menu" x-placement="bottom-start">
+									<!-- <p class="time" (click)="reportSpamPost(post.id,post)" *ngIf="post.user_id != user_id"><a href="javascript:void(0)">Report as spam</a></p> -->
+									<p class="time" (click)="deletePost(post.id,post)" *ngIf="post.user_id == user_id"><a href="javascript:void(0)">Delete post</a></p>
+								</div>
+							  </div>
 						</div>
 					</div>
 					
