@@ -57,7 +57,7 @@ checkStatus:boolean=false;
       this.model=response['body']; 
       console.log(this.model);
       this.userAboutData=response['body']  
-      console.log(this.userAboutData.length);
+      console.log(this.userAboutData);
       if(this.userAboutData.length==0) {
          this.checkStatus=true;
       }else{
@@ -123,10 +123,10 @@ changeStatus(){
   console.log(this.show_input)
   //this.show_input=false
 }
-showFields() {
-    this.show_input = !this.show_input;
+// showFields() {
+//     this.show_input = !this.show_input;
 
-}
+// }
 
 showProfessional() {
    this.show_profession=!this.show_profession

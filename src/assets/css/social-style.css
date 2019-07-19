@@ -3375,6 +3375,7 @@ section.model-custom .modal {
     background: #282e3a;
     padding: 5px 10px;
     top: -7px !important;
+    transform: translate3d(0px, 25px, 0px) !important;
 }
 
 
@@ -3523,4 +3524,22 @@ div#collapseThree .media {
 .nouserinfo {
     color: #989898;
     margin-top: 45px;
+}
+.first-blog-outer .first-blog:last-child .media {
+    border-bottom: none;
+    margin-bottom: 10px;
+}
+.overview-outer .first-blog-outer {
+    width: 50%;
+    padding: 0 15px;
+}
+.chat-hdr {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.ballon-chat a.close-ballon {
+    padding: 5px 15px;
+    position: relative;
+    left: -5px;
 }
