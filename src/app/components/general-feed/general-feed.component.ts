@@ -174,7 +174,12 @@ export class GeneralFeedComponent implements OnInit {
     this.isShow="";
   }
 
+// <<<<<<< HEAD
+//   post_comment(postID,pvarCommnet){
+//     console.log(pvarCommnet)
+// =======
   post_comment(postID,pvarCommnet,post){
+
     if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null &&
     sessionStorage.getItem('user_id') != undefined && sessionStorage.getItem('user_id') != null){
       this.user_id = sessionStorage.getItem('user_id');

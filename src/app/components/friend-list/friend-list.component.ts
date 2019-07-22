@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as io from 'socket.io-client';
 import { environment } from '../../../environments/environment';
 import * as CryptoJS from 'crypto-js'; 
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-friend-list',
   templateUrl: './friend-list.component.html',
@@ -13,8 +14,9 @@ export class FriendListComponent implements OnInit {
  user_data : any = [];
  user_id: any;
  user_name : any;
+  selected_user;
  img_url:string="";
-  constructor() { 
+  constructor(private router:Router) { 
 
     //this.web_url = environment.web_url;
     this.socket_url = environment.socket_url;
@@ -39,19 +41,24 @@ export class FriendListComponent implements OnInit {
    getAllUser(){
     this.socket.on('updateUsers',(response) => {
       this.socket.emit('UserDetail', this.user_id);
-      this.socket.on('GetUser',(users) => { //this.user_data = users;console.log(this.user_data);
-      	users.map(item => {
-         this.user_data=[ {
-          name:item.name,
-          id:CryptoJS.AES.encrypt(JSON.stringify(item.id), 'gurpreet').toString(),
-          profile_picture:item.profile_picture,
-          room:item.room
-        }
-        ]
-      })
+      this.socket.on('GetUser',(users) => {
+        this.user_data=users
+       //this.user_data = users;console.log(this.user_data);
+      // 	users.map(item => {
+      //    this.user_data=[ {
+      //     name:item.name,
+      //     id:CryptoJS.AES.encrypt(JSON.stringify(item.id), 'gurpreet').toString(),
+      //     profile_picture:item.profile_picture,
+      //     room:item.room
+      //   }
+      //   ]
+      // })
       });
     });
   }
 
-
+ openUserProfile(pvrId){
+     this.selected_user=CryptoJS.AES.encrypt(JSON.stringify(pvrId), 'gurpreet').toString();
+     this.router.navigate(['/profile',this.selected_user]);
+  }
 }

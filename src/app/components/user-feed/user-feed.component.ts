@@ -5,6 +5,8 @@ import { DataService } from '../../shared/data.service'
 import { from } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import * as emoji from 'node-emoji';
+import * as io from 'socket.io-client';
+import * as CryptoJS from 'crypto-js';
 import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-user-feed',
@@ -22,6 +24,7 @@ export class UserFeedComponent implements OnInit {
   profile_picture;
   cover_pic;
   cmtId;
+  selected_user;
   edit_comment:boolean=false;
   username;
   showPosts:boolean=false;
@@ -43,12 +46,16 @@ export class UserFeedComponent implements OnInit {
   isShow="";
   media_type;
   userMedia:any=[];
-
+   user_data : any = [];
+  private socket;
+  socket_url: string = "";
   constructor(private formBuilder:FormBuilder,
     private data_service: DataService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private router:Router
     ) {
-      
+    this.socket_url = environment.socket_url;
+    this.socket = io.connect(this.socket_url);
     this.base_url = environment.base_url;
     this.img_url = environment.img_url;
     this.userData=JSON.parse(localStorage.getItem('userData'));
@@ -63,7 +70,8 @@ export class UserFeedComponent implements OnInit {
   ngOnInit() {
     this.postAllList();
     this.userDetails();
-    this. getPostMedia();
+    this.getPostMedia();
+    this.getAllUser();
     this.data_service.currentMessage.subscribe
     (message => {
       this.new_post_data.unshift(message);
@@ -99,6 +107,29 @@ export class UserFeedComponent implements OnInit {
       console.log(error);
     });
   }
+
+    getAllUser(){
+    this.socket.on('updateUsers',(response) => {
+      this.socket.emit('UserDetail', this.user_id);
+      this.socket.on('GetUser',(users) => { //this.user_data = users;console.log(this.user_data);
+        console.log( users)
+
+       this.user_data=users;
+      //   let objIndex = this.user_data.findIndex((obj => obj.id == 1));
+
+      //   users.map(item => {
+      //    this.user_data=[ {
+      //     name:item.name,
+      //     id:CryptoJS.AES.encrypt(JSON.stringify(item.id), 'gurpreet').toString(),
+      //     profile_picture:item.profile_picture,
+      //     room:item.room
+      //   }
+      //   ]
+      // })
+      });
+    });
+  }
+
   close_modal() {
     this.error_msg = "";
     this.sucess_msg= "";
@@ -499,6 +530,12 @@ UpdatePostData(data) {
   this.data_service.newPostMessageUpdation(tempObj);
  
  }
+
+ openUserProfile(pvrId){
+   console.log(pvrId)
+     this.selected_user=CryptoJS.AES.encrypt(JSON.stringify(pvrId), 'gurpreet').toString();
+     this.router.navigate(['/profile',this.selected_user]);
+  }
 
  
  

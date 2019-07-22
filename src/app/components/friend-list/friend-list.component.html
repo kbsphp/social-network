@@ -1,58 +1,45 @@
 
-
-<div class="row" *ngFor="let user of user_data">
-	<a [routerLink]="['/profile',user.id]" class="col-4 p-1">
+<!-- <ng-container  *ngFor="let user of user_data;let i=index;">
+<div class="row"  *ngIf="user.name != '' && i<9">
+	<a [routerLink]="['/profile',user.id]" class="col-4 p-1"> -->
 
 <!-- <div class="row" >
 	<a href="#" class="col-4 p-1" *ngFor="let user of user_data"> -->
-
+<!-- 
 		<div class="photo-img">
 			<img src="{{img_url}}/{{user.profile_picture}}">
 		</div>
 		{{user.name}}
 	</a>
-<!-- 	<div class="col-4 p-1">
-		<div class="photo-img">
-			<img src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p100x100/12800126_1058806390843216_3071379490039593921_n.jpg?_nc_cat=101&_nc_ht=scontent-hkg3-2.xx&oh=0f70caff2956876ba6e998d771779c97&oe=5D52B403">
-		</div>
-	</div>
-	<div class="col-4 p-1">
-		<div class="photo-img">
-			<img src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p100x100/29196308_1911137489125289_7472688696366465024_n.jpg?_nc_cat=102&_nc_ht=scontent-hkg3-2.xx&oh=6cc1d9a1ae9a3f7391c9990e013b44d2&oe=5D933D6D">
-		</div>
-	</div>
 </div>
-<div class="row">
-	<div class="col-4 p-1">
-		<div class="photo-img">
-			<img src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p100x100/31732061_1657054954377181_4600341734193364992_n.jpg?_nc_cat=111&_nc_ht=scontent-hkg3-2.xx&oh=d28bfee7b04359f06771b4a0b1e4f0f8&oe=5D96F7CC">
-		</div>
-	</div>
-	<div class="col-4 p-1">
-		<div class="photo-img">
-			<img src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p100x100/43207430_2240145072680528_5959202337913307136_n.jpg?_nc_cat=101&_nc_ht=scontent-hkg3-2.xx&oh=fc739ffba1c74ca492d9605234127807&oe=5D5C0925">
-		</div>
-	</div>
-	<div class="col-4 p-1">
-		<div class="photo-img">
-			<img src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p100x100/12800126_1058806390843216_3071379490039593921_n.jpg?_nc_cat=101&_nc_ht=scontent-hkg3-2.xx&oh=0f70caff2956876ba6e998d771779c97&oe=5D52B403">
-		</div>
-	</div>
-</div>
-<div class="row">
-	<div class="col-4 p-1">
-		<div class="photo-img">
-			<img src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p100x100/43207430_2240145072680528_5959202337913307136_n.jpg?_nc_cat=101&_nc_ht=scontent-hkg3-2.xx&oh=fc739ffba1c74ca492d9605234127807&oe=5D5C0925">
-		</div>
-	</div>
-	<div class="col-4 p-1">
-		<div class="photo-img">
-			<img src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p100x100/43207430_2240145072680528_5959202337913307136_n.jpg?_nc_cat=101&_nc_ht=scontent-hkg3-2.xx&oh=fc739ffba1c74ca492d9605234127807&oe=5D5C0925">
-		</div>
-	</div>
-	<div class="col-4 p-1">
-		<div class="photo-img">
-			<img src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-1/p100x100/43207430_2240145072680528_5959202337913307136_n.jpg?_nc_cat=101&_nc_ht=scontent-hkg3-2.xx&oh=fc739ffba1c74ca492d9605234127807&oe=5D5C0925">
-		</div>
-	</div> -->
-</div>
+	</ng-container>	 -->
+
+<div class="person-request friendList">
+	<div class="container">
+						<ng-container *ngIf="user_data">
+							<h3>Friends</h3>
+							<div class="request-list" *ngFor="let user of user_data;">
+								<div class="inner-friend">
+									<div class="friends">
+										<div class="pic">
+											<img class="for-img" src="{{img_url}}{{user.profile_picture}}">										
+										</div>
+										
+										<div class="details" (click)="openUserProfile(user.id)">
+											<h2 class="details-heading"  ><a  href="javascript:void(0)">{{user.name}}</a></h2>
+											<!-- <h2 class="details-heading" (click)="openUserProfile(user.new_users)" *ngIf="user.first_name == null || user.first_name== ''"><a  href="javascript:void(0)">{{user.username}} </a></h2>
+											<h6 class="mutual-frd" *ngIf="user.mutualcount !=0"><a href="javascript:void(0)">{{user.mutualcount}} mutual friends</a></h6> -->
+										</div>
+										<div class="add-class">
+											<!-- <button *ngIf="isSendReq != true || user.new_users != friend" [disabled]="isSendDisabled" type="button" (click)="sendFriendReq(user.new_users)" class="btn btn-grey">Add Friend</button>
+											<button *ngIf="isSendReq != false && user.new_users == friend" type="button"  class="btn btn-grey">Request Sent</button> -->
+											<button type="button" class="btn btn-grey"><i class="fas fa-check"></i>Friends</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							</ng-container>
+						</div>
+					</div>
+
+
