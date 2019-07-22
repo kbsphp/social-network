@@ -1169,7 +1169,6 @@ a {color: #989898;}
 }
 .Overview-tab ul li .upload-blk {
     padding: 40px 0 10px 0;
-    border-bottom: 1px solid #383f4b;
     width: 100%;
     max-width: 500px;
 }
@@ -3542,4 +3541,7 @@ div#collapseThree .media {
     padding: 5px 15px;
     position: relative;
     left: -5px;
+}
+.common-save button.btn-grey {
+    cursor: pointer;
 }
