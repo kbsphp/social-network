@@ -6,7 +6,7 @@
   <div class="create-write">
     <div class="for-type">
       <div class="icon-img">
-        <img src="{{profile_picture}}">
+        <img src="{{img_url}}{{profile_picture}}">
       </div>
       <div class="chat-text">
         <textarea class="form-control" rows="5" id="comment" placeholder="Write Something here" (click)="open_modal()"></textarea>
@@ -42,7 +42,7 @@
               <div class="create-write">
                 <div class="for-type">
                   <div class="icon-img">
-                    <img src="{{profile_picture}}">
+                    <img src="{{img_url}}{{profile_picture}}">
                   </div>
                   <div class="chat-text">
                     <textarea class="form-control" [ngClass]="{'msgError': msgError?msgError:''}"

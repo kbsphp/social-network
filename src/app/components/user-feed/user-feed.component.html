@@ -5,7 +5,7 @@
 			<div class="col-md-12">
 				<div class="top-profile-blk">
 					<div class="cover-pic">
-						<img *ngIf="cover_pic" class="" src="{{cover_pic}}" alt="Cover Photo"/>
+						<img *ngIf="cover_pic" class="" src="{{img_url}}{{cover_pic}}" />
 					</div>
 					<div class="inner-profile">
 						<button class="btn add" (click)=filecover.click()><span><i class="fas fa-camera"></i></span>Add Cover Photo</button>
@@ -14,7 +14,7 @@
 						  </div>
 						<div class="name-blk">
 							<div class="overlay-blk" (click)=file.click()>
-								<img *ngIf="profile_picture" src="{{profile_picture}}" alt="profile-pic">
+								<img *ngIf="profile_picture" src="{{img_url}}{{profile_picture}}" >
 								<div class="hover-layer">
 									<i class="fas fa-camera"></i>
 								</div>
@@ -363,7 +363,7 @@
 				<div  class="post-box" *ngFor="let post of new_post_data">
 					<div class="post-hdr">
 						<div class="icon-img">
-							<img src="{{profile_picture}}">
+							<img src="{{img_url}}{{profile_picture}}">
 						</div>
 						<div class="name-box">
 							<h1 class="hdg" (click)="openUserProfile(post.user_id)"><a href="javascript:void(0)">{{post.username}}</a> <p class="time"><a href="javascript:void(0)">{{toLocalDate(post.post_create_date)}}</a></p></h1>

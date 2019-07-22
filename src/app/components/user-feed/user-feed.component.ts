@@ -74,9 +74,9 @@ export class UserFeedComponent implements OnInit {
    this.data_service.GetUserDataByUserId().subscribe(response=>{
      //console.log(response);
      if(response['error'] == false){
-     this.cover_pic=this.img_url+''+response['body'][0].cover_pic;
+     this.cover_pic=response['body'][0].cover_pic;
      this.username =response['body'][0].username;
-     this.profile_picture=this.img_url+''+response['body'][0].profile_picture;
+     this.profile_picture=response['body'][0].profile_picture;
      }else{
       console.log(response['msg']);
      }
@@ -384,9 +384,9 @@ export class UserFeedComponent implements OnInit {
       formData.append('userID', this.user_id);
       formData.append('profilePic', input_data.profilePic);
       this.data_service.uploadUserProfilePic(formData).subscribe((response) => {
-      //  console.log(response);
+      // console.log(response);
         if(response['error'] == false){
-        this.profile_picture = this.img_url + "" + response['body'][0].profile_picture;
+        this.profile_picture =  response['body'][0].profile_picture;
         localStorage.setItem('updated_pic',this.profile_picture);
         this.data_service.changeSub.next('change');
         this.fileupload.nativeElement.value="";

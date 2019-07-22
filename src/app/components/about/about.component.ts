@@ -20,6 +20,9 @@ username:string="";
 img_url: string = "";
 setStatus:number;
 profile_picture;
+tab_pane:string="";
+overviewSec:boolean=true;
+workinfoSec:boolean=false;
 checkStatus:boolean=false;
  show_input : boolean = false;
   show_profession:boolean=false;
@@ -34,6 +37,7 @@ checkStatus:boolean=false;
   this.userData=JSON.parse(localStorage.getItem('userData'));
    this.profile_picture = this.img_url + "" + this.userData['profile_picture'];
    this.username=this.userData['username'];
+   this.tab_pane="active";
   console.log(this.userData)
   }
 
@@ -45,19 +49,20 @@ checkStatus:boolean=false;
   //     this.profile_picture = localStorage.getItem("updated_pic") ;
   //   }
   //   console.log(this.profile_picture)
-    console.log(this.user_id) 
-    this.setStatus=1
+    //console.log(this.user_id) 
+    
+    this.setStatus=1;
     this.getInfo()
   }
   
   getInfo() {
  
    this.data_service.getUserAboutInfo(this.user_id).subscribe((response) => {
-      console.log(response);
+    //  console.log(response);
       this.model=response['body']; 
-      console.log(this.model);
-      this.userAboutData=response['body']  
-      console.log(this.userAboutData);
+      //console.log(this.model); 
+      this.userAboutData=response['body'];
+     // console.log(this.userAboutData);
       if(this.userAboutData.length==0) {
          this.checkStatus=true;
       }else{
@@ -71,8 +76,7 @@ checkStatus:boolean=false;
   }
   
   saveAboutOverview(){ 
-  console.log("saveAboutOverview");
-  console.log(this.model);
+  //console.log(this.model);
   
    this.data_service.userAboutinfo(this.model).subscribe(data => {     
     console.log(data);          
@@ -83,75 +87,79 @@ checkStatus:boolean=false;
     
   }
   saveEducationOverview(){
-  console.log("saveEducationOverview");
-  console.log(this.model);
-  this.data_service.userAboutinfo(this.model).subscribe(data => {     
-  console.log(data);          
+  this.data_service.userAboutinfo(this.model).subscribe(data => {  
+    this.setStatus = 1;   
+//  console.log(data);          
     },error => {
      // this.toastr.error('Something went wrong!');
     });
   }
   savebasicInfoOverview(){
-  console.log("savebasicInfoOverview");
-  console.log(this.model);
+  //console.log("savebasicInfoOverview");
+ // console.log(this.model);
   this.data_service.userAboutinfo(this.model).subscribe(data => {     
-  console.log(data);          
+  //console.log(data);      
+  this.setStatus = 1;    
     },error => {
      // this.toastr.error('Something went wrong!');
     });
   }
+
+
+
+
+
+
  
 //getUpdate 
 
-listClick(event,val) {
-  //console.log(val)
-
-  if (val == 1) {
-    this.setStatus=1;
-  }  else if (val ==2) {
-     this.setStatus=2;
-  } else if (val==3) {
-    this.setStatus=3;
+listClick(val) {
+  if(val == '1') {
+    this.setStatus = 1;
+  }else if (val == '2') {
+    this.setStatus = 2;
+  }else if (val == '3') {
+    this.setStatus = 3;
   }
 }
 
 showField() {
-  this.show_input = !this.show_input;
-  //this.show_input=false
+  this.listClick('2')
+  //this.show_input = !this.show_input;
 }
 changeStatus(){
   console.log(this.show_input)
   //this.show_input=false
 }
-// showFields() {
-//     this.show_input = !this.show_input;
+showFields() {
+    this.show_input = !this.show_input;
+
+}
+
+// showProfessional() {
+//    this.show_profession=!this.show_profession
+// }
+
+// showSchool() {
+// this.show_school=!this.show_school
+// }
+// showUniversity() {
+//   this.show_university=!this.show_university
+// }
+
+// showHomeTown() {
+//  this.show_hometown=!this.show_hometown
 
 // }
 
-showProfessional() {
-   this.show_profession=!this.show_profession
-}
+// showCityName() {
+//   this.show_cityname=!this.show_cityname
+// }
 
-showSchool() {
-this.show_school=!this.show_school
-}
-showUniversity() {
-  this.show_university=!this.show_university
-}
+// otherPlaces() {
+//   this.show_otherplaces=!this.show_otherplaces
 
-showHomeTown() {
- this.show_hometown=!this.show_hometown
-
-}
-
-showCityName() {
-  this.show_cityname=!this.show_cityname
-}
-
-otherPlaces() {
-  this.show_otherplaces=!this.show_otherplaces
-
-}
+// }
 
 }
  

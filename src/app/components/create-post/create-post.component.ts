@@ -42,7 +42,7 @@ export class CreatePostComponent implements OnInit {
     this.base_url = environment.base_url;
     this.img_url = environment.img_url;
     this.userData=JSON.parse(localStorage.getItem('userData'));
-    this.profile_picture = this.img_url + "" + this.userData['profile_picture'];
+    this.profile_picture =  this.userData['profile_picture'];
     this.data_service.detectChange().subscribe(()=>{
     if(localStorage.getItem("updated_pic") != undefined){
       this.profile_picture = localStorage.getItem("updated_pic") ;

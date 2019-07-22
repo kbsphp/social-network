@@ -101,7 +101,7 @@ export class GeneralFeedComponent implements OnInit {
     };
    // console.log(JSON.stringify(inputJson, undefined, 2));
     this.data_service.generalPostData(inputJson).subscribe((response)=>{
-     // console.log(JSON.stringify(response, undefined, 2));
+    // console.log(JSON.stringify(inputJson, undefined, 2));
         if(response['error']== false){
            this.newArray = this.newArray.concat(response['body']);
            this.showPosts=true;
@@ -109,10 +109,12 @@ export class GeneralFeedComponent implements OnInit {
            this.post_data = this.newArray;
 
         }else{
-          if(this.post_data.length > 0){
+          //console.log(this.post_data.length);
+          if(this.post_data.length > 1){
             this.showPosts=true;
             this.loading=false;
-          }else{
+          }
+          else{
             this.showPosts=false;
             this.loading=false;
           }
@@ -172,7 +174,7 @@ export class GeneralFeedComponent implements OnInit {
     this.isShow="";
   }
 
-  post_comment(postID,pvarCommnet){
+  post_comment(postID,pvarCommnet,post){
     if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null &&
     sessionStorage.getItem('user_id') != undefined && sessionStorage.getItem('user_id') != null){
       this.user_id = sessionStorage.getItem('user_id');
@@ -192,7 +194,7 @@ export class GeneralFeedComponent implements OnInit {
         if(response['error'] == false){
          // console.log(this.post_data[0]['comments']);
           this.post_data[0]['comments'].push(response['body']);
-          pvarCommnet ="";
+          post.postcomment='';
         //  console.log(pvarCommnet);
           
         }else{
