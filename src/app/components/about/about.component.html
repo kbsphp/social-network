@@ -13,216 +13,120 @@
 								<div class="row">
 									<div class="col-md-3 pl-0 border-blk">
 										<ul class="nav nav-pills nav-stacked flex-column tab-list">
-											<li (click)="listClick($event, 1)" [ngClass]="{'active': setStatus == 1}" ><a href="#tab_a" data-toggle="pill">Overview</a></li>
-											<li (click)="listClick($event, 2)" [ngClass]="{'active': setStatus == 2}"><a href="#tab_b" data-toggle="pill">Work and education</a></li>
-											<!-- <li><a href="#tab_c" data-toggle="pill">Places you've lived</a></li> -->
-											<li (click)="listClick($event, 3)" [ngClass]="{'active': setStatus == 3}"><a href="#tab_d" data-toggle="pill">Contact and basic info</a></li>
-											<!-- <li><a href="#tab_e" data-toggle="pill">Family and relationships</a></li>
-											<li><a href="#tab_f" data-toggle="pill">Details about you</a></li>
-											<li><a href="#tab_g" data-toggle="pill">Life events</a></li> -->
-										</ul>
+											<li (click)="listClick('1')" [ngClass]="{'active': setStatus == 1}" ><a data-toggle="pill">Overview</a></li>
+											<li (click)="listClick('2')" [ngClass]="{'active': setStatus == 2}"><a  data-toggle="pill">Work and education</a></li>
+											<li (click)="listClick('3')" [ngClass]="{'active': setStatus == 3}"><a  data-toggle="pill">Contact and basic info</a></li>
+						   	</ul>
 									</div>
 									<div class="col-md-9">
 										<div class="tab-content">
+<!-- <<<<<<< HEAD
 											<div class="tab-pane active" id="tab_a">
 												<div class="nouserinfo"> Please add your work and education.</div>
                         <div class="select-field overview-field overview-outer" >
 														<div class="first-outer-2">
 														<div class="first-blog-outer">
+======= -->
+											<div class="tab-pane" [ngClass]="tab_pane" *ngIf="setStatus == 1" id="tab_a">
+												<div class="nouserinfo" *ngIf="checkStatus !=false"> Please add your work and education.</div>
+                        <div class="select-field overview-field overview-outer" *ngIf="checkStatus !=true">
+													 
+														<div class="first-blog-outer" *ngIf="userAboutData.workplace != ''">
+<!-- >>>>>>> 8683e22b4922ba3a3cbf2c8510a8612ab00a76e1 -->
 																<div class="for-label-hdg">
 																		<p class="hdg-main">WORK PLACE</p>
 																</div>
 																<div class="first-blog">
-																<div class="media" *ngIf="userAboutData.workplace != '' || userAboutData.workplace != null || userAboutData.workplace != undefined">
+																<div class="media" *ngIf="userAboutData.workplace != ''">
 																	<!-- <img class="align-self-center mr-3" src="{{profile_picture}}"> -->
 																	<div class="media-body">
-																	<p> Works at <a href="#">{{userAboutData.workplace}}</a></p>
+																	<p> Works at <a href="javascript:void(0)">{{userAboutData.workplace}}</a></p>
 					
-																	<a href="#" class="click-move" data-toggle="pill" (click)="showField()">Edit</a>
+																	<a href="#tab_b" class="click-move" data-toggle="pill" (click)="showField()">Edit</a>
 																	
 																	</div>
 																</div>
-																<div class="upload-blk" *ngIf="userAboutData.workplace == '' || userAboutData.workplace==null || userAboutData.workplace == undefined">
+																<!-- <div class="upload-blk">
 																	<p><span data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-plus"></i></span>Add a workplace</p>
 																	<div class="collapse" id="collapseExample" [ngClass]="{'show': show_input == true}">
 																		<div class="card card-body">
 																			<input type="text" class="form-control"  name="workplace" [(ngModel)]="model.workplace" #workplace="ngModel"  placeholder="Add a workplace" > 
 																		</div>
 																	</div>
-																</div>
+																</div> -->
 															</div>
 														</div>
 
-														<div class="first-blog-outer">
+														<div class="first-blog-outer" *ngIf="userAboutData.home != ''">
 																<div class="for-label-hdg">
 																		<p class="hdg-main">LOCATION</p>
 																</div>
 															<div class="first-blog">
-																<div class="media" *ngIf="userAboutData.home != '' || userAboutData.home != null || userAboutData.home != undefined">
+																<div class="media" >
 																	<!-- <img class="align-self-center mr-3" src="{{profile_picture}}"> -->
-																	<div class="media-body">
-																	<p>From <a href="#" >{{userAboutData.home}}</a></p>
-																	<a href="#" class="click-move" data-toggle="pill" (click)="showHomeTown()">Edit </a>
-																	<div *ngIf="show_hometown">
-																	<input  type="text" value="{{ userAboutData.home}}" id="workplace" style=""></div>
+																	<div class="media-body" *ngIf="userAboutData.home != ''">
+																	<p>From <a href="javascript:void(0)" >{{userAboutData.home}}</a></p>
+																	<a href="#tab_d" class="click-move" data-toggle="pill" (click)="listClick(3)">Edit </a>
+										
 																	</div>
 																</div>
-																<div class="upload-blk" *ngIf="userAboutData.home == '' || userAboutData.home == null || userAboutData.home == undefined">
-																	<p><span data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-plus"></i></span>Add your home town</p>
-																	<div class="collapse" id="collapseExample3">
-																		<div class="card card-body">
-																			<input type="text" class="form-control" placeholder="Add your home town" name="home" [(ngModel)]="model.home" #home="ngModel">
-																		</div>
-																	</div>
-																</div>
+															
 															</div>
-															<!-- <div class="first-blog">
-																<div class="media">
-																
-																	<div class="media-body">
-																	<p>City <a href="#" >{{userAboutData.city_name}}</a></p>
-																	<a href="#" class="click-move" (click)="showCityName()" data-toggle="pill">Edit </a>
-																	</div>
-																</div>
-																<div class="upload-blk">
-																	<p><span data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-plus"></i></span>Add your current city</p>
-																	<div class="collapse" id="collapseExample2" [ngClass]="{'show': show_cityname == true}">
-																		<div class="card card-body">
-																			<input type="text" class="form-control" placeholder="Add your current city" name="city_name" [(ngModel)]="model.city_name" #city_name="ngModel">
-																		</div>
-																	</div>
-																</div>
-															</div> -->
 														</div>
-														</div>
+														 
 														
-														<div class="first-outer-2">
-														<div class="first-blog-outer">
+														 
+														<div class="first-blog-outer"  *ngIf="userAboutData.university != ''">
 																<div class="for-label-hdg">
 																		<p class="hdg-main">EDUCATION</p>
 																</div>
                              <div class="first-blog">
-															<div class="media" *ngIf="userAboutData.university != '' || userAboutData.university != null">
+															<div class="media">
 															  <!-- <img class="align-self-center mr-3" src="{{profile_picture}}"> -->
 															  <div class="media-body">
-																<p>Studied <a href="#">{{userAboutData.professional_skills}}</a>  at <a href="#">{{userAboutData.university}}</a></p>
-																<a href="#tab_b" class="click-move"  data-toggle="pill" (click)="listClick($event, 2)" id="professional_skill">Edit</a>
+																<p>Studied <a href="javascript:void(0)">{{userAboutData.professional_skills}}</a>  at <a href="javascript:void(0)">{{userAboutData.university}}</a></p>
+																<a href="#tab_b" class="click-move"  data-toggle="pill" (click)="listClick('2')" id="professional_skill">Edit</a>
 																<div *ngIf="show_profession">
 																<input  type="text" value="{{ userAboutData.professional_skills}}" id="workplace" style="">
 															</div>
 															  </div>
 															</div>
-															<div class="upload-blk" *ngIf="userAboutData.university == '' || userAboutData.university == null">
-																	<p><span data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-plus"></i></span>Add  Education</p>
-																	<div class="collapse" id="collapseExample1"  [ngClass]="{'show': show_university == true}">
-																		<div class="card card-body">
-																			<input type="text" class="form-control" placeholder="Add a school/university" name="university" [(ngModel)]="model.university" #university="ngModel" >
-																		</div>
-																	</div>
-																</div>
 														</div>
-														<div class="first-blog-outer">
+													</div>
+														<div class="first-blog-outer" *ngIf="userAboutData.email != ''">
 																<div class="for-label-hdg">
 																		<p class="hdg-main">CONTACT INFORMATION</p>
 																</div>
                              <div class="first-blog">
-															<div class="media" *ngIf="userAboutData.university != '' || userAboutData.university != null">
+															<div class="media" >
 															  <!-- <img class="align-self-center mr-3" src="{{profile_picture}}"> -->
 															  <div class="media-body">
-																<p>Email :<a href="javascript:void(0)">{{userAboutData.email}}</a></p><p> Phone: <a href="javascript:void(0)">{{userAboutData.phone}}</a></p>
-																<a href="#tab_b" class="click-move"  data-toggle="pill" (click)="listClick($event, 2)" id="professional_skill">Edit</a>
+																<p *ngIf="userAboutData.email != ''">Email :<a href="javascript:void(0)">{{userAboutData.email}}</a></p><p *ngIf="userAboutData.phone != null "> Phone: <a href="javascript:void(0)">{{userAboutData.phone}}</a></p>
+																<a href="#tab_d" class="click-move"  data-toggle="pill" (click)="listClick('3')" id="professional_skill">Edit</a>
 																<div *ngIf="show_profession">
 																<input  type="text" value="{{ userAboutData.professional_skills}}" id="workplace" style="">
 															</div>
 															  </div>
 															</div>
-															<div class="upload-blk" *ngIf="userAboutData.email == '' || userAboutData.email == null">
-																	<p><span data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-plus"></i></span>Add  Education</p>
-																	<div class="collapse" id="collapseExample1"  [ngClass]="{'show': show_university == true}">
-																		<div class="card card-body">
-																			<input type="text" class="form-control" placeholder="Add a school/university" name="university" [(ngModel)]="model.university" #university="ngModel" >
-																		</div>
-																	</div>
-																</div>
+															
 														</div>
 														
 													</div>
 												
 													</div>
-												</div>
-													
-														<!-- <div class="first-blog">
-															<div class="media">
-															  <img class="align-self-center mr-3" src="{{profile_picture}}">
-															  <div class="media-body">
-																<p>Other Places Lived <a href="#" >{{userAboutData.other_lived_place}}</a></p>
-																<a href="#tab_d" class="click-move" data-toggle="pill" (click)="listClick($event, 3)">Edit</a>
-															  </div>
-															</div>
-														</div> -->
-													</div>
 
 												<div class="Overview-tab">
-													<!-- <form name="form" #f="ngForm"(ngSubmit)="f.form.valid && saveAboutOverview()" novalidate> 
-													<ul>
-														<li>
-															<div class="upload-blk">
-																<p><span data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-plus"></i></span>Add a workplace</p>
-																<div class="collapse" id="collapseExample" [ngClass]="{'show': show_input == true}">
-																  <div class="card card-body">
-																    <input type="text" class="form-control"  name="workplace" [(ngModel)]="model.workplace" #workplace="ngModel"  placeholder="Add a workplace" > 
-																  </div>
-																</div>
-															</div>
-														</li>
-
-														<li>
-															<div class="upload-blk">
-																<p><span data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-plus"></i></span>Add a school/university</p>
-																<div class="collapse" id="collapseExample1"  [ngClass]="{'show': show_university == true}">
-																  <div class="card card-body">
-																    <input type="text" class="form-control" placeholder="Add a school/university" name="university" [(ngModel)]="model.university" #university="ngModel" >
-																  </div>
-																</div>
-															</div>
-														</li>
-
-														<li>
-															<div class="upload-blk">
-																<p><span data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-plus"></i></span>Add your current city</p>
-																<div class="collapse" id="collapseExample2" [ngClass]="{'show': show_cityname == true}">
-																  <div class="card card-body">
-																    <input type="text" class="form-control" placeholder="Add your current city" name="city_name" [(ngModel)]="model.city_name" #city_name="ngModel">
-																  </div>
-																</div>
-															</div>
-														</li>
-
-														<li>
-															<div class="upload-blk">
-																<p><span data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-plus"></i></span>Add your home town</p>
-																<div class="collapse" id="collapseExample3">
-																  <div class="card card-body">
-																    <input type="text" class="form-control" placeholder="Add your home town" name="home" [(ngModel)]="model.home" #home="ngModel">
-																  </div>
-																</div>
-															</div>
-														</li> 
-													</ul>
-													<div class="common-save"> 
-														<button class="btn-grey">SAVE</button>
-													</div>
-													</form> -->
+			
 												</div>
 											</div>
-											<div class="tab-pane" id="tab_b">
+											<div class="tab-pane" id="tab_b" [ngClass]="tab_pane" *ngIf="setStatus == 2">
 												<div class="Overview-tab work-tab">
 													<form name="education" #f="ngForm"(ngSubmit)="f.form.valid && saveEducationOverview()" novalidate>
 													<ul> 
 															<li>
 																	<label>WORK PLACE</label>
 																	<div class="upload-blk">
-																		<p><span data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-plus"></i></span>Add a workplace</p>
+																		<p><span data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-plus"></i></span><span *ngIf="userAboutData.workplace == ''">Add a workplace</span><span *ngIf="userAboutData.workplace != ''">Workplace</span></p>
 																		<div class="collapse" id="collapseExample" [ngClass]="{'show': show_input == true}">
 																			<div class="card card-body">
 																				<input type="text" class="form-control"  name="workplace" [(ngModel)]="model.workplace" #workplace="ngModel"  placeholder="Add a workplace" > 
@@ -233,7 +137,7 @@
 														<li>
 															<label>PROFESSIONAL SKILLS</label>
 															<div class="upload-blk">
-																<p><span data-toggle="collapse" href="#collapseExample6" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-plus"></i></span>Enter Your Education</p>
+																<p><span data-toggle="collapse" href="#collapseExample6" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-plus"></i></span><span *ngIf="userAboutData.professional_skills == ''">Enter Your Graduation</span><span *ngIf="userAboutData.professional_skills != ''">Graduation</span></p>
 																<div class="collapse" id="collapseExample6">
 																  <div class="card card-body">
 																    <input type="text" class="form-control"  placeholder="Add a school/university" name="professional_skills" [(ngModel)]="model.professional_skills" #professional_skills="ngModel">
@@ -245,7 +149,7 @@
 														<li>
 															<label>UNIVERSITY</label>
 															<div class="upload-blk">
-																<p><span data-toggle="collapse" href="#collapseExample7" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-plus"></i></span>Add your university</p>
+																<p><span data-toggle="collapse" href="#collapseExample7" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-plus"></i></span><span *ngIf="userAboutData.university == ''">Add University</span><span *ngIf="userAboutData.university != ''">University</span></p>
 																<div class="collapse" id="collapseExample7">
 																  <div class="card card-body">
 																    <input type="text" class="form-control"  placeholder="Add your current city"  name="university" [(ngModel)]="model.university" #university="ngModel">
@@ -257,7 +161,7 @@
 														<li>
 															<label>HIGH SCHOOL</label>
 															<div class="upload-blk">
-																<p><span data-toggle="collapse" href="#collapseExample8" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-plus"></i></span>Add your school</p>
+																<p><span data-toggle="collapse" href="#collapseExample8" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-plus"></i></span><span *ngIf="userAboutData.school == ''">Add School</span><span *ngIf="userAboutData.school != ''">School</span></p>
 																<div class="collapse" id="collapseExample8">
 																  <div class="card card-body">
 																  
@@ -274,28 +178,16 @@
 												</div>
 											</div>
 										 
-											<div class="tab-pane" id="tab_d">
+											<div class="tab-pane" id="tab_d" [ngClass]="tab_pane" *ngIf="setStatus == 3">
 												<div class="Overview-tab work-tab">
 														<form name="basicInfo" #f="ngForm"(ngSubmit)="f.form.valid && savebasicInfoOverview()" novalidate>
 													<ul> 
 
-														<!-- <li>
-															<label>OTHER PLACES LIVED</label>
-															<div class="upload-blk">
-																<p><span data-toggle="collapse" href="#collapseExample14" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-plus"></i></span>Add a place</p>
-																<div class="collapse" id="collapseExample14">
-																  <div class="card card-body">
-																    <input type="text" class="form-control"  placeholder="Add a place" name="other_lived_place" [(ngModel)]="model.other_lived_place" #other_lived_place="ngModel">
-																  </div>
-																</div>
-															</div>
-														</li> -->
-
-														<!-- contact email -->
+					
 														
                                <li><label>CONTACT INFORMATION</label>
 																 <div class="upload-blk">
-																<p><span data-toggle="collapse" href="#collapseExample15" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-plus"></i></span>Add a email</p>
+																<p><span data-toggle="collapse" href="#collapseExample15" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-plus"></i></span><span *ngIf="userAboutData.email == ''"> Add a email</span><span *ngIf="userAboutData.email != ''"> Email</span></p>
 																<div class="collapse" id="collapseExample15">
 																  <div class="card card-body">
 																    <input type="text" class="form-control"  placeholder="Add a place" name="email" [(ngModel)]="model.email" #email="ngModel">
@@ -307,7 +199,7 @@
  														<!--contact email end-->
                                                      <li>
                                                      	<div class="upload-blk">
-																<p><span data-toggle="collapse" href="#collapseExample16" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-plus"></i></span>Add a phone</p>
+																<p><span data-toggle="collapse" href="#collapseExample16" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-plus"></i></span><span *ngIf="userAboutData.phone == null">Add a phone</span><span *ngIf="userAboutData.phone != null">Phone</span></p>
 																<div class="collapse" id="collapseExample16">
 																  <div class="card card-body">
 																    <input type="text" class="form-control"  placeholder="Add a place" name="phone" [(ngModel)]="model.phone" #phone="ngModel">
@@ -317,7 +209,7 @@
 														</li>
 														<li>
 																<div class="upload-blk">
-																	<p><span data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-plus"></i></span>Add your current city</p>
+																	<p><span data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-plus"></i></span><span *ngIf="userAboutData.city_name == ''">Add your current city</span><span *ngIf="userAboutData.city_name != ''">City</span></p>
 																	<div class="collapse" id="collapseExample2" [ngClass]="{'show': show_cityname == true}">
 																		<div class="card card-body">
 																			<input type="text" class="form-control" placeholder="Add your current city" name="city_name" [(ngModel)]="model.city_name" #city_name="ngModel">
@@ -328,7 +220,7 @@
 	
 															<li>
 																<div class="upload-blk">
-																	<p><span data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-plus"></i></span>Add your home town</p>
+																	<p><span data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-plus"></i></span><span *ngIf="userAboutData.home == ''">Add your home town</span><span *ngIf="userAboutData.home != ''">Home Town</span></p>
 																	<div class="collapse" id="collapseExample3">
 																		<div class="card card-body">
 																			<input type="text" class="form-control" placeholder="Add your home town" name="home" [(ngModel)]="model.home" #home="ngModel">

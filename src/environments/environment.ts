@@ -9,6 +9,7 @@ export const environment = {
   socket_url: "http://35.177.79.248:3022/",
 };
 
+
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

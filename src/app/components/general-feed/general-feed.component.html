@@ -6,7 +6,8 @@
 					<div class="parts">
 						<ul class="side-list">
 							<li>
-								<a class="direct" [routerLink]="['/profile']"><img class="img-bar-list" src="{{currentUser_picture}}"> <span class="for-name">{{fullname}}</span></a>
+								<a class="direct" [routerLink]="['/profile']"><img class="img-bar-list" src="{{currentUser_picture}}"> <span class="for-name" *ngIf="fullname !='null null'">{{fullname}}</span>
+									<span class="for-name" *ngIf="fullname =='null null'">{{username | titlecase}}</span></a>
 							</li>
 						
 							
@@ -159,7 +160,7 @@
 													<div class="media">
 													<img src="{{currentUser_picture}}" alt="user">
 													<div class="media-body">
-													<input (keyup.enter)="post_comment(post.id,post.postcomment)" class="form-control" [(ngModel)]="post.postcomment" name="postcomment"  style="resize:none" type="text" placeholder="Write a commant...">
+													<input (keyup.enter)="post_comment(post.id,post.postcomment,post)" class="form-control" [(ngModel)]="post.postcomment" name="postcomment"  style="resize:none" type="text" placeholder="Write a commant...">
 													<!-- <span><i class="far fa-smile"></i></span> -->
 													</div>
 													</div>

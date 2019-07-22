@@ -47,6 +47,7 @@ export class ChatComponent implements OnInit {
  isSearchUser : boolean = false;
  isDefaultUser : boolean = true;
  search_user_data : any = [];
+ minimize_chat:boolean=false;
   result:any[];
  
 
@@ -88,9 +89,11 @@ export class ChatComponent implements OnInit {
     if(this.friendlist)
     {
       this.chat_window="chat-list show";
+      this.minimize_chat=true;
       
     }else{
       this.chat_window="chat-list hide";
+      this.minimize_chat=false;
       }
   }
 

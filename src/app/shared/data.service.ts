@@ -83,7 +83,9 @@ headers : any;
     const httpOptions = { 
       headers: new HttpHeaders({'authorization':token })
     };
-   return this._http.post(this.base_url+'uploadPost', formData, httpOptions);
+   return this._http.post(this.base_url+'uploadPost', formData, httpOptions)
+   .map((response:Response)=>{const data = response;return data;})
+    .catch((error:Error) => {return Observable.throw(error);});
   }
 
   generalPostData(inputJson){
@@ -95,7 +97,11 @@ headers : any;
 }
 
   postList(pvarId){
-    return this._http.get(this.base_url+'userpostList/'+pvarId)
+    if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null){
+      this.token = sessionStorage.getItem('token');
+    }
+    const httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json', 'authorization': this.token })};
+    return this._http.get(this.base_url+'userpostList/'+pvarId,httpOptions)
     .map((response:Response)=>{const data = response;return data;})
     .catch((error:Error) => {return Observable.throw(error);});
   }
@@ -111,7 +117,11 @@ headers : any;
   }
 
   spamPost(postId){
-    return this._http.get(this.base_url+'postAsSpam/'+postId)
+    if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null){
+      this.token = sessionStorage.getItem('token');
+    }
+    const httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json', 'authorization': this.token })};
+    return this._http.get(this.base_url+'postAsSpam/'+postId,httpOptions)
     .map((response:Response)=>{const data = response;return data;})
     .catch((error:Error) => {return Observable.throw(error);});
   }
