@@ -318,11 +318,27 @@
 					<div class="inner-photo">
 						<div class="may-know">
 							<div class="top-know">
-								<p class="hdg"><span><i class="fas fa-camera-retro"></i></span>Friends</p>
+								<p class="hdg"><span><i class="fas fa-camera-retro"></i></span><a href="javascript:void(0)" [routerLink]="['/friend-list']" class="see">Friends</a></p>
 								<a href="javascript:void(0)" [routerLink]="['/find-friends']" class="see">Find Friends</a>
 							</div>
 							<div class="img-sec">
-								<app-friend-list></app-friend-list>
+								<div class="row">
+								<!-- <app-friend-list></app-friend-list> -->
+								<ng-container  *ngFor="let user of user_data;let i=index;">
+							<div class="col-4 p-1"  *ngIf="user.name != '' && i<9" (click)="openUserProfile(user.id)" >
+								<a  class="col-4 p-1 friendListNames">
+
+							<!-- <div class="row" >
+								<a href="#" class="col-4 p-1" *ngFor="let user of user_data"> -->
+
+									<div class="photo-img"  >
+										<img src="{{img_url}}/{{user.profile_picture}}">
+									</div>
+									{{user.name}}
+								</a>
+							  </div>
+								</ng-container>
+								</div>
 							</div>	
 						</div>
 					</div>

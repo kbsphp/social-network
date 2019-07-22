@@ -173,6 +173,7 @@ export class GeneralFeedComponent implements OnInit {
   }
 
   post_comment(postID,pvarCommnet){
+    console.log(pvarCommnet)
     if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null &&
     sessionStorage.getItem('user_id') != undefined && sessionStorage.getItem('user_id') != null){
       this.user_id = sessionStorage.getItem('user_id');

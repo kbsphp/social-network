@@ -3524,3 +3524,44 @@ div#collapseThree .media {
     color: #989898;
     margin-top: 45px;
 }
+
+
+/* friend list css start */
+
+.friendList .request-list .friends .details {
+    width: 100%;
+}
+.friendList .add-class button i {
+    padding: 0 3px 0 0;
+}
+.friendList  .request-list .friends .details {
+    align-self: center;
+}
+.friendList  .request-list .add-class {
+    display: flex;
+    align-self: center;
+    justify-content: flex-end;
+}
+.friendList {
+    height: 100vh;
+}
+.friendListNames {
+    display: block;
+    width: 100%;
+    text-align: center;
+    color: #fff !important;
+    max-width: 100%;
+    cursor: pointer;
+}
+.friendListNames .photo-img {
+    height: 90px;
+}
+.friendListNames .photo-img img {
+    width: 100%;
+    max-width: 90px;
+    height: 90px;
+}
+.friendListNames:hover {
+    color: #f1ad1b !important;
+}
+/* friend list css end */

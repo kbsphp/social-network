@@ -117,7 +117,11 @@ headers : any;
   }
 
   getPostmedia(pvarId){
-    return this._http.get(this.base_url+'getUsermedia/'+pvarId)
+    if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null){
+      this.token = sessionStorage.getItem('token');
+    }
+    const httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json', 'authorization': this.token })};
+    return this._http.get(this.base_url+'getUsermedia/'+pvarId,httpOptions)
     .map((response:Response)=>{const data = response;return data;})
     .catch((error:Error) => {return Observable.throw(error);});
   }
