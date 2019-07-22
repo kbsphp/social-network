@@ -22,10 +22,12 @@ export class UserFeedComponent implements OnInit {
   token;
   userData;
   profile_picture;
+  photo;
   cover_pic;
   cmtId;
   selected_user;
   edit_comment:boolean=false;
+  showSlider:boolean=false;
   username;
   showPosts:boolean=false;
   file:File;
@@ -368,7 +370,7 @@ export class UserFeedComponent implements OnInit {
         this.data_service.updateUserCoverPhoto(formData).subscribe((response) => {
          // console.log(response);
           if(response['error'] == false){
-          this.cover_pic=this.img_url+''+response['body'][0].cover_pic;
+          this.cover_pic=response['body'][0].cover_pic;
           this.fileupload.nativeElement.value="";
           console.log("cover has been changed.");
           }else{
@@ -501,6 +503,16 @@ export class UserFeedComponent implements OnInit {
    
     }
   
+  }
+
+  viewPhoto(photo){
+    this.photo=this.img_url+''+photo;
+    this.showSlider=true;
+  }
+
+  closePhoto(){
+    this.showSlider=false;
+   
   }
 
   // change username to first name and last name 

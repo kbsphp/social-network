@@ -9,6 +9,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { AboutComponent } from './components/about/about.component';
 import { AdvertiseComponent } from './components/advertise/advertise.component'
 import { FriendListComponent } from './components/friend-list/friend-list.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 const routes: Routes = [
   {path:'',component:LoginComponent},
   {path:'profile',component:UserFeedComponent},
@@ -18,7 +19,9 @@ const routes: Routes = [
   {path:'find-friends', component:FindFriendsComponent},
   {path:'about',component:AboutComponent},
   {path:'advertise',component:AdvertiseComponent},
-  {path:'friend-list',component:FriendListComponent}
+  {path:'friend-list',component:FriendListComponent},
+  {path: '404', component: NotFoundComponent},
+  {path: '**', redirectTo: '/404'}
 ];
 
 @NgModule({

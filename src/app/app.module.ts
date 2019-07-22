@@ -29,6 +29,7 @@ import { FindFriendsComponent } from './components/find-friends/find-friends.com
 import { PhotosComponent } from './components/photos/photos.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { SideBarComponent } from './components/side-bar/side-bar.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
      ChatComponent,
      AboutComponent,
      AdvertiseComponent,
-     NotFoundComponent
+     NotFoundComponent,
+     SideBarComponent
     
   ],
   imports: [

@@ -2,61 +2,67 @@
 	<div class="container">
 		<div class="friend-request">
 			<div class="row">
-				<div class="col-md-12">
-					<div class="request-blk">
-						<div class="request-info" *ngIf="noReqList">
-							<p>No New Friend Requests</p>
-							<!-- <a href="#">View sent requests</a> -->
+					<div class="col-sm-12 col-md-3 col-lg-3 left-part">		
+							<app-side-bar></app-side-bar>
 						</div>
-                        <div *ngIf="noReqList != true" class="person-request">
-								<h3>Respond to your requests</h3>
-								<div class="request-list" *ngFor="let user of request_list;">
-									<div class="inner-friend">
-										<div class="friends">
-											<div class="pic">
-												<img class="for-img" src="{{img_url}}{{user.profile_picture}}">										
+						<div class="col-sm-12 col-md-9 col-lg-9 right-part">
+								<div class="col-md-12">
+										<div class="request-blk">
+											<div class="request-info" *ngIf="noReqList">
+												<p>No New Friend Requests</p>
+												<!-- <a href="#">View sent requests</a> -->
 											</div>
-											
-											<div class="details">
-												<h2 class="details-heading" (click)="openUserProfile(user.user_id)" ><a  href="javascript:void(0)">{{user.first_name}} {{user.last_name}}</a></h2>
-												<h2 class="details-heading" (click)="openUserProfile(user.user_id)" *ngIf="user.first_name == null || user.first_name== ''"><a  href="javascript:void(0)">{{user.username}} </a></h2>
-											</div>
-											<div class="add-class">
-												<button *ngIf="isSendReq != true || user.new_users != friend"  type="button" (click)="confirmReq(user.user_id,user)" class="btn btn-grey">Confirm Request</button>
-												<button *ngIf="isSendReq != true || user.new_users != friend"  type="button" (click)="deleteReq(user.user_id,user)" class="btn btn-grey">Delete Request</button>
+											<div *ngIf="noReqList != true" class="person-request">
+													<h3>Respond to your requests</h3>
+													<div class="request-list" *ngFor="let user of request_list;">
+														<div class="inner-friend">
+															<div class="friends">
+																<div class="pic">
+																	<img class="for-img" src="{{img_url}}{{user.profile_picture}}">										
+																</div>
+																
+																<div class="details">
+																	<h2 class="details-heading" (click)="openUserProfile(user.user_id)" ><a  href="javascript:void(0)">{{user.first_name}} {{user.last_name}}</a></h2>
+																	<h2 class="details-heading" (click)="openUserProfile(user.user_id)" *ngIf="user.first_name == null || user.first_name== ''"><a  href="javascript:void(0)">{{user.username}} </a></h2>
+																</div>
+																<div class="add-class">
+																	<button *ngIf="isSendReq != true || user.new_users != friend"  type="button" (click)="confirmReq(user.user_id,user)" class="btn btn-grey">Confirm Request</button>
+																	<button *ngIf="isSendReq != true || user.new_users != friend"  type="button" (click)="deleteReq(user.user_id,user)" class="btn btn-grey">Delete Request</button>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+					
+											<div class="person-request">
+											<ng-container *ngIf="user_data">
+												<h3>People you may know</h3>
+												<div class="request-list" *ngFor="let user of user_data;">
+													<div class="inner-friend">
+														<div class="friends">
+															<div class="pic">
+																<img class="for-img" src="{{img_url}}{{user.profile_picture}}">										
+															</div>
+															
+															<div class="details">
+																<h2 class="details-heading" (click)="openUserProfile(user.new_users)" ><a  href="javascript:void(0)">{{user.first_name}} {{user.last_name}}</a></h2>
+																<h2 class="details-heading" (click)="openUserProfile(user.new_users)" *ngIf="user.first_name == null || user.first_name== ''"><a  href="javascript:void(0)">{{user.username}} </a></h2>
+																<h6 class="mutual-frd" *ngIf="user.mutualcount !=0"><a href="javascript:void(0)">{{user.mutualcount}} mutual friends</a></h6>
+															</div>
+															<div class="add-class">
+																<button *ngIf="isSendReq != true || user.new_users != friend" [disabled]="isSendDisabled" type="button" (click)="sendFriendReq(user.new_users)" class="btn btn-grey">Add Friend</button>
+																<button *ngIf="isSendReq != false && user.new_users == friend" type="button"  class="btn btn-grey">Request Sent</button>
+																<button type="button" (click)="removeFriend(user)" class="btn btn-grey">Remove</button>
+															</div>
+														</div>
+													</div>
+												</div>
+												</ng-container>
 											</div>
 										</div>
 									</div>
-								</div>
-							</div>
-
-						<div class="person-request">
-						<ng-container *ngIf="user_data">
-							<h3>People you may know</h3>
-							<div class="request-list" *ngFor="let user of user_data;">
-								<div class="inner-friend">
-									<div class="friends">
-										<div class="pic">
-											<img class="for-img" src="{{img_url}}{{user.profile_picture}}">										
-										</div>
-										
-										<div class="details">
-											<h2 class="details-heading" (click)="openUserProfile(user.new_users)" ><a  href="javascript:void(0)">{{user.first_name}} {{user.last_name}}</a></h2>
-											<h2 class="details-heading" (click)="openUserProfile(user.new_users)" *ngIf="user.first_name == null || user.first_name== ''"><a  href="javascript:void(0)">{{user.username}} </a></h2>
-											<h6 class="mutual-frd" *ngIf="user.mutualcount !=0"><a href="javascript:void(0)">{{user.mutualcount}} mutual friends</a></h6>
-										</div>
-										<div class="add-class">
-											<button *ngIf="isSendReq != true || user.new_users != friend" [disabled]="isSendDisabled" type="button" (click)="sendFriendReq(user.new_users)" class="btn btn-grey">Add Friend</button>
-											<button *ngIf="isSendReq != false && user.new_users == friend" type="button"  class="btn btn-grey">Request Sent</button>
-											<button type="button" (click)="removeFriend(user)" class="btn btn-grey">Remove</button>
-										</div>
-									</div>
-								</div>
-							</div>
-							</ng-container>
 						</div>
-					</div>
-				</div>
+				
 			</div>
 		</div>
 	</div>

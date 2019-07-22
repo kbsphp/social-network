@@ -1146,7 +1146,11 @@ a {color: #989898;}
 .about-info .border-blk {border-right: 1px solid #383f4b;}
 .inner-about,.inner-friend {
     border: 1px solid #383f4b;
-    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.photos-info ,
+.about-info {
+    padding-top: 20px;
 }
 .tab-blk {border-top: 1px solid #383f4b;}
 .about-info ul.nav li a:hover {
@@ -1686,6 +1690,9 @@ div#joinModel .modal-dialog {
     line-height: 23px;
     font-family: "Prohibition W00 Regular";
 }
+.person-request h3{
+    margin-bottom: 20px;
+}
 .request-blk .request-info a:hover {color: #3f72b3;}
 .request-blk .request-info a {font-size: 14px;}
 .request-blk .person-request h3 {
@@ -1731,7 +1738,7 @@ div#joinModel .modal-dialog {
     padding-top: 50px 0;
     padding: 20px 0;
 }
-.request-blk .person-request {margin-top: 15px;padding: 15px 0;}
+.request-blk .person-request {margin-bottom: 15px;padding: 15px 0;}
 .request-blk .request-list {padding: 0 15px;}
 .request-blk .add-class button i {margin-right: 5px;}
 /*End Find-Friend Page */
@@ -3229,6 +3236,7 @@ section.model-custom .modal {
 
     .photo-img img{
         height: 80px;
+        cursor: pointer;
         width:100%;
         object-fit: cover;
     }

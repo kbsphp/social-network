@@ -16,30 +16,38 @@
 
 <div class="person-request friendList">
 	<div class="container">
-						<ng-container *ngIf="user_data">
-							<h3>Friends</h3>
-							<div class="request-list" *ngFor="let user of user_data;">
-								<div class="inner-friend">
-									<div class="friends">
-										<div class="pic">
-											<img class="for-img" src="{{img_url}}{{user.profile_picture}}">										
-										</div>
-										
-										<div class="details" (click)="openUserProfile(user.id)">
-											<h2 class="details-heading"  ><a  href="javascript:void(0)">{{user.name}}</a></h2>
-											<!-- <h2 class="details-heading" (click)="openUserProfile(user.new_users)" *ngIf="user.first_name == null || user.first_name== ''"><a  href="javascript:void(0)">{{user.username}} </a></h2>
-											<h6 class="mutual-frd" *ngIf="user.mutualcount !=0"><a href="javascript:void(0)">{{user.mutualcount}} mutual friends</a></h6> -->
-										</div>
-										<div class="add-class">
-											<!-- <button *ngIf="isSendReq != true || user.new_users != friend" [disabled]="isSendDisabled" type="button" (click)="sendFriendReq(user.new_users)" class="btn btn-grey">Add Friend</button>
-											<button *ngIf="isSendReq != false && user.new_users == friend" type="button"  class="btn btn-grey">Request Sent</button> -->
-											<button type="button" class="btn btn-grey"><i class="fas fa-check"></i>Friends</button>
-										</div>
+			<div class="row">
+				<div class="col-sm-12 col-md-3 col-lg-3 left-part">		
+					<app-side-bar></app-side-bar>
+				</div>
+				<div class="col-sm-12 col-md-9 col-lg-9 right-part">
+					<ng-container *ngIf="user_data">
+						<h3>Friends</h3>
+						<div class="request-list" *ngFor="let user of user_data;">
+							<div class="inner-friend">
+								<div class="friends">
+									<div class="pic">
+										<img class="for-img" src="{{img_url}}{{user.profile_picture}}">										
+									</div>
+									
+									<div class="details" (click)="openUserProfile(user.id)">
+										<h2 class="details-heading"  ><a  href="javascript:void(0)">{{user.name}}</a></h2>
+										<!-- <h2 class="details-heading" (click)="openUserProfile(user.new_users)" *ngIf="user.first_name == null || user.first_name== ''"><a  href="javascript:void(0)">{{user.username}} </a></h2>
+										<h6 class="mutual-frd" *ngIf="user.mutualcount !=0"><a href="javascript:void(0)">{{user.mutualcount}} mutual friends</a></h6> -->
+									</div>
+									<div class="add-class">
+										<!-- <button *ngIf="isSendReq != true || user.new_users != friend" [disabled]="isSendDisabled" type="button" (click)="sendFriendReq(user.new_users)" class="btn btn-grey">Add Friend</button>
+										<button *ngIf="isSendReq != false && user.new_users == friend" type="button"  class="btn btn-grey">Request Sent</button> -->
+										<button type="button" class="btn btn-grey"><i class="fas fa-check"></i>Friends</button>
 									</div>
 								</div>
 							</div>
-							</ng-container>
 						</div>
-					</div>
+					</ng-container>
+				</div>
+			</div>
+						
+		</div>
+	</div>
 
 

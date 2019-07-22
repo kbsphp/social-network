@@ -1,0 +1,36 @@
+
+  <div class="left-inner">
+    <div class="parts">
+      <ul class="side-list">
+        <li>
+          <a class="direct" [routerLink]="['/profile']"><img class="img-bar-list" src="{{img_url}}{{currentUser_picture}}" alt="Username"> 
+            <span class="for-name" *ngIf="username">{{username | titlecase}}</span></a>
+        </li>
+      
+        
+      </ul>
+    </div>
+    
+    <div class="parts">
+      <ul class="side-list">
+        <li [routerLinkActive]="['active']" >
+          <a class="direct" [routerLink]="['/home']" href="javascript:void(0)"><img class="img-bar-list" src="assets/images/timeline.png"> <span class="for-name"> Timeline</span></a>
+        </li>
+        
+        <li [routerLinkActive]="['active']" >
+          <a class="direct" [routerLink]="['/about']" href="javascript:void(0)"><img class="img-bar-list" src="assets/images/about.png"> <span class="for-name">About</span></a>
+        </li>
+        
+        <li [routerLinkActive]="['active']">
+          <a class="direct" [routerLink]="['/find-friends']" href="javascript:void(0)"><img class="img-bar-list" src="assets/images/find-friend.png"> <span class="for-name">Find Friends</span></a>
+        </li>
+        <li [routerLinkActive]="['active']">
+            <a class="direct" [routerLink]="['/photos']" href="javascript:void(0)"><img class="img-bar-list" src="assets/images/photo.png"> <span class="for-name">Photos</span></a>
+          </li>
+          <!-- <li (click)="menuclick('5') [ngClass]="{'active': active == 5}"">
+              <a class="direct" href="javascript:void(0)"><img class="img-bar-list" src="assets/images/privacy.png"> <span class="for-name">Privacy</span></a>            
+          </li> -->
+            </ul>
+    </div>
+    
+  </div>
