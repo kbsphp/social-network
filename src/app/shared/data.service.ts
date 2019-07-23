@@ -277,4 +277,16 @@ headers : any;
  }
 
 
+ getAdUserInfoDetail(userId) {
+
+   ///console.log(userId)
+   if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null){
+     this.token = sessionStorage.getItem('token');
+   }
+   const httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json','authorization': this.token })};
+   return this._http.get(this.base_url+'yourInfoAdPref/'+ userId, httpOptions);
+
+ }
+
+
 }

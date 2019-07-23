@@ -13,6 +13,8 @@ export class AdvertiseComponent implements OnInit {
     error:string;
    	token:string;
    	generalSetting:FormGroup;
+     model: any={} ;
+     user_id:any
   constructor(private formBuilder:FormBuilder,private data_service:DataService) {
 
     this.adForm = this.formBuilder.group({
@@ -20,9 +22,9 @@ export class AdvertiseComponent implements OnInit {
     	//email:[''],
     	phone_number:[''],
     	education:[''],
-    	work_experience:[''],
-    	places_you_lived:[''],
-    	detail_about_you:['']
+    	workplace:[''],
+    	//places_you_lived:[''],
+    	//detail_about_you:['']
     })
 
     this.generalSetting=this.formBuilder.group({
@@ -37,6 +39,11 @@ export class AdvertiseComponent implements OnInit {
    }
 
   ngOnInit() {
+
+    if(sessionStorage.getItem('user_id') != undefined && sessionStorage.getItem('user_id') != null){
+      this.user_id = sessionStorage.getItem('user_id');
+    }
+    this.getUserAboutInfo()
   }
 
 
@@ -79,6 +86,15 @@ export class AdvertiseComponent implements OnInit {
   saveGeneralSetting() {
 
   
+  }
+
+  getUserAboutInfo() {
+   
+    this.data_service.getAdUserInfoDetail(this.user_id).subscribe(data => {
+         console.log(data)
+
+    })
+
   }
 
 }
