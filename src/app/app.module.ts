@@ -28,6 +28,8 @@ import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { FindFriendsComponent } from './components/find-friends/find-friends.component';
 import { PhotosComponent } from './components/photos/photos.component';
 import { ChatComponent } from './components/chat/chat.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { SideBarComponent } from './components/side-bar/side-bar.component';
 
 
 @NgModule({
@@ -44,7 +46,9 @@ import { ChatComponent } from './components/chat/chat.component';
      PhotosComponent,
      ChatComponent,
      AboutComponent,
-     AdvertiseComponent
+     AdvertiseComponent,
+     NotFoundComponent,
+     SideBarComponent
     
   ],
   imports: [

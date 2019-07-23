@@ -1,59 +1,66 @@
 <section class="friend-info photos-info">
 	<div class="container">
-		<div class="inner-friend">
-			<div class="about-heading">
-				<h4><span><i class="fas fa-camera"></i></span>Photos</h4>
-				<!-- <div class="heading-btn">
-					<button class="btn plus"><i class="fas fa-plus"></i>Create Album</button>
-					<button class="btn plus">Choose a file to upload</button>
-					<button class="btn"><i class="fas fa-pencil-alt"></i></button>
-				</div> -->
-			</div>
-			<div class="friend-tabs">
-				<div id="tabs">
-						<div class="row">
-							<div class="col-md-12 ">
-								<!-- <nav>
-									<div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-										<a class="nav-item nav-link show" id="nav-home-tab" data-toggle="tab" href="#your-photo" aria-selected="true">Your Photos</a>
-										<a class="nav-item nav-link show" id="nav-profile-tab" data-toggle="tab" href="#your-album" role="tab" aria-controls="your-album" aria-selected="false">Albums</a>
+			<div class="row">
+					<div class="col-sm-12 col-md-3 col-lg-3 left-part">		
+						<app-side-bar></app-side-bar>
+					</div>
+					<div class="col-sm-12 col-md-9 col-lg-9 right-part">
+							<div class="inner-friend">
+									<div class="about-heading">
+										<h4><span><i class="fas fa-camera"></i></span>Photos</h4>
+										<!-- <div class="heading-btn">
+											<button class="btn plus"><i class="fas fa-plus"></i>Create Album</button>
+											<button class="btn plus">Choose a file to upload</button>
+											<button class="btn"><i class="fas fa-pencil-alt"></i></button>
+										</div> -->
 									</div>
-								</nav> -->
-								<div class="tab-content friend-content" id="nav-tabContent">
-									<div class="tab-pane fade active show" id="your-photo" role="tabpanel" aria-labelledby="nav-home-tab">
-										<div class="all-frinds">
-											<div class="row mb-3">
-												<div class="col-sm-12 col-xs-12 col-md-6 col-lg-3 col-xl-3" *ngFor="let media of userMedia;let i=index;">
-														<div class="photo-view" (click)= viewPhoto(media.post_media);>
-                                                        <img src="{{img_url}}{{media.post_media}}">
-															<!-- <div class="hover-view">
-																<div class="inner-hover-view">
-																	<h6>Mobile Uploads</h6>
-																	<ul>
-																		<li><a href="">Like</a></li>
-																		<li><a href="">Comment</a></li>
-																	</ul>
+									<div class="friend-tabs">
+										<div id="tabs">
+												<div class="row">
+													<div class="col-md-12 ">
+														<!-- <nav>
+															<div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+																<a class="nav-item nav-link show" id="nav-home-tab" data-toggle="tab" href="#your-photo" aria-selected="true">Your Photos</a>
+																<a class="nav-item nav-link show" id="nav-profile-tab" data-toggle="tab" href="#your-album" role="tab" aria-controls="your-album" aria-selected="false">Albums</a>
+															</div>
+														</nav> -->
+														<div class="tab-content friend-content" id="nav-tabContent">
+															<div class="tab-pane fade active show" id="your-photo" role="tabpanel" aria-labelledby="nav-home-tab">
+																<div class="all-frinds">
+																	<div class="row mb-3">
+																		<div class="col-sm-12 col-xs-12 col-md-6 col-lg-3 col-xl-3" *ngFor="let media of userMedia;let i=index;">
+																				<div class="photo-view" (click)= viewPhoto(media.post_media);>
+																				<img src="{{img_url}}{{media.post_media}}">
+																					<!-- <div class="hover-view">
+																						<div class="inner-hover-view">
+																							<h6>Mobile Uploads</h6>
+																							<ul>
+																								<li><a href="">Like</a></li>
+																								<li><a href="">Comment</a></li>
+																							</ul>
+																						</div>
+																					 <div class="edit-button">
+																							<span><i class="fas fa-pencil-alt"></i></span>
+																						</div> 
+																					</div> -->
+																				</div>
+										
+																		</div>
+																	</div>
+						
 																</div>
-															 <div class="edit-button">
-																	<span><i class="fas fa-pencil-alt"></i></span>
-																</div> 
-															</div> -->
+															</div>
 														</div>
-				
+													</div>
 												</div>
-											</div>
-
 										</div>
 									</div>
-								</div>
-							</div>
-						</div>
-				</div>
-			</div>
-		</div>
-		<!-- <div class="see-all">
-			<button class="btn">See All</button>
-		</div> -->
+								</div>	
+					
+					</div>
+		
+		
+	</div>
 	</div>
 </section>
 

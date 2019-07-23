@@ -304,7 +304,7 @@
 								<div class="row" >
 										<ng-container  *ngFor="let media of userMedia;let i=index;">
 												<div *ngIf="media.post_media != '' && i<9"  class="col-4 p-1">
-														<div class="photo-img">
+														<div class="photo-img" (click)="viewPhoto(media.post_media)">
 															<img src="{{img_url}}{{media.post_media}}">
 														</div>
 													</div>
@@ -512,3 +512,31 @@
 			
 		  </div>
 		  <div class="for-popup-layer" [ngClass]="isShow ? isShow :''"></div>
+
+		  <div class="modal pic-popup" id="myModalPhoto" backdrop="static" role="dialog" tabindex="-1" style="display: block; background-color: rgba(0, 0, 0, 0.9); z-index: 111111;" [style.display]="showSlider ? 'block' : 'none'" *ngIf="showSlider" aria-hidden="true">
+		
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						
+						
+					<div class="popup-inner">
+							<button type="button" class="close" (click)="closePhoto()"><span aria-hidden="true">&times;</span></button>
+					  
+						<div class="icon-img">
+							<img class=""  src="{{photo}}" alt="slideshow">
+						</div>
+						
+					 
+				
+					</div>
+					
+				  
+			  
+				</div>
+				
+				
+			
+			  </div>
+			  
+			  
+			</div>
