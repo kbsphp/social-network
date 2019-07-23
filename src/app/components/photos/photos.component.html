@@ -18,12 +18,13 @@
 										<div id="tabs">
 												<div class="row">
 													<div class="col-md-12 ">
-														<!-- <nav>
+														<nav>
 															<div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
 																<a class="nav-item nav-link show" id="nav-home-tab" data-toggle="tab" href="#your-photo" aria-selected="true">Your Photos</a>
-																<a class="nav-item nav-link show" id="nav-profile-tab" data-toggle="tab" href="#your-album" role="tab" aria-controls="your-album" aria-selected="false">Albums</a>
+																<a class="nav-item nav-link show" id="nav-profile-tab" data-toggle="tab" href="#your-profile" role="tab" aria-controls="your-album" aria-selected="false">Profile Photos</a>
+																<a class="nav-item nav-link show" id="nav-profile-tab" data-toggle="tab" href="#your-cover" role="tab" aria-controls="your-album" aria-selected="false">Cover Photos</a>
 															</div>
-														</nav> -->
+														</nav>
 														<div class="tab-content friend-content" id="nav-tabContent">
 															<div class="tab-pane fade active show" id="your-photo" role="tabpanel" aria-labelledby="nav-home-tab">
 																<div class="all-frinds">
@@ -50,7 +51,37 @@
 						
 																</div>
 															</div>
+															<div class="tab-pane fade" id="your-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+																<div class="all-frinds">
+																	<div class="row mb-3">
+																		<div class="col-sm-12 col-xs-12 col-md-6 col-lg-3 col-xl-3" *ngFor="let pic of userProfilePics;let i=index;">
+																				<div class="photo-view" (click)= viewPhoto(pic.profile_pic);>
+																				<img src="{{img_url}}{{pic.profile_pic}}">
+																					
+																				</div>
+										
+																		</div>
+																	</div>
+						
+																</div>									
+															</div>
+
+															<div class="tab-pane fade" id="your-cover" role="tabpanel" aria-labelledby="nav-profile-tab">
+																<div class="all-frinds">
+																	<div class="row mb-3">
+																		<div class="col-sm-12 col-xs-12 col-md-6 col-lg-3 col-xl-3" *ngFor="let pic of userProfilePics;let i=index;">
+																				<div class="photo-view" (click)= viewPhoto(pic.profile_pic);>
+																				<img src="{{img_url}}{{pic.profile_pic}}">
+																					
+																				</div>
+										
+																		</div>
+																	</div>
+						
+																</div>									
+															</div>
 														</div>
+														
 													</div>
 												</div>
 										</div>

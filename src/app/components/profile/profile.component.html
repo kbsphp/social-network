@@ -15,8 +15,8 @@
 									<i class="fas fa-camera"></i>
 								</div> -->
 							</div>
-							<h3 *ngIf="name">{{ name }}</h3>
-							<h3 *ngIf="name == '' && name==null">{{ username }}</h3>
+							<!-- <h3 *ngIf="name">{{ name }}</h3> -->
+							<h3>{{username | titlecase}}</h3>
 						</div>
 						<div class="update-info for-banner-btn">
 							<button [disabled]="isSendDisabled" (click)="sendFriendReq()" *ngIf="user_status == 'Not Friend'" class="btn btn-grey"><i class="fas fa-user-plus"></i>Add Friend</button>

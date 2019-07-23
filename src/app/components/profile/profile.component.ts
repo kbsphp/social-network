@@ -97,7 +97,7 @@ export class ProfileComponent implements OnInit {
 
   userDetails(){
     this.data_service.GetUserById(this.id).subscribe(response=>{
-      console.log(response);
+      //console.log(response);
       if(response['error'] == false){
       this.cover_pic=response['body'][0].cover_pic;
       this.username =response['body'][0].username;

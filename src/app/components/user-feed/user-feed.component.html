@@ -455,7 +455,7 @@
 										</div>
 								<div class="write-commant">
 									<div class="media">
-									  <img src="{{profile_picture}}">
+									  <img src="{{img_url}}{{profile_picture}}">
 									  <div class="media-body">
 									   <input [disabled]="isPostComment" (keyup.enter)="post_comment()" class="form-control" [(ngModel)]="comment" name="comment"  style="resize:none" type="text" placeholder="Write a commant...">
 									   <!-- <span><i class="far fa-smile"></i></span> -->
@@ -474,7 +474,7 @@
 	</div>
 </section>
 </div>
-<div class="modal" id="myModal" backdrop="static" role="dialog" tabindex="-1" style="display: block; background-color: rgba(0, 0, 0, 0.32); z-index: 111111;" [style.display]="isPostModal ? 'block' : 'none'" *ngIf="isPostModal" aria-hidden="true">
+<div class="modal" id="myModal1" backdrop="static" role="dialog" tabindex="-1" style="display: block; background-color: rgba(0, 0, 0, 0.32); z-index: 111111;" [style.display]="isPostModal ? 'block' : 'none'" *ngIf="isPostModal" aria-hidden="true">
 		
 			  <div class="modal-dialog" role="document">
 				  <div class="modal-content">
