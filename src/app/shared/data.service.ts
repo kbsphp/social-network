@@ -283,10 +283,74 @@ headers : any;
    if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null){
      this.token = sessionStorage.getItem('token');
    }
+   var input_id={
+     "userID":userId
+   }
    const httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json','authorization': this.token })};
-   return this._http.get(this.base_url+'yourInfoAdPref/'+ userId, httpOptions);
+   return this._http.post(this.base_url+'yourInfoAdPref/', input_id,httpOptions);
 
  }
 
+
+ updatePersonalInfoAd(formdata) {
+   if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null){
+     this.token = sessionStorage.getItem('token');
+   }
+
+   const httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json','authorization': this.token })};
+   return this._http.post(this.base_url+'updateyourInfoAdPref/', formdata,httpOptions);
+
+ }
+
+
+ saveGeneralAdSetting(formdata) {
+
+    if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null){
+     this.token = sessionStorage.getItem('token');
+   }
+   
+   const httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json','authorization': this.token })};
+   return this._http.post(this.base_url+'generalSettings/', formdata,httpOptions);
+
+ }
+
+ saveAdSetting(formdata) {
+ 
+ console.log(formdata)
+   if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null){
+     this.token = sessionStorage.getItem('token');
+   }
+   const httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json','authorization': this.token })};
+
+   return this._http.post(this.base_url+'adsSettings/', formdata,httpOptions);
+
+ }
+
+
+  getCountryList() {
+  
+  if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null){
+     this.token = sessionStorage.getItem('token');
+   }
+
+   const httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json','authorization': this.token })};
+
+   return this._http.get(this.base_url+'countryList/',httpOptions);
+
+  }
+
+
+  saveAdAccountSettings(formdata) {
+
+  if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null){
+     this.token = sessionStorage.getItem('token');
+   }
+  
+   const httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json','authorization': this.token })};
+
+   return this._http.post(this.base_url+'accountSettings/',formdata, httpOptions);
+
+
+  }
 
 }

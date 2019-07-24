@@ -2597,6 +2597,7 @@ section.model-custom .modal-body p {
 }
 .bs-example.cus-bs .card {
     margin: 15px 0;
+    width:100%;
 }
 .bs-example.cus-bs span.pink i {
     color: #fff;
@@ -2901,18 +2902,31 @@ img.img-fluid.in-img {
 .social-form .lft-part label {
     margin: 0;
 	font-size: 14px;
+    text-align: right;
 }
-
+.rgt-part select{
+    border: none;
+}
+.rgt-part select:nth-child(1) {
+    margin-right: 8px;
+}
+.rgt-part select:focus {
+    background: transparent;
+    outline: transparent;
+    color:#989898;
+    border: transparent;
+}
 .social-form .rgt-part input[type="text"] ,
-.social-form .rgt-part input[type="email"]{
+.social-form .rgt-part input[type="email"],.rgt-part select{
     border: 1px solid #383f4b;
     width: 100%;
     padding: 5px 10px;
     border-radius: 50px;
-    background: #282e3a;
+    background: #282e3a !important;
 	outline:none !important;
 	box-shadow:none !important;
 	color:#989898;
+    font-size: 15px;
 }
 
 .social-form .rgt-part textarea{
@@ -3596,3 +3610,9 @@ div#collapseThree .media {
     cursor: pointer;
 }
 
+label:hover {
+    text-decoration: none;
+}
+label {
+    cursor: auto;
+}
