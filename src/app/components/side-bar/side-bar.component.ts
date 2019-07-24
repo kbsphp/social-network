@@ -30,31 +30,25 @@ export class SideBarComponent implements OnInit {
 
   ngOnInit() {
     this.user=JSON.parse(localStorage['userData']);
-    if(localStorage.getItem("updated_pic") != undefined){
-      this.currentUser_picture = localStorage.getItem("updated_pic") ;
-    }else{
-      this.currentUser_picture=this.user.profile_picture;
-    }
+    this.currentUser_picture=this.user.profile_picture;
+  
     this.user_id = sessionStorage.getItem('user_id');
-     this.username =sessionStorage.getItem('user_name');
-    //this.userDetails();
+    this.username =sessionStorage.getItem('user_name');
+    this.userDetails();
   }
 
-  // userDetails(){
-  //   this.data_service.GetUserDataByUserId().subscribe(response=>{
-  //     if(response['error'] == false){
-  //     this.username =response['body'][0].username;
-  //     this.fullname= response['body'][0].first_name+ ' '+response['body'][0].last_name;
-  //     this.fullname=this.fullname?this.fullname:this.username;
-  //     this.currentUser_picture=response['body'][0].profile_picture;
-  //     }else{
-  //      console.log(response['msg']);
-  //     }
-  //   },error=>{
-  //      console.log("Something went wrong");
-  //   })
+  userDetails(){
+    this.data_service.GetUserDataByUserId().subscribe(response=>{
+      if(response['error'] == false){
+      this.currentUser_picture=response['body'][0].profile_picture;
+      }else{
+       console.log(response['msg']);
+      }
+    },error=>{
+       console.log("Something went wrong");
+    })
  
-  //  }
+   }
 
  
   }

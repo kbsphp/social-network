@@ -51,10 +51,26 @@ export class CreatePostComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(localStorage.getItem("updated_pic") != undefined){
-      this.profile_picture = localStorage.getItem("updated_pic") ;
-    }
+
+    this.userDetails();
+    this.profile_picture = this.userData['profile_picture'];
   }
+
+
+  userDetails(){
+    this.data_service.GetUserDataByUserId().subscribe(response=>{
+    console.log(response);
+      if(response['error'] == false){
+          this.profile_picture=response['body'][0].profile_picture;
+        
+      }else{
+       console.log(response['msg']);
+      }
+    },error=>{
+       console.log("Something went wrong");
+    })
+ 
+   }
 
 
   addEmoji(evt){

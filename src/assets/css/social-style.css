@@ -1138,6 +1138,7 @@ a {color: #989898;}
     color: #90949c;
     font-weight: 200;
     padding: 0 0 0 15px;
+    cursor: pointer;
 }
 .badge-primary {background-color: #3f72b3;}
 .about-info ul.tab-list li.active a{color: #f6ad21;}
