@@ -22,6 +22,10 @@ export class AdvertiseComponent implements OnInit {
      user_id:any
      countries:any;
      accountSetting:FormGroup;
+     sucessMsg:string=''
+     genreralSave:string=''
+     adSettingSuccess:string=''
+     accountSettingSuccess:string=''
   constructor(private formBuilder:FormBuilder,private data_service:DataService) {
 
     //this.adForm = this.formBuilder.group({
@@ -68,7 +72,7 @@ export class AdvertiseComponent implements OnInit {
      //   currency:"Uzyth"
      // })
  
-   console.log(this.error)
+   //console.log(this.error)
    }
 
   ngOnInit() {
@@ -111,13 +115,21 @@ export class AdvertiseComponent implements OnInit {
 
    //  })
    //  }
-   console.log('clicked')
+   //console.log('clicked')
    console.log(this.model)
-   this.data_service.updatePersonalInfoAd(this.model).subscribe(data => {     
-    console.log(data);          
+   this.data_service.updatePersonalInfoAd(this.model).subscribe((response) => {     
+    //console.log(data.error); 
+     if(response['error'] == false) {
+       
+      this.sucessMsg="Updated Successfully"
+
+     }
+ 
     },error => {
      //this.toastr.error('Something went wrong!');
-     console.log('error')
+     //console.log('error')
+
+     this.error="something went wrong"
     });
 
   }
@@ -156,11 +168,17 @@ export class AdvertiseComponent implements OnInit {
 
      console.log(formData)
      //console.log(age)
-   //let work_experience=this.adForm.value.work_experience
-   //let places_you_lived=this.adForm.value.places_you_lived
-   //let detail_about_you=this.adForm.value.detail_about_you
+     //let work_experience=this.adForm.value.work_experience
+     //let places_you_lived=this.adForm.value.places_you_lived
+     //let detail_about_you=this.adForm.value.detail_about_you
   this.data_service.saveGeneralAdSetting(formData).subscribe((response) => {
       console.log(response)
+   
+   if (response['error'] == false) {
+       
+       this.genreralSave="Genreal Setting Created Sucessfully"
+   }
+
   })
        
   }
@@ -177,7 +195,7 @@ export class AdvertiseComponent implements OnInit {
  
  saveAdSetting() {
 
-  console.log(this.adSetting.value);
+    console.log(this.adSetting.value);
      let ad_delivery=this.adSetting.value.ad_delivery;
      let buget_schedule=this.adSetting.value.buget_schedule;
      let actual_amount=this.adSetting.value.actual_amount;
@@ -194,6 +212,11 @@ export class AdvertiseComponent implements OnInit {
    //console.log(this.adSetting.value)
    this.data_service.saveAdSetting(formData).subscribe((response) => {
       console.log(response)
+      if (response['error'] == false) {
+         this.adSettingSuccess="Ad settings Created Successfully";
+
+         //this.adSetting.reset()
+      }
    })
 
 
@@ -216,9 +239,12 @@ export class AdvertiseComponent implements OnInit {
      }
 
      this.data_service.saveAdAccountSettings(formData).subscribe((response) =>{
-
-
         console.log(response)
+
+        if (response['error'] == false) {
+            
+            this.accountSettingSuccess="Account Setting Created Successfully"
+        }
      })
 
  }
