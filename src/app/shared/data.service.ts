@@ -217,7 +217,7 @@ headers : any;
     }
     this.user_id = pvrId;
     const httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json', 'authorization': this.token })};
-    return this._http.get(this.base_url+'user/'+this.user_id, httpOptions )
+    return this._http.get(this.base_url+'user/'+this.user_id, httpOptions)
     .map((response:Response)=>{const data = response;
       return data;})
     .catch((error:Error) => {return Observable.throw(error);});

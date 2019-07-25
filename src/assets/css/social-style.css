@@ -2862,7 +2862,7 @@ img.img-fluid.in-img {
     margin: auto;
     display: block;
 }
-.intrust p {
+.intrust p , .color-text {
     color: #989898;
     font-size: 16px;
     line-height: 19px;
@@ -3616,4 +3616,8 @@ label:hover {
 }
 label {
     cursor: auto;
+}
+.addd-right.your_preferences {
+    display: flex;
+    width: 100%;
 }
