@@ -146,6 +146,16 @@ headers : any;
     .catch((error:Error) => {return Observable.throw(error);});
   }
 
+  getUserCoverPics(pvrId){
+
+    if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null){
+      this.token = sessionStorage.getItem('token');
+    }
+    const httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json', 'authorization': this.token })};
+    return this._http.get(this.base_url+'getAllUserCoverPic/'+pvrId,httpOptions)
+    .map((response:Response)=>{const data = response;return data;})
+    .catch((error:Error) => {return Observable.throw(error);});
+  }
   likeOnPost(post_id,pvar_user_id){
     if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null){
       this.token = sessionStorage.getItem('token');

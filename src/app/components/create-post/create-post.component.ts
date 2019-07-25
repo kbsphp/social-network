@@ -91,8 +91,11 @@ export class CreatePostComponent implements OnInit {
 
  
   close_modal() {
+    //this.fileupload.nativeElement.value = "";
     this.error_msg = false;
+    this.error= '';
     this.msgError=false;
+   // console.log(this.file);
     //this.postForm.reset();
     this.attachmentName='';
     this.isPostModal = false;
@@ -128,9 +131,9 @@ export class CreatePostComponent implements OnInit {
         var strFileName = this.getFileExtension1(this.file.name);
         if(strFileName != 'jpeg' && strFileName != 'png' && strFileName != 'jpg' && strFileName != 'gif'){
           console.log('Please select a file with correct extension .jpg|.png|.jpeg|.gif');
-        // this.error_msg = true;
-      //  this.error='Please select a valid file type .jpg|.png|.jpeg|.gif'
-        //  return;
+         this.error_msg = true;
+        this.error='Please select a valid file type .jpg|.png|.jpeg|.gif'
+        return;
         }
         if(strFileName == 'jpeg' || strFileName == 'png' || strFileName == 'jpg' || strFileName == 'gif'){
           this.media_type = 1;

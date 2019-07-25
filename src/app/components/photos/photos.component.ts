@@ -11,6 +11,7 @@ export class PhotosComponent implements OnInit {
   user_id;
   userMedia:any=[];
   userProfilePics:any=[];
+  userCoverPics:any=[];
   base_url: string = "";
   img_url: string = "";
   showSlider:boolean=false;
@@ -26,6 +27,7 @@ export class PhotosComponent implements OnInit {
     this.user_id = sessionStorage.getItem('user_id');
     this.getPostMedia();
     this.getProfilePics();
+    this.getCoverPics();
   }
 
 
@@ -46,7 +48,20 @@ export class PhotosComponent implements OnInit {
     this.data_service.getUserProfilesPics(this.user_id).subscribe((response) => {
       if(response['error'] == false){
        this.userProfilePics=response['body'];
-       console.log(this.userMedia);
+      // console.log(this.userMedia);
+      }else{
+       console.log(response['msg']);
+      }
+    },error =>{
+      console.log(error);
+    });
+  }
+
+  getCoverPics(){
+    this.data_service.getUserCoverPics(this.user_id).subscribe((response) => {
+      if(response['error'] == false){
+       this.userCoverPics=response['body'];
+      // console.log(this.userMedia);
       }else{
        console.log(response['msg']);
       }

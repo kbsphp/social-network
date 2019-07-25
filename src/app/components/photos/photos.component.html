@@ -22,7 +22,7 @@
 															<div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
 																<a class="nav-item nav-link show" id="nav-home-tab" data-toggle="tab" href="#your-photo" aria-selected="true">Your Photos</a>
 																<a class="nav-item nav-link show" id="nav-profile-tab" data-toggle="tab" href="#your-profile" role="tab" aria-controls="your-album" aria-selected="false">Profile Photos</a>
-																<a class="nav-item nav-link show" id="nav-profile-tab" data-toggle="tab" href="#your-cover" role="tab" aria-controls="your-album" aria-selected="false">Cover Photos</a>
+																<a class="nav-item nav-link show" id="nav-profile-tab" data-toggle="tab" href="#your-covers" role="tab" aria-controls="your-album" aria-selected="false">Cover Photos</a>
 															</div>
 														</nav>
 														<div class="tab-content friend-content" id="nav-tabContent">
@@ -66,12 +66,12 @@
 																</div>									
 															</div>
 
-															<div class="tab-pane fade" id="your-cover" role="tabpanel" aria-labelledby="nav-profile-tab">
+															<div class="tab-pane fade" id="your-covers" role="tabpanel" aria-labelledby="nav-profile-tab">
 																<div class="all-frinds">
 																	<div class="row mb-3">
-																		<div class="col-sm-12 col-xs-12 col-md-6 col-lg-3 col-xl-3" *ngFor="let pic of userProfilePics;let i=index;">
-																				<div class="photo-view" (click)= viewPhoto(pic.profile_pic);>
-																				<img src="{{img_url}}{{pic.profile_pic}}">
+																		<div class="col-sm-12 col-xs-12 col-md-6 col-lg-3 col-xl-3" *ngFor="let pic of userCoverPics;let i=index;">
+																				<div class="photo-view" (click)= viewPhoto(pic.cover_pic);>
+																				<img src="{{img_url}}{{pic.cover_pic}}">
 																					
 																				</div>
 										
