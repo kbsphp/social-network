@@ -44,10 +44,10 @@ export class GeneralFeedComponent implements OnInit {
   isDefaultUser : boolean = true;
   post_start:number;
   loading:boolean=false;
-
+   showSlider:boolean=false;
   isDeleteComment:boolean=false;
   private socket;
-
+  photo :string="";
   chunk_Start : any;
   newArray : any = [];
   constructor(
@@ -87,13 +87,14 @@ export class GeneralFeedComponent implements OnInit {
     },error=>{
        console.log("Something went wrong");
     })
- 
    }
-
+ 
 
   generalPostAllList(){
     this.loading=true;
+    console.log(this.post_data)
     this.chunk_Start = this.post_data.length == 0 ? 0 : this.post_data[this.post_data.length -1]['id'];
+    console.log(this.chunk_Start)
     const inputJson = {
       "limit": 5,
     	"start": this.chunk_Start,
@@ -209,9 +210,10 @@ export class GeneralFeedComponent implements OnInit {
       });
     }
   }
-
+ 
 
   delete_comment(cmnt){
+    console.log(cmnt)
     let p_user_id = cmnt.user_id;
     let p_cmnt_id = cmnt.id;
     let p_post_id = cmnt.post_id;
@@ -395,5 +397,16 @@ export class GeneralFeedComponent implements OnInit {
    this.isDefaultUser = true;      
  }
 }
+  
 
+  viewPhoto(PhotoID) {
+   // viewPhoto(PhotoID){
+    this.showSlider=true;
+    this.photo=this.img_url+''+PhotoID;
+  //}
+  }
+
+  closePhoto() {
+    this.showSlider=false;
+  }
 }

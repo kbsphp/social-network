@@ -8,7 +8,8 @@
 						<img *ngIf="cover_pic" class="" src="{{img_url}}{{cover_pic}}" />
 					</div>
 					<div class="inner-profile">
-						<button class="btn add" (click)=filecover.click()><span><i class="fas fa-camera"></i></span>Add Cover Photo</button>
+						<span><i class="fas fa-camera"></i></span>
+						<button class="btn add" (click)=filecover.click()>Add Cover Photo</button>
 						<div class="attach_file" style="display:none">
 							<input id="coverPhoto" type="file" accept="image/*"  #filecover (change)="coverPhoto($event)" name="filecover" >
 						  </div>
@@ -279,6 +280,45 @@
 						</div>
 					</div>
 				</div> -->
+			 <div class="postion-left-stky">
+			 	<div class="intro-blk">
+					<div class="inner-intro-blk">
+						<div class="heading-intro">
+							<h2><i class="fas fa-globe-asia"></i>Intro</h2>
+						</div>
+						<div class="text-msg">
+							<!-- <span><i class="far fa-comment-alt"></i></span> -->
+							
+							 
+							 	<div class="intro1">
+										 	<!-- <p class="intro-line">Add a short bio to tell people more about yourself.</p> -->
+							          
+										 	<p *ngIf="userInfo.workplace != ''"><span><i class="fas fa-briefcase"></i></span>Works at: {{userInfo.workplace}}</p>
+										 	<p *ngIf="userInfo.professional_skills != ''"><span><i class="fas fa-graduation-cap"></i></span>Studied at: {{userInfo.professional_skills}}</p>
+										 	<p *ngIf="userInfo.home != ''"><span><i class="fas fa-map-marker-alt"></i></span>From: {{userInfo.home}}</p>
+
+
+										 	<div *ngIf="userInfo.workplace == '' && userInfo.professional_skills == '' && userInfo.home == ''">
+										 		<p>Add a short bio to tell people more about yourself.</p>
+										 		<button type="button" class="btn btn-grey">Add Bio</button>
+										 	</div>
+
+										 </div>
+						</div>
+						<!-- <div class="follow-blk">
+							<p><i class="fas fa-rss"></i>Followed by <span>4 people</span></p>
+							<button type="button" class="btn btn-grey">Edit Details</button>
+						</div>
+						<div class="text-msg">
+							<span><i class="far fa-star"></i></span>
+							<p>Showcase what's important to you by adding photos, Pages, groups and more to your featured section on your public profile.</p>
+							 <button type="button" class="btn">Add to Featured</button>
+						</div>
+						<div class="add-insta">
+							<button type="button" class="btn btn-grey"><i class="fas fa-plus"></i>Add Instagram, Websites, Other Links</button>
+						</div> -->
+					</div>
+				</div>
 
 				<div class="photos-blk">
 					<div class="inner-photo">
@@ -318,7 +358,7 @@
 					<div class="inner-photo">
 						<div class="may-know">
 							<div class="top-know">
-								<p class="hdg"><span><i class="fas fa-camera-retro"></i></span><a href="javascript:void(0)" [routerLink]="['/friend-list']" class="see">Friends</a></p>
+								<p class="hdg"><span><i class="fas fa-user-friends"></i></span><a href="javascript:void(0)" [routerLink]="['/friend-list']" class="see">Friends .{{friend_count}}</a> </p>
 								<a href="javascript:void(0)" [routerLink]="['/find-friends']" class="see">Find Friends</a>
 							</div>
 							<div class="img-sec">
@@ -358,6 +398,7 @@
 						</div>
 					</div> -->
 				</div>
+			</div>
 
 				<!---div class="know-you">
 					<div class="friends">
@@ -401,7 +442,9 @@
 					</div>
 					
 					<div class="post-data" *ngIf="post.post_media != ''">
+						<div (click)= viewPhoto(post.post_media);>
 						<img class="img-fluid" src="{{img_url}}{{post.post_media}}">
+					</div>
 					</div>
 					
 					<div class="like-data">
@@ -478,7 +521,7 @@
 		
 			  <div class="modal-dialog" role="document">
 				  <div class="modal-content">
-					  <div class="create-post">
+					  <div class="create-post popupSuccess" style="margin: 0;background: #1e2430;border: solid 1px #383f4b;border-radius: 4px;">
 				  <div class="post-hdr">
 					<p *ngIf="error_msg">Error<button type="button" class="close" (click)="close_modal()"><span aria-hidden="true">&times;</span></button></p>
 					<p *ngIf="sucess_msg">Success<button type="button" class="close" (click)="close_modal()"><span aria-hidden="true">&times;</span></button></p>  
@@ -496,9 +539,9 @@
 							{{sucess_msg}}
 							</div>
 					</div>
-					<div class="for-pop-btn">
+				<!-- 	<div class="for-pop-btn">
 				
-					</div>
+					</div> -->
 				  </div>
 				  
 				</div>

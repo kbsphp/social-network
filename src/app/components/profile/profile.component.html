@@ -21,6 +21,7 @@
 						<div class="update-info for-banner-btn">
 							<button [disabled]="isSendDisabled" (click)="sendFriendReq()" *ngIf="user_status == 'Not Friend'" class="btn btn-grey"><i class="fas fa-user-plus"></i>Add Friend</button>
 							<button  *ngIf="user_status == 'Friend'" class="btn btn-grey"><i class="fas fa-check"></i>Friend</button>
+							<button  *ngIf="user_status == 'Friend'" class="btn btn-grey"><i class="fas fa-check"></i>Remove</button>
 							<button *ngIf="user_status == 'Request Sent'" class="btn btn-grey"><i class="fas fa-check"></i>Friend Request Sent</button>
 							<button [disabled]="isAcceptDisabled" (click)="acceptReq()" *ngIf="user_status == 'Accept Request'" class="btn btn-grey">Confirm Request</button>
 							<!-- <button class="btn btn-grey"><span><i class="fas fa-list"></i></span>Activity log</button> -->

@@ -14,21 +14,21 @@
     <div class="parts">
       <ul class="side-list">
         <li [routerLinkActive]="['active']" >
-          <a class="direct" [routerLink]="['/home']" href="javascript:void(0)"><img class="img-bar-list" src="assets/images/timeline.png"> <span class="for-name"> Timeline</span></a>
+          <a class="direct" [routerLink]="['/home']" href="javascript:void(0)"><!-- <img class="img-bar-list" src="assets/images/timeline.png"> --><i class="far fa-calendar-alt"></i> <span class="for-name"> Timeline</span></a>
         </li>
         
         <li [routerLinkActive]="['active']" >
-          <a class="direct" [routerLink]="['/about']" href="javascript:void(0)"><img class="img-bar-list" src="assets/images/about.png"> <span class="for-name">About</span></a>
+          <a class="direct" [routerLink]="['/about']" href="javascript:void(0)"><!-- <img class="img-bar-list" src="assets/images/about.png"> --> <i class="fas fa-user-alt"></i><span class="for-name">About</span></a>
         </li>
         
         <li [routerLinkActive]="['active']">
-          <a class="direct" [routerLink]="['/find-friends']" href="javascript:void(0)"><img class="img-bar-list" src="assets/images/find-friend.png"> <span class="for-name">Find Friends</span></a>
+          <a class="direct" [routerLink]="['/find-friends']" href="javascript:void(0)"><!-- <img class="img-bar-list" src="assets/images/find-friend.png"> --> <i class="fas fa-users"></i> <span class="for-name">Find Friends</span></a>
         </li>
         <li [routerLinkActive]="['active']">
-            <a class="direct" [routerLink]="['/photos']" href="javascript:void(0)"><img class="img-bar-list" src="assets/images/photo.png"> <span class="for-name">Photos</span></a>
+            <a class="direct" [routerLink]="['/photos']" href="javascript:void(0)"><!-- <img class="img-bar-list" src="assets/images/photo.png"> --> <i class="fas fa-camera"></i><span class="for-name">Photos</span></a>
           </li>
            <li [routerLinkActive]="['active']">
-                <a class="direct" [routerLink]="['/advertise']"><img class="img-bar-list" src="assets/images/ads.png"><span class="for-name">Advertisement</span></a>
+                <a class="direct" [routerLink]="['/advertise']"><!-- <img class="img-bar-list" src="assets/images/ads.png"> --> <i class="fas fa-bullhorn"></i><span class="for-name">Advertisement</span></a>
               </li>
           <!-- <li (click)="menuclick('5') [ngClass]="{'active': active == 5}"">
               <a class="direct" href="javascript:void(0)"><img class="img-bar-list" src="assets/images/privacy.png"> <span class="for-name">Privacy</span></a>            

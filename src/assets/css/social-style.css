@@ -775,22 +775,29 @@ a {color: #989898;}
     color: white;
     position: relative;
     height: 250px; 
-    border: 1spx solid #383f4b;
+    cursor: pointer;
+    border: 1px solid #383f4b;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-position: center;
 }
 
 .overlay-blk:hover .hover-layer {display: block;}
-.overlay-blk {position: relative;}
+.overlay-blk {
+    position: relative; 
+    overflow: hidden;
+    border-radius: 100px;
+}
 .overlay-blk .hover-layer {
     position: absolute;
-    top: 0;
+    top: 80px;
     background: #0a0a0a7a;
     width: 100%;
     height: 100%;
     border-radius: 120px;
     display: none;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
 }
 .add {
     border: 2px solid #383f4b;
@@ -1076,7 +1083,7 @@ a {color: #989898;}
 .photo-img img {width: 100%;}
 .photos-blk .may-know,.friends-sec .may-know {border: none;}
 .friends-sec .top-know a {color:#f6ad21;}
-.photos-blk, .friends-sec {
+.photos-blk, .friends-sec , .intro {
     margin-top: 10px;
     background: #1e2430;
     padding: 10px 0;
@@ -1281,18 +1288,20 @@ a {color: #989898;}
     overflow: auto;*/
 }
 .friend-info {margin-bottom: 20px;}
-#your-photo .all-frinds:before {
+#your-photo .all-frinds:before, #your-profile .all-frinds:before , #your-cover .all-frinds:before {
     content: "";
     position: absolute;
     content: "";
     background: #1e2430;
     width: 15px;
     height: 15px;
-    left: 50px;
+    left: 42px;
     top: -6px;
     bottom: auto;
     transform: rotate(45deg);
 }
+#your-cover .all-frinds:before {left: 344px;}
+#your-profile .all-frinds:before {left: 194px;}
 .all-frinds{position: relative; padding: 15px 0 5px 0;}
 #your-album .all-frinds:before ,#nav-home .all-frinds:before ,#nav-profile .all-frinds:before, #nav-contact .all-frinds:before {
     content: "";
@@ -1416,9 +1425,9 @@ a {color: #989898;}
 .video-info {margin-bottom: 30px;}
 .overlay-blk .hover-layer i {
     position: relative;
-    top: 60px;
-    left: 60px;
-    font-size: 30px;
+    top: 15px;
+    left: 65px;
+    font-size: 21px;
 }
 .friend-hover {
     position: absolute;
@@ -2915,7 +2924,7 @@ img.img-fluid.in-img {
     background: transparent;
     outline: transparent;
     color:#989898;
-    border: transparent;
+    border: 1px solid #373e4a;
 }
 .social-form .rgt-part input[type="text"] ,
 .social-form .rgt-part input[type="email"],.rgt-part select{
@@ -3061,10 +3070,14 @@ label:hover{
 .photo-view {margin-bottom: 20px;}
 }
 .addd {
-    background: #141a24;
+    background: transparent;
 }
 .addd .card {
     background: #1e2430;
+}
+.addd .right-part {
+    background: #141a24;
+    border: 1px solid #383f4b;
 }
 
 
@@ -3191,8 +3204,14 @@ section.model-custom .modal {
 }
 
 .top-profile-blk .add {
-    position: relative;
+    position: absolute;
     z-index: 99;
+    display: none;
+    background: #292f3a;
+    padding-left: 30px;
+}
+.top-profile-blk:hover button.btn.add {
+    display: block;
 }
 
 .search-box form .input-group ul{
@@ -3215,6 +3234,7 @@ section.model-custom .modal {
     background: white;
     font-size: 13px;
     display: block;
+    text-decoration: none;
 }
 
 .friends .details button.btn {
@@ -3230,7 +3250,7 @@ section.model-custom .modal {
     color: red !important;
 }
 .sucess-msg {
-    color: #1bdf1b;
+    color: #fff;
 }
 
 .modal-dialog {
@@ -3393,10 +3413,11 @@ section.model-custom .modal {
 
 .dots-dd .dropdown-menu{
     left: auto !important;
-    right:0px;
+    right:-5px;
     background: #282e3a;
     padding: 5px 10px;
-    top: -7px !important;
+    min-width: 90px;
+    top: -2px !important;
     transform: translate3d(0px, 25px, 0px) !important;
 }
 
@@ -3582,7 +3603,8 @@ div#collapseThree .media {
 .friendListNames .photo-img img {
     width: 100%;
     max-width: 90px;
-    height: 90px;
+    /*height: 90px;*/
+    height: auto;
 }
 .friendListNames:hover {
     color: #f1ad1b !important;
@@ -3621,3 +3643,183 @@ label {
     display: flex;
     width: 100%;
 }
+.pic-popup .popup-inner .icon-img{
+    background: #000;
+}
+.left-inner ,
+.right-part2-inner {
+    position: sticky;
+    top: 10px;
+}
+.intro1 p{color: #989898;}
+.intro1 {
+    margin-top: 0px;
+    font-size: 14px;
+    padding: 5px 3px;
+    text-align: left;
+}
+.postion-left-stky .intro-blk{margin-top: 0px;}
+.postion-left-stky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 12px;
+  bottom: 0;
+    height: 97vh;
+    overflow-y: auto;
+    top: 12px;
+}
+
+
+.intro1 p span i {
+    width: 100%;
+    max-width: 20px;
+    text-align: center;
+}
+.intro1 p span {
+    padding-right: 10px;
+}
+.intro1 .intro-line {
+    font-size: 13px;
+    padding: 5px 0;
+    text-align: center;
+}
+
+
+.right-part2 .searchFriends {
+    position: relative;   
+}
+.search-icon-blk {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+}
+.searchFriends input {
+    background: #1f2530;
+    border: 1px solid #383f4b;
+    border-radius: 0px;
+}
+.searchFriends i {color: #f1ad1b;}
+.searchFriends input:focus {
+    background: transparent;
+    border: 1px solid #383f4b;
+    box-shadow: none;
+}
+
+/*  (delete post)  start 29 july style   */
+.dots-dd .dropdown-menu:after {
+    position: absolute;
+    content: "";
+    width: 12px;
+    height: 12px;
+    background: #292f3a;
+    top: -5px;
+    transform: rotate(50deg);
+    right: 8px;
+}
+.dots-dd .btn i,.dots-dd .btn i:hover {
+    color: #f1ad1b;
+}
+.post-data {cursor: pointer;}
+/* End */
+
+
+.popupSuccess .post-hdr {
+    background: #f6ad21;
+}
+.popupSuccess p, .popupSuccess p button span {
+    color: #fff !important;
+}
+.popupSuccess .icon-img {
+    margin-right: 0 !important;
+    color: #fff;
+}
+
+.inner-profile span {
+    position: absolute;
+    left: 40px;
+    top: 37px;
+    z-index: 9999;
+    color: #989898;
+}
+.email-align .media-body p {
+    display: flex;
+}
+.chat-list.show {
+    display: none;
+}
+.chat-box .plusIcon {
+    color: #fff;
+    position: absolute;
+    right: 10px;
+    top: 12px;
+}
+.search-box form .input-group ul li span a:hover {
+    background: #f5f6f7;
+    color: #000;
+}
+.friends-sec .top-know p span i {
+    font-size: 12px;
+    position: relative;
+    top: -2px;
+}
+.right-part1 .modal-dialog {
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+.postion-left-stky::-webkit-scrollbar {
+    width: 0 !important;
+    overflow: -moz-scrollbars-none;
+}
+.request-info{margin-bottom: 15px;}
+.left-inner .side-list li a i {
+    padding-right: 10px;
+}
+.left-inner .side-list li.active a i {
+    color: #f1ad1b !important;
+}
+.side-list li a.direct:hover{color: #f1ad1b !important;}
+
+
+/* for-popup start here */
+
+.popup-back {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.6);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    display:none;
+}
+.open-popup .create-post {
+    position: relative;
+    z-index: 999;
+}
+.open-popup .popup-back {
+    display:block;
+}
+
+.custom-popup.open-popup .share-btn {
+    display: block;
+   z-index: 999999999 !important;
+    position: relative;
+    top: -9px;
+}
+
+.custom-popup .share-btn {display: none;}
+.custom-popup.open-popup .share-btn {display: block;}
+
+
+/*  1 aug Style */
+
+.emojisShow {
+    top: -10px;
+    z-index: 9999999;
+    position: relative;
+}
+.emojisShow .emoji-mart {
+    width: 100% !important;
+    max-width: 100%;
+}
+

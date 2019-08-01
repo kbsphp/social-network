@@ -150,8 +150,7 @@ export class AdvertiseComponent implements OnInit {
   // function is used to set general setting
 
   saveGeneralSetting() {
-   
-    console.log(this.generalSetting.value);
+   // console.log(this.generalSetting.value);
      let location=this.generalSetting.value.location;
      let language=this.generalSetting.value.language;
      let gender=this.generalSetting.value.gender;
@@ -214,7 +213,6 @@ export class AdvertiseComponent implements OnInit {
       console.log(response)
       if (response['error'] == false) {
          this.adSettingSuccess="Ad settings Created Successfully";
-
          //this.adSetting.reset()
       }
    })

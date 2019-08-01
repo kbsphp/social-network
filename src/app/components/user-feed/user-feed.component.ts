@@ -47,8 +47,10 @@ export class UserFeedComponent implements OnInit {
   sucess_msg:string="";
   isShow="";
   media_type;
+  userInfo:any ={};
   userMedia:any=[];
    user_data : any = [];
+   friend_count=0
   private socket;
   socket_url: string = "";
   constructor(private formBuilder:FormBuilder,
@@ -74,6 +76,7 @@ export class UserFeedComponent implements OnInit {
     this.userDetails();
     this.getPostMedia();
     this.getAllUser();
+    this.getUserInfo()
     this.data_service.currentMessage.subscribe
     (message => {
       this.new_post_data.unshift(message);
@@ -117,6 +120,10 @@ export class UserFeedComponent implements OnInit {
         console.log( users)
 
        this.user_data=users;
+
+
+       console.log(Object.keys(this.user_data).length)
+      this.friend_count=Object.keys(this.user_data).length
       //   let objIndex = this.user_data.findIndex((obj => obj.id == 1));
 
       //   users.map(item => {
@@ -548,7 +555,29 @@ UpdatePostData(data) {
      this.selected_user=CryptoJS.AES.encrypt(JSON.stringify(pvrId), 'gurpreet').toString();
      this.router.navigate(['/profile',this.selected_user]);
   }
+ 
+ getUserInfo() {
+ 
+   this.data_service.getUserAboutInfo(this.user_id).subscribe((response) => {
+    //  console.log(response);
+      //this.model=response['body'];
 
+      console.log(response['body']) 
+      this.userInfo=response['body'];
+      //console.log(this.model); 
+     // this.userAboutData=response['body'];
+     // console.log(this.userAboutData);
+    //  if(this.userAboutData.length==0) {
+      //   this.checkStatus=true;
+     /// }else{
+        //this.checkStatus=false;
+    //  }
+   },error=>{
+    console.log(error);
+   })
+
+
+  }
  
  
  

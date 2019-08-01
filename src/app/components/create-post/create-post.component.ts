@@ -32,6 +32,7 @@ export class CreatePostComponent implements OnInit {
   isPostModal : boolean = false;
   error_msg : boolean = false;
   btnshare:boolean = false;
+  openModal:boolean=false;
   isCLicked:string="";
   constructor(private formBuilder:FormBuilder,private data_service: DataService) { 
     this.postForm = this.formBuilder.group({
@@ -91,23 +92,40 @@ export class CreatePostComponent implements OnInit {
 
  
   close_modal() {
+   // console.log('called')
     this.error_msg = false;
     this.msgError=false;
     //this.postForm.reset();
     this.attachmentName='';
     this.isPostModal = false;
+   /// this.fileReset()
     this.isCLicked="";
+     this.openModal=false
+     this.emojiHide = false;
+  }
+     
+  openPopupModalShow() {
+
+    this.openModal=true
+
+
   }
 
 
+fileReset() {
+  this.postForm.reset();
+  console.log(this.fileupload.nativeElement.files);
+  this.fileupload.nativeElement.value=null
+}
   open_modal(){
     this.error_msg = false;
-   this.isPostModal = true;
+ //  this.isPostModal = true;
    this.btnshare=false;
    this.isCLicked="modal-backdrop fade show";
   }
 
   savePost(type) {
+
     this.btnshare=true;
      let desc= this.postForm.value.description;
       console.log(this.postForm.value)
@@ -125,12 +143,16 @@ export class CreatePostComponent implements OnInit {
       }
      // console.log(this.file);
       if(this.file != undefined && this.file != null ){
+       // console.log(this.file)
         var strFileName = this.getFileExtension1(this.file.name);
         if(strFileName != 'jpeg' && strFileName != 'png' && strFileName != 'jpg' && strFileName != 'gif'){
           console.log('Please select a file with correct extension .jpg|.png|.jpeg|.gif');
-        // this.error_msg = true;
-      //  this.error='Please select a valid file type .jpg|.png|.jpeg|.gif'
-        //  return;
+        this.error_msg = true;
+      this.error='Please select a valid file type .jpg|.png|.jpeg|.gif'
+      this.postForm.value.file=""
+      //this.file='';
+     //this.fileupload.nativeElement.value = null;
+         return;
         }
         if(strFileName == 'jpeg' || strFileName == 'png' || strFileName == 'jpg' || strFileName == 'gif'){
           this.media_type = 1;
@@ -138,7 +160,7 @@ export class CreatePostComponent implements OnInit {
           this.media_type = 0;
         }
       }
-
+  console.log(this.file)
      this.user_id = sessionStorage.getItem('user_id');
      this.media_type=0;
      var input_data = {
@@ -158,7 +180,7 @@ export class CreatePostComponent implements OnInit {
      this.token = sessionStorage.getItem('token');
     }
     this.data_service.userFeedPost(formData,this.token).subscribe(data=>{
-            //console.log(data);
+            console.log(data);
             if(data['error'] == false){
               this.postForm.reset();
               this.file = null;
@@ -171,6 +193,8 @@ export class CreatePostComponent implements OnInit {
               this.isPostModal = false;
               this.btnshare=false;
               this.isCLicked= "";
+              this.emojiHide=false
+              this.openModal=false
             }else{
              //console.log(data['msg']);
              this.error_msg = true;
@@ -222,7 +246,7 @@ UpdatePostData(data) {
    username: this.userData.username,
  } 
  this.data_service.newPostMessageUpdation(tempObj);
-
+ 
 }
 
 fileChange(file) {

@@ -87,6 +87,8 @@ checkStatus:boolean=false;
     
   }
   saveEducationOverview(){
+    console.log('called')
+    console.log(this.model)
   this.data_service.userAboutinfo(this.model).subscribe(data => {  
     this.setStatus = 1;   
 //  console.log(data);          

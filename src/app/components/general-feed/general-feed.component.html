@@ -71,7 +71,7 @@
 							
 						<!-- <i *ngIf="loading" class="fa fa-spinner fa-spin"></i> -->
 						<ng-container *ngIf="showPosts">
-						   <div infinite-scroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="500" (scrolled)="generalPostAllList()" [scrollWindow]="true">
+						   <div infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="500" (scrolled)="generalPostAllList()" [scrollWindow]="true">
 								<div class="post-box" *ngFor="let post of post_data;let index">
 									<div class="post-hdr">
 										<div class="icon-img">
@@ -96,7 +96,9 @@
 									</div>
 									
 									<div class="post-data"  *ngIf="post.post_media != ''">
-										<img class="img-fluid" src="{{img_url}}{{post.post_media}}" />
+										<div (click)= viewPhoto(post.post_media);>
+											<img class="img-fluid" src="{{img_url}}{{post.post_media}}" />
+										</div>
 									</div>
 									
 									<div class="like-data">
@@ -162,10 +164,14 @@
 					</ng-container>			
 					</div>
 					<div class="col-sm-12 col-md-12 col-lg-4 right-part2">
-							<div class="search-box">
+						<div class="right-part2-inner">
+							<div class="search-box searchFriends">
 									<form>
 										<div class="input-group">
 											<input type="text" class="form-control" [(ngModel)]="search_people" (input)="onKeyPressSearch($event.target.value)" placeholder="Search Friends" name="search_people">
+											<div class="search-icon-blk">
+												<i class="fas fa-search"></i>
+											</div>
 											 <ul *ngIf="isSearchUser == true">
 												<ng-container *ngFor="let search of search_user_data;">
 												   <!--  <li (click)="chatUser(search)" *ngIf="search.id != user_id">
@@ -234,6 +240,7 @@
 								</div>
 							</div>
 						</div>
+					</div>
 						<!-- <div class="Stories">
 							<div class="may-know">
 								<div class="top-know">
@@ -278,7 +285,7 @@
 		
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
-				<div class="create-post">
+				<div class="create-post popupSuccess">
 			<div class="post-hdr">
 			  <p *ngIf="error_msg">Error<button type="button" class="close" (click)="close_modal()"><span aria-hidden="true">&times;</span></button></p>
 			  <p *ngIf="sucess_msg">Success<button type="button" class="close" (click)="close_modal()"><span aria-hidden="true">&times;</span></button></p>  
@@ -296,9 +303,9 @@
 					  {{sucess_msg}}
 					  </div>
 			  </div>
-			  <div class="for-pop-btn">
+			 <!--  <div class="for-pop-btn">
 		  
-			  </div>
+			  </div> -->
 			</div>
 			
 		  </div>
@@ -312,3 +319,31 @@
 	  
 	</div>
 	<div class="for-popup-layer" [ngClass]="isShow ? isShow :''"></div>
+
+	<div class="modal pic-popup" id="myModalPostPhoto" backdrop="static" role="dialog" tabindex="-1" style="display: block; background-color: rgba(0, 0, 0, 0.9); z-index: 111111;" [style.display]="showSlider ? 'block' : 'none'" *ngIf="showSlider" aria-hidden="true">
+		
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			
+			
+		<div class="popup-inner">
+				<button type="button" class="close" (click)="closePhoto()"><span aria-hidden="true">&times;</span></button>
+		  
+			<div class="icon-img">
+				<img class=""  src="{{photo}}" alt="slideshow">
+			</div>
+			
+		 
+	
+		</div>
+		
+	  
+  
+	</div>
+	
+	
+
+  </div>
+  
+  
+</div>
