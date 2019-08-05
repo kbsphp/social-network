@@ -475,7 +475,7 @@
 							
 							<div class="parts" id="commentbox" (click)="comment_box(post.id)">
 								<img class="for-img" src="assets/images/chat.png">										
-								<span>Comments</span>
+								<span>Comment</span>
 							</div>
 							
 						</div>
@@ -500,7 +500,7 @@
 									<div class="media">
 									  <img src="{{img_url}}{{profile_picture}}">
 									  <div class="media-body">
-									   <input [disabled]="isPostComment" (keyup.enter)="post_comment()" class="form-control" [(ngModel)]="comment" name="comment"  style="resize:none" type="text" placeholder="Write a commant...">
+									   <input [disabled]="isPostComment" (keyup.enter)="post_comment()" class="form-control" [(ngModel)]="comment" name="comment"  style="resize:none" type="text" placeholder="Write a comment...">
 									   <!-- <span><i class="far fa-smile"></i></span> -->
 									  </div>
 									</div>

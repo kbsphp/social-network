@@ -104,7 +104,7 @@
 									<div class="like-data">
 										<div class="like-total">
 											<div class="total-left">
-												<img class="for-img" src="assets/images/like.png" />										
+												<img *ngIf="post.likes != '0'" class="for-img" src="assets/images/like.png" />										
 												<a class="pop-val" *ngIf="post.likes != '0'" href="javascript:void(0)">{{post.likes}}</a>
 											</div>
 											<!-- <div class="total-right">
@@ -151,7 +151,7 @@
 													<div class="media">
 													<img src="{{currentUser_picture}}" alt="user">
 													<div class="media-body">
-													<input (keyup.enter)="post_comment(post.id,post.postcomment,post)" class="form-control" [(ngModel)]="post.postcomment" name="postcomment"  style="resize:none" type="text" placeholder="Write a commant...">
+													<input (keyup.enter)="post_comment(post.id,post.postcomment,post)" class="form-control" [(ngModel)]="post.postcomment" name="postcomment"  style="resize:none" type="text" placeholder="Write a comment...">
 													<!-- <span><i class="far fa-smile"></i></span> -->
 													</div>
 													</div>

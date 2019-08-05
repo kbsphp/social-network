@@ -247,6 +247,7 @@ export class ChatComponent implements OnInit {
       this.socket.emit('UsersSearchlist', input_data);
       this.socket.on('GetUsersSearchlist',(response) =>{
         this.search_user_data = response;
+        console.log(this.search_user_data);
       },error => {});
     }else{
       this.search_user_data = [];
