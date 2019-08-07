@@ -1,5 +1,5 @@
 
-  <div class="left-inner">
+  <!-- <div class="left-inner">
     <div class="parts">
       <ul class="side-list">
         <li>
@@ -14,26 +14,68 @@
     <div class="parts">
       <ul class="side-list">
         <li [routerLinkActive]="['active']" >
-          <a class="direct" [routerLink]="['/home']" href="javascript:void(0)"><img class="img-bar-list" src="assets/images/timeline.png"> <span class="for-name"> Timeline</span></a>
+          <a class="direct" [routerLink]="['/home']" href="javascript:void(0)"> <i class="far fa-calendar-alt"></i> <span class="for-name"> Timeline</span></a>
         </li>
         
         <li [routerLinkActive]="['active']" >
-          <a class="direct" [routerLink]="['/about']" href="javascript:void(0)"><img class="img-bar-list" src="assets/images/about.png"> <span class="for-name">About</span></a>
+          <a class="direct" [routerLink]="['/about']" href="javascript:void(0)"><i class="fas fa-user-alt"></i><span class="for-name">About</span></a>
         </li>
         
         <li [routerLinkActive]="['active']">
-          <a class="direct" [routerLink]="['/find-friends']" href="javascript:void(0)"><img class="img-bar-list" src="assets/images/find-friend.png"> <span class="for-name">Find Friends</span></a>
+          <a class="direct" [routerLink]="['/find-friends']" href="javascript:void(0)"><i class="fas fa-users"></i> <span class="for-name">Find Friends</span></a>
         </li>
         <li [routerLinkActive]="['active']">
-            <a class="direct" [routerLink]="['/photos']" href="javascript:void(0)"><img class="img-bar-list" src="assets/images/photo.png"> <span class="for-name">Photos</span></a>
+            <a class="direct" [routerLink]="['/photos']" href="javascript:void(0)"><i class="fas fa-camera"></i><span class="for-name">Photos</span></a>
           </li>
            <li [routerLinkActive]="['active']">
-                <a class="direct" [routerLink]="['/advertise']"><img class="img-bar-list" src="assets/images/ads.png"><span class="for-name">Advertisement</span></a>
-              </li>
-          <!-- <li (click)="menuclick('5') [ngClass]="{'active': active == 5}"">
-              <a class="direct" href="javascript:void(0)"><img class="img-bar-list" src="assets/images/privacy.png"> <span class="for-name">Privacy</span></a>            
-          </li> -->
+                <a class="direct" [routerLink]="['/advertise']"><i class="fas fa-bullhorn"></i><span class="for-name">Advertisement</span></a>
+              </li> 
             </ul>
     </div>
-    
-  </div>
+  </div> -->
+
+
+
+  <section class="fix-sidebar" id="main_menu">
+      <div class="container-fluid">
+         <div class="row">
+            <div class="col-md-12">
+               <div class="men-img"><img src="{{img_url}}{{currentUser_picture}}"></div>
+            </div>
+            <div class="col-md-12">
+               <div class="fix-box">
+                  <h1 class="hii">Hi!</h1>
+                  <h1 class="user_name">{{username | titlecase}}</h1>
+                  <!-- <h1 class="morning">GOOD MORNING!</h1>
+                  <h1 class="reff">SHARE YOUR REFERALL</h1>
+                  <div class="copy-input-outer">
+                     <div class="copy-input">
+                        <input class="bottom_pass" readonly="" type="text">
+                        <div class="copy-absolute"><img class="copy" src="assets/images/copy.png"></div>
+                     </div>
+                  </div> -->
+               </div>
+            </div>
+            <div class="col-md-12">
+               <div class="row">
+                  <div class="col-md-12 no-padding">
+                     <!----><!---->
+                     <div class="network-ul ng-tns-c1-1 ng-star-inserted">
+                        <ul class="exchange-sidebar">
+                           <li routerlinkactive="['active']" ><a   class="direct" [routerLink]="['/profile']"><img class="img-bar-list" src="{{img_url}}{{currentUser_picture}}" alt="Username"> 
+                            <span class="for-name" *ngIf="username">{{username | titlecase}}</span></a></li>
+                           <!-- <li><a routerlinkactive="active" href="#/exchange/exchange-assets"><img class="for-no-active-icon" src="assets/images/exchange-assets.png"><img class="for-active-icon" src="assets/images/exchange-assets-active.png">ASSETS </a></li> -->
+                           <li routerlinkactive="['active']"><a  class="direct" [routerLink]="['/home']"> <i class="far fa-calendar-alt"></i> <span class="for-name"> Timeline</span></a></li>
+                           <li routerlinkactive="['active']"><a  class="direct" [routerLink]="['/about']"><i class="fas fa-user-alt"></i><span class="for-name"> About</span></a></li>
+                           <li routerlinkactive="['active']"><a  class="direct" [routerLink]="['/find-friends']"><i class="fas fa-users"></i> <span class="for-name"> Find Friends</span></a></li>
+                           <li routerlinkactive="['active']"><a  class="direct" [routerLink]="['/photos']"><i class="fas fa-camera"></i><span class="for-name"> Photos</span></a></li>
+                           <li routerlinkactive="['active']"><a  class="direct" [routerLink]="['/advertise']"><i class="fas fa-bullhorn"></i><span class="for-name"> Advertisement</span></a></li>
+                        </ul>
+                     </div>
+                  </div>  
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+

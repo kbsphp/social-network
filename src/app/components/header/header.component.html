@@ -1,4 +1,4 @@
-<section *ngIf="checkLoggedId" class="social-header">
+<!-- <section *ngIf="checkLoggedId" class="social-header">
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-ld-6 col-xl-6 left-menu">
@@ -11,15 +11,13 @@
 							<input type="text" class="form-control" [(ngModel)]="search_people" (input)="onKeyPressSearch($event.target.value)" placeholder="Search" name="search_people">
 							 <ul *ngIf="isSearchUser == true">
 						        <ng-container *ngFor="let search of search_user_data;">
-						           <!--  <li (click)="chatUser(search)" *ngIf="search.id != user_id">
-						               
-									</li> -->
+						           
 									<li>
-						             <!-- <img src='{{web_url}}/{{search.profile_picture}}' class='picture' alt='' /> -->
+						            
 
 						                <span class='name'><a [routerLink]="['/profile',search.id]">{{search.name | titlecase}}</a></span>
 
-										<!-- <span class='name'>{{search.name | titlecase}}</span> -->
+										
 										</li>
 
 						        </ng-container>
@@ -50,341 +48,12 @@
 								<i class="fas fa-user-friends"></i>
 							</div>
 						</li>
-						<!-- <li>
-							<a href="">Create</a>
-							<div class="mobile-icon">
-								<i class="fas fa-home"></i>
-							</div>
-						</li> -->
+						
 					</ul>
 				</div>
 				
 				<div class="icon-box">
-					<!-- <div class="noti-dd dropdown">
-						<span class="dropdown-toggle" data-toggle="dropdown">
-							<img src="assets/images/user.png" />
-						</span>
-						
-						<div class="dropdown-menu Messages-blk">
-							<div class="Messages-sec">
-								<div class="notification-dropdown">
-									<div class="Stories">
-										<div class="may-know">
-											<div class="top-know">
-												<p class="hdg">Message Request</p>
-												<div class="Stories-blk">
-													<a href="" class="see">Find Friends</a>
-													<a href="" class="see">Friend Requests</a>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="new-noti">
-										<span>People you may know</span>
-									</div>
-									
-									<div class="inner-msg">
-										<div class="friends">
-											<div class="pic">
-												<img class="for-img" src="assets/images/friends.jpg">										
-											</div>
-											
-											<div class="details">
-												<h2 class="details-heading"><a href="#">Yog Raj</a></h2>
-												<h6 class="mutual-frd"><a href="#">9 mutual friends</a></h6>
-											</div>
-											<div class="add-class">
-												<button type="button" class="btn btn-grey">Add Friends</button>
-												<button type="button" class="btn btn-grey">Remove</button>
-											</div>
-										</div>
-
-										<div class="friends">
-											<div class="pic">
-												<img class="for-img" src="assets/images/friends.jpg">										
-											</div>
-											
-											<div class="details">
-												<h2 class="details-heading"><a href="#">Yog Raj</a></h2>
-												<h6 class="mutual-frd"><a href="#">9 mutual friends</a></h6>
-											</div>
-											<div class="add-class">
-												<button type="button" class="btn btn-grey">Add Friends</button>
-												<button type="button" class="btn btn-grey">Remove</button>
-											</div>
-										</div>
-
-										<div class="friends">
-											<div class="pic">
-												<img class="for-img" src="assets/images/friends.jpg">										
-											</div>
-											
-											<div class="details">
-												<h2 class="details-heading"><a href="#">Yog Raj</a></h2>
-												<h6 class="mutual-frd"><a href="#">9 mutual friends</a></h6>
-											</div>
-											<div class="add-class">
-												<button type="button" class="btn btn-grey">Add Friends</button>
-												<button type="button" class="btn btn-grey">Remove</button>
-											</div>
-										</div>
-
-										<div class="friends">
-											<div class="pic">
-												<img class="for-img" src="assets/images/friends.jpg">										
-											</div>
-											
-											<div class="details">
-												<h2 class="details-heading"><a href="#">Yog Raj</a></h2>
-												<h6 class="mutual-frd"><a href="#">9 mutual friends</a></h6>
-											</div>
-											<div class="add-class">
-												<button type="button" class="btn btn-grey">Add Friends</button>
-												<button type="button" class="btn btn-grey">Remove</button>
-											</div>
-										</div>
-
-										<div class="friends">
-											<div class="pic">
-												<img class="for-img" src="assets/images/friends.jpg">										
-											</div>
-											
-											<div class="details">
-												<h2 class="details-heading"><a href="#">Yog Raj</a></h2>
-												<h6 class="mutual-frd"><a href="#">9 mutual friends</a></h6>
-											</div>
-											<div class="add-class">
-												<button type="button" class="btn btn-grey">Add Friends</button>
-												<button type="button" class="btn btn-grey">Remove</button>
-											</div>
-										</div>
-
-										<div class="friends">
-											<div class="pic">
-												<img class="for-img" src="assets/images/friends.jpg">										
-											</div>
-											
-											<div class="details">
-												<h2 class="details-heading"><a href="#">Yog Raj</a></h2>
-												<h6 class="mutual-frd"><a href="#">9 mutual friends</a></h6>
-											</div>
-											<div class="add-class">
-												<button type="button" class="btn btn-grey">Add Friends</button>
-												<button type="button" class="btn btn-grey">Remove</button>
-											</div>
-										</div>
-									</div>
-									<div class="see-all btn-grey">
-										<button class="btn">View All</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div> -->
 					
-					<!-- <div class="noti-dd dropdown">
-						<span class="dropdown-toggle" data-toggle="dropdown">
-							<img src="assets/images/help.png" />
-						</span>
-						
-						<div class="dropdown-menu Messages-blk">
-							<div class="Messages-sec">
-								<div class="notification-dropdown">
-								<div class="Stories">
-									<div class="may-know">
-										<div class="top-know">
-											<p class="hdg">Message Request</p>
-											<div class="Stories-blk">
-												<a href="" class="see"> New Group</a>
-												<a href="" class="see"> New Message</a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="new-noti">
-									<span>New</span>
-								</div>
-								
-								<div class="inner-msg">
-									<div class="friends">
-										<div class="pic">
-											<img class="for-img" src="assets/images/friends.jpg">										
-										</div>
-										
-										<div class="details">
-											<span class="Stories-text"> so it's easy for people to plan a visit.<b>Forluxurycases</b> so it's easy for people to plan a visit.</span>
-											<p>1hr</p>
-										</div>
-									</div>
-									<div class="friends">
-										<div class="pic">
-											<img class="for-img" src="assets/images/friends.jpg">										
-										</div>
-										
-										<div class="details">
-											<span class="Stories-text"> so it's easy for people to plan a visit.<b>Forluxurycases</b> so it's easy for people to plan a visit.</span>
-											<p>1hr</p>
-										</div>
-									</div>
-									<div class="friends">
-										<div class="pic">
-											<img class="for-img" src="assets/images/friends.jpg">										
-										</div>
-										
-										<div class="details">
-											<span class="Stories-text"> so it's easy for people to plan a visit.<b>Forluxurycases</b> so it's easy for people to plan a visit.</span>
-											<p>1hr</p>
-										</div>
-									</div>
-									<div class="friends">
-										<div class="pic">
-											<img class="for-img" src="assets/images/friends.jpg">										
-										</div>
-										
-										<div class="details">
-											<span class="Stories-text"> so it's easy for people to plan a visit.<b>Forluxurycases</b> so it's easy for people to plan a visit.</span>
-											<p>1hr</p>
-										</div>
-									</div>
-									<div class="friends">
-										<div class="pic">
-											<img class="for-img" src="assets/images/friends.jpg">										
-										</div>
-										
-										<div class="details">
-											<span class="Stories-text"> so it's easy for people to plan a visit.<b>Forluxurycases</b> so it's easy for people to plan a visit.</span>
-											<p>1hr</p>
-										</div>
-									</div>
-								</div>
-								<div class="see-all btn-grey">
-									<button class="btn">See All</button>
-								</div>
-							</div>
-							</div>
-						</div>
-					</div> -->
-					
-					<!-- <div class="noti-dd dropdown">
-						<span class="dropdown-toggle" data-toggle="dropdown">
-							<img src="assets/images/notification.png" />
-						</span>
-						
-						<div class="dropdown-menu notifi-blk">
-							<div class="notification-dropdown">
-								<div class="Stories">
-									<div class="may-know">
-										<div class="top-know">
-											<p class="hdg">Notification</p>
-											<div class="Stories-blk">
-												<a href="" class="see"> Mark all as read</a>
-												<a href="" class="see"> Settings</a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="new-noti">
-									<span>New</span>
-								</div>
-								
-								<div class="inner-msg">
-									<div class="friends">
-										<div class="pic">
-											<img class="for-img" src="assets/images/friends.jpg">										
-										</div>
-										
-										<div class="details">
-											<span class="Stories-text"> so it's easy for people to plan a visit.<b>Forluxurycases</b> so it's easy for people to plan a visit.</span>
-											<p>1hr</p>
-										</div>
-									</div>
-									<div class="friends">
-										<div class="pic">
-											<img class="for-img" src="assets/images/friends.jpg">										
-										</div>
-										
-										<div class="details">
-											<span class="Stories-text"> so it's easy for people to plan a visit.<b>Forluxurycases</b> so it's easy for people to plan a visit.</span>
-											<p>1hr</p>
-										</div>
-									</div>
-									<div class="friends">
-										<div class="pic">
-											<img class="for-img" src="assets/images/friends.jpg">										
-										</div>
-										
-										<div class="details">
-											<span class="Stories-text"> so it's easy for people to plan a visit.<b>Forluxurycases</b> so it's easy for people to plan a visit.</span>
-											<p>1hr</p>
-										</div>
-									</div>
-									<div class="friends">
-										<div class="pic">
-											<img class="for-img" src="assets/images/friends.jpg">										
-										</div>
-										
-										<div class="details">
-											<span class="Stories-text"> so it's easy for people to plan a visit.<b>Forluxurycases</b> so it's easy for people to plan a visit.</span>
-											<p>1hr</p>
-										</div>
-									</div>
-									<div class="friends">
-										<div class="pic">
-											<img class="for-img" src="assets/images/friends.jpg">										
-										</div>
-										
-										<div class="details">
-											<span class="Stories-text"> so it's easy for people to plan a visit.<b>Forluxurycases</b> so it's easy for people to plan a visit.</span>
-											<p>1hr</p>
-										</div>
-									</div>
-								</div>
-								<div class="see-all btn-grey">
-									<button class="btn">See All</button>
-								</div>
-							</div>
-						</div>
-					</div> -->
-					
-					<!-- <div class="noti-dd dropdown">
-						<span class="dropdown-toggle" data-toggle="dropdown">
-							<img src="assets/images/question-mark.png" />
-						</span>
-						
-						<div class="dropdown-menu">
-							<div class="question-mark">
-								<div class="inner-mark">
-									<div class="help-sec">
-										<div class="quick-help">
-											<p>Quick help</p>
-											<a href="#" class="see">Help Centre</a>
-										</div>
-										<div class="input-blk">
-											<input type="text" placeholder="How can we help ?" name="">
-										</div>
-										<h6>HELP WITH THIS PAGE</h6>
-										<ul>
-											<li><a href="">Home Page</a></li>
-											<li><a href="">Timeline</a></li>
-											<li><a href="">Chat and Messages</a></li>
-											<li><a href="">Account Security</a></li>
-											<li><a href="">Privacy</a></li>
-										</ul>
-									</div>
-									<div class="check-up">
-										<ul>
-											<li><a href="">Privacy Check-up</a></li>
-											<li><a href="">Privacy shortcuts</a></li>
-										</ul>	
-										<ul>
-											<li><a href="">Support Inbox</a></li>
-											<li><a href="">Report a Problem</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div> -->
 					
 					<div class="noti-dd dropdown">
 						<span class="dropdown-toggle" data-toggle="dropdown">
@@ -393,66 +62,9 @@
 						
 						<div class="dropdown-menu">
 							<div class="inner-caret">
-								<!-- <div class="may-know">
-									<div class="top-know">
-										<p class="hdg">Your Pages:</p>
-									</div>
-									<div class="bottom-know">
-										<div class="friends">
-											<div class="pic">
-												<img class="for-img" src="assets/images/friends.jpg">										
-											</div>
-											
-											<div class="details">
-												<span class="Stories-text">Rbitrage</span>
-											</div>
-										</div>
-										<div class="friends">
-											<div class="pic">
-												<img class="for-img" src="assets/images/friends.jpg">										
-											</div>
-											
-											<div class="details">
-												<span class="Stories-text">Lifestylemarine</span>
-											</div>
-										</div>
-										<div class="friends">
-											<div class="pic">
-												<img class="for-img" src="assets/images/friends.jpg">										
-											</div>
-											
-											<div class="details">
-												<span class="Stories-text">Forluxurycases</span>
-											</div>
-										</div>
-									</div>
-									<div class="see-more">
-										<a href="">See more...</a>
-									</div>
-								</div> -->
-								<!-- <div class="may-know Business">
-									<div class="top-know">
-										<p class="hdg">Business Manager:</p>
-									</div>
-									<div class="bottom-know">
-										<div class="friends">
-											<div class="pic">
-												<img class="for-img" src="assets/images/friends.jpg">										
-											</div>
-											
-											<div class="details">
-												<span class="Stories-text">Wayne</span>
-											</div>
-										</div>
-									</div>
-								</div> -->
+								
 								<div class="Button-list">
-									<!-- <button class="btn" type="submit">Manage Pages</button>
-									<button class="btn" type="submit">Manage Groups</button>
-									<button class="btn" type="submit">Advertising on Facebook</button>
-									<button class="btn" type="submit">Activity log</button>
-									<button class="btn" type="submit">News Feed preferences</button>-->
-									<button class="btn" type="submit"><a href="javascript:void(0)">Settings</a></button> 
+									
 									<button class="btn" type="submit" (click)="logout()">Log Out</button>
 								</div>
 							</div>
@@ -469,7 +81,71 @@
 
 		</div>
 	</div>
+</section> -->
+
+<section *ngIf="checkLoggedId" class="dashboard-header">
+    <div class="part-left">
+        <div class="logo-outer"><a class="for-logo"><img class="ng-tns-c1-1" src="assets/images/logo.png"></a></div>
+        <div class="logo-icon-menu"><span (click)="openSidebar()" class="menu-icon"><img class="ng-tns-c1-1" src="assets/images/menu-icon.png"></span></div>
+        <div class="new-drop drop1">
+            <span class="drop dropdown-toggle" aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" role="button">
+                <!----><img class="drop nav-link dropdown-toggle ng-tns-c1-1 ng-star-inserted" src="assets/images/nett.png"><!---->
+                <p class="new-top">HOME</p>
+            </span>
+            <span class="drop dropdown-toggle switch-top" aria-expanded="false" aria-haspopup="true" data-togsocial-networkgle="dropdown" role="button">SWITCH</span>
+            <div class="dropdown-menu left-d"><a class="dropdown-item active_view" id="0" style="display:none"></a><a class="dropdown-item" id="1">HOME</a><a class="dropdown-item" id="2">NETWORK</a><a class="dropdown-item" id="3">EXCHANGE</a><a class="dropdown-item" id="4">GAMES</a><a class="dropdown-item" href="javascript:void(0)">MARKET <small class="ng-tns-c1-1" style="font-size:10px;color: #ffaf00">( COMING SOON )</small></a><a class="dropdown-item" href="javascript:void(0)">SOCIAL <small class="ng-tns-c1-1" style="font-size:10px;color: #ffaf00">( COMING SOON )</small></a></div>
+        </div>
+	</div>
+	
+	<div class="part-center">
+		<div class="search-box">
+			<form>
+				<div class="input-group">
+					<input type="text" class="form-control" [(ngModel)]="search_people" (input)="onKeyPressSearch($event.target.value)" placeholder="Search" name="search_people">
+						<ul *ngIf="isSearchUser == true">
+						<ng-container *ngFor="let search of search_user_data;">
+							
+							<li>
+							
+
+								<span class='name'><a [routerLink]="['/profile',search.id]">{{search.name | titlecase}}</a></span>
+
+								
+								</li>
+
+						</ng-container>
+					</ul>
+					<div class="input-group-append">
+						<button class="btn btn-success" type="submit">Go</button> 
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+    <div class="part-right">
+        <div class="buy-block">
+            <ul class="toggle-menu">
+                <li class="ng-tns-c1-1"><img class="money" src="assets/images/money10.png"><span class="t-uz">{{totalBuyCoin | number}} UZ</span></li>
+                <li class="title-drop" (click)="openNotification()">
+                    <span class="dd-parent">
+                        <img class="money1" src="assets/images/Path-6.png"><!----><img class="menu-arrow" src="assets/images/drop.png">
+                    </span>
+                    <div class="title-menu" [ngClass]="displayNotification?'show':'hide'">
+                     <div class="for-main-notification ng-tns-c1-0 ng-star-inserted"><div class="lft-part"><img class="money1" src="assets/images/Path-6.png"></div><div class="rgt-part"><p class="hdg1">Accepted Friend Request</p><p class="hdg2">Sanjay accepted your friend request</p><p class="hdg3">24 Jul 05:01</p><!----></div></div>
+                    </div>
+                </li>
+                <li class="profile-drop" (click)="openProfileMenu()">
+                    <span class="dd-parent"><img class="money2" src="{{img_url}}{{profile_pic}}"><img class="ovel1" src="assets/images/Oval2.png"><img class="menu-arrow" src="assets/images/drop.png"></span>
+                    <div class="profile-menu" [ngClass]="displayProfile?'show':'hide'"><a [routerLink]="['/profile']" class="" id="11">My Profile</a><a class="for_moblie_blc">Balance<span class="t-uz">2,102 UZ</span><img class="money" src="assets/images/money10.png"></a><a class="btn-small-menu for_mobile_buy" href="javascript:void(0)">BUY UZYTH</a><a class="" id="14">Support</a><a class="" id="12">DOWNLOADS</a><a class="" id="13">HELP</a><a class="" (click)="logout()">LOG OUT</a></div>
+				</li>
+			
+                <li (click)="openchat()"><a class="ng-tns-c1-1" href="javascript:void(0)"><img class="money3" src="assets/images/Skype.lnk.png"></a></li>
+            </ul>
+        </div>
+    </div>
 </section>
+
 
 <div *ngIf="checkLoggedId">
 <app-chat></app-chat>

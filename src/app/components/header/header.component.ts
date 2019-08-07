@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ElementRef,Renderer2 } from '@angular/core';
 import { DataService } from '../../shared/data.service';
 //import { ToastrManager } from 'ng6-toastr-notifications';
 import { CookieService } from 'ngx-cookie-service';
@@ -15,10 +15,19 @@ import * as CryptoJS from 'crypto-js';
 })
 export class HeaderComponent implements OnInit {
 user_id : any = -1;
+username;
+profile_pic:string="";
+img_url;
+totalBuyCoin;
   userData : any
   names:any
   newarray: any[];
   str: string;
+  sidebarShow:boolean=false;
+  profileMenu:boolean=false;
+  displayProfile:boolean=false;
+  notifyMenu:boolean=false;
+  displayNotification:boolean=false;
   search_user_data : any = [];
    search_people : string = "";
    isSearchUser : boolean = false;
@@ -27,32 +36,70 @@ user_id : any = -1;
    //error_status: boolean = false;
     private socket;
     isLoggedIn$: Observable<boolean>;  
-  constructor( private data_services: DataService,   
+  constructor(private el: ElementRef, private data_services: DataService,   
    
     private router: Router,
+    private renderer: Renderer2
     ) {
-
+    this.img_url=environment.img_url;
     this.socket_url = environment.socket_url;
     this.socket = io.connect(this.socket_url);
    //console.log(this.error_status)
+
+      console.log("header working");
+
      }
 
   ngOnInit() {
+    console.log('called ngOnit')
+    this.userDetails();
+    this.getUserAccount();
     this.isLoggedIn$ = this.data_services.isLoggedIn;
      if(sessionStorage.getItem('user_id') != undefined && sessionStorage.getItem('user_id') != null){
       this.user_id = sessionStorage.getItem('user_id');
       //console.log(this.user_id)
     }
     if (localStorage['userData']) {
-      console.log("ppppppppppppppppppppppppp")
+      //console.log("ppppppppppppppppppppppppp")
       this.userData=JSON.parse(localStorage['userData']);
     }
+   
   }
   get checkLoggedId(): any {
     return localStorage.getItem('isLoggedin');
 }
+
+userDetails(){
+  this.data_services.GetUserDataByUserId().subscribe(response=>{
+   console.log('Here');
+    if(response['error'] == false){
+    this.username =response['body'][0].username;
+    this.profile_pic=response['body'][0].profile_picture;
+    }else{
+     console.log(response['msg']);
+    }
+  },error=>{
+     console.log("Something went wrong");
+  })
+
+ }
+
+ getUserAccount(){
+  this.data_services.userAccount().subscribe(response => {
+    console.log(response);
+  if(response['error'] == false){ 
+  this.totalBuyCoin = response['body']['totalBuyCoin'];
+  console.log(this.totalBuyCoin);
+  }else{
+     
+  }
+  },error => {
+    console.log(error);
+  }); 
+  }
+
   logout(){
-    //console.log(this.user_id)
+    console.log(this.user_id)
     if(this.user_id != -1){
       this.data_services.logOut().subscribe(response => {
         if(response['error'] == false){
@@ -61,7 +108,8 @@ user_id : any = -1;
           sessionStorage.removeItem('token');
           sessionStorage.removeItem('user_id');
           localStorage.removeItem('isLoggedin'); 
-         localStorage.removeItem('userData');
+          localStorage.removeItem('userData');
+          localStorage.removeItem('updated_pic');
          //localStorage.clear();
          //sessionStorage.clear();
           this.router.navigate(['/']);
@@ -73,6 +121,41 @@ user_id : any = -1;
       localStorage.removeItem('isLoggedin');
       this.router.navigate(['/']);
     }
+  }
+
+  openSidebar(){
+    this.sidebarShow= !this.sidebarShow;
+    if(this.sidebarShow != false){
+      this.el.nativeElement.closest('body').className="show_main";
+    }else{
+      this.el.nativeElement.closest('body').className="hide_main";
+    }
+    
+  }
+  
+  openProfileMenu(){
+   this.profileMenu= !this.profileMenu;
+   if(this.profileMenu)
+    {
+      this.displayProfile=true
+    }else{
+      this.displayProfile=false;
+    }
+  }
+
+  openNotification(){
+    this.notifyMenu= !this.notifyMenu;
+    
+    if(this.notifyMenu)
+     {
+       this.displayNotification=true;
+       this.renderer.addClass(document.body, 'title-open');
+      // this.el.nativeElement.closest('body').className="title-open";
+     }else{
+       this.displayNotification=false;
+       this.renderer.removeClass(document.body, 'title-open');
+       //this.el.nativeElement.removeClass('removeClass');
+     }
   }
 
    onKeyPressSearch(searchValue: string){

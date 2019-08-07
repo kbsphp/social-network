@@ -1,6 +1,7 @@
-<div class="chat-box">
+<div class="chat-box"><span class="plusIcon" *ngIf="!showPlus"><i class="fas fa-plus"></i></span>
 	<div class="chat-hdr" (click)="openchat()">Chat<i *ngIf="minimize_chat" class="fas fa-minus"></i></div>
 	<div *ngIf="showChat" [ngClass]="chat_window">
+
     <ul *ngIf="isDefaultUser == true">
       <ng-container *ngFor="let user of user_data">
         <li  (click)="chatUser(user)">

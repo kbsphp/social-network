@@ -1,0 +1,6 @@
+.main-body {
+    background: url('/assets/images/network-bg.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: top right;
+}

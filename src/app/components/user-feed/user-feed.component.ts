@@ -30,6 +30,7 @@ export class UserFeedComponent implements OnInit {
   showSlider:boolean=false;
   username;
   showPosts:boolean=false;
+  emojiHide : boolean = false;
   file:File;
   show:boolean=false;
   base_url: string = "";
@@ -39,6 +40,7 @@ export class UserFeedComponent implements OnInit {
   cmnt_data : any = [];
   isComment: boolean = false;
   isPostComment:boolean=false;
+  comntEmoji:boolean=false;
   comment: string= "";
   comment_error: string = "";
   isDeleteComment: boolean = false;
@@ -47,8 +49,10 @@ export class UserFeedComponent implements OnInit {
   sucess_msg:string="";
   isShow="";
   media_type;
+  userInfo:any ={};
   userMedia:any=[];
    user_data : any = [];
+   friend_count=0
   private socket;
   socket_url: string = "";
   constructor(private formBuilder:FormBuilder,
@@ -74,6 +78,7 @@ export class UserFeedComponent implements OnInit {
     this.userDetails();
     this.getPostMedia();
     this.getAllUser();
+    this.getUserInfo()
     this.data_service.currentMessage.subscribe
     (message => {
       this.new_post_data.unshift(message);
@@ -110,6 +115,35 @@ export class UserFeedComponent implements OnInit {
     });
   }
 
+  onClickEmoji() {
+    this.emojiHide = true;
+  }
+
+  commentEmoji(cmtId,cmt){
+    this.cmtId=cmtId;
+   this.comntEmoji=true;
+  }
+
+  addEmoji(evt,comnt){
+    if(comnt !=null)
+    {
+      this.comment= comnt+ ''+evt.emoji.native;
+    }else{
+      this.comment = evt.emoji.native
+    }
+    this.emojiHide = false;
+  }
+
+  addInComment(evt,cmt){
+    if(cmt.comment !=null)
+    {
+      cmt.comment= cmt.comment+ ''+evt.emoji.native;
+    }else{
+      cmt.comment = evt.emoji.native
+    }
+    this.comntEmoji = false;
+  }
+
     getAllUser(){
     this.socket.on('updateUsers',(response) => {
       this.socket.emit('UserDetail', this.user_id);
@@ -117,6 +151,10 @@ export class UserFeedComponent implements OnInit {
         console.log( users)
 
        this.user_data=users;
+
+
+       console.log(Object.keys(this.user_data).length)
+      this.friend_count=Object.keys(this.user_data).length
       //   let objIndex = this.user_data.findIndex((obj => obj.id == 1));
 
       //   users.map(item => {
@@ -258,11 +296,14 @@ export class UserFeedComponent implements OnInit {
           //this.comment_error="Please enter comment";
           return;
         }
+        let Updatedcomment = emoji.unemojify(this.comment);
+        console.log(Updatedcomment);
         const input_data = {
           "userID" : this.user_id,
           "post_id": this.post_id,
-          "comment": this.comment
+          "comment": Updatedcomment
         }
+        console.log(input_data);
         this.isPostComment = true;
         this.data_service.commentOnPost(input_data).subscribe((response) => {
           console.log(response['body']);
@@ -281,14 +322,16 @@ export class UserFeedComponent implements OnInit {
         });
       }
     }
-    editComment(pvrId){
+    editComment(pvrId,cmt){
       this.edit_comment=true;
       this.cmtId=pvrId;
+      cmt.comment=emoji.emojify(cmt.comment);
    }
    
    cancelComment(pvrId){
     this.cmtId=pvrId;
     this.edit_comment=false;
+    this.comntEmoji=false;
   }
 
    updateComment(pvrComment){
@@ -303,7 +346,7 @@ export class UserFeedComponent implements OnInit {
     let p_user_id = pvrComment.user_id;
     let p_cmnt_id = pvrComment.id;
     let p_post_id = pvrComment.post_id;
-    let new_comment= pvrComment.comment;
+    let new_comment= emoji.unemojify(pvrComment.comment);
    
       this.data_service.updatePostComment(new_comment,p_user_id,p_cmnt_id,p_post_id).subscribe((response)=>
       {
@@ -549,6 +592,32 @@ UpdatePostData(data) {
      this.router.navigate(['/profile',this.selected_user]);
   }
 
+  addbio(){
+    this.router.navigate(['/about']);
+  }
+ 
+ getUserInfo() {
+ 
+   this.data_service.getUserAboutInfo(this.user_id).subscribe((response) => {
+    //  console.log(response);
+      //this.model=response['body'];
+
+      console.log(response['body']) 
+      this.userInfo=response['body'];
+      //console.log(this.model); 
+     // this.userAboutData=response['body'];
+     // console.log(this.userAboutData);
+    //  if(this.userAboutData.length==0) {
+      //   this.checkStatus=true;
+     /// }else{
+        //this.checkStatus=false;
+    //  }
+   },error=>{
+    console.log(error);
+   })
+
+
+  }
  
  
  

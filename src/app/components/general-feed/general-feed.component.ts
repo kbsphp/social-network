@@ -23,6 +23,7 @@ export class GeneralFeedComponent implements OnInit {
   socket_url:string= "";
   cmnt_data: any= [];
   cmtId;
+  emojiHide:boolean=false;
   edit_comment:boolean =false;
   profile_picture;
   currentUser_picture:string= "";
@@ -44,12 +45,13 @@ export class GeneralFeedComponent implements OnInit {
   isDefaultUser : boolean = true;
   post_start:number;
   loading:boolean=false;
-
+   showSlider:boolean=false;
   isDeleteComment:boolean=false;
   private socket;
-
+  photo :string="";
   chunk_Start : any;
   newArray : any = [];
+  comntEmoji:boolean=false;
   constructor(
     private data_service: DataService,
     private datePipe: DatePipe,
@@ -87,13 +89,14 @@ export class GeneralFeedComponent implements OnInit {
     },error=>{
        console.log("Something went wrong");
     })
- 
    }
-
+ 
 
   generalPostAllList(){
     this.loading=true;
+    console.log(this.post_data)
     this.chunk_Start = this.post_data.length == 0 ? 0 : this.post_data[this.post_data.length -1]['id'];
+    console.log(this.chunk_Start)
     const inputJson = {
       "limit": 5,
     	"start": this.chunk_Start,
@@ -147,6 +150,15 @@ export class GeneralFeedComponent implements OnInit {
     return convertData;
   }
   
+  addEmoji(evt,post){
+    if(post.postcomment !=null)
+    {
+      post.postcomment= post.postcomment+''+evt.emoji.native;
+    }else{
+      post.postcomment = evt.emoji.native
+    }
+    this.emojiHide = false;
+  }
   
   like(pvar_obj,pvar_status){
     if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null &&
@@ -174,10 +186,10 @@ export class GeneralFeedComponent implements OnInit {
     this.isShow="";
   }
 
-// <<<<<<< HEAD
-//   post_comment(postID,pvarCommnet){
-//     console.log(pvarCommnet)
-// =======
+  onClickEmoji() {
+    this.emojiHide = true;
+  }
+
   post_comment(postID,pvarCommnet,post){
     if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null &&
     sessionStorage.getItem('user_id') != undefined && sessionStorage.getItem('user_id') != null){
@@ -191,7 +203,7 @@ export class GeneralFeedComponent implements OnInit {
       const input_data = {
         "userID" : this.user_id,
         "post_id": postID,
-        "comment": pvarCommnet
+        "comment": emoji.unemojify(pvarCommnet)
       }
      // console.log(input_data);
       this.data_service.commentOnPost(input_data).subscribe((response) => {
@@ -209,9 +221,10 @@ export class GeneralFeedComponent implements OnInit {
       });
     }
   }
-
+ 
 
   delete_comment(cmnt){
+   // console.log(cmnt)
     let p_user_id = cmnt.user_id;
     let p_cmnt_id = cmnt.id;
     let p_post_id = cmnt.post_id;
@@ -236,10 +249,27 @@ export class GeneralFeedComponent implements OnInit {
     this.edit_comment=false;
   }
 
-  editComment(pvrId){
+  editComment(pvrId,cmt){
     this.edit_comment=true;
     this.cmtId=pvrId;
+    cmt.comment=emoji.emojify(cmt.comment);
  }
+
+ commentEmoji(cmtId,cmt){
+  this.cmtId=cmtId;
+ this.comntEmoji=true;
+}
+
+addInComment(evt,cmt){
+  if(cmt.comment !=null)
+  {
+    cmt.comment= cmt.comment+ ''+evt.emoji.native;
+  }else{
+    cmt.comment = evt.emoji.native
+  }
+  this.comntEmoji = false;
+}
+
   updateComment(pvrComment){
     if(pvrComment.comment == 'undefined' || pvrComment.comment == null || pvrComment.comment.trim() ==''){
       console.log("Enter comment to update");
@@ -252,7 +282,7 @@ export class GeneralFeedComponent implements OnInit {
     let p_user_id = pvrComment.user_id;
     let p_cmnt_id = pvrComment.id;
     let p_post_id = pvrComment.post_id;
-    let new_comment= pvrComment.comment;
+    let new_comment=  emoji.unemojify(pvrComment.comment);
    
       this.data_service.updatePostComment(new_comment,p_user_id,p_cmnt_id,p_post_id).subscribe((response)=>
       {
@@ -395,5 +425,16 @@ export class GeneralFeedComponent implements OnInit {
    this.isDefaultUser = true;      
  }
 }
+  
 
+  viewPhoto(PhotoID) {
+   // viewPhoto(PhotoID){
+    this.showSlider=true;
+    this.photo=this.img_url+''+PhotoID;
+  //}
+  }
+
+  closePhoto() {
+    this.showSlider=false;
+  }
 }

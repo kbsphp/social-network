@@ -1,28 +1,27 @@
-
-<!-- <ng-container  *ngFor="let user of user_data;let i=index;">
-<div class="row"  *ngIf="user.name != '' && i<9">
-	<a [routerLink]="['/profile',user.id]" class="col-4 p-1"> -->
-
-<!-- <div class="row" >
-	<a href="#" class="col-4 p-1" *ngFor="let user of user_data"> -->
-<!-- 
-		<div class="photo-img">
-			<img src="{{img_url}}/{{user.profile_picture}}">
-		</div>
-		{{user.name}}
-	</a>
-</div>
-	</ng-container>	 -->
-
+<app-side-bar></app-side-bar>
+<div class="work-block">
 <div class="person-request friendList">
 	<div class="container">
 			<div class="row">
-				<div class="col-sm-12 col-md-3 col-lg-3 left-part">		
-					<app-side-bar></app-side-bar>
-				</div>
-				<div class="col-sm-12 col-md-9 col-lg-9 right-part">
+					<div class="col-12">
+							<div class="main-name">
+								<h1 class="page-name">
+									<img class="heading-image" src="assets/images/nett.png">
+									<i>FRIENDS</i>
+								</h1>
+			
+								<!-- <div class="line-notification">
+									<h1><img src="assets/images/notification2.png">Trade your UZ Coin comissions for BTC in the UZ Exchange!</h1>
+								</div> -->
+			
+								<div class="line-heading">
+									<h3>UZYTH Social</h3>
+								</div>
+							</div>
+						</div>
+				<div class="col-sm-12  right-part">
 					<ng-container *ngIf="user_data">
-						<h3>Friends</h3>
+						
 						<div class="request-list" *ngFor="let user of user_data;">
 							<div class="inner-friend">
 								<div class="friends">
@@ -49,5 +48,4 @@
 						
 		</div>
 	</div>
-
-
+</div>

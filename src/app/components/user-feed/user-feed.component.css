@@ -1,3 +1,18 @@
 #Create-UserPost .emoji-mart {
     width: 100% !important;
 }
+
+.friendListNames {
+    font-size: 12px;
+}
+
+.friendListNames .photo-img {
+    height: auto;
+}
+
+.friendListNames .photo-img img {
+    width: 70px;
+    max-width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}

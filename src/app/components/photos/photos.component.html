@@ -1,19 +1,30 @@
+<app-side-bar></app-side-bar>
+<div class="work-block">
 <section class="friend-info photos-info">
 	<div class="container">
 			<div class="row">
-					<div class="col-sm-12 col-md-3 col-lg-3 left-part">		
-						<app-side-bar></app-side-bar>
-					</div>
-					<div class="col-sm-12 col-md-9 col-lg-9 right-part">
+					<div class="col-12">
+							<div class="main-name">
+								<h1 class="page-name">
+									<img class="heading-image" src="assets/images/nett.png">
+									<i>PHOTOS</i>
+								</h1>
+			
+								<!-- <div class="line-notification">
+									<h1><img src="assets/images/notification2.png">Trade your UZ Coin comissions for BTC in the UZ Exchange!</h1>
+								</div> -->
+			
+								<div class="line-heading">
+									<h3>UZYTH Social</h3>
+								</div>
+							</div>
+						</div>
+					<div class="col-sm-12 right-part">
 							<div class="inner-friend">
-									<div class="about-heading">
+									<!-- <div class="about-heading">
 										<h4><span><i class="fas fa-camera"></i></span>Photos</h4>
-										<!-- <div class="heading-btn">
-											<button class="btn plus"><i class="fas fa-plus"></i>Create Album</button>
-											<button class="btn plus">Choose a file to upload</button>
-											<button class="btn"><i class="fas fa-pencil-alt"></i></button>
-										</div> -->
-									</div>
+									
+									</div> -->
 									<div class="friend-tabs">
 										<div id="tabs">
 												<div class="row">
@@ -32,18 +43,7 @@
 																		<div class="col-sm-12 col-xs-12 col-md-6 col-lg-3 col-xl-3" *ngFor="let media of userMedia;let i=index;">
 																				<div class="photo-view" (click)= viewPhoto(media.post_media);>
 																				<img src="{{img_url}}{{media.post_media}}">
-																					<!-- <div class="hover-view">
-																						<div class="inner-hover-view">
-																							<h6>Mobile Uploads</h6>
-																							<ul>
-																								<li><a href="">Like</a></li>
-																								<li><a href="">Comment</a></li>
-																							</ul>
-																						</div>
-																					 <div class="edit-button">
-																							<span><i class="fas fa-pencil-alt"></i></span>
-																						</div> 
-																					</div> -->
+																				
 																				</div>
 										
 																		</div>
@@ -94,7 +94,7 @@
 	</div>
 	</div>
 </section>
-
+</div>
 <div class="modal pic-popup" id="myModalPhoto" backdrop="static" role="dialog" tabindex="-1" style="display: block; background-color: rgba(0, 0, 0, 0.9); z-index: 111111;" [style.display]="showSlider ? 'block' : 'none'" *ngIf="showSlider" aria-hidden="true">
 		
 	<div class="modal-dialog modal-lg" role="document">

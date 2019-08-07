@@ -48,6 +48,7 @@ export class ChatComponent implements OnInit {
  isDefaultUser : boolean = true;
  search_user_data : any = [];
  minimize_chat:boolean=false;
+ showPlus:boolean=false;
   result:any[];
  
 
@@ -86,6 +87,7 @@ export class ChatComponent implements OnInit {
 
   this.friendlist= !this.friendlist;
   this.showChat=true;
+  this.showPlus=!this.showPlus
     if(this.friendlist)
     {
       this.chat_window="chat-list show";
@@ -102,8 +104,8 @@ export class ChatComponent implements OnInit {
       this.socket.emit('UserDetail', this.user_id);
       this.socket.on('GetUser',(users) => {
         this.user_data = users;
-        console.log('chat user');
-        console.log(this.user_data);
+        // console.log('chat user');
+        // console.log(this.user_data);
       });
     });
   }
@@ -245,6 +247,7 @@ export class ChatComponent implements OnInit {
       this.socket.emit('UsersSearchlist', input_data);
       this.socket.on('GetUsersSearchlist',(response) =>{
         this.search_user_data = response;
+        console.log(this.search_user_data);
       },error => {});
     }else{
       this.search_user_data = [];

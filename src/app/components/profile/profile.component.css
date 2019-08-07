@@ -1,0 +1,15 @@
+.photo-img ~ a {
+    font-size: 12px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.photo-img img {
+    width: 70px;
+    max-width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin: auto;
+    display: block;
+}

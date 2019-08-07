@@ -18,6 +18,8 @@ export class ProfileComponent implements OnInit {
   id:any;
   user_id:any;
   post_id;
+  currentUserProfile;
+  currentUser;
   name;
   cmtId;
   error_msg:string = "";
@@ -62,6 +64,7 @@ export class ProfileComponent implements OnInit {
   this.userDetails();
   this.getPostMedia();
   this.checkUserStatus();
+  this.currentUserDetail();
   if(sessionStorage.getItem('user_id') != undefined && sessionStorage.getItem('user_id') != null){
       this.user_id = sessionStorage.getItem('user_id');
     }
@@ -94,6 +97,21 @@ export class ProfileComponent implements OnInit {
      });
      
   }
+
+  currentUserDetail(){
+    this.data_service.GetUserDataByUserId().subscribe(response=>{
+      //console.log(response);
+      if(response['error'] == false){
+      this.currentUser =response['body'][0].username;
+      this.currentUserProfile=response['body'][0].profile_picture;
+      }else{
+       console.log(response['msg']);
+      }
+    },error=>{
+       console.log("Something went wrong");
+    })
+ 
+   }
 
   userDetails(){
     this.data_service.GetUserById(this.id).subscribe(response=>{
