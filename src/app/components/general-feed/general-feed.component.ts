@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,HostListener } from '@angular/core';
 import { DataService } from '../../shared/data.service';
 import { DatePipe } from '@angular/common';
 import * as emoji from 'node-emoji';
@@ -52,6 +52,9 @@ export class GeneralFeedComponent implements OnInit {
   chunk_Start : any;
   newArray : any = [];
   comntEmoji:boolean=false;
+  showScroll: boolean;
+  showScrollHeight = 200;
+  hideScrollHeight = 10;
   constructor(
     private data_service: DataService,
     private datePipe: DatePipe,
@@ -63,6 +66,7 @@ export class GeneralFeedComponent implements OnInit {
     this.socket = io.connect(this.socket_url);
      let user = JSON.parse(localStorage.getItem('userData'));
     this.profile_picture = user.profile_picture;
+    
    }
 
   ngOnInit() {
@@ -75,6 +79,31 @@ export class GeneralFeedComponent implements OnInit {
       this.post_data.unshift(message);
     })
   }
+
+  @HostListener('window:scroll', [])
+    onWindowScroll() 
+    {
+      if (( window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop) > this.showScrollHeight) 
+      {
+        this.showScroll = true;
+      } 
+      else if ( this.showScroll && (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop) < this.hideScrollHeight) 
+      { 
+        this.showScroll = false; 
+      }
+    }
+
+    scrollToTop() 
+    { 
+      (function smoothscroll() 
+      { var currentScroll = document.documentElement.scrollTop || document.body.scrollTop; 
+        if (currentScroll > 0) 
+        {
+          window.requestAnimationFrame(smoothscroll);
+          window.scrollTo(0, currentScroll - (currentScroll / 5));
+        }
+      })();
+    }
 
   userDetails(){
     this.data_service.GetUserDataByUserId().subscribe(response=>{

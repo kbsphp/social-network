@@ -1,4 +1,4 @@
-import { Component, OnInit,ElementRef,ViewChild } from '@angular/core';
+import { Component, OnInit,ElementRef,ViewChild,HostListener } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormGroup,FormBuilder,Validators,FormControl,FormArray } from '@angular/forms';
 import { DataService } from '../../shared/data.service'
@@ -52,7 +52,10 @@ export class UserFeedComponent implements OnInit {
   userInfo:any ={};
   userMedia:any=[];
    user_data : any = [];
-   friend_count=0
+   friend_count=0;
+   showScroll: boolean;
+  showScrollHeight = 200;
+  hideScrollHeight = 10;
   private socket;
   socket_url: string = "";
   constructor(private formBuilder:FormBuilder,
@@ -83,6 +86,31 @@ export class UserFeedComponent implements OnInit {
     (message => {
       this.new_post_data.unshift(message);
     })
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() 
+  {
+    if (( window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop) > this.showScrollHeight) 
+    {
+      this.showScroll = true;
+    } 
+    else if ( this.showScroll && (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop) < this.hideScrollHeight) 
+    { 
+      this.showScroll = false; 
+    }
+  }
+
+  scrollToTop() 
+  { 
+    (function smoothscroll() 
+    { var currentScroll = document.documentElement.scrollTop || document.body.scrollTop; 
+      if (currentScroll > 0) 
+      {
+        window.requestAnimationFrame(smoothscroll);
+        window.scrollTo(0, currentScroll - (currentScroll / 5));
+      }
+    })();
   }
 
   userDetails(){

@@ -19,6 +19,7 @@ username;
 profile_pic:string="";
 img_url;
 totalBuyCoin;
+chat:boolean=false;
   userData : any
   names:any
   newarray: any[];
@@ -51,7 +52,7 @@ totalBuyCoin;
      }
 
   ngOnInit() {
-    console.log('called ngOnit')
+    console.log(' ngOnit called');
     this.userDetails();
     this.getUserAccount();
     this.isLoggedIn$ = this.data_services.isLoggedIn;
@@ -68,6 +69,7 @@ totalBuyCoin;
   get checkLoggedId(): any {
     return localStorage.getItem('isLoggedin');
 }
+
 
 userDetails(){
   this.data_services.GetUserDataByUserId().subscribe(response=>{
@@ -103,18 +105,15 @@ userDetails(){
     if(this.user_id != -1){
       this.data_services.logOut().subscribe(response => {
         if(response['error'] == false){
-          //console.log('herere')
-           //this.error_status=true;
           sessionStorage.removeItem('token');
           sessionStorage.removeItem('user_id');
+          sessionStorage.removeItem('user_name');
           localStorage.removeItem('isLoggedin'); 
           localStorage.removeItem('userData');
           localStorage.removeItem('updated_pic');
-         //localStorage.clear();
-         //sessionStorage.clear();
           this.router.navigate(['/']);
         }else{
-         // this.toastr.errorToastr(response['msg']);
+         console.log("Error occurred..");
         }
       },error => {})
     }else{
@@ -156,6 +155,11 @@ userDetails(){
        this.renderer.removeClass(document.body, 'title-open');
        //this.el.nativeElement.removeClass('removeClass');
      }
+  }
+
+  openchatToggle(){
+   if(!this.chat){return this.chat=true;}
+   this.chat=false;
   }
 
    onKeyPressSearch(searchValue: string){

@@ -49,7 +49,7 @@
 		<div class="row">
 			<div class="col-sm-12 col-xs-12 col-md-4 col-lg-4 col-xl-4">
 			 <div class="postion-left-stky">
-			 	<div class="intro-blk">
+			 	<div class="intro-blk for-hover-zoom">
 					<div class="inner-intro-blk">
 						<div class="heading-intro">
 							<h2><i class="fas fa-globe-asia"></i>Intro</h2>
@@ -88,7 +88,7 @@
 					</div>
 				</div>
 
-				<div class="photos-blk">
+				<div class="photos-blk for-hover-zoom">
 					<div class="inner-photo">
 						<div class="may-know">
 							<div class="top-know">
@@ -122,7 +122,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="friends-sec">
+				<div class="friends-sec for-hover-zoom">
 					<div class="inner-photo">
 						<div class="may-know">
 							<div class="top-know">
@@ -254,9 +254,9 @@
 												<img src="{{img_url}}{{cmnt.profile_picture}}">
 												<div class="media-body">
 													 <p  *ngIf="edit_comment != true || cmnt.id != cmtId"><strong>{{cmnt.username}}</strong>  {{convetToEmoji(cmnt.comment)}}</p>
-													 <p class="msg-edit" *ngIf="edit_comment && cmnt.id == cmtId"> <input  class="form-control" (keyup.enter)="updateComment(cmnt)" [(ngModel)]="cmnt.comment" style="resize:none" type="text" >
+													 <p class="msg-edit custom-msg" *ngIf="edit_comment && cmnt.id == cmtId"> <input  class="form-control" (keyup.enter)="updateComment(cmnt)" [(ngModel)]="cmnt.comment" style="resize:none" type="text" >
 														<span class="comnt-empji" (click)="commentEmoji(cmnt.id,cmnt)"><i class="far fa-smile" aria-hidden="true" ></i></span></p>
-														<div *ngIf="comntEmoji  && cmnt.id == cmtId" class="emojisShow">
+														<div *ngIf="comntEmoji  && cmnt.id == cmtId" class="emojisShow custom-emoji">
 															<emoji-mart (emojiClick)="addInComment($event,cmnt)"></emoji-mart>
 														</div>
 														<ul>
@@ -272,15 +272,20 @@
 									<div class="media">
 									  <img src="{{img_url}}{{profile_picture}}">
 									  <div class="media-body">
-									   <input [disabled]="isPostComment" (keyup.enter)="post_comment()" class="form-control" [(ngModel)]="comment" name="comment"  style="resize:none" type="text" placeholder="Write a comment...">
-									   <span class="icon-btn" (click)="onClickEmoji()">
-										<i class="far fa-smile" aria-hidden="true" ></i>
-									   </span>   
-									  <!-- <span><i class="fas fa-camera"></i></span>  -->
-									  </div>
-									  <div *ngIf="emojiHide" class="emojisShow">
+										<div class="custom-msg">
+										<input [disabled]="isPostComment" (keyup.enter)="post_comment()" class="form-control" [(ngModel)]="comment" name="comment"  style="resize:none" type="text" placeholder="Write a comment...">
+										<span class="comnt-empji" (click)="onClickEmoji()">
+											<i class="far fa-smile" aria-hidden="true" ></i>
+										</span>   
+										<!-- <span><i class="fas fa-camera"></i></span>  -->
+										</div>
+										</div>
+									  <!-- <div *ngIf="emojiHide" class="emojisShow custom-emoji">
 										<emoji-mart (emojiClick)="addEmoji($event,comment)"></emoji-mart>
+									</div> -->
 									</div>
+									<div *ngIf="emojiHide" class="emojisShow custom-emoji" style="margin-left: 55px;">
+										<emoji-mart (emojiClick)="addEmoji($event,comment)"></emoji-mart>
 									</div>
 								</div>
 							</div>
@@ -296,6 +301,10 @@
 </section>
 </div>
 </div>
+<!--Scroll to top-->
+<button [ngClass]="{'show-scroll': showScroll}" (click)="scrollToTop()" class="scroll-to-top">
+	<i class="fas fa-chevron-circle-up"></i>
+	 </button>
 <div class="modal" id="myModal1" backdrop="static" role="dialog" tabindex="-1" style="display: block; background-color: rgba(0, 0, 0, 0.32); z-index: 111111;" [style.display]="isPostModal ? 'block' : 'none'" *ngIf="isPostModal" aria-hidden="true">
 		
 			  <div class="modal-dialog" role="document">

@@ -7,18 +7,17 @@
     background: #1e2430;
 }
 .chat-box {
-    padding: 0;
-    min-width: 250px;
+    /* padding: 0; */
+    /* min-width: 250px;
     border: 1px solid #383f4b;
     overflow: auto;
-    background: #282e3a;
+    background: #282e3a; */
 }
 
 .chat-box .chat-hdr,.chat-top-bar {
-    background: #f1ad1c !important;
+    /* background: #f1ad1c !important; */
     color: white;
-    padding: 10px 10px;
-    cursor: pointer;
+    padding: 0px;
     font-family: "Prohibition W00 Regular";
 }
 .chat-box ul {
@@ -37,6 +36,16 @@
     padding: 5px 0;
     position: relative;
     display: flex;
+    list-style: none;
+    border-bottom: 1px dotted #43464c;
+    padding: 13px 0;
+    color: #ecf1fe;
+    cursor: pointer;
+}
+.chat-box ul li:hover{
+  list-style: none;
+  color: #f6ad21;
+  border-bottom: 1px dotted #f6ad21;
 }
 .chat-box ul li img {
     height: 35px;
@@ -46,8 +55,8 @@
     margin: 0 10px 0 0;
 }
 .chat-box ul {
-    max-height: 280px;
-    overflow: auto;
+    /* max-height: 280px;
+    overflow: auto; */
 }
 .green-icon {
     position: absolute;
@@ -237,8 +246,8 @@ span.for-name {
   }
   
   .form-message .btn {
-    height: 40px;
-    background: #f1ad1c!important;
+    height: 35px;
+    background: #00000082!important;
     border: none!important;
     position: relative;
     box-shadow: none !important;
@@ -274,7 +283,7 @@ span.for-name {
   }
   
   .base_sent .messages.msg_sent {
-    background: #f1ad1c;
+    background: #63a5e8;
   }
   .base_sent .messages.msg_sent time{
     color: #fff;
@@ -372,8 +381,8 @@ span.for-name {
 }
 
 .chat-list {
-  height: 326px;
-  overflow: auto;
+  /* height: 326px;
+  overflow: auto; */
   position: relative;
   padding-bottom: 44px;
 }
@@ -394,11 +403,11 @@ span.for-name {
   color: #989898;
 }
 .chat-list.show ul li:hover {
-  background: #282e3a;
-  color: #fff;
+  /* background: #282e3a;
+  color: #fff; */
 }
 .chat-list.show ul li {
-  padding: 5px 10px !important;
+  /* padding: 5px 10px !important; */
 }
 .msg_receive[_ngcontent-xcr-c2] > time[_ngcontent-xcr-c2] {
   right: auto auto;
@@ -413,8 +422,8 @@ span.for-name {
   background-image: none !important;
 }
 .chat-search{
-  padding: 0px 15px;
-  position: absolute;
+  /* padding: 0px 15px; */
+  /* position: absolute; */
   left: 0;
   right: 0;
   bottom: 6px;
@@ -424,10 +433,10 @@ span.for-name {
     width: 100%;
     padding: 5px 10px;
     border-radius: 4px;
-    background: #282e3a;
+    /* background: #282e3a; */
     height: 36px;
     font-size: 13px;
     box-shadow: none !important;
-    color: #fff;
+    /* color: #fff; */
 }
 

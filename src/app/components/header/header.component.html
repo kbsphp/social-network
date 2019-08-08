@@ -140,13 +140,13 @@
                     <div class="profile-menu" [ngClass]="displayProfile?'show':'hide'"><a [routerLink]="['/profile']" class="" id="11">My Profile</a><a class="for_moblie_blc">Balance<span class="t-uz">2,102 UZ</span><img class="money" src="assets/images/money10.png"></a><a class="btn-small-menu for_mobile_buy" href="javascript:void(0)">BUY UZYTH</a><a class="" id="14">Support</a><a class="" id="12">DOWNLOADS</a><a class="" id="13">HELP</a><a class="" (click)="logout()">LOG OUT</a></div>
 				</li>
 			
-                <li (click)="openchat()"><a class="ng-tns-c1-1" href="javascript:void(0)"><img class="money3" src="assets/images/Skype.lnk.png"></a></li>
+                <li (click)="openchatToggle()"><a class="ng-tns-c1-1" href="javascript:void(0)"><img class="money3" src="assets/images/Skype.lnk.png"></a></li>
             </ul>
         </div>
     </div>
 </section>
 
 
-<div *ngIf="checkLoggedId">
+<div *ngIf="checkLoggedId && chat == true">
 <app-chat></app-chat>
 </div>

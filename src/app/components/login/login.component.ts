@@ -81,7 +81,7 @@ export class LoginComponent implements OnInit {
         "email": this.Form.value.email,
         "password": this.Form.value.password
       }
-      console.log(input_data)
+     // console.log(input_data)
      // this._rememberMe();
       this.data_service.login(input_data).subscribe(response => {
         console.log(response['error'])
