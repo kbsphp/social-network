@@ -29,11 +29,6 @@ export class SideBarComponent implements OnInit {
      }
 
   ngOnInit() {
-    this.user=JSON.parse(localStorage['userData']);
-    this.currentUser_picture=this.user.profile_picture;
-  
-    this.user_id = sessionStorage.getItem('user_id');
-    this.username =sessionStorage.getItem('user_name');
     this.userDetails();
   }
 
@@ -41,6 +36,8 @@ export class SideBarComponent implements OnInit {
     this.data_service.GetUserDataByUserId().subscribe(response=>{
       if(response['error'] == false){
       this.currentUser_picture=response['body'][0].profile_picture;
+     this.user_id = sessionStorage.getItem('user_id');
+    this.username =sessionStorage.getItem('user_name');
       }else{
        console.log(response['msg']);
       }

@@ -11,7 +11,8 @@ import { AdvertiseComponent } from './components/advertise/advertise.component'
 import { FriendListComponent } from './components/friend-list/friend-list.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 const routes: Routes = [
-  {path:'',component:LoginComponent},
+ // {path:'',component:LoginComponent},
+  {path:'',component:GeneralFeedComponent},
   {path:'profile',component:UserFeedComponent},
   {path:'home',component:GeneralFeedComponent},
   {path:'profile/:id', component:ProfileComponent},

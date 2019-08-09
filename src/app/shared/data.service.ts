@@ -70,8 +70,6 @@ headers : any;
     }
     if(sessionStorage.getItem('user_id') != undefined && sessionStorage.getItem('user_id') != null){
       this.user_id = sessionStorage.getItem('user_id');
-
-     // console.log("userID"+this.user_id);
     }
     const httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json', 'authorization': this.token })};
     return this._http.get(this.base_url+'user/'+this.user_id, httpOptions )

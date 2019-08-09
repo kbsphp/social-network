@@ -43,7 +43,7 @@ export class CreatePostComponent implements OnInit {
     this.base_url = environment.base_url;
     this.img_url = environment.img_url;
     this.userData=JSON.parse(localStorage.getItem('userData'));
-    this.profile_picture =  this.userData['profile_picture'];
+    // this.profile_picture =  this.userData['profile_picture'];
     this.data_service.detectChange().subscribe(()=>{
     if(localStorage.getItem("updated_pic") != undefined){
       this.profile_picture = localStorage.getItem("updated_pic") ;
@@ -54,7 +54,7 @@ export class CreatePostComponent implements OnInit {
   ngOnInit() {
 
     this.userDetails();
-    this.profile_picture = this.userData['profile_picture'];
+    // this.profile_picture = this.userData['profile_picture'];
   }
 
 
@@ -129,7 +129,7 @@ fileReset() {
 
     this.btnshare=true;
      let desc= this.postForm.value.description;
-      console.log(this.postForm.value)
+      //console.log(this.postForm.value)
     let filename=this.postForm.value.file
      if ((desc != '' && desc != null && desc.trim() != '') || filename != '') {
      let UpdatedEmoji = emoji.unemojify(desc);
@@ -195,6 +195,7 @@ fileReset() {
               this.isCLicked= "";
               this.emojiHide=false
               this.openModal=false
+              this.error_msg=false;
             }else{
              //console.log(data['msg']);
              this.error_msg = true;

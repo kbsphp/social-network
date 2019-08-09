@@ -3994,3 +3994,21 @@ label {
     -o-transform: scale(1.1);
     border-color: #f6ad21;
 }
+
+.create-post-error{
+    position: relative;
+    z-index: 99;
+}
+
+.create-post-error ~ .share-btn {
+    top: 0 !important;
+}
+
+.full-screen-popup{
+    max-width: 100%;
+}
+
+.full-screen-popup .modal-content {
+    height: 100vh;
+    border: none;
+}

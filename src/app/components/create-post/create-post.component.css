@@ -11,3 +11,7 @@ span.filename {
 #myModal textarea#comment {
     color: #fff;
 }
+.emojisShow {
+    z-index: 12;
+    position: relative;
+}

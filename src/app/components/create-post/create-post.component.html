@@ -30,7 +30,7 @@
 <div class="custom-popup" data-backdrop="false" [ngClass]="{ 'open-popup' : openModal} " >
 <div class="popup-back"></div>
  <form [formGroup]="postForm">
-   <div class="create-post">
+   <div class="create-post m-0">
               <div class="post-hdr"><p *ngIf="!openModal">Create post</p>
                 <p *ngIf="openModal">Create post<button type="button" class="close" (click)="close_modal()"><span aria-hidden="true">&times;</span></button></p>
               </div>
@@ -65,7 +65,7 @@
             <div *ngIf="emojiHide" class="emojisShow">
                 <emoji-mart (emojiClick)="addEmoji($event)"></emoji-mart>
             </div>
-           <div *ngIf="error_msg == true" class="pop-up-error">
+           <div *ngIf="error_msg == true" class="pop-up-error create-post-error">
              * {{error}}
            </div>
               <div class="share-btn">

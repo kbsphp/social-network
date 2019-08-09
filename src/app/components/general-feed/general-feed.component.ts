@@ -16,6 +16,7 @@ export class GeneralFeedComponent implements OnInit {
   user_id;
   friend;
   selected_user;
+  
 //  postcomment;
   post_data : any = [];
   base_url: string = "";
@@ -64,18 +65,19 @@ export class GeneralFeedComponent implements OnInit {
     this.img_url = environment.img_url;
     this.socket_url = environment.socket_url;
     this.socket = io.connect(this.socket_url);
-     let user = JSON.parse(localStorage.getItem('userData'));
-    this.profile_picture = user.profile_picture;
     
    }
 
   ngOnInit() {
-    this.user_id = sessionStorage.getItem('user_id');
-    this.generalPostAllList();
-    this.userDetails();
-    this.findFriendList();
-    this.data_service.currentMessage.subscribe
-    (message => {
+    //this.user_id = sessionStorage.getItem('user_id');
+
+    setTimeout(()=>{
+      this.userDetails();
+      this.generalPostAllList();
+      this.findFriendList();
+    },2000);
+   
+    this.data_service.currentMessage.subscribe(message => {
       this.post_data.unshift(message);
     })
   }
@@ -112,6 +114,7 @@ export class GeneralFeedComponent implements OnInit {
       this.fullname= response['body'][0].first_name+ ' '+response['body'][0].last_name;
       this.fullname=this.fullname?this.fullname:this.username;
       this.currentUser_picture=this.img_url+''+response['body'][0].profile_picture;
+
       }else{
        console.log(response['msg']);
       }
@@ -123,17 +126,18 @@ export class GeneralFeedComponent implements OnInit {
 
   generalPostAllList(){
     this.loading=true;
-    console.log(this.post_data)
+    this.user_id = sessionStorage.getItem('user_id');
+   // console.log(this.post_data)
     this.chunk_Start = this.post_data.length == 0 ? 0 : this.post_data[this.post_data.length -1]['id'];
-    console.log(this.chunk_Start)
+    // console.log(this.chunk_Start)
     const inputJson = {
       "limit": 5,
-    	"start": this.chunk_Start,
+    	"start": this.chunk_Start == undefined ? 0 : this.chunk_Start,
     	"userID": this.user_id    	
     };
-   // console.log(JSON.stringify(inputJson, undefined, 2));
+  // console.log(JSON.stringify(inputJson, undefined, 2));
     this.data_service.generalPostData(inputJson).subscribe((response)=>{
-    // console.log(JSON.stringify(inputJson, undefined, 2));
+     // console.log(JSON.stringify(response, undefined, 2));
         if(response['error']== false){
            this.newArray = this.newArray.concat(response['body']);
            this.showPosts=true;
@@ -276,6 +280,7 @@ export class GeneralFeedComponent implements OnInit {
   cancelComment(pvrId){
     this.cmtId=pvrId;
     this.edit_comment=false;
+    this.comntEmoji = false;
   }
 
   editComment(pvrId,cmt){
@@ -301,7 +306,7 @@ addInComment(evt,cmt){
 
   updateComment(pvrComment){
     if(pvrComment.comment == 'undefined' || pvrComment.comment == null || pvrComment.comment.trim() ==''){
-      console.log("Enter comment to update");
+      //console.log("Enter comment to update");
       this.error_msg="Please enter comment to update.";
       this.isShow="modal-backdrop fade show";
       this.isPostModal=true;
@@ -428,7 +433,7 @@ addInComment(evt,cmt){
    const input_data = {"userID": parseInt(this.user_id), "search_str": this.search_people}
    this.socket.emit('UsersSearchlist', input_data);
    this.socket.on('GetUsersSearchlist',(response) => {
-   console.log("Search");
+   //console.log("Search");
     if(response)
     {
       this.isSearchUser = true;
