@@ -123,7 +123,7 @@ export class GeneralFeedComponent implements OnInit {
     })
 
 
-}
+})
 
   }
 
