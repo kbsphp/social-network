@@ -252,6 +252,7 @@ a {color: #989898;}
     border: none;
     background: transparent;
 	box-shadow:none !important;
+    color: #fff;
 }
 .create-post .create-write .for-pop-btn {
     border-top: solid 1px #383f4b;
@@ -2950,15 +2951,16 @@ img.img-fluid.in-img {
 }
 .social-form .rgt-part input[type="text"] ,
 .social-form .rgt-part input[type="email"],.rgt-part select{
-    border: 1px solid #383f4b;
-    width: 100%;
+    border: 1px solid #383f4b !important;
+    width: 100% !important;
     padding: 5px 10px;
     border-radius: 50px;
     background: #282e3a !important;
 	outline:none !important;
 	box-shadow:none !important;
 	color:#989898;
-    font-size: 15px;
+    font-size: 15px !important;
+    height: 38px;
 }
 
 .social-form .rgt-part textarea{
@@ -3965,6 +3967,15 @@ label {
     margin-right: 12px;
 }
 
+
+.btn-large{
+    padding: 15px 30px;
+}
+
+.ngx-datepicker-calendar-container {
+    z-index: 9;
+
+}
 .scroll-to-top {
     position: fixed;
     bottom: 15px;
@@ -4050,3 +4061,5 @@ label {
     background: transparent;
     font-size: 12px;
 }
+
+

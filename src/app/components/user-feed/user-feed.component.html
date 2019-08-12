@@ -63,7 +63,9 @@
 							 
 							 	<div class="intro1">
 										 	<!-- <p class="intro-line">Add a short bio to tell people more about yourself.</p> -->
-							          
+							            <div class="progress">
+										   <div class="progress-bar bg-warning" style="width:100%">{{userInfo.percentage}} %</div>
+										</div>
 										 	<p *ngIf="userInfo.workplace != ''"><span><i class="fas fa-briefcase"></i></span>Works at: {{userInfo.workplace}}</p>
 										 	<p *ngIf="userInfo.professional_skills != ''"><span><i class="fas fa-graduation-cap"></i></span>Studied at: {{userInfo.professional_skills}}</p>
 										 	<p *ngIf="userInfo.home != ''"><span><i class="fas fa-map-marker-alt"></i></span>From: {{userInfo.home}}</p>
@@ -129,7 +131,7 @@
 					<div class="inner-photo">
 						<div class="may-know">
 							<div class="top-know">
-								<p class="hdg"><span><i class="fas fa-user-friends"></i></span><a href="javascript:void(0)" [routerLink]="['/friend-list']" class="see">Friends .{{friend_count}}</a> </p>
+								<p class="hdg"><span><i class="fas fa-user-friends"></i></span><a href="javascript:void(0)" [routerLink]="['/friend-list']" class="see">Friends - {{friend_count}}</a> </p>
 								<a href="javascript:void(0)" [routerLink]="['/find-friends']" class="see">Find Friends</a>
 							</div>
 							<div class="img-sec">

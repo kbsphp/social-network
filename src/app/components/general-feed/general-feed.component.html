@@ -193,18 +193,26 @@
 							<div class="may-know ">
 								<div class="top-know">
 									<p class="hdg">Ads</p>
-									<a href="" class="see">See All</a>
+									<!-- <a href="" class="see">See All</a> -->
 								</div>
 								<div class="bottom-know">
-									<div class="join-group">
+									<ng-container *ngFor="let ads of adsArray;let i = index">
+									<div class="join-group" *ngIf="i<1">
 										<div class="join-image">
-											<img src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-0/p173x172/29213898_411133419330626_4416280773284331520_n.jpg?_nc_cat=1&_nc_ht=scontent-hkg3-2.xx&oh=bf9868a8eea575c1170d5fb082253c1c&oe=5D615796">
+											<a href="javascript:void(0)"  >
+											<img src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.0-0/p173x172/29213898_411133419330626_4416280773284331520_n.jpg?_nc_cat=1&_nc_ht=scontent-hkg3-2.xx&oh=bf9868a8eea575c1170d5fb082253c1c&oe=5D615796" (click)="onClickAd($event)" id="{{ads.id}}" [attr.data-type]="ads.ad_delivery_type" #myDiv>
+										</a>
 										</div>
+									  <div class="group-know" >
+										<p class="hdg">{{ads.ad_account_name}}</p>
+										<!-- <button type="button" class="btn btn-grey">Join Group</button> -->
 									</div>
-									<div class="group-know">
+									</div>
+								</ng-container>
+									<!-- <div class="group-know">
 										<p class="hdg">5-Minute Crafts ®<span>1,512,955 members</span></p>
 										<button type="button" class="btn btn-grey">Join Group</button>
-									</div>
+									</div> -->
 								</div>
 							</div>
 						</div>
