@@ -81,7 +81,7 @@ export class GeneralFeedComponent implements OnInit {
      let user = JSON.parse(localStorage.getItem('userData'));
     this.profile_picture = user.profile_picture;
 // =======
-    
+   //console.log(elm.nativeElement.getAttribute('data-type'))  
    }
 
 
@@ -543,8 +543,6 @@ addInComment(evt,cmt){
     
     //console.log(event.target.value)
      this.data_service.postAdClickandImpressions(formData).subscribe((response) => {
-
-
      console.log(response)
 
 
