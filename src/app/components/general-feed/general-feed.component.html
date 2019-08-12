@@ -127,7 +127,7 @@
 														<emoji-mart (emojiClick)="addEmoji($event,post)"></emoji-mart>
 													</div> -->
 												</div>
-												<div *ngIf="emojiHide" class="emojisShow custom-emoji" style="margin-left: 55px;">
+												<div *ngIf="emojiHide && postcmt==post.id" class="emojisShow custom-emoji" style="margin-left: 55px;">
 													<emoji-mart (emojiClick)="addEmoji($event,post)"></emoji-mart>
 												</div>
 											

@@ -735,3 +735,9 @@
         display: none!important
     }
 }
+
+/********* date- 12 Aug,2019 *******/
+
+.buy-block ul.toggle-menu li:nth-child(2), .buy-block ul.toggle-menu li:nth-child(3) {
+    display: none;
+    }

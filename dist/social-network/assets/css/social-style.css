@@ -4061,5 +4061,16 @@ label {
     background: transparent;
     font-size: 12px;
 }
-
+p.comment-block {
+    padding-bottom: 20px !important;
+    border-radius: 18px !important;
+    position: relative;
+    min-width: 150px;
+}
+p.comment-block .comment-time{
+    position: absolute;
+    font-size: 10px;
+    left:15px;
+    bottom: 2px;
+}
 

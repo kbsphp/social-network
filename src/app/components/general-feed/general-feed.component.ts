@@ -54,6 +54,7 @@ export class GeneralFeedComponent implements OnInit {
   photo :string="";
   chunk_Start : any;
   newArray : any = [];
+  postcmt:string="";
   comntEmoji:boolean=false;
   adsArray:any=[];
   adsType:string='';
@@ -76,20 +77,23 @@ export class GeneralFeedComponent implements OnInit {
     
    }
 
-       
-  ngOnInit() {
+   ngOnInit() {
 
     setTimeout(()=>{
-      this.userDetails();
-      this.generalPostAllList();
-      this.findFriendList();
+    this.userDetails();
+    this.generalPostAllList();
+    this.findFriendList();
+    this.data_service.getsAllAds().subscribe((response) => {
+    this.adsArray=response['body'];
+    this.adsArray=this.adsArray.sort(() => Math.random() - 0.5);
+    } )
     },2000);
-   
+    
     this.data_service.currentMessage.subscribe(message => {
-      this.post_data.unshift(message);
+    this.post_data.unshift(message);
     })
-
-  }
+    
+    }
 
   @HostListener('window:scroll', [])
     onWindowScroll() 
@@ -230,7 +234,7 @@ export class GeneralFeedComponent implements OnInit {
   }
 
   onClickEmoji(pvrId) {
-    console.log(pvrId);
+     this.postcmt=pvrId;
     this.emojiHide = true;
   }
 

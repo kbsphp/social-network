@@ -3842,7 +3842,7 @@ label {
 
 .custom-popup.open-popup .share-btn {
     display: block;
-   z-index: 999999999 !important;
+    z-index: 999 !important;
     position: relative;
     top: -9px;
 }
