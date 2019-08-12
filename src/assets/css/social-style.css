@@ -1376,6 +1376,13 @@ a {color: #989898;}
     width: 100%;
 }
 
+.commant-list .media-body p b {
+    color: #f1ad21;
+    }
+
+.post-box .name-box .hdg a, .time a {
+        text-transform: capitalize;
+ }  
 
 .photos-info .photo-view img ,.video-info .photo-view img {
     width: 100%;
@@ -4017,4 +4024,29 @@ label {
     font-size: 10px;
     padding: 2px 5px;
     margin-bottom: 5px;
+}
+
+.dots-dd.btn-dd .btn {
+    background: #f1ad21 !important;
+}
+
+.dots-dd.btn-dd .btn i{
+    color: #141a24;
+    margin-right: 0 !important;
+    margin-left: 7px;
+    font-size: 13px !important;
+    position: relative;
+    top: -1px;
+}
+
+.dots-dd.btn-dd .dropdown-menu {
+    right: 0;
+    min-width: 100%;
+    top: 5px !important;
+}
+.dots-dd.btn-dd .dropdown-menu .dropdown-item{
+    color:#f1ad21;
+    padding: 0px;
+    background: transparent;
+    font-size: 12px;
 }

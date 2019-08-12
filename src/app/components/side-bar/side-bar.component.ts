@@ -29,6 +29,8 @@ export class SideBarComponent implements OnInit {
      }
 
   ngOnInit() {
+    this.currentUser_picture=sessionStorage.getItem('profile_picture');
+    this.username=sessionStorage.getItem('user_name');
     this.userDetails();
   }
 

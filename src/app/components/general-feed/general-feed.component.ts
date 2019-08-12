@@ -144,6 +144,7 @@ export class GeneralFeedComponent implements OnInit {
            this.showPosts=true;
            this.loading=false;
            this.post_data = this.newArray;
+           console.log(this.post_data);
 
         }else{
           //console.log(this.post_data.length);
