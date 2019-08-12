@@ -91,11 +91,11 @@ userDetails(){
     if(response['error'] == false){
     this.username =response['body'][0].username;
     sessionStorage.setItem("user_name", this.username);
+    sessionStorage.setItem("profile_picture", response['body'][0].profile_picture);
       let userObj = {
         username : response['body'][0].username,
         email : response['body'][0].email,
         id : response['body'][0].id,
-        profile_picture : response['body'][0].profile_picture,
         first_name : response['body'][0].first_name,
         last_name : response['body'][0].last_name
       }

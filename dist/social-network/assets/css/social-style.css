@@ -252,6 +252,7 @@ a {color: #989898;}
     border: none;
     background: transparent;
 	box-shadow:none !important;
+    color: #fff;
 }
 .create-post .create-write .for-pop-btn {
     border-top: solid 1px #383f4b;
@@ -463,7 +464,7 @@ a {color: #989898;}
     color: #989898;
 }
 .friends .details-heading {
-    font-size: 15px;
+    font-size: 14px;
     margin-bottom: 0;
     /*padding: 0 0 5px 0;*/
     color: #3f73c1;
@@ -1363,7 +1364,7 @@ a {color: #989898;}
 /*.all-frinds {padding: 30px 0 20px 0;}*/
 .all-frinds .friends .add-class button i {margin-right: 5px;}
 .friends .mutual-frd {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
 }
 .photos-info .friends .mutual-frd {
@@ -1376,6 +1377,13 @@ a {color: #989898;}
     width: 100%;
 }
 
+.commant-list .media-body p b {
+    color: #f1ad21;
+    }
+
+.post-box .name-box .hdg a, .time a {
+        text-transform: capitalize;
+ }  
 
 .photos-info .photo-view img ,.video-info .photo-view img {
     width: 100%;
@@ -2943,15 +2951,16 @@ img.img-fluid.in-img {
 }
 .social-form .rgt-part input[type="text"] ,
 .social-form .rgt-part input[type="email"],.rgt-part select{
-    border: 1px solid #383f4b;
-    width: 100%;
+    border: 1px solid #383f4b !important;
+    width: 100% !important;
     padding: 5px 10px;
     border-radius: 50px;
     background: #282e3a !important;
 	outline:none !important;
 	box-shadow:none !important;
 	color:#989898;
-    font-size: 15px;
+    font-size: 15px !important;
+    height: 38px;
 }
 
 .social-form .rgt-part textarea{
@@ -3958,6 +3967,15 @@ label {
     margin-right: 12px;
 }
 
+
+.btn-large{
+    padding: 15px 30px;
+}
+
+.ngx-datepicker-calendar-container {
+    z-index: 9;
+
+}
 .scroll-to-top {
     position: fixed;
     bottom: 15px;
@@ -4012,3 +4030,36 @@ label {
     height: 100vh;
     border: none;
 }
+
+.friends .details button.btn {
+    font-size: 10px;
+    padding: 2px 5px;
+    margin-bottom: 5px;
+}
+
+.dots-dd.btn-dd .btn {
+    background: #f1ad21 !important;
+}
+
+.dots-dd.btn-dd .btn i{
+    color: #141a24;
+    margin-right: 0 !important;
+    margin-left: 7px;
+    font-size: 13px !important;
+    position: relative;
+    top: -1px;
+}
+
+.dots-dd.btn-dd .dropdown-menu {
+    right: 0;
+    min-width: 100%;
+    top: 5px !important;
+}
+.dots-dd.btn-dd .dropdown-menu .dropdown-item{
+    color:#f1ad21;
+    padding: 0px;
+    background: transparent;
+    font-size: 12px;
+}
+
+

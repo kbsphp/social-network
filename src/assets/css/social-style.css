@@ -1377,6 +1377,13 @@ a {color: #989898;}
     width: 100%;
 }
 
+.commant-list .media-body p b {
+    color: #f1ad21;
+    }
+
+.post-box .name-box .hdg a, .time a {
+        text-transform: capitalize;
+ }  
 
 .photos-info .photo-view img ,.video-info .photo-view img {
     width: 100%;
@@ -3960,14 +3967,14 @@ label {
     margin-right: 12px;
 }
 
-/*<<<<<<< HEAD*/
+
 .btn-large{
     padding: 15px 30px;
 }
 
 .ngx-datepicker-calendar-container {
     z-index: 9;
-/*=======*/
+
 }
 .scroll-to-top {
     position: fixed;
@@ -4028,5 +4035,42 @@ label {
     font-size: 10px;
     padding: 2px 5px;
     margin-bottom: 5px;
-/*>>>>>>> 4760cc5c4ad3573a1cc7704878e839806f6a6e15*/
 }
+
+.dots-dd.btn-dd .btn {
+    background: #f1ad21 !important;
+}
+
+.dots-dd.btn-dd .btn i{
+    color: #141a24;
+    margin-right: 0 !important;
+    margin-left: 7px;
+    font-size: 13px !important;
+    position: relative;
+    top: -1px;
+}
+
+.dots-dd.btn-dd .dropdown-menu {
+    right: 0;
+    min-width: 100%;
+    top: 5px !important;
+}
+.dots-dd.btn-dd .dropdown-menu .dropdown-item{
+    color:#f1ad21;
+    padding: 0px;
+    background: transparent;
+    font-size: 12px;
+}
+p.comment-block {
+    padding-bottom: 20px !important;
+    border-radius: 18px !important;
+    position: relative;
+    min-width: 150px;
+}
+p.comment-block .comment-time{
+    position: absolute;
+    font-size: 10px;
+    left:15px;
+    bottom: 2px;
+}
+

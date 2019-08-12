@@ -1,0 +1,737 @@
+@media (max-width:1600px) {
+    .crypto-tbl .table-responsive-md {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: -ms-autohiding-scrollbar
+    }
+}
+
+@media (max-width:1400px) {
+    .pick-blocks .container {
+        max-width: 1000px
+    }
+    section.pop-up .modal.show .modal-dialog {
+        padding-top: 150px!important
+    }
+	table.balance-table{
+		font-size:12px;
+	}
+}
+
+@media (max-width:1199px) {
+    .form-tabs .google-step {
+        padding: 20px 10px 15px;
+        margin: 75px 40px 25px
+    }
+    section.form-tabs .col-md-8.p-d {
+        padding-left: 0;
+        padding-right: 0
+    }
+    .form-tabs .media-body.m-t {
+        padding-top: 0
+    }
+    .form-tabs ul.ggogle-top {
+        margin-top: 0
+    }
+    .menu_toogle section.form-tabs ul.ggogle-top li p {
+        font-size: 15px
+    }
+	
+}
+
+@media (max-width:1024px) {
+    .coin-blk {
+        padding: 0 40px 0 40px
+    }
+    section.form-tabs .form-head h1 {
+        font-size: 30pt
+    }
+    section.form-tabs img.mr-3 {
+        margin-right: 0!important
+    }
+    section.form-tabs .media {
+        display: block;
+        align-items: center;
+        text-align: center
+    }
+    section.form-tabs .google-step {
+        max-width: 100%
+    }
+    section.form-tabs form.form-custom {
+        padding: 15px
+    }
+    section.form-tabs div#pills-tabContent {
+        padding-bottom: 50px
+    }
+    .buy-block ul li {
+        padding: 0 12px;
+        padding-top: 20px
+    }
+    section.pop-up .modal.show .modal-dialog {
+        padding-top: 80px!important
+    }
+    section.side-fix-icon.fix-one {
+        left: -120px
+    }
+    body.menu_toogle section.network.common-click {
+        padding-left: 0!important
+    }
+    .common-click {
+        padding-left: 0!important
+    }
+    section.fix-sidebar {
+        /* display: none */
+    }
+    section.crypto .container {
+        max-width: 100%
+    }
+    section.download .container {
+        max-width: 100%
+    }
+    section.network .container {
+        max-width: 100%
+    }
+	.work-block {
+		padding-left: 0 !important;
+	}
+	.pick-blocks .parts:hover ,
+	section.network .bounce-phase:hover ,
+	section.network .bg-img:hover{
+		transform: scale(1);
+		-webkit-transform: scale(1);
+		-moz-transform: scale(1);
+		-ms-transform: scale(1);
+		-o-transform: scale(1);
+    }	
+    body.for_two_menu.show_two_main .common-click ,
+    body.for_two_menu.show_two_small .common-click ,
+    body.tutorial.for_two_menu.show_two_main .work-block ,
+    body.for_two_menu.show_two_small .work-block{
+        padding-left: 0px !important;
+    }
+}
+
+@media (max-width:991px) {
+    .two-logo .top .icon-one {
+        height: 25px;
+        margin: 5px 5px 0 0;
+    }
+    .two-logo .top .icon-2 {
+        height: 35px;
+        width: auto;
+    }
+    .coin-blk {
+        padding: 0
+    }
+    .col-md-6.full-width-div {
+        -ms-flex: 0 0 50%;
+        flex: 0 0 100%;
+        max-width: 100%
+    }
+    .col-md-4.full-width-div {
+        -ms-flex: 0 0 50%;
+        flex: 0 0 100%;
+        max-width: 100%
+    }
+    .col-4.full-width-div {
+        -ms-flex: 0 0 50%;
+        flex: 0 0 100%;
+        max-width: 100%
+    }
+    .exchange-text {
+        margin-bottom: 25px
+    }
+    section.network .our-sco4:after {
+        right: -86px
+    }
+    section.form-tabs .form-head h1 {
+        font-size: 20pt
+    }
+    section.form-tabs .form-head h1 {
+        margin: 25px 0;
+        margin-top: 40px
+    }
+    section.form-tabs .one-cus {
+        margin-bottom: 0
+    }
+    section.network .bounce-phase.bounce-phase-yellow {
+        margin-bottom: 60px
+    }
+    section.network .our-sco1.our-sco-margin {
+        padding-top: 40px!important;
+        padding-bottom: 40px
+    }
+    .shop-img img {
+        max-width: 350px
+    }
+    section.help_cus.shop-sec .container {
+        max-width: 80%
+    }
+    .shop-blk {
+        margin: 10px 0
+    }
+    .help_bottom {
+        float: none!important;
+        padding-top: 40px!important;
+        padding-right: 0!important
+    }
+    .help_bottom ul {
+        text-align: center!important;
+        margin: 0;
+        padding: 0
+    }
+    .help_bottom ul li:nth-child(1) {
+        display: block!important
+    }
+    .help_bottom ul li:nth-child(1) span {
+        margin-right: 0
+    }
+    .help_bottom ul li span {
+        margin-bottom: 15px;
+        display: block!important;
+        text-align: center!important
+    }
+    .help_bottom a {
+        padding-left: 0
+    }
+    .report-sec #pills-home table tbody tr td {
+        padding: 20px;
+        min-width: 250px!important
+    }
+    section.crypto .crypto-tbl table tbody tr td {
+        padding: 20px
+    }
+    section.crypto .crypto-tbl table tbody tr th {
+        padding: 20px
+    }
+    section.crypto .l-tbl ul li {
+        display: block
+    }
+    section.crypto .r-tbl ul li {
+        display: block
+    }
+    section.crypto .l-tbl ul li span {
+        font-size: 12px
+    }
+    section.crypto .r-tbl ul span {
+        font-size: 12px
+    }
+    .crypto-tbl .table-responsive-md {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: -ms-autohiding-scrollbar
+    }
+    .help-blk .row .help_bottom a {
+        padding-left: 0
+    }
+    .step-by .top-universal {
+        padding-bottom: 20px;
+        padding: 20px
+    }
+    section.pop-up .modal.show .modal-dialog {
+        padding-top: 0!important
+    }
+    .modal-dialog {
+        max-width: 600px!important
+    }
+    section.pop-up img.abs-img {
+        top: 18px;
+        left: 20px
+    }
+    section.help_cus .container {
+        max-width: 100%
+    }
+    body.menu_toogle .common-click {
+        padding-left: 0!important
+    }
+    .common-click {
+        padding-left: 0!important
+    }
+    section.fix-sidebar,
+    section.fix-sidebar.fix-two {
+        left: -310px
+    }
+    .menu_toogle section.fix-sidebar,
+    .menu_toogle section.fix-sidebar.fix-two {
+        left: 0
+    }
+    .help_bottom {
+        padding-top: 0!important;
+        padding-bottom: 30px
+    }
+    .dashboard-header .part-left .logo-outer {
+        padding: 10px 20px 10px 20px
+    }
+    .dashboard-header .part-left .logo-icon-menu {
+        padding-right: 20px
+    }
+    img.drop {
+        padding: 0 5px
+    }
+    .dashboard-header .new-drop {
+        padding-left: 5px;
+        padding-right: 0;
+        min-width: 155px
+    }
+    .dashboard-header span.switch-top {
+        margin-left: 2px;
+        display: none
+    }
+    .buy-block ul li {
+        padding-left: 10px;
+        padding-right: 12px
+    }
+    .buy-block ul li:nth-child(6) {
+        padding-left: 10px;
+        padding-right: 12px
+    }
+    .pick-blocks {
+        padding-bottom: 50px
+    }
+    .custom-download .top-padding {
+        padding-bottom: 50px;
+        padding-top: 40px
+    }
+    .videos-inner {
+        margin-bottom: 120px
+    }
+    .for-logos img.setting-icon {
+        height: 25px;
+        margin: 5px 5px 0 0
+    }
+    .for-logos img.setting-logo {
+        height: 45px;
+        width: auto
+    }
+    section.network .our-sco1 h3:after {
+        left: 80px
+    }
+    section.network .full-width-div {
+        margin-bottom: 15px!important
+    }
+    .pick-blocks {
+        background-position: top 60px right
+    }
+    section.network .bottom-one {
+        bottom: 0;
+        right: 0
+    }
+    section.side-fix-icon {
+        left: -120px
+    }
+    .form-tabs .google-rgt {
+        margin-top: 30px
+    }
+    section.form-tabs ul.doted {
+        margin-top: 5px
+    }
+	.fees-block .fees-top .top-hdg .hdg {
+		font-size: 24px;
+		margin-bottom: 1.6rem;
+	}
+	.fees-block .fees-btm .fees-table {
+		padding: 30px 15px; 
+	}
+	#crypto-history .tableBodyScroll thead {
+		display: table-header-group !important;
+	}
+	#crypto-history tbody tr  {
+		display: table-row!important;
+	}
+	
+	#crypto-history .tableBodyScroll tbody  {
+		display: table-row-group !important;
+	}
+	#crypto-history table.balance-table tbody tr td {
+		min-width: 150px;
+		font-size: 12px;
+	}
+	.profile-menu {       
+        right: -50px;
+    }
+}
+
+@media (max-width:767px) {
+    section.download .download-tbl table tbody tr td {
+        padding: 20px;
+        min-width: 100px!important
+    }
+    section.download .help-left h1 {
+        margin-bottom: 25px
+    }
+    section.download .help-rgt {
+        float: none;
+        margin: auto;
+        text-align: center
+    }
+    .congats-content {
+        padding: 50px 0
+    }
+    .help-left {
+        text-align: center
+    }
+    .exchange-text {
+        padding-left: 0;
+        padding-right: 0
+    }
+    .coin-blk img.mr-3.mt-3.rounded-circle {
+        max-width: 40px;
+        width: 40px;
+        margin-right: 5px!important;
+        top: 0
+    }
+    section.network .our-sco4 {
+        max-width: 50%
+    }
+    .media-body.inner-ex p span {
+        font-size: 12px
+    }
+    .media-body.inner-ex p span small {
+        font-size: 12px
+    }
+    .media-body.inner-ex h4 {
+        font-size: 14px
+    }
+    section.form-tabs div#pills-tabContent {
+        padding-left: 0;
+        padding-right: 0
+    }
+    section.form-tabs .nav-pills .nav-link {
+        padding: 0;
+        font-size: 20pt
+    }
+    section.form-tabs .google-tbl-one table tbody tr td {
+        padding: 20px;
+        min-width: 250px!important
+    }
+    section.form-tabs .google-tbl-two table tbody tr td {
+        padding: 20px;
+        min-width: 250px!important
+    }
+    section.form-tabs ul.ggogle-top li p {
+        font-size: 15pt
+    }
+    section.form-tabs ul.doted li {
+        width: 31.33%
+    }
+    section.form-tabs .our-sco1 h3:after {
+        width: 50%
+    }
+    section.help_cus .media {
+        display: block
+    }
+    section.help_cus .media-body span {
+        padding-top: 0
+    }
+    section.help_cus h5.mt-0 {
+        font-size: 24px
+    }
+    section.help_cus button.inner-form-btn {
+        padding: 15px 30px;
+        margin-bottom: 15px
+    }
+    section.help_cus .help-rgt {
+        float: none;
+        text-align: center;
+        margin-top: 25px
+    }
+    section.network .container {
+        max-width: 100%
+    }
+    section.network.u_games .nav-pills .nav-link {
+        font-size: 10pt
+    }
+    .r-tbl .dropdown-menu.show {
+        transform: translate3d(-60px, 21px, 0)!important
+    }
+    section.crypto .l-tbl {
+        width: 60%
+    }
+    section.crypto .r-tbl {
+        width: 40%
+    }
+    .help_cus button.inner-form-btn.particles-button.button.button--ujarak.button--border-thick.button--text-upper.button--size-s.button--inverted.button--text-thick {
+        top: 12px;
+        margin: 0;
+        padding: 10px 30px;
+        max-width: max-content
+    }
+    section.fix-sidebar {
+        left: -100%
+    }
+    section.fix-sidebar.fix-two {
+        left: 0
+    }
+    .help_bottom {
+        padding-top: 0!important;
+        padding-bottom: 30px
+    }
+    .help-blk .help_bottom ul li:nth-child(1) {
+        margin-left: 0;
+        margin-right: 0
+    }
+    .step-by {
+        padding-bottom: 55px
+    }
+    section.network {
+        padding-bottom: 80px
+    }
+    section.form-tabs {
+        padding-bottom: 70px
+    }
+    section.pop-up .row.main-padding .col-6 {
+        flex: 0 0 100%;
+        max-width: 100%
+    }
+    section.pop-up .row.main-padding {
+        padding: 15px
+    }
+    section.pop-up .modal.show .modal-dialog {
+        padding-top: 480px!important
+    }
+    section.pop-up div#myModal {
+        padding-right: 20px!important;
+        padding-left: 20px!important
+    }
+    body.menu_toogle .common-click {
+        padding-left: 0!important
+    }
+    .common-click {
+        padding-left: 0!important
+    }
+    .drop1 {
+        min-width: auto!important;
+        padding-right: 5px!important;
+    }
+    /* .buy-block ul.toggle-menu li:nth-child(1),
+    .buy-block ul.toggle-menu li:nth-child(2) {
+        display: none
+    } */
+    .buy-block ul.toggle-menu li:nth-child(2) a{
+        font-size: 8px;
+        padding: 2px 4px;
+        line-height: 12px;
+    }
+    .buy-block ul.toggle-menu li:nth-child(2) ,
+    .buy-block ul.toggle-menu li:nth-child(3) {
+        display: none
+    }
+	.dashboard-header .part-left .logo-outer .for-logo img {
+		height: 26px;
+		margin-top: 8px;
+	}
+    .videos-inner {
+        margin-bottom: 60px
+    }
+    section.network .our-sco {
+        margin: 25px 0 0
+    }
+    .form-tabs .custom-form-tabs #pills-tabContent .tab-pane .container-fluid {
+        max-width: 100%
+    }
+    section.form-tabs ul#pills-tab li {
+        margin: 0 12px
+    }
+    section.form-tabs .nav-pills .nav-link {
+        font-size: 16px;
+        line-height: 30px
+    }
+    section.form-tabs ul#pills-tab li:before {
+        right: -20px
+    }
+    section.form-tabs .form-head h1 {
+        font-size: 20px
+    }
+    section.form-tabs .form-head h1 {
+        margin: 20px 0 10px!important
+    }
+    .network-inner {
+        padding-bottom: 20px
+    }
+    .pick-blocks {
+        padding-bottom: 20px
+    }
+    .download {
+        padding-bottom: 100px
+    }
+    section.help_cus {
+        padding-bottom: 100px
+    }
+    .ballon-chat {
+        right: 0!important;
+        max-height: 90vh;
+        /* width: 285px!important; */
+        width: 320px!important;
+    }
+	.dots-tabs li a.nav-link {
+		font-size: 16px;
+	}
+	.dots-tabs li {
+		margin: 0 15px;
+	}
+	.dots-tabs li:before {
+		right: -20px;
+	}
+	.dashboard-header p.new-top {
+		font-size: 10px;
+	}
+	.dashboard-header .part-left .logo-outer .for-logo img {
+		height: 15px;
+		margin-top: 15px;
+    }
+    a.for_moblie_blc {
+		display: block;
+    }
+    body.for_two_menu.show_two_main .fix-sidebar{
+        display: none !important;
+    }
+    .profile-menu .for_mobile_buy{
+        display:block;
+    }
+}
+
+@media (max-width:767px) and (orientation:landscape) {
+    section.pop-up .modal.show .modal-dialog {
+        padding-top: 690px!important
+    }
+    section.side-fix-icon {
+        overflow: scroll;
+        padding-bottom: 100px
+    }
+}
+
+@media (max-width:640px) {
+    .dashboard-header .part-left .logo-icon-menu {
+        padding-right: 5px;
+    }
+    .profile-menu {
+        right: -2px
+    }
+    section.form-tabs ul.doted {
+        display: none
+    }
+    section.form-tabs ul.ggogle-top li {
+        display: block;
+        margin: 5px 0
+    }
+    .form-tabs .google-rgt {
+        margin-top: 20px
+    }
+    section.form-tabs ul.ggogle-top li p {
+        margin: 0;
+        font-size: 13pt
+    }
+    section.form-tabs ul.ggogle-top li p img {
+        max-width: 22px
+    }
+	.exchange-graph .right-block .right-top{
+		flex-wrap:wrap;
+	}
+	.exchange-graph .right-block .right-top .orderBook, 
+	.exchange-graph .right-block .right-top .deals {
+		width: 100%;
+		max-width: 100%;
+		min-width: 100%;
+	}
+	.exchange-graph .right-block {
+		width: 100%;
+		min-width: 100%;
+	}
+}
+
+@media (max-width:540px) {
+    .dashboard-header p.new-top {
+        font-size: 7px;
+        display:none;
+    }
+    .buy-block ul li.title-drop {
+        padding-left: 4px;
+        padding-right: 5px
+    }
+    .buy-block ul li {
+        padding-left: 3px;
+        padding-right: 3px
+    }
+    img.money2 {
+        width: 14px;
+        height: 14px
+    }
+    img.ovel1 {
+        left: 12px;
+        max-width: 7px;
+    }
+    .buy-block ul li:nth-child(5) {
+        padding-left: 0px;
+        padding-right: 0px
+    }
+    img.money3 {
+        max-width: 13px;
+    }
+    .dashboard-header img.drop.nav-link.dropdown-toggle {
+        height: 13px;
+        width: auto
+    }
+    .dashboard-header .part-left .logo-outer .for-logo img {
+        /* height: 26px; */
+        margin-top: 14px;
+    }
+    .dashboard-header .new-drop .dropdown-menu {
+        width: 135px;
+        min-width: 100px
+    }
+    .dashboard-header .new-drop a.dropdown-item {
+        font-size: 10px;
+        line-height: 18px
+    }
+    .buy-block ul li img.menu-arrow {
+        height: 3px;
+    }
+    .buy-block ul li.title-drop img.money1 {
+        width: 14px;
+    }
+    .exchange-graph .right-block .form-buy .form-group .for-name {
+        font-size: 8px;
+    }    
+}
+
+@media (max-width:430px) {
+    .dashboard-header .part-left .logo-outer {
+        padding: 20px 10px 10px 5px
+    }
+    .dashboard-header .part-left .logo-outer .for-logo img {
+        height: 13px;
+        margin-top: 0;
+    }
+    .dashboard-header .part-left .logo-icon-menu .menu-icon img {
+        height: 8px;
+    }
+    .buy-block ul li {
+        padding-top: 18px
+    }
+    .profile-menu {
+        right: -32px
+    }
+    .profile-menu {
+        width: 175px
+    }
+    .profile-menu a {
+        font-size: 13px;
+        line-height: 24px
+    }
+    .dashboard-header .new-drop a.dropdown-item {
+        padding: 5px 5px;
+    }
+    .dashboard-header .new-drop .dropdown-menu {
+        width: 115px;
+    }
+}
+
+@media (min-width:768px) {
+    .drop2-outer {
+        display: none!important
+    }
+}

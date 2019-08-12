@@ -23,10 +23,35 @@
 						</div>
 						<div class="update-info for-banner-btn">
 							<button [disabled]="isSendDisabled" (click)="sendFriendReq()" *ngIf="user_status == 'Not Friend'" class="btn btn-grey"><i class="fas fa-user-plus"></i>Add Friend</button>
-							<button  *ngIf="user_status == 'Friend'" class="btn btn-grey"><i class="fas fa-check"></i>Friend</button>
+							<!-- <button  *ngIf="user_status == 'Friend'" class="btn btn-grey"><i class="fas fa-check"></i>Friend</button> -->
+ 
+							<div class="dropdown dots-dd btn-dd">
+								<button  *ngIf="user_status == 'Friend'" class="btn btn-grey dropdown-toggle" data-toggle="dropdown">Friend <i class="fas fa-sort-down"></i></button>
+								<div class="dropdown-menu">
+								  <a class="dropdown-item" href="#">Unfriend</a>
+								 
+								</div>
+							  </div>
+
+							  <div class="dropdown dots-dd btn-dd">
+								<button  *ngIf="user_status == 'Request Sent'" class="btn btn-grey dropdown-toggle" data-toggle="dropdown">Friend Request Sent <i class="fas fa-sort-down"></i></button>
+								<div class="dropdown-menu">
+								  <a class="dropdown-item" href="#">Cancel Request</a>
+								  
+								</div>
+							  </div>
+
+							  <div class="dropdown dots-dd btn-dd">
+								<button  [disabled]="isAcceptDisabled" *ngIf="user_status == 'Accept Request'" class="btn btn-grey dropdown-toggle" data-toggle="dropdown">Confirm Request <i class="fas fa-sort-down"></i></button>
+								<div class="dropdown-menu">
+								  <a class="dropdown-item" (click)="acceptReq()">Confirm Request</a>
+								  <a class="dropdown-item" href="#">Delete Request</a>
+								</div>
+							  </div>
+
 							<!-- <button  *ngIf="user_status == 'Friend'" class="btn btn-grey"><i class="fas fa-check"></i>Remove</button> -->
-							<button *ngIf="user_status == 'Request Sent'" class="btn btn-grey"><i class="fas fa-check"></i>Friend Request Sent</button>
-							<button [disabled]="isAcceptDisabled" (click)="acceptReq()" *ngIf="user_status == 'Accept Request'" class="btn btn-grey">Confirm Request</button>
+							<!-- <button *ngIf="user_status == 'Request Sent'" class="btn btn-grey"><i class="fas fa-check"></i>Friend Request Sent</button> -->
+							<!-- <button [disabled]="isAcceptDisabled" (click)="acceptReq()" *ngIf="user_status == 'Accept Request'" class="btn btn-grey">Confirm Request</button> -->
 							<!-- <button class="btn btn-grey"><span><i class="fas fa-list"></i></span>Activity log</button> -->
 						</div>
  					</div>
