@@ -74,7 +74,6 @@ export class GeneralFeedComponent implements OnInit {
     this.img_url = environment.img_url;
     this.socket_url = environment.socket_url;
     this.socket = io.connect(this.socket_url);
-    
    }
 
    ngOnInit() {
@@ -513,8 +512,6 @@ addInComment(evt,cmt){
     
     //console.log(event.target.value)
      this.data_service.postAdClickandImpressions(formData).subscribe((response) => {
-
-
      console.log(response)
 
 
