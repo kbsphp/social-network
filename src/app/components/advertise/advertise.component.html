@@ -193,9 +193,10 @@
 			</div> -->
 
 <div class="form-group">
-	<div class="row">
-		<div class="col-6 lft-part">
-			<button class="btn-grey" > SAVE</button>
+<div class="row">
+		<div class="col-2">&nbsp;</div>
+		<div class="col-4 rgt-part">
+			<button  class="btn-large btn-grey"> SAVE</button>
 		</div>
 	</div>
 </div>	
@@ -214,7 +215,7 @@
 	<div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
 		<div class="card-body">
 			<div class="cus-tabs custom-cl">  
-				<ul class="nav nav-tabs mb-4">
+			<!-- 	<ul class="nav nav-tabs mb-4">
 					<li class="active show">
 						<a class="show active" data-toggle="tab" href="#general-setting">General Setting</a>
 					</li>
@@ -223,7 +224,7 @@
 						<li>
 							<a data-toggle="tab" href="#account-setting" class="show">Account Setting</a>
 						</li>
-					</ul>
+					</ul> -->
 					<div class="tab-content">
 						<div id="general-setting" class="tab-pane fade show active"> 	
 							<div class="social-form">
@@ -416,12 +417,192 @@
 	</div>
 </div>
 
+<div class="form-group">
+				<div class="row">
+					<div class="col-2 lft-part">
+						<label for="adDelivery">Ad delivery</label>
+					</div>
+					<div class="col-4 rgt-part">
+			
+
+		<select class="form-control"  id="adDelivery" name="ad_delivery" formControlName="ad_delivery">
+			<option value="">Please Select</option>
+           	<option value="click">Click</option>
+			<option value="impression">Impression</option>
+		</select>
+		<!-- </div> -->
+	 </div>
+	</div>
+</div>
+
+ <div class="form-group">
+	<div class="row">
+		<div class="col-2 lft-part">
+			<label for="email"></label>
+		</div>
+		<div class="col-9 rgt-part">
+			<p>Uzyth aims to spend your entire budget and get the most conversion using lowest cost bid strategy.</p>
+		</div>
+	</div>
+</div>
+
+ 
+ <div class="form-group">
+	<div class="row">
+		<div class="col-2 lft-part">
+			<label for="budget">Budget and Scheduled</label>
+		</div>
+		<div class="col-4 rgt-part">
+   <select class="form-control" id="budgetandscheduled" name="buget_schedule" formControlName="buget_schedule">
+	<option value="">Please Select</option>
+	<option value="daily_budget">Daily Budget</option>
+ </select>
+</div>
+</div>
+</div>
+
+  <div class="form-group">
+	<div class="row">
+		<div class="col-2 lft-part">
+			<label for="Actual Amount"></label>
+		</div>
+		<div class="col-4 rgt-part">
+			<input type="text" class="form-control mt-2" name="actual_amount" formControlName="actual_amount" id="actualAmount" value="5"  >
+			<p>Actual amount spend may be vary.</p>
+		</div>
+	</div>
+</div>
+  
+  <div class="form-group">
+	<div class="row">
+		<div class="col-2 lft-part">
+			<label for="conversionWindow">Conversion window</label>
+		</div>
+		<div class="col-4 rgt-part">
+	
+		<select class="form-control" id="converstaion_window" name="conversion_window" formControlName="conversion_window">
+			<option value="">Please Select</option> 
+			<option value="7_day_click_or_1_day_view">7 day click or 1 day view</option>
+			
+	  </select> 
+</div>
+</div>
+</div>
+
+ 
+ <div class="form-group">
+	<div class="row">
+		<div class="col-2 lft-part">
+			<label for="charged">When you get charged:</label>
+		</div>
+		<div class="col-4 rgt-part">
+			<p style="margin: 0;">Impression</p>
+		</div>
+	</div>
+</div>
+
+ <div class="form-group">
+			<div class="row">
+				<div class="col-2 lft-part">
+					<label for="country">Account Country</label>
+				</div>
+				<div class="col-4 rgt-part">
+				
+				<select id="country11" name="account_country" formControlName="account_country">
+					
+					<option value="">Please Select</option>
+					<option *ngFor='let controlList of countries' [value]="controlList.countryId">{{controlList.name}}</option>
+				</select>
+        </div>
+    </div>
+</div>
+
+<div class="form-group">
+	<div class="row">
+		<div class="col-2 lft-part">
+			<label for="currency">Currency</label>
+		</div>
+		<div class="col-4 rgt-part">
+		<select id="currency" name="currency" formControlName="currency">
+			<option value="">Please Select</option>
+			<option value="uzyth">Uzyth</option>
+		</select>
+</div>
+</div>
+</div>
+
+
+
+<div *ngIf="notMatched != ''  && notMatched != undefined" class="alert alert-danger alert-dismissible">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Alert!</strong> {{notMatched}}
+</div>
+<div class="form-group">
+	<div class="row">
+		<div class="col-2 lft-part">
+			<label for="date_from">Start Date</label>
+		</div>
+		<div class="col-4 rgt-part">
+			<ng-datepicker name="from_date" formControlName="from_date"  [options]="options" ></ng-datepicker>
+		</div>
+	</div>
+</div>
 
 
 <div class="form-group">
 	<div class="row">
-		<div class="col-6 lft-part">
-			<button (click)="saveGeneralSetting()" class="btn-grey"> SAVE</button>
+		<div class="col-2 lft-part">
+			<label for="date_from">End Date</label>
+		</div>
+		<div class="col-4 rgt-part">
+			<ng-datepicker name="to_date" formControlName="to_date" [options]="options" ></ng-datepicker>
+		</div>
+	</div>
+</div>
+ 
+
+<div class="form-group">
+	<div class="row">
+		<div class="col-2 lft-part">
+			<label for="timeZone">Time Zone</label>
+		</div>
+		<div class="col-4 rgt-part">
+			<select id="currency" name="timezone" formControlName="timezone">
+				<option value="">Please Select</option>
+				<option value="pacific">Pacific</option>
+			</select>
+		</div>
+	</div>
+</div>
+
+<div class="form-group">
+	<div class="row">
+		<div class="col-2 lft-part">
+			<label for="accountName">Ad Account Name</label>
+		</div>
+		<div class="col-4 rgt-part">
+			<input type="text" class="form-control" id="accountName" placeholder="Account name" name="ad_account_name" formControlName="ad_account_name">
+		</div>
+	</div>
+</div>
+
+<div class="form-group">
+	<div class="row">
+		<div class="col-2 lft-part">
+			<label for="email"></label>
+		</div>
+		<div class="col-4 rgt-part">
+			<p>Use your own name or the name of your business you'll advertise.</p>
+		</div>
+	</div>
+</div>
+
+
+<div class="form-group">
+	<div class="row">
+		<div class="col-2">&nbsp;</div>
+		<div class="col-4 rgt-part">
+			<button (click)="saveGeneralSetting()" class="btn-large btn-grey"> SAVE</button>
 		</div>
 	</div>
 </div>
@@ -429,7 +610,7 @@
 </div>
 </div>
 
-<div id="ad-setting" class="tab-pane fade">
+<!-- <div id="ad-setting" class="tab-pane fade">
 	<div class="social-form">
 		<div *ngIf="adSettingSuccess != '' && adSettingSuccess != undefined ">
 
@@ -449,24 +630,13 @@
 
 		<select class="form-control"  id="adDelivery" name="ad_delivery" formControlName="ad_delivery">
 			<option value="">Please Select</option>
-           	<option value="converstaion">Conversations</option>
+           	<option value="click">Click</option>
 			<option value="impression">Impression</option>
 		</select>
-		<!-- </div> -->
+
 	 </div>
 	</div>
 </div>
-
-		<!-- <div class="form-group">
-		<div class="row">
-		<div class="col-2 lft-part">
-		<label for="email">Cost Control:</label>
-		</div>
-		<div class="col-4 rgt-part">
-		<input type="email" class="form-control" id="email" placeholder="Add/created custom audience">
-		</div>
-		</div>
-		</div> -->
 
 <div class="form-group">
 	<div class="row">
@@ -485,16 +655,7 @@
 			<label for="budget">Budget and Scheduled</label>
 		</div>
 		<div class="col-4 rgt-part">
-			<!-- <div class="dropdown">
-			<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			Daily Budget
-			</button>
-			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-			<a class="dropdown-item" href="#">Daily Budget</a>
-			<a class="dropdown-item" href="#">Daily Budget</a>
-			<a class="dropdown-item" href="#">Daily Budget</a>
-			</div>
-			</div> -->
+		
    <select class="form-control" id="budgetandscheduled" name="buget_schedule" formControlName="buget_schedule">
 	<option value="">Please Select</option>
 	<option value="daily_budget">Daily Budget</option>
@@ -521,20 +682,10 @@
 			<label for="conversionWindow">Conversion window</label>
 		</div>
 		<div class="col-4 rgt-part">
-		<!-- <div class="dropdown">
-		<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		7 days click or 1 day view
-		</button>
-		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-		<a class="dropdown-item" href="#">Action</a>
-		<a class="dropdown-item" href="#">Another action</a>
-		<a class="dropdown-item" href="#">Something else here</a>
-		</div>
-		</div> -->
+		
 		<select class="form-control" id="converstaion_window" name="conversion_window" formControlName="conversion_window">
 			<option value="">Please Select</option> 
-			<option value="7_day_click_or_1_day_view">7 day click or 1 day view</option><!-- <option value="20_clicks">20 clicks</option>
-			<option value="1000_impression">1000 impression</option> -->
+			<option value="7_day_click_or_1_day_view">7 day click or 1 day view</option>
 			
 	  </select> 
 </div>
@@ -562,9 +713,9 @@
 
 </form>
 </div>
-</div>
+</div> -->
 
-<div id="account-setting" class="tab-pane fade">
+<!-- <div id="account-setting" class="tab-pane fade">
 	<div class="social-form">
         <div *ngIf="accountSettingSuccess != '' && accountSettingSuccess != undefined ">
 
@@ -651,7 +802,7 @@
 </form>
 </div>
 
-</div>
+</div> -->
 </div>
 </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ElementRef,ViewChild } from '@angular/core';
 import { DataService } from '../../shared/data.service';
 import { DatePipe } from '@angular/common';
 import * as emoji from 'node-emoji';
@@ -52,10 +52,14 @@ export class GeneralFeedComponent implements OnInit {
   chunk_Start : any;
   newArray : any = [];
   comntEmoji:boolean=false;
+  adsArray:any=[];
+  adsType:string='';
+  @ViewChild('myDiv') myDiv: ElementRef;
   constructor(
     private data_service: DataService,
     private datePipe: DatePipe,
-    private router: Router
+    private router: Router,
+    private elm:ElementRef
   ) {
     this.base_url = environment.base_url;
     this.img_url = environment.img_url;
@@ -63,17 +67,35 @@ export class GeneralFeedComponent implements OnInit {
     this.socket = io.connect(this.socket_url);
      let user = JSON.parse(localStorage.getItem('userData'));
     this.profile_picture = user.profile_picture;
-   }
 
+    /// this.adsType=elm.nativeElement.getAttribute('data-type');
+
+    //console.log(elm.nativeElement)
+ //console.log(this.myDiv.nativeElement.innerHTML);
+
+   }
+ // ngAfterViewInit() {
+       
+ //    }
   ngOnInit() {
     this.user_id = sessionStorage.getItem('user_id');
     this.generalPostAllList();
     this.userDetails();
     this.findFriendList();
+     this.data_service.getsAllAds().subscribe((response) => {
+      console.log(response);
+      this.adsArray=response['body'];
+      console.log(this.adsArray)
+      this.adsArray=this.adsArray.sort(() => Math.random() - 0.5);
+    } )
     this.data_service.currentMessage.subscribe
     (message => {
       this.post_data.unshift(message);
     })
+
+
+
+
   }
 
   userDetails(){
@@ -436,5 +458,35 @@ addInComment(evt,cmt){
 
   closePhoto() {
     this.showSlider=false;
+  }
+
+  onClickAd(event) {
+    let target = event.target || event.srcElement || event.currentTarget;
+    let idAttr = target.attributes.id;
+    let id = idAttr.nodeValue;
+     
+    console.log(id)
+   //  let formData=
+  const selectEl = event.target;
+  //console.log(); return;
+  const type = selectEl.dataset.type
+    var formData={
+               "id":this.user_id,
+               "adID":id,
+               "count":1,
+               "type":type,
+               "date":new Date()
+
+      }
+
+    
+    //console.log(event.target.value)
+     this.data_service.postAdClickandImpressions(formData).subscribe((response) => {
+
+
+     console.log(response)
+
+
+     })
   }
 }

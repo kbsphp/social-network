@@ -30,7 +30,7 @@ import { PhotosComponent } from './components/photos/photos.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
-
+import { NgDatepickerModule } from 'ng2-datepicker';
 
 @NgModule({
   declarations: [
@@ -59,7 +59,8 @@ import { SideBarComponent } from './components/side-bar/side-bar.component';
     FormsModule,
     ReactiveFormsModule,
     PickerModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    NgDatepickerModule
   ],
 
 

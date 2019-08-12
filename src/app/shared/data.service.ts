@@ -341,7 +341,7 @@ headers : any;
    }
    
    const httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json','authorization': this.token })};
-   return this._http.post(this.base_url+'generalSettings/', formdata,httpOptions);
+   return this._http.post(this.base_url+'socialAdvertisement/', formdata,httpOptions);
 
  }
 
@@ -383,5 +383,35 @@ headers : any;
 
 
   }
+
+  getsAllAds() {
+     if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null){
+     this.token = sessionStorage.getItem('token');
+   }
+
+   //  var input_id={
+   //   "userID":userId
+   // }
+  
+   const httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json','authorization': this.token })};
+
+   return this._http.get(this.base_url+'fetchadvertisement/', httpOptions);
+  }
+  
+  
+  postAdClickandImpressions(formdata)
+  {
+    if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null){
+     this.token = sessionStorage.getItem('token');
+   }
+
+
+  const httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json','authorization': this.token })};
+
+   return this._http.post(this.base_url+'getDailyBugetCal/',formdata ,httpOptions);
+
+  }
+
+  
 
 }
