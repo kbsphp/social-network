@@ -95,7 +95,7 @@
 												<div class="media">
 													<img src="{{img_url}}{{cmt.profile_picture}}">
 													<div class="media-body">
-														<p *ngIf="edit_comment != true || cmt.id != cmtId"><b (click)="openUserProfile(cmt.user_id)">{{cmt.username}}</b>{{convetToEmoji(cmt.comment)}} {{cmt.comment_create_date}}</p>
+														<p class="comment-block" *ngIf="edit_comment != true || cmt.id != cmtId"><b (click)="openUserProfile(cmt.user_id)">{{cmt.username}}</b>{{convetToEmoji(cmt.comment)}} <span class="comment-time">{{toLocalDate(cmt.comment_create_date)}}</span></p>
 														<div class="custom-msg" *ngIf="edit_comment && cmt.id == cmtId"> <input  class="form-control" (keyup.enter)="updateComment(cmt)" [(ngModel)]="cmt.comment" style="resize:none" type="text" >
 															<span class="comnt-empji" (click)="commentEmoji(cmt.id,cmt)"><i class="far fa-smile" aria-hidden="true" ></i></span>
 														</div>
@@ -117,7 +117,7 @@
 													<div class="media-body">
 														<div class="custom-msg">
 															<input (keyup.enter)="post_comment(post.id,post.postcomment,post)" class="form-control" [(ngModel)]="post.postcomment" name="postcomment"  style="resize:none" type="text" [disabled]="disable_postcomment" placeholder="Write a comment...">
-															<span class="comnt-empji" (click)="onClickEmoji()">
+															<span class="comnt-empji" (click)="onClickEmoji(post.id)">
 																<i class="far fa-smile" aria-hidden="true" ></i>
 															</span>
 														</div>

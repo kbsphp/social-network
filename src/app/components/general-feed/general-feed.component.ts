@@ -1,8 +1,5 @@
-// <<<<<<< HEAD
 import { Component, OnInit,HostListener,ElementRef,ViewChild } from '@angular/core';
-// =======
-// import { Component, OnInit, } from '@angular/core';
-// >>>>>>> 4760cc5c4ad3573a1cc7704878e839806f6a6e15
+
 import { DataService } from '../../shared/data.service';
 import { DatePipe } from '@angular/common';
 import * as emoji from 'node-emoji';
@@ -58,15 +55,14 @@ export class GeneralFeedComponent implements OnInit {
   chunk_Start : any;
   newArray : any = [];
   comntEmoji:boolean=false;
-// <<<<<<< HEAD
   adsArray:any=[];
   adsType:string='';
   @ViewChild('myDiv') myDiv: ElementRef;
-// =======
+
   showScroll: boolean;
   showScrollHeight = 200;
   hideScrollHeight = 10;
-// >>>>>>> 4760cc5c4ad3573a1cc7704878e839806f6a6e15
+
   constructor(
     private data_service: DataService,
     private datePipe: DatePipe,
@@ -77,39 +73,11 @@ export class GeneralFeedComponent implements OnInit {
     this.img_url = environment.img_url;
     this.socket_url = environment.socket_url;
     this.socket = io.connect(this.socket_url);
-// <<<<<<< HEAD
-     let user = JSON.parse(localStorage.getItem('userData'));
-    this.profile_picture = user.profile_picture;
-// =======
     
    }
 
-
-    /// this.adsType=elm.nativeElement.getAttribute('data-type');
-
-    //console.log(elm.nativeElement)
- //console.log(this.myDiv.nativeElement.innerHTML);
-
-   //}
- // ngAfterViewInit() {
        
- //    }
   ngOnInit() {
-// <<<<<<< HEAD
-    this.user_id = sessionStorage.getItem('user_id');
-    this.generalPostAllList();
-    this.userDetails();
-    this.findFriendList();
-     this.data_service.getsAllAds().subscribe((response) => {
-      console.log(response);
-      this.adsArray=response['body'];
-      console.log(this.adsArray)
-      this.adsArray=this.adsArray.sort(() => Math.random() - 0.5);
-    } )
-    this.data_service.currentMessage.subscribe
-    (message => {
-// =======
-    //this.user_id = sessionStorage.getItem('user_id');
 
     setTimeout(()=>{
       this.userDetails();
@@ -118,12 +86,8 @@ export class GeneralFeedComponent implements OnInit {
     },2000);
    
     this.data_service.currentMessage.subscribe(message => {
-// >>>>>>> 4760cc5c4ad3573a1cc7704878e839806f6a6e15
       this.post_data.unshift(message);
     })
-
-
-})
 
   }
 
@@ -180,7 +144,7 @@ export class GeneralFeedComponent implements OnInit {
     	"start": this.chunk_Start == undefined ? 0 : this.chunk_Start,
     	"userID": this.user_id    	
     };
-  // console.log(JSON.stringify(inputJson, undefined, 2));
+    //console.log(JSON.stringify(inputJson, undefined, 2));
     this.data_service.generalPostData(inputJson).subscribe((response)=>{
      // console.log(JSON.stringify(response, undefined, 2));
         if(response['error']== false){
@@ -188,7 +152,7 @@ export class GeneralFeedComponent implements OnInit {
            this.showPosts=true;
            this.loading=false;
            this.post_data = this.newArray;
-           console.log(this.post_data);
+           //console.log(this.post_data);
 
         }else{
           //console.log(this.post_data.length);
@@ -265,7 +229,8 @@ export class GeneralFeedComponent implements OnInit {
     this.isShow="";
   }
 
-  onClickEmoji() {
+  onClickEmoji(pvrId) {
+    console.log(pvrId);
     this.emojiHide = true;
   }
 

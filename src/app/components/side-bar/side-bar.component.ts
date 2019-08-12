@@ -29,9 +29,14 @@ export class SideBarComponent implements OnInit {
      }
 
   ngOnInit() {
-    this.currentUser_picture=sessionStorage.getItem('profile_picture');
-    this.username=sessionStorage.getItem('user_name');
     this.userDetails();
+    if(sessionStorage.getItem('profile_picture') != undefined){
+      this.currentUser_picture=sessionStorage.getItem('profile_picture');
+    } 
+    if(sessionStorage.getItem('user_name')) {
+      this.username=sessionStorage.getItem('user_name');
+    }  
+  
   }
 
   userDetails(){
@@ -44,7 +49,7 @@ export class SideBarComponent implements OnInit {
        console.log(response['msg']);
       }
     },error=>{
-       console.log("Something went wrong");
+        console.log("Something went wrong");
     })
  
    }
