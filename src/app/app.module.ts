@@ -30,6 +30,7 @@ import { PhotosComponent } from './components/photos/photos.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
+import { TestComponent } from './test/test.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { SideBarComponent } from './components/side-bar/side-bar.component';
      AboutComponent,
      AdvertiseComponent,
      NotFoundComponent,
-     SideBarComponent
+     SideBarComponent,
+     TestComponent
     
   ],
   imports: [

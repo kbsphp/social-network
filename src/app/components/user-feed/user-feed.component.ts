@@ -26,6 +26,7 @@ export class UserFeedComponent implements OnInit {
   cover_pic;
   cmtId;
   selected_user;
+  disable_postcomment:boolean=false;
   edit_comment:boolean=false;
   showSlider:boolean=false;
   username;
@@ -318,20 +319,22 @@ export class UserFeedComponent implements OnInit {
     post_comment(){
       if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null &&
       sessionStorage.getItem('user_id') != undefined && sessionStorage.getItem('user_id') != null){
+        this.disable_postcomment=true;
         this.user_id = sessionStorage.getItem('user_id');
         if(this.comment == "" || this.comment.trim() === ''){
           console.log("Please enter comment");
+          this.disable_postcomment=false;
           //this.comment_error="Please enter comment";
           return;
         }
         let Updatedcomment = emoji.unemojify(this.comment);
-        console.log(Updatedcomment);
+      //  console.log(Updatedcomment);
         const input_data = {
           "userID" : this.user_id,
           "post_id": this.post_id,
           "comment": Updatedcomment
         }
-        console.log(input_data);
+       // console.log(input_data);
         this.isPostComment = true;
         this.data_service.commentOnPost(input_data).subscribe((response) => {
           console.log(response['body']);
@@ -339,13 +342,16 @@ export class UserFeedComponent implements OnInit {
             this.cmnt_data.push(response['body']);
             this.comment = "";
             this.isPostComment = false;
+            this.disable_postcomment=false;
           }else{
             this.isPostComment = false;
+            this.disable_postcomment=false;
            // this.comment_error=response['msg'];
             console.log(response['msg']);
           }
         },error =>{
           this.isPostComment = false;
+          this.disable_postcomment=false;
           console.log("Something went wrong");
         });
       }

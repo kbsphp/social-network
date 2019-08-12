@@ -19,6 +19,7 @@ export class GeneralFeedComponent implements OnInit {
   
 //  postcomment;
   post_data : any = [];
+  disable_postcomment:boolean=false;
   base_url: string = "";
   img_url: string = "";
   socket_url:string= "";
@@ -226,10 +227,12 @@ export class GeneralFeedComponent implements OnInit {
   post_comment(postID,pvarCommnet,post){
     if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null &&
     sessionStorage.getItem('user_id') != undefined && sessionStorage.getItem('user_id') != null){
+      this.disable_postcomment=true;
       this.user_id = sessionStorage.getItem('user_id');
       if(pvarCommnet == "" || pvarCommnet =='undefined' || pvarCommnet.trim() === ''){
         console.log("Please enter comment");
         //this.comment_error="Please enter comment";
+        this.disable_postcomment=false;
         return;
       }
       
@@ -245,11 +248,13 @@ export class GeneralFeedComponent implements OnInit {
           this.post_data[0]['comments'].push(response['body']);
           post.postcomment='';
         //  console.log(pvarCommnet);
-          
+        this.disable_postcomment=false;
         }else{
           console.log(response['msg']);
+          this.disable_postcomment=false;
         }
       },error =>{
+        this.disable_postcomment=false;
         console.log("Something went wrong");
       });
     }

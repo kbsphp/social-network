@@ -46,7 +46,7 @@
 	</div>
 </section>
 <section class="content-block">
-	<div class="container">
+	<div class="container user-containner">
 		<div class="row">
 			<div class="col-sm-12 col-xs-12 col-md-4 col-lg-4 col-xl-4">
 			<div class="sidebar">
@@ -185,8 +185,7 @@
 			</div--->
 		</div>
 	
-			<div class="col-sm-12 col-xs-12 col-md-8 col-lg-8 col-xl-8 right-part1">
-			  <div class="content">
+			<div  id="content" class="col-sm-12 col-xs-12 col-md-8 col-lg-8 col-xl-8 right-part1 content">
 				<app-create-post></app-create-post>
 				<div *ngIf="!showPosts" class="post-box"><h5 style="color:#f6ad21;text-align: center;padding-top: 12px">No Post Available</h5></div>
 				<ng-container *ngIf="showPosts">
@@ -278,7 +277,7 @@
 									  <img src="{{img_url}}{{profile_picture}}">
 									  <div class="media-body">
 										<div class="custom-msg">
-										<input [disabled]="isPostComment" (keyup.enter)="post_comment()" class="form-control" [(ngModel)]="comment" name="comment"  style="resize:none" type="text" placeholder="Write a comment...">
+										<input [disabled]="isPostComment" [disabled]="disable_postcomment" (keyup.enter)="post_comment()" class="form-control" [(ngModel)]="comment" name="comment"  style="resize:none" type="text" placeholder="Write a comment...">
 										<span class="comnt-empji" (click)="onClickEmoji()">
 											<i class="far fa-smile" aria-hidden="true" ></i>
 										</span>   
@@ -300,7 +299,7 @@
 					
 				</div>
 			    </ng-container>
-			</div>
+			
 		  </div>
 		</div>
 	</div>
