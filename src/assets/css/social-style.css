@@ -309,6 +309,8 @@ a {color: #989898;}
 .post-box .post-hdr .icon-img img{
 	height: 40px;
     border-radius: 50%;
+    width: 40px;
+    object-fit: cover;
 }
 
 .post-box .post-hdr .name-box{
@@ -462,7 +464,7 @@ a {color: #989898;}
     color: #989898;
 }
 .friends .details-heading {
-    font-size: 15px;
+    font-size: 14px;
     margin-bottom: 0;
     /*padding: 0 0 5px 0;*/
     color: #3f73c1;
@@ -1362,7 +1364,7 @@ a {color: #989898;}
 /*.all-frinds {padding: 30px 0 20px 0;}*/
 .all-frinds .friends .add-class button i {margin-right: 5px;}
 .friends .mutual-frd {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
 }
 .photos-info .friends .mutual-frd {
@@ -1890,6 +1892,7 @@ div#joinModel .modal-dialog {
     padding: 5px 10px;
     border-radius: 50px;
     background: #282e3a;
+    color: #fff;
 }
 .commant-list .media-body p {
     margin-bottom: 0;
@@ -3363,13 +3366,23 @@ section.model-custom .modal {
 }
 
 .chat-box{
-    position: fixed;
+    /* position: fixed;
     bottom: 0px;
     right:20px;
     padding: 10px;
     background: #fff;
     min-width: 270px;
-    z-index: 99999;
+    z-index: 99999; */
+    position: fixed;
+    background: #1e2430;
+    right: 0;
+    top: 63px;
+    width: 310px;
+    bottom: 0;
+    z-index: 999;
+    border-left: 1px solid #383f4b;
+    overflow: auto;
+    padding: 2rem 1rem;
 }
 
 
@@ -3635,8 +3648,14 @@ div#collapseThree .media {
 }
 .chat-hdr {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    font-size: 16px;
+    text-align: center;
+    color: #ecf1fe;
+    font-style: italic;
+    font-family: "Prohibition W00 Regular";
+    margin-bottom: 18px;
+    justify-content: center;
 }
 .ballon-chat a.close-ballon {
     padding: 5px 15px;
@@ -3828,15 +3847,31 @@ label {
 /*  1 aug Style */
 
 .emojisShow {
-    top: -10px;
+    /* top: -10px;
     z-index: 9999999;
-    position: relative;
+    position: relative; */
 }
 .emojisShow .emoji-mart {
     width: 100% !important;
     max-width: 100%;
 }
 
+.custom-emoji.emojisShow .emoji-mart {
+    width: 100%;
+    max-width: 350px !important;
+}
+
+.custom-msg{
+    position: relative;
+}
+
+.custom-msg .comnt-empji{
+    position: absolute;
+    top: 50% !important;
+    right: 10px !important;
+    transform: translateY(-50%);
+    color: #989898 !important;
+}
 
 .profile-menu.show {
     display: block;
@@ -3925,10 +3960,73 @@ label {
     margin-right: 12px;
 }
 
+/*<<<<<<< HEAD*/
 .btn-large{
     padding: 15px 30px;
 }
 
 .ngx-datepicker-calendar-container {
     z-index: 9;
+/*=======*/
+}
+.scroll-to-top {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    opacity: 0;
+    transition: all .2s ease-in-out;
+    padding: 0;
+    background: transparent;
+    border: none;
+    color: #f1ad21;
+    font-size: 28px;
+    outline: none !important;
+    cursor: pointer;
+}
+ 
+.show-scroll {
+    opacity: 1;
+    transition: all .2s ease-in-out;
+}
+
+.for-hover-zoom {
+    transition: transform .2s;
+    -webkit-transition: transform .2s;
+    -moz-transition: transform .2s;
+    -ms-transition: transform .2s;
+    -o-transition: transform .2s;
+}
+
+.for-hover-zoom:hover {
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    border-color: #f6ad21;
+}
+
+.create-post-error{
+    position: relative;
+    z-index: 99;
+}
+
+.create-post-error ~ .share-btn {
+    top: 0 !important;
+}
+
+.full-screen-popup{
+    max-width: 100%;
+}
+
+.full-screen-popup .modal-content {
+    height: 100vh;
+    border: none;
+}
+
+.friends .details button.btn {
+    font-size: 10px;
+    padding: 2px 5px;
+    margin-bottom: 5px;
+/*>>>>>>> 4760cc5c4ad3573a1cc7704878e839806f6a6e15*/
 }

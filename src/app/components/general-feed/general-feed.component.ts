@@ -1,4 +1,8 @@
-import { Component, OnInit,ElementRef,ViewChild } from '@angular/core';
+// <<<<<<< HEAD
+import { Component, OnInit,HostListener,ElementRef,ViewChild } from '@angular/core';
+// =======
+// import { Component, OnInit, } from '@angular/core';
+// >>>>>>> 4760cc5c4ad3573a1cc7704878e839806f6a6e15
 import { DataService } from '../../shared/data.service';
 import { DatePipe } from '@angular/common';
 import * as emoji from 'node-emoji';
@@ -16,8 +20,10 @@ export class GeneralFeedComponent implements OnInit {
   user_id;
   friend;
   selected_user;
+  
 //  postcomment;
   post_data : any = [];
+  disable_postcomment:boolean=false;
   base_url: string = "";
   img_url: string = "";
   socket_url:string= "";
@@ -52,9 +58,15 @@ export class GeneralFeedComponent implements OnInit {
   chunk_Start : any;
   newArray : any = [];
   comntEmoji:boolean=false;
+// <<<<<<< HEAD
   adsArray:any=[];
   adsType:string='';
   @ViewChild('myDiv') myDiv: ElementRef;
+// =======
+  showScroll: boolean;
+  showScrollHeight = 200;
+  hideScrollHeight = 10;
+// >>>>>>> 4760cc5c4ad3573a1cc7704878e839806f6a6e15
   constructor(
     private data_service: DataService,
     private datePipe: DatePipe,
@@ -65,19 +77,25 @@ export class GeneralFeedComponent implements OnInit {
     this.img_url = environment.img_url;
     this.socket_url = environment.socket_url;
     this.socket = io.connect(this.socket_url);
+// <<<<<<< HEAD
      let user = JSON.parse(localStorage.getItem('userData'));
     this.profile_picture = user.profile_picture;
+// =======
+    
+   }
+
 
     /// this.adsType=elm.nativeElement.getAttribute('data-type');
 
     //console.log(elm.nativeElement)
  //console.log(this.myDiv.nativeElement.innerHTML);
 
-   }
+   //}
  // ngAfterViewInit() {
        
  //    }
   ngOnInit() {
+// <<<<<<< HEAD
     this.user_id = sessionStorage.getItem('user_id');
     this.generalPostAllList();
     this.userDetails();
@@ -90,13 +108,49 @@ export class GeneralFeedComponent implements OnInit {
     } )
     this.data_service.currentMessage.subscribe
     (message => {
+// =======
+    //this.user_id = sessionStorage.getItem('user_id');
+
+    setTimeout(()=>{
+      this.userDetails();
+      this.generalPostAllList();
+      this.findFriendList();
+    },2000);
+   
+    this.data_service.currentMessage.subscribe(message => {
+// >>>>>>> 4760cc5c4ad3573a1cc7704878e839806f6a6e15
       this.post_data.unshift(message);
     })
 
 
-
+}
 
   }
+
+  @HostListener('window:scroll', [])
+    onWindowScroll() 
+    {
+      if (( window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop) > this.showScrollHeight) 
+      {
+        this.showScroll = true;
+      } 
+      else if ( this.showScroll && (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop) < this.hideScrollHeight) 
+      { 
+        this.showScroll = false; 
+      }
+    }
+
+    scrollToTop() 
+    { 
+      (function smoothscroll() 
+      { var currentScroll = document.documentElement.scrollTop || document.body.scrollTop; 
+        if (currentScroll > 0) 
+        {
+          window.requestAnimationFrame(smoothscroll);
+          window.scrollTo(0, currentScroll - (currentScroll / 5));
+        }
+      })();
+    }
 
   userDetails(){
     this.data_service.GetUserDataByUserId().subscribe(response=>{
@@ -105,6 +159,7 @@ export class GeneralFeedComponent implements OnInit {
       this.fullname= response['body'][0].first_name+ ' '+response['body'][0].last_name;
       this.fullname=this.fullname?this.fullname:this.username;
       this.currentUser_picture=this.img_url+''+response['body'][0].profile_picture;
+
       }else{
        console.log(response['msg']);
       }
@@ -116,17 +171,18 @@ export class GeneralFeedComponent implements OnInit {
 
   generalPostAllList(){
     this.loading=true;
-    console.log(this.post_data)
+    this.user_id = sessionStorage.getItem('user_id');
+   // console.log(this.post_data)
     this.chunk_Start = this.post_data.length == 0 ? 0 : this.post_data[this.post_data.length -1]['id'];
-    console.log(this.chunk_Start)
+    // console.log(this.chunk_Start)
     const inputJson = {
       "limit": 5,
-    	"start": this.chunk_Start,
+    	"start": this.chunk_Start == undefined ? 0 : this.chunk_Start,
     	"userID": this.user_id    	
     };
-   // console.log(JSON.stringify(inputJson, undefined, 2));
+  // console.log(JSON.stringify(inputJson, undefined, 2));
     this.data_service.generalPostData(inputJson).subscribe((response)=>{
-    // console.log(JSON.stringify(inputJson, undefined, 2));
+     // console.log(JSON.stringify(response, undefined, 2));
         if(response['error']== false){
            this.newArray = this.newArray.concat(response['body']);
            this.showPosts=true;
@@ -215,10 +271,12 @@ export class GeneralFeedComponent implements OnInit {
   post_comment(postID,pvarCommnet,post){
     if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null &&
     sessionStorage.getItem('user_id') != undefined && sessionStorage.getItem('user_id') != null){
+      this.disable_postcomment=true;
       this.user_id = sessionStorage.getItem('user_id');
       if(pvarCommnet == "" || pvarCommnet =='undefined' || pvarCommnet.trim() === ''){
         console.log("Please enter comment");
         //this.comment_error="Please enter comment";
+        this.disable_postcomment=false;
         return;
       }
       
@@ -234,11 +292,13 @@ export class GeneralFeedComponent implements OnInit {
           this.post_data[0]['comments'].push(response['body']);
           post.postcomment='';
         //  console.log(pvarCommnet);
-          
+        this.disable_postcomment=false;
         }else{
           console.log(response['msg']);
+          this.disable_postcomment=false;
         }
       },error =>{
+        this.disable_postcomment=false;
         console.log("Something went wrong");
       });
     }
@@ -269,6 +329,7 @@ export class GeneralFeedComponent implements OnInit {
   cancelComment(pvrId){
     this.cmtId=pvrId;
     this.edit_comment=false;
+    this.comntEmoji = false;
   }
 
   editComment(pvrId,cmt){
@@ -294,7 +355,7 @@ addInComment(evt,cmt){
 
   updateComment(pvrComment){
     if(pvrComment.comment == 'undefined' || pvrComment.comment == null || pvrComment.comment.trim() ==''){
-      console.log("Enter comment to update");
+      //console.log("Enter comment to update");
       this.error_msg="Please enter comment to update.";
       this.isShow="modal-backdrop fade show";
       this.isPostModal=true;
@@ -421,7 +482,7 @@ addInComment(evt,cmt){
    const input_data = {"userID": parseInt(this.user_id), "search_str": this.search_people}
    this.socket.emit('UsersSearchlist', input_data);
    this.socket.on('GetUsersSearchlist',(response) => {
-   console.log("Search");
+   //console.log("Search");
     if(response)
     {
       this.isSearchUser = true;

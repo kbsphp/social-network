@@ -10,8 +10,10 @@ import { AboutComponent } from './components/about/about.component';
 import { AdvertiseComponent } from './components/advertise/advertise.component'
 import { FriendListComponent } from './components/friend-list/friend-list.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { TestComponent } from './test/test.component';
 const routes: Routes = [
-  {path:'',component:LoginComponent},
+ // {path:'',component:LoginComponent},
+  {path:'',component:GeneralFeedComponent},
   {path:'profile',component:UserFeedComponent},
   {path:'home',component:GeneralFeedComponent},
   {path:'profile/:id', component:ProfileComponent},
@@ -21,6 +23,7 @@ const routes: Routes = [
   {path:'advertise',component:AdvertiseComponent},
   {path:'friend-list',component:FriendListComponent},
   {path: '404', component: NotFoundComponent},
+  {path: 'test', component: TestComponent},
   {path: '**', redirectTo: '/404'}
 ];
 

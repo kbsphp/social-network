@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="main-container">
 <app-side-bar></app-side-bar>
 
@@ -45,11 +46,13 @@
 	</div>
 </section>
 <section class="content-block">
-	<div class="container">
+	<div class="container user-containner">
 		<div class="row">
 			<div class="col-sm-12 col-xs-12 col-md-4 col-lg-4 col-xl-4">
-			 <div class="postion-left-stky">
-			 	<div class="intro-blk">
+			<div class="sidebar">
+			   <div class="sidebar__inner">
+			       <div class="postion-left-stky">
+			 	<div class="intro-blk for-hover-zoom">
 					<div class="inner-intro-blk">
 						<div class="heading-intro">
 							<h2><i class="fas fa-globe-asia"></i>Intro</h2>
@@ -90,7 +93,7 @@
 					</div>
 				</div>
 
-				<div class="photos-blk">
+				<div class="photos-blk for-hover-zoom">
 					<div class="inner-photo">
 						<div class="may-know">
 							<div class="top-know">
@@ -124,7 +127,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="friends-sec">
+				<div class="friends-sec for-hover-zoom">
 					<div class="inner-photo">
 						<div class="may-know">
 							<div class="top-know">
@@ -168,8 +171,9 @@
 						</div>
 					</div> -->
 				</div>
+			   </div>
+             </div>
 			</div>
-
 				<!---div class="know-you">
 					<div class="friends">
 					    <div class="details">
@@ -183,7 +187,7 @@
 			</div--->
 		</div>
 	
-			<div class="col-sm-12 col-xs-12 col-md-8 col-lg-8 col-xl-8 right-part1">
+			<div  id="content" class="col-sm-12 col-xs-12 col-md-8 col-lg-8 col-xl-8 right-part1 content">
 				<app-create-post></app-create-post>
 				<div *ngIf="!showPosts" class="post-box"><h5 style="color:#f6ad21;text-align: center;padding-top: 12px">No Post Available</h5></div>
 				<ng-container *ngIf="showPosts">
@@ -193,7 +197,7 @@
 							<img src="{{img_url}}{{profile_picture}}">
 						</div>
 						<div class="name-box">
-							<h1 class="hdg" (click)="openUserProfile(post.user_id)"><a href="javascript:void(0)">{{post.username}}</a> <p class="time"><a href="javascript:void(0)">{{toLocalDate(post.post_create_date)}}</a></p></h1>
+							<h1 class="hdg"><a href="javascript:void(0)">{{post.username}}</a> <p class="time"><a href="javascript:void(0)">{{toLocalDate(post.post_create_date)}}</a></p></h1>
 							<!-- <p class="time"><a href="#">{{toLocalDate(post.post_create_date)}}</a></p> -->
 							<div class="dropdown dots-dd">
 								<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -256,9 +260,9 @@
 												<img src="{{img_url}}{{cmnt.profile_picture}}">
 												<div class="media-body">
 													 <p  *ngIf="edit_comment != true || cmnt.id != cmtId"><strong>{{cmnt.username}}</strong>  {{convetToEmoji(cmnt.comment)}}</p>
-													 <p class="msg-edit" *ngIf="edit_comment && cmnt.id == cmtId"> <input  class="form-control" (keyup.enter)="updateComment(cmnt)" [(ngModel)]="cmnt.comment" style="resize:none" type="text" >
+													 <p class="msg-edit custom-msg" *ngIf="edit_comment && cmnt.id == cmtId"> <input  class="form-control" (keyup.enter)="updateComment(cmnt)" [(ngModel)]="cmnt.comment" style="resize:none" type="text" >
 														<span class="comnt-empji" (click)="commentEmoji(cmnt.id,cmnt)"><i class="far fa-smile" aria-hidden="true" ></i></span></p>
-														<div *ngIf="comntEmoji  && cmnt.id == cmtId" class="emojisShow">
+														<div *ngIf="comntEmoji  && cmnt.id == cmtId" class="emojisShow custom-emoji">
 															<emoji-mart (emojiClick)="addInComment($event,cmnt)"></emoji-mart>
 														</div>
 														<ul>
@@ -274,15 +278,20 @@
 									<div class="media">
 									  <img src="{{img_url}}{{profile_picture}}">
 									  <div class="media-body">
-									   <input [disabled]="isPostComment" (keyup.enter)="post_comment()" class="form-control" [(ngModel)]="comment" name="comment"  style="resize:none" type="text" placeholder="Write a comment...">
-									   <span class="icon-btn" (click)="onClickEmoji()">
-										<i class="far fa-smile" aria-hidden="true" ></i>
-									   </span>   
-									  <!-- <span><i class="fas fa-camera"></i></span>  -->
-									  </div>
-									  <div *ngIf="emojiHide" class="emojisShow">
+										<div class="custom-msg">
+										<input [disabled]="isPostComment" [disabled]="disable_postcomment" (keyup.enter)="post_comment()" class="form-control" [(ngModel)]="comment" name="comment"  style="resize:none" type="text" placeholder="Write a comment...">
+										<span class="comnt-empji" (click)="onClickEmoji()">
+											<i class="far fa-smile" aria-hidden="true" ></i>
+										</span>   
+										<!-- <span><i class="fas fa-camera"></i></span>  -->
+										</div>
+										</div>
+									  <!-- <div *ngIf="emojiHide" class="emojisShow custom-emoji">
 										<emoji-mart (emojiClick)="addEmoji($event,comment)"></emoji-mart>
+									</div> -->
 									</div>
+									<div *ngIf="emojiHide" class="emojisShow custom-emoji" style="margin-left: 55px;">
+										<emoji-mart (emojiClick)="addEmoji($event,comment)"></emoji-mart>
 									</div>
 								</div>
 							</div>
@@ -291,13 +300,18 @@
 					</div>
 					
 				</div>
-			</ng-container>
-			</div>
+			    </ng-container>
+			
+		  </div>
 		</div>
 	</div>
 </section>
 </div>
 </div>
+<!--Scroll to top-->
+<button [ngClass]="{'show-scroll': showScroll}" (click)="scrollToTop()" class="scroll-to-top">
+	<i class="fas fa-chevron-circle-up"></i>
+	 </button>
 <div class="modal" id="myModal1" backdrop="static" role="dialog" tabindex="-1" style="display: block; background-color: rgba(0, 0, 0, 0.32); z-index: 111111;" [style.display]="isPostModal ? 'block' : 'none'" *ngIf="isPostModal" aria-hidden="true">
 		
 			  <div class="modal-dialog" role="document">
@@ -339,7 +353,7 @@
 
 		  <div class="modal pic-popup" id="myModalPhoto" backdrop="static" role="dialog" tabindex="-1" style="display: block; background-color: rgba(0, 0, 0, 0.9); z-index: 111111;" [style.display]="showSlider ? 'block' : 'none'" *ngIf="showSlider" aria-hidden="true">
 		
-				<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-dialog modal-lg full-screen-popup" role="document">
 					<div class="modal-content">
 						
 						

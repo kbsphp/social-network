@@ -20,9 +20,11 @@ export class ProfileComponent implements OnInit {
   post_id;
   currentUserProfile;
   currentUser;
+  comntEmoji:boolean=false;
   name;
   cmtId;
   error_msg:string = "";
+  emojiHide:boolean=false;
   sucess_msg:string="";
   cover_pic:string= "";
   cmnt_data : any = [];
@@ -233,7 +235,7 @@ export class ProfileComponent implements OnInit {
       const input_data = {
         "userID" : this.user_id,
         "post_id": this.post_id,
-        "comment": this.comment
+        "comment": emoji.unemojify(this.comment)
       }
       this.isPostComment = true;
       this.data_service.commentOnPost(input_data).subscribe((response) => {
@@ -253,14 +255,16 @@ export class ProfileComponent implements OnInit {
       });
     }
   }
-  editComment(pvrId){
+  editComment(pvrId,cmt){
     this.edit_comment=true;
     this.cmtId=pvrId;
+    cmt.comment=emoji.emojify(cmt.comment);
  }
  
  cancelComment(pvrId){
   this.cmtId=pvrId;
   this.edit_comment=false;
+  this.comntEmoji=false;
 }
 
  updateComment(pvrComment){
@@ -275,7 +279,7 @@ export class ProfileComponent implements OnInit {
   let p_user_id = pvrComment.user_id;
   let p_cmnt_id = pvrComment.id;
   let p_post_id = pvrComment.post_id;
-  let new_comment= pvrComment.comment;
+  let new_comment= emoji.unemojify(pvrComment.comment);
  
     this.data_service.updatePostComment(new_comment,p_user_id,p_cmnt_id,p_post_id).subscribe((response)=>
     {
@@ -305,6 +309,29 @@ export class ProfileComponent implements OnInit {
     });
   }
   
+  onClickEmoji() {
+    this.emojiHide = true;
+  }
+
+  addEmoji(evt,comnt){
+    if(comnt !=null)
+    {
+      this.comment= comnt+ ''+evt.emoji.native;
+    }else{
+      this.comment = evt.emoji.native
+    }
+    this.emojiHide = false;
+  }
+
+  addInComment(evt,cmt){
+    if(cmt.comment !=null)
+    {
+      cmt.comment= cmt.comment+ ''+evt.emoji.native;
+    }else{
+      cmt.comment = evt.emoji.native
+    }
+    this.comntEmoji = false;
+  }
 
    toLocalDate(date){
     if(date != null){
@@ -320,6 +347,11 @@ export class ProfileComponent implements OnInit {
       // console.log(a)
       return convertData;
     }  
+
+    commentEmoji(cmtId,cmt){
+      this.cmtId=cmtId;
+     this.comntEmoji=true;
+    }
 
     getFriendList(){
     this.socket.on('updateUsers',(response) => {

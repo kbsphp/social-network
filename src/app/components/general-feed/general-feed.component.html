@@ -1,3 +1,4 @@
+<app-header></app-header>
 <app-side-bar></app-side-bar>
 <div class="work-block">
 <section class="main-body">
@@ -33,7 +34,7 @@
 					    </div>
 						<ng-container *ngIf="showPosts">
 						   <div infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="500" (scrolled)="generalPostAllList()" [scrollWindow]="true">
-								<div class="post-box" *ngFor="let post of post_data;let index">
+								<div class="post-box mt-3" *ngFor="let post of post_data;let index">
 									<div class="post-hdr">
 										<div class="icon-img">
 											<img src="{{img_url}}{{post.profile_picture}}" />
@@ -63,9 +64,9 @@
 									</div>
 									
 									<div class="like-data">
-										<div class="like-total">
+										<div class="like-total" *ngIf="post.likes != '0'">
 											<div class="total-left">
-												<img *ngIf="post.likes != '0'" class="for-img" src="assets/images/like.png" />										
+												<img  class="for-img" src="assets/images/like.png" />										
 												<a class="pop-val" *ngIf="post.likes != '0'" href="javascript:void(0)">{{post.likes}}</a>
 											</div>
 										</div>
@@ -95,10 +96,10 @@
 													<img src="{{img_url}}{{cmt.profile_picture}}">
 													<div class="media-body">
 														<p *ngIf="edit_comment != true || cmt.id != cmtId"><b (click)="openUserProfile(cmt.user_id)">{{cmt.username}}</b>{{convetToEmoji(cmt.comment)}}</p>
-														<div *ngIf="edit_comment && cmt.id == cmtId"> <input  class="form-control" (keyup.enter)="updateComment(cmt)" [(ngModel)]="cmt.comment" style="resize:none" type="text" >
+														<div class="custom-msg" *ngIf="edit_comment && cmt.id == cmtId"> <input  class="form-control" (keyup.enter)="updateComment(cmt)" [(ngModel)]="cmt.comment" style="resize:none" type="text" >
 															<span class="comnt-empji" (click)="commentEmoji(cmt.id,cmt)"><i class="far fa-smile" aria-hidden="true" ></i></span>
 														</div>
-														<div *ngIf="comntEmoji  && cmt.id == cmtId" class="emojisShow">
+														<div *ngIf="comntEmoji  && cmt.id == cmtId" class="emojisShow custom-emoji">
 																<emoji-mart (emojiClick)="addInComment($event,cmt)"></emoji-mart>
 															</div>
 														<ul>
@@ -114,15 +115,20 @@
 													<div class="media">
 													<img src="{{currentUser_picture}}" alt="user">
 													<div class="media-body">
-													<input (keyup.enter)="post_comment(post.id,post.postcomment,post)" class="form-control" [(ngModel)]="post.postcomment" name="postcomment"  style="resize:none" type="text" placeholder="Write a comment...">
-													<span class="icon-btn" (click)="onClickEmoji()">
-														<i class="far fa-smile" aria-hidden="true" ></i>
-													   </span>
+														<div class="custom-msg">
+															<input (keyup.enter)="post_comment(post.id,post.postcomment,post)" class="form-control" [(ngModel)]="post.postcomment" name="postcomment"  style="resize:none" type="text" [disabled]="disable_postcomment" placeholder="Write a comment...">
+															<span class="comnt-empji" (click)="onClickEmoji()">
+																<i class="far fa-smile" aria-hidden="true" ></i>
+															</span>
+														</div>
 													</div>
 													</div>
-													<div *ngIf="emojiHide" class="emojisShow">
+													<!-- <div *ngIf="emojiHide" class="emojisShow">
 														<emoji-mart (emojiClick)="addEmoji($event,post)"></emoji-mart>
-													</div>
+													</div> -->
+												</div>
+												<div *ngIf="emojiHide" class="emojisShow custom-emoji" style="margin-left: 55px;">
+													<emoji-mart (emojiClick)="addEmoji($event,post)"></emoji-mart>
 												</div>
 											
 										</div>
@@ -157,14 +163,14 @@
 									</form>
 								</div> -->
 
-						<div class="may-know" *ngIf="findFriends">
+						<div class="may-know for-hover-zoom" *ngIf="findFriends">
 							<div class="top-know" >
 								<p class="hdg">People you may know</p>
 								<a href="javascript:void(0)" [routerLink]="['/find-friends']" class="see">See All</a>
 							</div>
 							<div class="bottom-know">
 								<ng-container *ngFor="let user of user_data;let i=index;">
-								<div class="friends">
+								<div class="friends" *ngIf="i<4">
 									<div class="pic">
 										<img class="for-img" src="{{img_url}}{{user.profile_picture}}" />										
 									</div>
@@ -183,8 +189,8 @@
 							  </ng-container>
 							</div>
 						</div>
-						<div class="Suggested pt-0">
-							<div class="may-know">
+						<div class="Suggested pt-0 for-hover-zoom">
+							<div class="may-know ">
 								<div class="top-know">
 									<p class="hdg">Ads</p>
 									<!-- <a href="" class="see">See All</a> -->
@@ -219,6 +225,10 @@
 	</div>
 </section>
 </div>
+<!--Scroll to top-->
+<button [ngClass]="{'show-scroll': showScroll}" (click)="scrollToTop()" class="scroll-to-top">
+	<i class="fas fa-chevron-circle-up"></i>
+</button>
 <div class="modal" id="myModal" backdrop="static" role="dialog" tabindex="-1" style="display: block; background-color: rgba(0, 0, 0, 0.32); z-index: 111111;" [style.display]="isPostModal ? 'block' : 'none'" *ngIf="isPostModal" aria-hidden="true">
 		
 		<div class="modal-dialog" role="document">
@@ -258,7 +268,7 @@
 
 	<div class="modal pic-popup" id="myModalPostPhoto" backdrop="static" role="dialog" tabindex="-1" style="display: block; background-color: rgba(0, 0, 0, 0.9); z-index: 111111;" [style.display]="showSlider ? 'block' : 'none'" *ngIf="showSlider" aria-hidden="true">
 		
-	<div class="modal-dialog modal-lg" role="document">
+	<div class="modal-dialog modal-lg  full-screen-popup" role="document">
 		<div class="modal-content">
 			
 			

@@ -31,6 +31,7 @@
     "rxjs": "~6.3.3",
     "rxjs-compat": "^6.5.2",
     "socket.io-client": "^2.2.0",
+    "sticky-sidebar": "^3.3.1",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"
   },

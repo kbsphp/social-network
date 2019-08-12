@@ -30,7 +30,7 @@
 <div class="custom-popup" data-backdrop="false" [ngClass]="{ 'open-popup' : openModal} " >
 <div class="popup-back"></div>
  <form [formGroup]="postForm">
-   <div class="create-post">
+   <div class="create-post m-0">
               <div class="post-hdr"><p *ngIf="!openModal">Create post</p>
                 <p *ngIf="openModal">Create post<button type="button" class="close" (click)="close_modal()"><span aria-hidden="true">&times;</span></button></p>
               </div>
@@ -46,16 +46,16 @@
                   </div>
                 </div>
                 <div class="for-pop-btn">
-                  <span class="icon-btn" (click)="file.click()">
-                    <img src="/assets/images/user.png" />Add Photo
-                    <div class="attach_file" style="display:none">
+                  <span class="icon-btn"  (click)="file.click()" (click)="openPopupModalShow()" >
+                      <i class="far fa-image"></i> &nbsp; &nbsp;Add Photo
+                    <div class="attach_file" style="display:none"> 
                       <input id="uploadFile" type="file" accept="image/*"  #file (change)="fileChange($event)" name="file" formControlName="file">
                     </div>
                   </span>
                   <!--  <span class="icon-btn"  data-toggle="modal" data-target="#Create Post">
                     <img src="/assets/images/user.png" />Tag Friends
                   </span> -->
-                  <span class="icon-btn" (click)="onClickEmoji()">
+                  <span class="icon-btn" (click)="onClickEmoji();openPopupModalShow()">
                       <i class="far fa-smile" aria-hidden="true" ></i>
                   </span> 
                   <span class="filename"> {{attachmentName}}</span>
@@ -65,7 +65,7 @@
             <div *ngIf="emojiHide" class="emojisShow">
                 <emoji-mart (emojiClick)="addEmoji($event)"></emoji-mart>
             </div>
-           <div *ngIf="error_msg == true" class="pop-up-error">
+           <div *ngIf="error_msg == true" class="pop-up-error create-post-error">
              * {{error}}
            </div>
               <div class="share-btn">

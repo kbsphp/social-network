@@ -1,8 +1,7 @@
 #notfound {
     position: relative;
     height: 100vh;
-    background: #030005;
-  }
+    }
   
   #notfound .notfound {
     position: absolute;
@@ -40,9 +39,9 @@
     margin-top: 0px;
     margin-bottom: 0px;
     margin-left: -12px;
-    color: #030005;
+    color:#f6ad21;
     text-transform: uppercase;
-    text-shadow: -1px -1px 0px #8400ff, 1px 1px 0px #ff005a;
+    text-shadow: -1px -1px 0p #f6ad21, 1px 1px 0px #ff005a;
     letter-spacing: -20px;
   }
   
@@ -66,7 +65,7 @@
     font-family: 'Montserrat', sans-serif;
     display: inline-block;
     text-transform: uppercase;
-    color: #ff005a;
+    color:#f6ad21;
     text-decoration: none;
     border: 2px solid;
     background: transparent;
@@ -78,7 +77,7 @@
   }
   
   .notfound a:hover {
-    color: #8400ff;
+    color:#f6ad21;
   }
   
   @media only screen and (max-width: 767px) {

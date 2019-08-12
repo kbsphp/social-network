@@ -1,4 +1,4 @@
-import { Component, OnInit,ElementRef,ViewChild } from '@angular/core';
+import { Component, OnInit,ElementRef,ViewChild,HostListener } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormGroup,FormBuilder,Validators,FormControl,FormArray } from '@angular/forms';
 import { DataService } from '../../shared/data.service'
@@ -26,6 +26,7 @@ export class UserFeedComponent implements OnInit {
   cover_pic;
   cmtId;
   selected_user;
+  disable_postcomment:boolean=false;
   edit_comment:boolean=false;
   showSlider:boolean=false;
   username;
@@ -52,7 +53,10 @@ export class UserFeedComponent implements OnInit {
   userInfo:any ={};
   userMedia:any=[];
    user_data : any = [];
-   friend_count=0
+   friend_count=0;
+   showScroll: boolean;
+  showScrollHeight = 200;
+  hideScrollHeight = 10;
   private socket;
   socket_url: string = "";
   constructor(private formBuilder:FormBuilder,
@@ -83,6 +87,31 @@ export class UserFeedComponent implements OnInit {
     (message => {
       this.new_post_data.unshift(message);
     })
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() 
+  {
+    if (( window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop) > this.showScrollHeight) 
+    {
+      this.showScroll = true;
+    } 
+    else if ( this.showScroll && (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop) < this.hideScrollHeight) 
+    { 
+      this.showScroll = false; 
+    }
+  }
+
+  scrollToTop() 
+  { 
+    (function smoothscroll() 
+    { var currentScroll = document.documentElement.scrollTop || document.body.scrollTop; 
+      if (currentScroll > 0) 
+      {
+        window.requestAnimationFrame(smoothscroll);
+        window.scrollTo(0, currentScroll - (currentScroll / 5));
+      }
+    })();
   }
 
   userDetails(){
@@ -290,20 +319,22 @@ export class UserFeedComponent implements OnInit {
     post_comment(){
       if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null &&
       sessionStorage.getItem('user_id') != undefined && sessionStorage.getItem('user_id') != null){
+        this.disable_postcomment=true;
         this.user_id = sessionStorage.getItem('user_id');
         if(this.comment == "" || this.comment.trim() === ''){
           console.log("Please enter comment");
+          this.disable_postcomment=false;
           //this.comment_error="Please enter comment";
           return;
         }
         let Updatedcomment = emoji.unemojify(this.comment);
-        console.log(Updatedcomment);
+      //  console.log(Updatedcomment);
         const input_data = {
           "userID" : this.user_id,
           "post_id": this.post_id,
           "comment": Updatedcomment
         }
-        console.log(input_data);
+       // console.log(input_data);
         this.isPostComment = true;
         this.data_service.commentOnPost(input_data).subscribe((response) => {
           console.log(response['body']);
@@ -311,13 +342,16 @@ export class UserFeedComponent implements OnInit {
             this.cmnt_data.push(response['body']);
             this.comment = "";
             this.isPostComment = false;
+            this.disable_postcomment=false;
           }else{
             this.isPostComment = false;
+            this.disable_postcomment=false;
            // this.comment_error=response['msg'];
             console.log(response['msg']);
           }
         },error =>{
           this.isPostComment = false;
+          this.disable_postcomment=false;
           console.log("Something went wrong");
         });
       }

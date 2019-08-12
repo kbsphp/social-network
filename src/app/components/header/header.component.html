@@ -83,7 +83,7 @@
 	</div>
 </section> -->
 
-<section *ngIf="checkLoggedId" class="dashboard-header">
+<section class="dashboard-header">
     <div class="part-left">
         <div class="logo-outer"><a class="for-logo"><img class="ng-tns-c1-1" src="assets/images/logo.png"></a></div>
         <div class="logo-icon-menu"><span (click)="openSidebar()" class="menu-icon"><img class="ng-tns-c1-1" src="assets/images/menu-icon.png"></span></div>
@@ -93,7 +93,7 @@
                 <p class="new-top">HOME</p>
             </span>
             <span class="drop dropdown-toggle switch-top" aria-expanded="false" aria-haspopup="true" data-togsocial-networkgle="dropdown" role="button">SWITCH</span>
-            <div class="dropdown-menu left-d"><a class="dropdown-item active_view" id="0" style="display:none"></a><a class="dropdown-item" id="1">HOME</a><a class="dropdown-item" id="2">NETWORK</a><a class="dropdown-item" id="3">EXCHANGE</a><a class="dropdown-item" id="4">GAMES</a><a class="dropdown-item" href="javascript:void(0)">MARKET <small class="ng-tns-c1-1" style="font-size:10px;color: #ffaf00">( COMING SOON )</small></a><a class="dropdown-item" href="javascript:void(0)">SOCIAL <small class="ng-tns-c1-1" style="font-size:10px;color: #ffaf00">( COMING SOON )</small></a></div>
+            <div class="dropdown-menu left-d"><a class="dropdown-item active_view" id="0" style="display:none"></a><a class="dropdown-item" href="http://devapp.uzyth.com/#/dashboard" id="1">HOME</a><a class="dropdown-item" id="2" href="http://devapp.uzyth.com/#/network-lobby">NETWORK</a><a class="dropdown-item" id="3" href="http://devapp.uzyth.com/#/exchange/exchange-lobby">EXCHANGE</a><a class="dropdown-item" id="4"  href="http://devapp.uzyth.com/#/games/game-lobby" >GAMES</a><a class="dropdown-item" href="javascript:void(0)">MARKET <small class="ng-tns-c1-1" style="font-size:10px;color: #ffaf00">( COMING SOON )</small></a><a class="dropdown-item" href="javascript:void(0)">SOCIAL <small class="ng-tns-c1-1" style="font-size:10px;color: #ffaf00">( COMING SOON )</small></a></div>
         </div>
 	</div>
 	
@@ -137,16 +137,16 @@
                 </li>
                 <li class="profile-drop" (click)="openProfileMenu()">
                     <span class="dd-parent"><img class="money2" src="{{img_url}}{{profile_pic}}"><img class="ovel1" src="assets/images/Oval2.png"><img class="menu-arrow" src="assets/images/drop.png"></span>
-                    <div class="profile-menu" [ngClass]="displayProfile?'show':'hide'"><a [routerLink]="['/profile']" class="" id="11">My Profile</a><a class="for_moblie_blc">Balance<span class="t-uz">2,102 UZ</span><img class="money" src="assets/images/money10.png"></a><a class="btn-small-menu for_mobile_buy" href="javascript:void(0)">BUY UZYTH</a><a class="" id="14">Support</a><a class="" id="12">DOWNLOADS</a><a class="" id="13">HELP</a><a class="" (click)="logout()">LOG OUT</a></div>
+                    <div class="profile-menu" [ngClass]="displayProfile?'show':'hide'"><a href="http://devapp.uzyth.com/#/profile" class="" id="11">My Profile</a><a class="for_moblie_blc">Balance<span class="t-uz">2,102 UZ</span><img class="money" src="assets/images/money10.png"></a><a class="btn-small-menu for_mobile_buy" href="javascript:void(0)">BUY UZYTH</a><a class="" id="14" href="http://devapp.uzyth.com/#/support">Support</a><a class="" id="12" href="http://devapp.uzyth.com/#/download">DOWNLOADS</a><a class="" id="13" href="http://devapp.uzyth.com/#/help">HELP</a><a class="" (click)="logout()">LOG OUT</a></div>
 				</li>
 			
-                <li (click)="openchat()"><a class="ng-tns-c1-1" href="javascript:void(0)"><img class="money3" src="assets/images/Skype.lnk.png"></a></li>
+                <li (click)="openchatToggle()"><a class="ng-tns-c1-1" href="javascript:void(0)"><img class="money3" src="assets/images/Skype.lnk.png"></a></li>
             </ul>
         </div>
     </div>
 </section>
 
 
-<div *ngIf="checkLoggedId">
+<div *ngIf="chat == true">
 <app-chat></app-chat>
 </div>

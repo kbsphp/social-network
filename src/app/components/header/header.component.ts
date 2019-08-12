@@ -19,6 +19,8 @@ username;
 profile_pic:string="";
 img_url;
 totalBuyCoin;
+token;
+chat:boolean=false;
   userData : any
   names:any
   newarray: any[];
@@ -46,34 +48,58 @@ totalBuyCoin;
     this.socket = io.connect(this.socket_url);
    //console.log(this.error_status)
 
-      console.log("header working");
+      const url = window.location.href;
+      if (url.includes('?')) {
+        const string = url.split('?')[1];
+        const string_0 = string.split('&')[0];
+        this.token = string_0.split('=')[1];
+        const string_1 = string.split('&')[1];
+        this.user_id = string_1.split('=')[1];
+      }
 
      }
 
   ngOnInit() {
-    console.log('called ngOnit')
+    if(this.token != undefined && this.user_id != undefined){
+      sessionStorage.setItem("token", this.token);
+      sessionStorage.setItem("user_id", this.user_id);
+      localStorage.setItem('isLoggedin', 'true');
+     // this.data_services.changeSub.next('change');
+      }
     this.userDetails();
     this.getUserAccount();
     this.isLoggedIn$ = this.data_services.isLoggedIn;
      if(sessionStorage.getItem('user_id') != undefined && sessionStorage.getItem('user_id') != null){
       this.user_id = sessionStorage.getItem('user_id');
-      //console.log(this.user_id)
     }
-    if (localStorage['userData']) {
-      //console.log("ppppppppppppppppppppppppp")
-      this.userData=JSON.parse(localStorage['userData']);
-    }
+    this.userData=JSON.parse(localStorage.getItem('userData'));
+   // this.profile_pic =  this.userData['profile_picture'];
+     this.data_services.detectChange().subscribe(()=>{
+       if(localStorage.getItem("updated_pic") != undefined){
+       this.profile_pic = localStorage.getItem("updated_pic") ;
+       }
+     })
    
   }
-  get checkLoggedId(): any {
-    return localStorage.getItem('isLoggedin');
-}
+//   get checkLoggedId(): any {
+//     return localStorage.getItem('isLoggedin');
+// }
+
 
 userDetails(){
   this.data_services.GetUserDataByUserId().subscribe(response=>{
-   console.log('Here');
     if(response['error'] == false){
     this.username =response['body'][0].username;
+    sessionStorage.setItem("user_name", this.username);
+      let userObj = {
+        username : response['body'][0].username,
+        email : response['body'][0].email,
+        id : response['body'][0].id,
+        profile_picture : response['body'][0].profile_picture,
+        first_name : response['body'][0].first_name,
+        last_name : response['body'][0].last_name
+      }
+      localStorage['userData'] = JSON.stringify(userObj);
     this.profile_pic=response['body'][0].profile_picture;
     }else{
      console.log(response['msg']);
@@ -86,10 +112,8 @@ userDetails(){
 
  getUserAccount(){
   this.data_services.userAccount().subscribe(response => {
-    console.log(response);
   if(response['error'] == false){ 
   this.totalBuyCoin = response['body']['totalBuyCoin'];
-  console.log(this.totalBuyCoin);
   }else{
      
   }
@@ -103,18 +127,17 @@ userDetails(){
     if(this.user_id != -1){
       this.data_services.logOut().subscribe(response => {
         if(response['error'] == false){
-          //console.log('herere')
-           //this.error_status=true;
           sessionStorage.removeItem('token');
           sessionStorage.removeItem('user_id');
+          sessionStorage.removeItem('user_name');
           localStorage.removeItem('isLoggedin'); 
           localStorage.removeItem('userData');
           localStorage.removeItem('updated_pic');
-         //localStorage.clear();
-         //sessionStorage.clear();
-          this.router.navigate(['/']);
+          localStorage.clear();
+          //this.router.navigate(['/']);
+          location.href="http://devapp.uzyth.com/?l=logout";
         }else{
-         // this.toastr.errorToastr(response['msg']);
+         console.log("Error occurred..");
         }
       },error => {})
     }else{
@@ -158,8 +181,12 @@ userDetails(){
      }
   }
 
+  openchatToggle(){
+   if(!this.chat){return this.chat=true;}
+   this.chat=false;
+  }
+
    onKeyPressSearch(searchValue: string){
-     //console.log(searchValue)
     if(this.search_people != ""){
       this.isSearchUser = true;
       this.isDefaultUser = false;
@@ -167,8 +194,6 @@ userDetails(){
       const input_data = {"userID": parseInt(this.user_id), "search_str": this.search_people}
       this.socket.emit('UsersSearchlist', input_data);
       this.socket.on('GetUsersSearchlist',(response) => {
-      console.log(response)
-//let other = [];
       response.map(item => {
         this.search_user_data=[ {
           name:item.name,
@@ -178,11 +203,8 @@ userDetails(){
         }
         ]
       })
-       //var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), 'secret key 123').toString();
-      //this.search_user_data = response;
 
-      console.log(JSON.stringify(this.search_user_data))
-        //console.log(this.search_user_data)
+   // console.log(JSON.stringify(this.search_user_data));
       },error => {});
     }else{
       this.search_user_data = [];
