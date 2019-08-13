@@ -237,7 +237,8 @@ export class GeneralFeedComponent implements OnInit {
     this.emojiHide = true;
   }
 
-  post_comment(postID,pvarCommnet,post){
+  post_comment(postID,pvarCommnet,post,index){
+    console.log(index);
     if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null &&
     sessionStorage.getItem('user_id') != undefined && sessionStorage.getItem('user_id') != null){
       this.disable_postcomment=true;
@@ -256,9 +257,10 @@ export class GeneralFeedComponent implements OnInit {
       }
      // console.log(input_data);
       this.data_service.commentOnPost(input_data).subscribe((response) => {
+       // console.log(response);
         if(response['error'] == false){
          // console.log(this.post_data[0]['comments']);
-          this.post_data[0]['comments'].push(response['body']);
+          this.post_data[index]['comments'].push(response['body']);
           post.postcomment='';
         //  console.log(pvarCommnet);
         this.disable_postcomment=false;

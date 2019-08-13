@@ -34,7 +34,8 @@
 					    </div>
 						<ng-container *ngIf="showPosts">
 						   <div infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="500" (scrolled)="generalPostAllList()" [scrollWindow]="true">
-								<div class="post-box mt-3" *ngFor="let post of post_data;let index">
+								<div class="post-box mt-3" *ngFor="let post of post_data;let i=index">
+									
 									<div class="post-hdr">
 										<div class="icon-img">
 											<img src="{{img_url}}{{post.profile_picture}}" />
@@ -91,46 +92,49 @@
 									</div>
 									<div class="commant-data">
 										<div class="commant-total">
-											<div class="commant-list" *ngFor="let cmt of post.comments; let i=index">
-												<div class="media">
-													<img src="{{img_url}}{{cmt.profile_picture}}">
-													<div class="media-body">
-														<p class="comment-block" *ngIf="edit_comment != true || cmt.id != cmtId"><b (click)="openUserProfile(cmt.user_id)">{{cmt.username}}</b>{{convetToEmoji(cmt.comment)}} <span class="comment-time">{{toLocalDate(cmt.comment_create_date)}}</span></p>
-														<div class="custom-msg" *ngIf="edit_comment && cmt.id == cmtId"> <input  class="form-control" (keyup.enter)="updateComment(cmt)" [(ngModel)]="cmt.comment" style="resize:none" type="text" >
-															<span class="comnt-empji" (click)="commentEmoji(cmt.id,cmt)"><i class="far fa-smile" aria-hidden="true" ></i></span>
-														</div>
-														<div *ngIf="comntEmoji  && cmt.id == cmtId" class="emojisShow custom-emoji">
-																<emoji-mart (emojiClick)="addInComment($event,cmt)"></emoji-mart>
+											<div class="commant-total-inner">
+												<div class="commant-list" *ngFor="let cmt of post.comments; let i=index">
+													<div class="media">
+														<img src="{{img_url}}{{cmt.profile_picture}}">
+														<div class="media-body">
+															<p class="comment-block" *ngIf="edit_comment != true || cmt.id != cmtId"><b (click)="openUserProfile(cmt.user_id)">{{cmt.username}}</b>{{convetToEmoji(cmt.comment)}} <span class="comment-time">{{toLocalDate(cmt.comment_create_date)}}</span></p>
+															<div class="custom-msg" *ngIf="edit_comment && cmt.id == cmtId"> <input  class="form-control" (keyup.enter)="updateComment(cmt)" [(ngModel)]="cmt.comment" style="resize:none" type="text" >
+																<span class="comnt-empji" (click)="commentEmoji(cmt.id,cmt)"><i class="far fa-smile" aria-hidden="true" ></i></span>
 															</div>
-														<ul>
-															<li *ngIf="edit_comment != true || cmt.id != cmtId"><a *ngIf="cmt.user_id == user_id" href="javascript:void(0)" (click)="editComment(cmt.id,cmt)">Edit</a></li>
-															<li><a *ngIf="cmt.user_id == user_id" href="javascript:void(0)" (click)="delete_comment(cmt)">Delete</a></li>
-															<li  *ngIf="edit_comment && cmt.id == cmtId"><a *ngIf="cmt.user_id == user_id" href="javascript:void(0)" (click)="cancelComment(cmt.id)">Cancel</a></li>
-														</ul>
+															<div *ngIf="comntEmoji  && cmt.id == cmtId" class="emojisShow custom-emoji">
+																	<emoji-mart (emojiClick)="addInComment($event,cmt)"></emoji-mart>
+																</div>
+															<ul>
+																<li *ngIf="edit_comment != true || cmt.id != cmtId"><a *ngIf="cmt.user_id == user_id" href="javascript:void(0)" (click)="editComment(cmt.id,cmt)">Edit</a></li>
+																<li><a *ngIf="cmt.user_id == user_id" href="javascript:void(0)" (click)="delete_comment(cmt)">Delete</a></li>
+																<li  *ngIf="edit_comment && cmt.id == cmtId"><a *ngIf="cmt.user_id == user_id" href="javascript:void(0)" (click)="cancelComment(cmt.id)">Cancel</a></li>
+															</ul>
+														</div>
 													</div>
-												</div>
+												</div>	
 											</div>
 
 											<div class="write-commant">
-													<div class="media">
-													<img src="{{currentUser_picture}}" alt="user">
-													<div class="media-body">
-														<div class="custom-msg">
-															<input (keyup.enter)="post_comment(post.id,post.postcomment,post)" class="form-control" [(ngModel)]="post.postcomment" name="postcomment"  style="resize:none" type="text" [disabled]="disable_postcomment" placeholder="Write a comment...">
-															<span class="comnt-empji" (click)="onClickEmoji(post.id)">
-																<i class="far fa-smile" aria-hidden="true" ></i>
-															</span>
-														</div>
+												<div class="media">
+												<img src="{{currentUser_picture}}" alt="user">
+												<div class="media-body">
+													<div class="custom-msg">
+														
+														<input (keyup.enter)="post_comment(post.id,post.postcomment,post,i)" class="form-control" [(ngModel)]="post.postcomment" name="postcomment"  style="resize:none" type="text" [disabled]="disable_postcomment" placeholder="Write a comment...">
+														<span class="comnt-empji" (click)="onClickEmoji(post.id)">
+															<i class="far fa-smile" aria-hidden="true" ></i>
+														</span>
 													</div>
-													</div>
-													<!-- <div *ngIf="emojiHide" class="emojisShow">
-														<emoji-mart (emojiClick)="addEmoji($event,post)"></emoji-mart>
-													</div> -->
 												</div>
-												<div *ngIf="emojiHide && postcmt==post.id" class="emojisShow custom-emoji" style="margin-left: 55px;">
+												</div>
+												<!-- <div *ngIf="emojiHide" class="emojisShow">
 													<emoji-mart (emojiClick)="addEmoji($event,post)"></emoji-mart>
-												</div>
-											
+												</div> -->
+											</div>
+											<div *ngIf="emojiHide && postcmt==post.id" class="emojisShow custom-emoji" style="margin-left: 55px;">
+												<emoji-mart (emojiClick)="addEmoji($event,post)"></emoji-mart>
+											</div>
+
 										</div>
 									</div>
 								</div>	

@@ -36,7 +36,7 @@
 							  <div class="dropdown dots-dd btn-dd">
 								<button  *ngIf="user_status == 'Request Sent'" class="btn btn-grey dropdown-toggle" data-toggle="dropdown">Friend Request Sent <i class="fas fa-sort-down"></i></button>
 								<div class="dropdown-menu">
-								  <a class="dropdown-item" href="#">Cancel Request</a>
+								  <a class="dropdown-item" (click)="deleteReq()" >Cancel Request</a>
 								  
 								</div>
 							  </div>
@@ -45,7 +45,7 @@
 								<button  [disabled]="isAcceptDisabled" *ngIf="user_status == 'Accept Request'" class="btn btn-grey dropdown-toggle" data-toggle="dropdown">Confirm Request <i class="fas fa-sort-down"></i></button>
 								<div class="dropdown-menu">
 								  <a class="dropdown-item" (click)="acceptReq()">Confirm Request</a>
-								  <a class="dropdown-item" href="#">Delete Request</a>
+								  <a class="dropdown-item" (click)="deleteReq()">Delete Request</a>
 								</div>
 							  </div>
 
@@ -65,7 +65,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12 col-xs-12 col-md-4 col-lg-4 col-xl-4">
-				<div class="photos-blk">
+				<div class="photos-blk mt-0">
 					<div class="inner-photo">
 						<div class="may-know">
 							<div class="top-know">

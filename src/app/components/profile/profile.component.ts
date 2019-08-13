@@ -418,6 +418,30 @@ export class ProfileComponent implements OnInit {
    }
 
 
+   deleteReq(){
+    const input_data = {"userID": parseInt(this.user_id), "friend_id": parseInt(this.id)}
+    console.log(input_data);
+    this.socket.emit('rejectFriendRequest', input_data);
+    this.socket.on('rejectFriendRequestReturn', (response) =>{
+     console.log("cancel");
+      console.log(response);
+
+   if(response['error'] == false){
+     this.isAcceptDisabled = false;
+   
+     }else{
+     this.isAcceptDisabled = false;
+     return;
+     }
+   },error => {
+     this.isAcceptDisabled = false;
+     console.log(error);
+   });
+   
+   
+  }
+
+
    close_modal() {
     this.error_msg = "";
     this.sucess_msg= "";

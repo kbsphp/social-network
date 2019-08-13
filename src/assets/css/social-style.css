@@ -240,6 +240,8 @@ a {color: #989898;}
 .create-post .create-write .for-type .icon-img img{
 	height: 40px;
     border-radius: 50%;
+    width: 40px;
+    object-fit: cover;
 }
 
 .create-post .create-write .for-type .chat-text{
@@ -3450,7 +3452,7 @@ section.model-custom .modal {
     right:-5px;
     background: #282e3a;
     padding: 5px 10px;
-    min-width: 90px;
+    min-width: 110px;
     top: -2px !important;
     transform: translate3d(0px, 25px, 0px) !important;
 }
@@ -3898,6 +3900,7 @@ label {
 
 .network-ul li a i {
     margin-right: 20px;
+    width:20px;
 }
 
 .page-name {
@@ -4072,5 +4075,13 @@ p.comment-block .comment-time{
     font-size: 10px;
     left:15px;
     bottom: 2px;
+}
+.commant-total .commant-total-inner {
+    max-height: 230px;
+    overflow: auto;
+}
+.like-data .write-commant .media img, .like-data .commant-list .media img, .commant-data .media img {
+    height:35px;
+    object-fit: cover;
 }
 

@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 // import { HttpModule } from '@angular/common/http';
@@ -30,12 +31,11 @@ import { PhotosComponent } from './components/photos/photos.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
-// <<<<<<< HEAD
+
 import { NgDatepickerModule } from 'ng2-datepicker';
-// =======
+
 import { TestComponent } from './test/test.component';
 
-// >>>>>>> 4760cc5c4ad3573a1cc7704878e839806f6a6e15
 
 @NgModule({
   declarations: [
