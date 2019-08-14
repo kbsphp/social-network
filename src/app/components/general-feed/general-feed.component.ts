@@ -270,6 +270,7 @@ export class GeneralFeedComponent implements OnInit {
           post.postcomment='';
         //  console.log(pvarCommnet);
         this.disable_postcomment=false;
+        this.emojiHide=false;
         }else{
           console.log(response['msg']);
           this.disable_postcomment=false;
