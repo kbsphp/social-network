@@ -241,7 +241,7 @@ UpdatePostData(data) {
    post_status: data.post_status,
    post_title: data.post_title,
    post_update_date: data.post_update_date,
-   profile_picture: this.userData.profile_picture,
+   profile_picture: data.profile_picture,
    userID: this.userData.id,
    user_id: this.userData.id,
    username: this.userData.username,

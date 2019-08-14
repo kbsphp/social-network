@@ -132,7 +132,25 @@
                         <img class="money1" src="assets/images/Path-6.png"><!----><img class="menu-arrow" src="assets/images/drop.png">
                     </span>
                     <div class="title-menu" [ngClass]="displayNotification?'show':'hide'">
-                     <div class="for-main-notification ng-tns-c1-0 ng-star-inserted"><div class="lft-part"><img class="money1" src="assets/images/Path-6.png"></div><div class="rgt-part"><p class="hdg1">Accepted Friend Request</p><p class="hdg2">Sanjay accepted your friend request</p><p class="hdg3">24 Jul 05:01</p><!----></div></div>
+							<div class="for-main-notification ng-tns-c1-0 ng-star-inserted"><div class="lft-part"><img class="money1" src="assets/images/Path-6.png"></div><div class="rgt-part"><p class="hdg1">Accepted Friend Request</p><p class="hdg2">Sanjay accepted your friend request</p><p class="hdg3">24 Jul 05:01</p></div></div>
+                     <!-- <div class="for-main-notification ng-tns-c1-0 ng-star-inserted">
+						
+							<div *ngFor="let noti of notifications;">
+							   <div class="lft-part">
+								<img class="money1" src="assets/images/Path-6.png">
+							    </div>
+							    <div class="rgt-part" >
+									<p class="hdg1">{{noti.title}}</p>
+									<p class="hdg2">{{noti.text}}</p>
+									<p class="hdg3">{{toLocalDate(noti.crdate)}}</p>
+									<div class="noti-btn" *ngIf="noti.type == 'requestSent'">
+										<a class="btn-small-menu" (click)="open_accept(noti.friend_id)">Accept</a>
+										<a class="btn-small-menu" (click)="open_decline(noti.friend_id)" >Decline</a>
+									</div>	
+							     </div>
+							</div>
+					
+					</div> -->
                     </div>
                 </li>
                 <li class="profile-drop" (click)="openProfileMenu()">

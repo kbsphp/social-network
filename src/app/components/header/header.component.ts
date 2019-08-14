@@ -8,10 +8,12 @@ import { environment } from '../../../environments/environment';
 import { FormGroup,FormBuilder,Validators,FormControl,FormArray } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import * as CryptoJS from 'crypto-js'; 
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
+  providers: [DatePipe],
 })
 export class HeaderComponent implements OnInit {
 user_id : any = -1;
@@ -20,6 +22,7 @@ profile_pic:string="";
 img_url;
 totalBuyCoin;
 token;
+notifications:any=[];
 chat:boolean=false;
   userData : any
   names:any
@@ -41,6 +44,7 @@ chat:boolean=false;
   constructor(private el: ElementRef, private data_services: DataService,   
    
     private router: Router,
+    private datePipe: DatePipe,
     private renderer: Renderer2
     ) {
     this.img_url=environment.img_url;
@@ -68,6 +72,7 @@ chat:boolean=false;
       }
     this.userDetails();
     this.getUserAccount();
+    this.getNotification();
     this.isLoggedIn$ = this.data_services.isLoggedIn;
      if(sessionStorage.getItem('user_id') != undefined && sessionStorage.getItem('user_id') != null){
       this.user_id = sessionStorage.getItem('user_id');
@@ -120,6 +125,30 @@ userDetails(){
   },error => {
     console.log(error);
   }); 
+  }
+
+  getNotification(){
+    console.log('Nofifications are:');
+    this.data_services.getNotification().subscribe(response => {
+      if(response['error'] == false){ 
+      this.notifications=response['body'];
+      console.log(this.notifications);
+      }else{
+         
+      }
+      },error => {
+        console.log(error);
+      });
+  }
+
+
+  toLocalDate(date){
+    if(date != null){
+      //var d= new Date(this.rectifyFormat(date));
+      var d= new Date(date);
+      var a = this.datePipe.transform(new Date(d),'dd/MM/yyyy hh:mm a');
+      return a;
+    }
   }
 
   logout(){

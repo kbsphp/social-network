@@ -28,7 +28,7 @@
 							<div class="dropdown dots-dd btn-dd">
 								<button  *ngIf="user_status == 'Friend'" class="btn btn-grey dropdown-toggle" data-toggle="dropdown">Friend <i class="fas fa-sort-down"></i></button>
 								<div class="dropdown-menu">
-								  <a class="dropdown-item" href="#">Unfriend</a>
+								  <a class="dropdown-item" (click)="unfriend()">Unfriend</a>
 								 
 								</div>
 							  </div>
@@ -36,7 +36,7 @@
 							  <div class="dropdown dots-dd btn-dd">
 								<button  *ngIf="user_status == 'Request Sent'" class="btn btn-grey dropdown-toggle" data-toggle="dropdown">Friend Request Sent <i class="fas fa-sort-down"></i></button>
 								<div class="dropdown-menu">
-								  <a class="dropdown-item" (click)="deleteReq()" >Cancel Request</a>
+								  <a class="dropdown-item" (click)="cancelFriendReq()" >Cancel Request</a>
 								  
 								</div>
 							  </div>
@@ -64,57 +64,7 @@
 <section class="content-block">
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-12 col-xs-12 col-md-4 col-lg-4 col-xl-4">
-				<div class="photos-blk mt-0">
-					<div class="inner-photo">
-						<div class="may-know">
-							<div class="top-know">
-								<p class="hdg"><span><i class="fas fa-camera-retro"></i></span>Photos</p>
-								<!-- <a href="" class="see">Add photo</a> -->
-							</div>
-							<div class="img-sec">
-								<div class="row">
-										<ng-container  *ngFor="let media of userMedia;let i=index;">
-												<div *ngIf="media.post_media != '' && i<9"  class="col-4 p-1">
-														<div class="photo-img">
-															<img src="{{img_url}}{{media.post_media}}">
-														</div>
-													</div>
-										</ng-container>			
-								</div>
-									
-							</div>	
-						</div>
-					</div>
-				</div>
-				<div class="friends-sec">
-					<div class="inner-photo">
-						<div class="may-know">
-							<div class="top-know">
-								<p class="hdg"><span><i class="fas fa-camera-retro"></i></span>Friends</p>
-								<!-- <a href="" class="see">Find Friends</a> -->
-							</div>
-							<div class="img-sec">
-								<div class="row" *ngFor="let user of user_data">
-									<a [routerLink]="['/profile',user.id]" *ngIf="user.user != user_id " class="col-4 p-1">
-										<div class="photo-img">
-											<img src="{{img_url}}/{{user.profile_picture}}">
-										</div>
-										<a href="">{{user.name}}</a>
-									</a>
-									
-								</div>
-						
-							</div>	
-						</div>
-					</div>
-					<div class="post-view">
-					
-					</div>
-				</div>
-
 			
-		</div>
 			<div class="col-sm-12 col-xs-12 col-md-8 col-lg-8 col-xl-8 right-part1">
 					<div *ngIf="!showPosts" class="post-box"><h5 style="color:#f6ad21;text-align: center;padding-top: 12px"> No post yet</h5></div>
 				<ng-container *ngIf="showPosts">
@@ -124,12 +74,12 @@
 							<img src="{{profile_picture}}">
 						</div>
 						<div class="name-box">
-							<h1 class="hdg"><a href="">{{post.username}}</a></h1>
-							<p class="time"><a href="">{{toLocalDate(post.post_create_date)}}</a></p>
+							<h1 class="hdg"><a href="javascript:void(0)">{{post.username}}</a></h1>
+							<p class="time"><a href="javascript:void(0)">{{toLocalDate(post.post_create_date)}}</a></p>
 						</div>
 					</div>
 					
-					<div class="post-des">
+					<div class="post-des" *ngIf="post.post_description">
 						<p class="des">{{convetToEmoji(post.post_description)}}</p>
 					</div>
 					
@@ -223,6 +173,59 @@
 					
 				</div>
 				</ng-container>
+			</div>
+
+			<div class="col-sm-12 col-xs-12 col-md-4 col-lg-4 col-xl-4">
+					<div class="pos-sticky">
+						<div class="photos-blk mt-0">
+							<div class="inner-photo">
+								<div class="may-know">
+									<div class="top-know">
+										<p class="hdg"><span><i class="fas fa-camera-retro"></i></span>Photos</p>
+										<!-- <a href="" class="see">Add photo</a> -->
+									</div>
+									<div class="img-sec">
+										<div class="row">
+												<ng-container  *ngFor="let media of userMedia;let i=index;">
+														<div *ngIf="media.post_media != '' && i<9"  class="col-4 p-1">
+																<div class="photo-img">
+																	<img src="{{img_url}}{{media.post_media}}">
+																</div>
+															</div>
+												</ng-container>			
+										</div>
+											
+									</div>	
+								</div>
+							</div>
+						</div>
+						<div class="friends-sec">
+							<div class="inner-photo">
+								<div class="may-know">
+									<div class="top-know">
+										<p class="hdg"><span><i class="fas fa-camera-retro"></i></span>Friends</p>
+										<!-- <a href="" class="see">Find Friends</a> -->
+									</div>
+									<div class="img-sec">
+										<div class="row" *ngFor="let user of user_data">
+											<a [routerLink]="['/profile',user.id]" *ngIf="user.user != user_id " class="col-4 p-1">
+												<div class="photo-img">
+													<img src="{{img_url}}/{{user.profile_picture}}">
+												</div>
+												<a href="">{{user.name}}</a>
+											</a>
+											
+										</div>
+								
+									</div>	
+								</div>
+							</div>
+							<div class="post-view">
+							
+							</div>
+						</div>
+					</div>
+				
 			</div>
 		</div>
 	</div>

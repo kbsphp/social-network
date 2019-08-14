@@ -561,6 +561,27 @@
 	</div>
 </div>
  
+<div class="form-group">
+	<div class="row">
+		<div class="col-2 lft-part">
+			<label for="date_from">Image</label>
+		</div>
+		<div class="col-4 rgt-part">
+			<input type="file" #file (change)="fileChange($event)" accept="image/x-png,image/jpeg" >
+		</div>
+	</div>
+</div>
+
+<div class="form-group">
+	<div class="row">
+		<div class="col-2 lft-part">
+			<label for="date_from">URL</label>
+		</div>
+		<div class="col-4 rgt-part">
+			<input type="text" formControlName="url" >
+		</div>
+	</div>
+</div>
 
 <div class="form-group">
 	<div class="row">

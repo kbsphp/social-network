@@ -3688,11 +3688,16 @@ label {
 .pic-popup .popup-inner .icon-img{
     background: #000;
 }
-.left-inner ,
-.right-part2-inner {
+/* .left-inner {
+    position: sticky;
+    top: 10px;
+} */
+
+.right-part2-inner , .pos-sticky{
     /* position: sticky;
-    top: 10px; */
+    top: 80px; */
 }
+
 .intro1 p{color: #989898;}
 .intro1 {
     margin-top: 0px;
@@ -3709,8 +3714,14 @@ label {
     height: 97vh;
     overflow-y: auto;
     top: 12px; */
+    /* position: sticky;
+    top: 80px; */
 }
 
+.for-top-eight{
+    /* position: sticky;
+    top: 80px; */
+}
 
 .intro1 p span i {
     width: 100%;

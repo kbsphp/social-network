@@ -410,6 +410,35 @@ headers : any;
 
   }
 
+
+  getNotification() {
+    if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null){this.token = sessionStorage.getItem('token');}
+    if(sessionStorage.getItem('user_id') != undefined && sessionStorage.getItem('user_id') != null){this.user_id = sessionStorage.getItem('user_id');}
+    const httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json', 'authorization': this.token })};
+    return this._http.get(this.base_url+'getNotification/'+ this.user_id + '/?lang=en', httpOptions )
+    .map((response:Response)=>{const data = response;return data;})
+    .catch((error:Error) => {console.log(error);return Observable.throw(error);});
+    }
+
+    unFriend(pvrData){
+      
+      if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null){this.token = sessionStorage.getItem('token');}
+      const httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json', 'authorization': this.token })};
+       return this._http.post(this.base_url+'unfriend_request/',pvrData, httpOptions )
+      .map((response:Response)=>{const data = response;return data;})
+      .catch((error:Error) => {console.log(error);return Observable.throw(error);});
+    }  
+
+
+    cancelFriendReq(pvrData){
+
+      if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null){this.token = sessionStorage.getItem('token');}
+      const httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json', 'authorization': this.token })};
+       return this._http.post(this.base_url+'cancelSenderFriendRequest/',pvrData, httpOptions )
+      .map((response:Response)=>{const data = response;return data;})
+      .catch((error:Error) => {console.log(error);return Observable.throw(error);});
+    }
+
   
 
 }

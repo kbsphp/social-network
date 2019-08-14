@@ -78,6 +78,7 @@ export class ProfileComponent implements OnInit {
      let selected_user=this.id;
      this.user_id = sessionStorage.getItem('user_id');
      this.data_service.checkUserStatus(this.user_id,selected_user).subscribe(response=>{
+      console.log("status here:");
       console.log(response['body']);
       if(response['body'].Friend == true)
       {
@@ -376,7 +377,7 @@ export class ProfileComponent implements OnInit {
 
 
   sendFriendReq(){
-    console.log(this.user_id);
+    console.log(this.id);
     const input_data = {"lang":"en","userID": parseInt(this.user_id), "friend_id": parseInt(this.id)}
     this.isSendDisabled = true;
     this.socket.emit('sendFriendRequest', input_data);
@@ -385,8 +386,9 @@ export class ProfileComponent implements OnInit {
     if(response['error'] == false){
      this.isSendDisabled = false;
      this.user_status= "Request Sent";
+     //console.log(this.user_status);
     }else{
-
+      console.log(response['msg']);
      this.isSendDisabled = false;
      return;
     }
@@ -420,15 +422,13 @@ export class ProfileComponent implements OnInit {
 
    deleteReq(){
     const input_data = {"userID": parseInt(this.user_id), "friend_id": parseInt(this.id)}
-    console.log(input_data);
+    //console.log(input_data);
     this.socket.emit('rejectFriendRequest', input_data);
     this.socket.on('rejectFriendRequestReturn', (response) =>{
-     console.log("cancel");
-      console.log(response);
-
+    //console.log(response);
    if(response['error'] == false){
      this.isAcceptDisabled = false;
-   
+     this.user_status= "Not Friend";
      }else{
      this.isAcceptDisabled = false;
      return;
@@ -439,6 +439,37 @@ export class ProfileComponent implements OnInit {
    });
    
    
+  }
+
+
+  unfriend(){
+    const input_data = {"userID": parseInt(this.user_id), "request_to": parseInt(this.id)}
+    this.data_service.unFriend(input_data).subscribe((response)=>
+    {
+     if(response['error']==false){
+      this.user_status= "Not Friend";
+     }else{
+       console.log(response['msg']);
+     }
+    },error=>{
+    console.log(error);
+    })
+  }
+
+  cancelFriendReq(){
+    const input_data = {"userID": parseInt(this.user_id), "friend_id": parseInt(this.id)}
+    console.log(input_data);
+    this.data_service.cancelFriendReq(input_data).subscribe((response)=>
+    {
+      console.log(response)
+     if(response['error']==false){
+      this.user_status= "Not Friend";
+     }else{
+       console.log(response['msg']);
+     }
+    },error=>{
+    console.log(error);
+    })
   }
 
 
