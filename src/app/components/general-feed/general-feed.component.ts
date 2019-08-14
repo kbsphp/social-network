@@ -155,7 +155,7 @@ export class GeneralFeedComponent implements OnInit {
            this.showPosts=true;
            this.loading=false;
            this.post_data = this.newArray;
-           //console.log(this.post_data);
+           console.log(this.post_data);
 
         }else{
           //console.log(this.post_data.length);
@@ -203,7 +203,7 @@ export class GeneralFeedComponent implements OnInit {
     }else{
       post.postcomment = evt.emoji.native
     }
-    this.emojiHide = false;
+   // this.emojiHide = false;
   }
   
   like(pvar_obj,pvar_status){
@@ -233,8 +233,14 @@ export class GeneralFeedComponent implements OnInit {
   }
 
   onClickEmoji(pvrId) {
+    this.emojiHide=!this.emojiHide
      this.postcmt=pvrId;
-    this.emojiHide = true;
+     if(this.emojiHide ==true){
+      this.emojiHide=true;
+     }else{
+      this.emojiHide=false;
+     }
+    //this.emojiHide = true;
   }
 
   post_comment(postID,pvarCommnet,post,index){

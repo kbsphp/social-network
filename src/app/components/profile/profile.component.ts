@@ -311,7 +311,12 @@ export class ProfileComponent implements OnInit {
   }
   
   onClickEmoji() {
-    this.emojiHide = true;
+    this.emojiHide=!this.emojiHide
+    if(this.emojiHide ==true){
+     this.emojiHide=true;
+    }else{
+     this.emojiHide=false;
+    }
   }
 
   addEmoji(evt,comnt){
@@ -321,7 +326,7 @@ export class ProfileComponent implements OnInit {
     }else{
       this.comment = evt.emoji.native
     }
-    this.emojiHide = false;
+    //this.emojiHide = false;
   }
 
   addInComment(evt,cmt){
@@ -459,17 +464,22 @@ export class ProfileComponent implements OnInit {
   cancelFriendReq(){
     const input_data = {"userID": parseInt(this.user_id), "friend_id": parseInt(this.id)}
     console.log(input_data);
-    this.data_service.cancelFriendReq(input_data).subscribe((response)=>
-    {
-      console.log(response)
-     if(response['error']==false){
-      this.user_status= "Not Friend";
+    this.socket.emit('cancelFriendReq', input_data);
+    this.socket.on('cancelSenderFriendRequest', (response) =>{
+      console.log(response);
+   if(response['error'] == false){
+     this.isAcceptDisabled = false;
+     this.user_status= "Not Friend";
      }else{
-       console.log(response['msg']);
+      console.log(response['msg']);
+     this.isAcceptDisabled = false;
+     return;
      }
-    },error=>{
-    console.log(error);
-    })
+   },error => {
+     this.isAcceptDisabled = false;
+     console.log(error);
+   });
+  
   }
 
 

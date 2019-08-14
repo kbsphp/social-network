@@ -84,7 +84,7 @@
 					</div>
 					
 					<div class="like-data">
-						<div class="like-total">
+						<div class="like-total" *ngIf="post.likes != '0'">
 							<div class="total-left">
 								<img class="for-img" src="assets/images/like.png">									
 								<a *ngIf="post.likes != '0'" class="pop-val" href="javascript:void(0)">{{post.likes}}</a>
@@ -111,7 +111,7 @@
 							
 							<div class="parts" id="commentbox" (click)="comment_box(post.id)">
 								<img class="for-img" src="assets/images/chat.png">										
-								<span>Comment</span>
+								<span>Comments({{post.comments.length}})</span>
 							</div>
 							
 						</div>
@@ -182,14 +182,15 @@
 							 	<div class="intro1">
 										 	<!-- <p class="intro-line">Add a short bio to tell people more about yourself.</p> -->
 							            <div class="progress">
-										   <div class="progress-bar bg-warning" [style.width.%]="userInfo.percentage">{{userInfo.percentage}} %</div>
+										   <div class="progress-bar bg-warning" [style.width.%]="userInfo.percentage">{{userInfo.percentage}}%</div>
 										</div>
-										 	<p *ngIf="userInfo.workplace != ''"><span><i class="fas fa-briefcase"></i></span>Works at: {{userInfo.workplace}}</p>
-										 	<p *ngIf="userInfo.professional_skills != ''"><span><i class="fas fa-graduation-cap"></i></span>Studied at: {{userInfo.professional_skills}}</p>
-										 	<p *ngIf="userInfo.home != ''"><span><i class="fas fa-map-marker-alt"></i></span>From: {{userInfo.home}}</p>
+										
+										 	<p *ngIf="userInfo.workplace != '' && userInfo.workplace != null "><span><i class="fas fa-briefcase"></i></span>Works at: {{userInfo.workplace}}</p>
+										 	<p *ngIf="userInfo.professional_skills != '' && userInfo.professional_skills != null"><span><i class="fas fa-graduation-cap"></i></span>Studied at: {{userInfo.professional_skills}}</p>
+										 	<p *ngIf="userInfo.home != '' && userInfo.home != null"><span><i class="fas fa-map-marker-alt"></i></span>From: {{userInfo.home}}</p>
 
 
-										 	<div *ngIf="userInfo.workplace == '' && userInfo.professional_skills == '' && userInfo.home == ''">
+										 	<div *ngIf="(userInfo.workplace == '' && userInfo.professional_skills == '' && userInfo.home =='') || (userInfo.home == null && userInfo.workplace == null && userInfo.professional_skills == null && userInfo.home == null)">
 										 		<p>Add a short bio to tell people more about yourself.</p>
 										 		<button (click)="addbio()" type="button" class="btn btn-grey">Add Bio</button>
 										 	</div>

@@ -88,12 +88,12 @@
 					</div>
 					
 					<div class="like-data" >
-						<div class="like-total">
+						<div class="like-total" *ngIf="post.likes != '0'">
 							<div class="total-left">
 							<!-- 	<img class="for-img" src="assets/images/like.png">							 			
 								<a class="pop-val" href="">2</a> -->
-								<img *ngIf="post.is_likes == '0'" class="for-img" src="assets/images/like.png">
-								<img *ngIf="post.is_likes == '1'" class="for-img" src="assets/images/dis-like.png">										
+								<img *ngIf="post.is_likes != '0'" class="for-img" src="assets/images/like.png">
+								<!-- <img *ngIf="post.is_likes == '1'" class="for-img" src="assets/images/dis-like.png">										 -->
 								<a *ngIf="post.is_likes != '0'" class="pop-val" href="javascript:void(0)">{{post.likes}}</a>
 							</div>
 							<!-- <div class="total-right">
@@ -118,7 +118,7 @@
 							
 							<div class="parts" id="commentbox" (click)="comment_box(post.id)">
 									<img class="for-img" src="assets/images/chat.png">										
-									<span>Comments</span>
+									<span>Comments({{post.comments.length}})</span>
 							</div>
 							
 						</div>

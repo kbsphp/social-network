@@ -145,7 +145,12 @@ export class UserFeedComponent implements OnInit {
   }
 
   onClickEmoji() {
-    this.emojiHide = true;
+    this.emojiHide=!this.emojiHide
+    if(this.emojiHide ==true){
+     this.emojiHide=true;
+    }else{
+     this.emojiHide=false;
+    }
   }
 
   commentEmoji(cmtId,cmt){
@@ -160,7 +165,7 @@ export class UserFeedComponent implements OnInit {
     }else{
       this.comment = evt.emoji.native
     }
-    this.emojiHide = false;
+    //this.emojiHide = false;
   }
 
   addInComment(evt,cmt){
@@ -633,19 +638,8 @@ UpdatePostData(data) {
  getUserInfo() {
  
    this.data_service.getUserAboutInfo(this.user_id).subscribe((response) => {
-    //  console.log(response);
-      //this.model=response['body'];
-
-      console.log(response['body']) 
       this.userInfo=response['body'];
-      //console.log(this.model); 
-     // this.userAboutData=response['body'];
-     // console.log(this.userAboutData);
-    //  if(this.userAboutData.length==0) {
-      //   this.checkStatus=true;
-     /// }else{
-        //this.checkStatus=false;
-    //  }
+      console.log(this.userInfo);
    },error=>{
     console.log(error);
    })

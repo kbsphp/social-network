@@ -9,6 +9,7 @@ import { FormGroup,FormBuilder,Validators,FormControl,FormArray } from '@angular
 import { Observable } from 'rxjs/Observable';
 import * as CryptoJS from 'crypto-js'; 
 import { DatePipe } from '@angular/common';
+declare var $;
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -128,11 +129,11 @@ userDetails(){
   }
 
   getNotification(){
-    console.log('Nofifications are:');
+    //console.log('Nofifications are:');
     this.data_services.getNotification().subscribe(response => {
       if(response['error'] == false){ 
       this.notifications=response['body'];
-      console.log(this.notifications);
+     // console.log(this.notifications);
       }else{
          
       }
@@ -185,30 +186,58 @@ userDetails(){
     
   }
   
-  openProfileMenu(){
-   this.profileMenu= !this.profileMenu;
-   if(this.profileMenu)
-    {
-      this.displayProfile=true
-    }else{
-      this.displayProfile=false;
-    }
-  }
 
-  openNotification(){
-    this.notifyMenu= !this.notifyMenu;
-    
-    if(this.notifyMenu)
-     {
-       this.displayNotification=true;
-       this.renderer.addClass(document.body, 'title-open');
-      // this.el.nativeElement.closest('body').className="title-open";
-     }else{
-       this.displayNotification=false;
-       this.renderer.removeClass(document.body, 'title-open');
-       //this.el.nativeElement.removeClass('removeClass');
-     }
-  }
+  openProfileMenu(){
+    //  this.profileMenu= !this.profileMenu;
+    //  if(this.profileMenu)
+    //   {
+    //     this.displayProfile=true
+    //   }else{
+    //     this.displayProfile=false;
+    //   }
+      if($('.profile-drop').hasClass('open-dd2')){
+        $('.profile-drop').removeClass('open-dd2');
+        $('body').removeClass('title-open');
+        $('body').removeClass('profile-open');
+        $('.title-drop .title-menu').hide();
+        $('.profile-menu').hide();
+      }else{
+        $('.profile-drop').addClass('open-dd2');
+        $('body').removeClass('title-open');
+        $('body').addClass('profile-open');
+        $('.title-drop .title-menu').hide();
+        $('.profile-menu').show();
+      }
+    }
+  
+    openNotification(){
+      // this.notifyMenu= !this.notifyMenu;
+      
+      // if(this.notifyMenu)
+      //  {
+      //    this.displayNotification=true;
+      //    this.renderer.addClass(document.body, 'title-open');
+      //   // this.el.nativeElement.closest('body').className="title-open";
+      //  }else{
+      //    this.displayNotification=false;
+      //    this.renderer.removeClass(document.body, 'title-open');
+      //    //this.el.nativeElement.removeClass('removeClass');
+      //  }
+  
+      if($('.title-drop').hasClass('open-dd')){
+        $('.title-drop').removeClass('open-dd');
+        $('body').removeClass('profile-open');
+        $('body').removeClass('title-open');
+        $('.profile-drop .profile-menu').hide();
+        $('.title-menu').hide();
+      }else{
+        $('.title-drop').addClass('open-dd');
+        $('body').removeClass('profile-open');
+        $('body').addClass('title-open');
+        $('.profile-drop .profile-menu').hide();
+        $('.title-menu').show();
+      }
+    }
 
   openchatToggle(){
    if(!this.chat){return this.chat=true;}

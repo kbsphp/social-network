@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from '../../shared/data.service';
 import { environment } from '../../../environments/environment';
-
+declare var $;
 @Component({
   selector: 'app-side-bar',
   templateUrl: './side-bar.component.html',
@@ -54,5 +54,11 @@ export class SideBarComponent implements OnInit {
  
    }
 
+   hide_overlay(){
+    $('body').removeClass('profile-open');
+    $('body').removeClass('title-open');
+    $('.profile-drop .profile-menu , .title-drop .title-menu').hide();
+    $('.black-overlay, .black-overlay2').hide();
+    }
  
   }
