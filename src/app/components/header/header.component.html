@@ -168,3 +168,33 @@
 <div *ngIf="chat == true">
 <app-chat></app-chat>
 </div>
+<div class="modal" id="myModal" backdrop="static" role="dialog" tabindex="-1" style="display: block; background-color: rgba(0, 0, 0, 0.32); z-index: 111111;" [style.display]="isPostModal ? 'block' : 'none'" *ngIf="isPostModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="create-post popupSuccess">
+                <div class="post-hdr">
+                    <p *ngIf="error_msg">Error
+                        <button type="button" class="close" (click)="close_modal()"><span aria-hidden="true">&times;</span></button>
+                    </p>
+                </div>
+
+                <div class="create-write">
+                    <div class="for-type">
+                        <div class="icon-img">
+
+                        </div>
+                        <div *ngIf="error_msg" class="error-msg">
+                            {{error_msg}}
+                        </div>
+                       
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<div class="for-popup-layer" [ngClass]="isShow ? isShow :''"></div>

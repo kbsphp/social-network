@@ -588,7 +588,7 @@ export class UserFeedComponent implements OnInit {
   }
 
   viewPhoto(photo){
-    this.photo=this.img_url+''+photo;
+    this.photo=photo;
     this.showSlider=true;
   }
 
@@ -626,7 +626,6 @@ UpdatePostData(data) {
  }
 
  openUserProfile(pvrId){
-   console.log(pvrId)
      this.selected_user=CryptoJS.AES.encrypt(JSON.stringify(pvrId), 'gurpreet').toString();
      this.router.navigate(['/profile',this.selected_user]);
   }

@@ -6442,3 +6442,17 @@ section.pop-up .input-fields input::-ms-input-placeholder { /* Microsoft Edge */
 .newtable .nav-tabs {
     border-color: #f6ab22;
 }
+
+
+.conf-accpt a:nth-child(1) {
+    border-bottom: 1px solid #383f4b;
+    padding: 0;
+}
+.conf-accpt a.dropdown-item {
+    padding: 7px 5px !important;
+}
+.right-part1 .commant-data .emojisShow {
+    position: absolute;
+	width: 100%;
+	z-index: 99999;
+}

@@ -82,7 +82,8 @@ export class AdvertiseComponent implements OnInit {
       ad_account_name:[''],
       from_date:new Date(),
       to_date:new Date(),
-      url : ['']
+      url : [''],
+      account_des:['']
     })
    
    // this.adSetting=this.formBuilder.group({
@@ -92,9 +93,9 @@ export class AdvertiseComponent implements OnInit {
    //   conversion_window:['']
    // })
 
-   this.generalSetting.patchValue({
-      actual_amount:5
-   })
+  //  this.generalSetting.patchValue({
+  //     actual_amount:5
+  //  })
 
 
    // this.accountSetting=this.formBuilder.group({
@@ -209,9 +210,14 @@ export class AdvertiseComponent implements OnInit {
     this.file = file.target.files[0];
   }
 
+  closepopup(){
+    this.notMatched='';
+  }
+  
+
   saveGeneralSetting() {
-    //console.log(this.generalSetting.value);
-     
+    console.log(this.generalSetting.value);
+
      let location=this.generalSetting.value.location;
      let language=this.generalSetting.value.language;
      let gender=this.generalSetting.value.gender;
@@ -226,16 +232,24 @@ export class AdvertiseComponent implements OnInit {
      let timezone=this.generalSetting.value.timezone;
      let ad_account_name=this.generalSetting.value.ad_account_name;
      let from_date=this.convert(this.generalSetting.value.from_date);
-     let to_date=this.convert(this.generalSetting.value.to_date);
+     
      let image = this.file;
      let url = this.generalSetting.value.url;
-     // console.log(from_date)
- 
-    //console.log(this.datediff(from_date,to_date))
+     let account_des = this.generalSetting.value.account_des;
+    // console.log(this.generalSetting.value.from_date.getDate());
 
+      let firstdate = this.generalSetting.value.from_date;
+      let startdate= new Date(firstdate);
+      console.log(startdate);
+     let end_date = new Date(firstdate.setDate(firstdate.getDate()+6));
+     console.log(end_date);
+    var result = Math.round(Math.abs(startdate.getDate() - end_date.getTime()/(1000*60*60*24)));
+     console.log(result);
+return;
        let  res = Math.abs(this.generalSetting.value.from_date - this.generalSetting.value.to_date) / 1000;
+       console.log(res/ 86400);
          let days = Math.floor(res / 86400);
-        console.log(days);
+        console.log("days:"+days);
          if (days === 7) { 
            ////console.log('yes matches')
           // return;
@@ -254,9 +268,10 @@ export class AdvertiseComponent implements OnInit {
                "timezone":timezone,
                "ad_account_name":ad_account_name,
                "from_date":from_date,
-               "to_date":to_date,
+               "to_date":'',
                 "product_image" : image,
-                "web_url" : url
+                "web_url" : url,
+                "ad_description":account_des
                }
 
      console.log(input_data)
@@ -278,6 +293,7 @@ export class AdvertiseComponent implements OnInit {
      formData.append('to_date', input_data.to_date);
      formData.append('product_image', input_data.product_image);
      formData.append('web_url', input_data.web_url);
+     formData.append('description', input_data.ad_description);
 
 
      //console.log(age)
@@ -287,8 +303,9 @@ export class AdvertiseComponent implements OnInit {
      if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null){this.token = sessionStorage.getItem('token');}
     const httpOptions = { headers: new HttpHeaders({'authorization': this.token })};
       this._http.post(this.base_url+'socialAdvertisement', formData, httpOptions).subscribe((response) => {
+        console.log(response);
         if(response['error'] == false){
-          this.genreralSave="Genreal Setting Created Sucessfully"
+          this.genreralSave="Genreal Setting Created Sucessfully";
           this.generalSetting.reset({
             location:'',
             age1:'',
@@ -303,39 +320,19 @@ export class AdvertiseComponent implements OnInit {
             timezone:'',
           }) 
           this.fileupload.nativeElement.value="";
-        }else{
+          this.notMatched="";
           
+        }else{
+          this.notMatched=response['msg'];
         }
       },error =>{
-        
+         console.log("Something went wrong!");
       });
 
-  //  this.data_service.saveGeneralAdSetting(formData).subscribe((response) => {
-  //      console.log(response)
-   
-  //    if (response['error'] == false) {
-       
-  //        this.genreralSave="Genreal Setting Created Sucessfully"
-  //        this.generalSetting.reset({
-  //            location:'',
-  //            age1:'',
-  //            age2:'',
-  //            gender:'',
-  //            ad_delivery:'',
-  //            buget_schedule:'',
-  //            actual_amount:5,
-  //            conversion_window:'',
-  //            account_country:'',
-  //            currency:'',
-  //            timezone:'',
-  
-  //          }) 
-  //   }
-
-  //  })
+ 
          } else {
             
-            this.notMatched="Please Select 7 days From start date"
+            this.notMatched="Please Select 7 days From start date";
 
          }
         // console.log(days)
@@ -407,6 +404,21 @@ export class AdvertiseComponent implements OnInit {
         }
      })
 
+ }
+
+ onAdChange(evt){
+   let amount;
+   if(evt=='click'){
+    amount=5;
+   }else if(evt=='impression'){
+    amount=20;
+   }
+   else{
+    amount='';
+   }
+  this.generalSetting.patchValue({
+    actual_amount:amount
+   })
  }
 
 }

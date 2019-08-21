@@ -24,7 +24,10 @@ img_url;
 totalBuyCoin;
 token;
 notifications:any=[];
+isPostModal: boolean = false;
+error_msg:string = "";
 chat:boolean=false;
+isShow;
   userData : any
   names:any
   newarray: any[];
@@ -107,11 +110,17 @@ userDetails(){
       }
       localStorage['userData'] = JSON.stringify(userObj);
     this.profile_pic=response['body'][0].profile_picture;
+    this.isPostModal=false;
     }else{
      console.log(response['msg']);
+     this.error_msg=response['msg'];
+     this.isPostModal=true;
     }
   },error=>{
+     this.error_msg="Something went wrong! Please try after some time.";
      console.log("Something went wrong");
+     this.isPostModal=true;
+     this.isShow="modal-backdrop fade show";
   })
 
  }
@@ -176,6 +185,12 @@ userDetails(){
     }
   }
 
+  close_modal() {
+    this.error_msg = "";
+    this.isPostModal = false;
+    this.isShow="";
+  }
+
   openSidebar(){
     this.sidebarShow= !this.sidebarShow;
     if(this.sidebarShow != false){
@@ -238,6 +253,7 @@ userDetails(){
         $('.title-menu').show();
       }
     }
+    
 
   openchatToggle(){
    if(!this.chat){return this.chat=true;}

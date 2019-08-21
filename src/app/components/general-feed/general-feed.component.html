@@ -1,149 +1,155 @@
 <app-header></app-header>
 <app-side-bar></app-side-bar>
 <div class="work-block">
-<section class="main-body">
-	<div class="container">
-		<div class="row">
-			
-			<!-- <div class="col-12">
-				<div class="main-name">
-					<h1 class="page-name">
-						<img class="heading-image" src="assets/images/nett.png">
-						<i>NETWORK LOBBY</i>
-					</h1>
+    <section class="main-body">
+        <div class="container">
+            <div class="row">
+                <!-- <div class="col-12">
+					<div class="main-name">
+						<h1 class="page-name">
+							<img class="heading-image" src="assets/images/nett.png">
+							<i>NETWORK LOBBY</i>
+						</h1>
 
-					<div class="line-notification">
-						<h1><img src="assets/images/notification2.png">Trade your UZ Coin comissions for BTC in the UZ Exchange!</h1>
+						<div class="line-notification">
+							<h1><img src="assets/images/notification2.png">Trade your UZ Coin comissions for BTC in the UZ Exchange!</h1>
+						</div>
+
+						<div class="line-heading">
+							<h3>UZYTH Social</h3>
+						</div>
 					</div>
-
-					<div class="line-heading">
-						<h3>UZYTH Social</h3>
-					</div>
-				</div>
-			</div> -->
-			
-			<div class="col-sm-12 right-part">
-				<div class="row">
-					<div class="col-sm-12 col-md-12 col-lg-9 right-part1">
-						<app-create-post></app-create-post>
-						<div *ngIf="loading" class="loader">
-								<div class="rect2"></div>
-								<div class="rect3"></div>
-								<div class="rect4"></div>
-								<div class="rect5"></div>
-					    </div>
-						<ng-container *ngIf="showPosts">
-						   <div infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="500" (scrolled)="generalPostAllList()" [scrollWindow]="true">
-								<div class="post-box mt-3" *ngFor="let post of post_data;let i=index">
-									
-									<div class="post-hdr">
-										<div class="icon-img">
-											<img src="{{img_url}}{{post.profile_picture}}" />
-										</div>
-										<div class="name-box">
-											<h1 class="hdg" (click)="openUserProfile(post.user_id)"><a href="javascript:void(0)">{{post.username}}</a> <p class="time"><a href="javascript:void(0)">{{toLocalDate(post.post_create_date)}}</a></p></h1>
-											<div class="dropdown dots-dd">
-												<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-												  <i class="fas fa-ellipsis-h"></i>
-												</button>
-												<div class="dropdown-menu" x-placement="bottom-start">
-													<p class="time" (click)="reportSpamPost(post.id,post)" *ngIf="post.user_id != user_id"><a href="javascript:void(0)">Report as spam</a></p>
-													<p class="time" (click)="deletePost(post.id,post)" *ngIf="post.user_id == user_id"><a href="javascript:void(0)">Delete post</a></p>
-												</div>
-											  </div>
-										</div>
-									</div>
-									
-									<div class="post-des" *ngIf="post.post_description != ''">
-										<p class="des">{{convetToEmoji(post.post_description)}}</p>
-									</div>
-									
-									<div class="post-data"  *ngIf="post.post_media != ''">
-										<div (click)= viewPhoto(post.post_media);>
-											<img class="img-fluid" src="{{img_url}}{{post.post_media}}" />
-										</div>
-									</div>
-									
-									<div class="like-data">
-										<div class="like-total" *ngIf="post.likes != '0'">
-											<div class="total-left">
-												<img  class="for-img" src="assets/images/like.png" />										
-												<a class="pop-val" *ngIf="post.likes != '0'" href="javascript:void(0)">{{post.likes}}</a>
-											</div>
-										</div>
-										
-										<div class="like-actual">
-											<div class="parts" *ngIf="post.is_likes == '0'" (click)="like(post,'like')">
-												<img class="for-img" src="assets/images/like2.png" />										
-												<span>Like</span>
-											</div>
-											<div class="parts" *ngIf="post.is_likes == '1'" (click)="like(post,'unlike')">
-													<img class="for-img" src="assets/images/dis-like2.png">										
-													<span>Unlike</span>
-											</div>
-											
-											<div class="parts">
-												<img class="for-img" src="assets/images/chat.png" />										
-												<span>Comments({{post.comments.length}})</span>
-											</div>
-											
-										</div>
-										
-									</div>
-									<div class="commant-data">
-										<div class="commant-total">
-											<div class="commant-total-inner">
-												<div class="commant-list" *ngFor="let cmt of post.comments; let i=index">
-													<div class="media">
-														<img src="{{img_url}}{{cmt.profile_picture}}">
-														<div class="media-body">
-															<p class="comment-block" *ngIf="edit_comment != true || cmt.id != cmtId"><b (click)="openUserProfile(cmt.user_id)">{{cmt.username}}</b>{{convetToEmoji(cmt.comment)}} <span class="comment-time">{{toLocalDate(cmt.comment_create_date)}}</span></p>
-															<div class="custom-msg" *ngIf="edit_comment && cmt.id == cmtId"> <input  class="form-control" (keyup.enter)="updateComment(cmt)" [(ngModel)]="cmt.comment" style="resize:none" type="text" >
-																<span class="comnt-empji" (click)="commentEmoji(cmt.id,cmt)"><i class="far fa-smile" aria-hidden="true" ></i></span>
-															</div>
-															<div *ngIf="comntEmoji  && cmt.id == cmtId" class="emojisShow custom-emoji">
-																	<emoji-mart (emojiClick)="addInComment($event,cmt)"></emoji-mart>
-																</div>
-															<ul>
-																<li *ngIf="edit_comment != true || cmt.id != cmtId"><a *ngIf="cmt.user_id == user_id" href="javascript:void(0)" (click)="editComment(cmt.id,cmt)">Edit</a></li>
-																<li><a *ngIf="cmt.user_id == user_id" href="javascript:void(0)" (click)="delete_comment(cmt)">Delete</a></li>
-																<li  *ngIf="edit_comment && cmt.id == cmtId"><a *ngIf="cmt.user_id == user_id" href="javascript:void(0)" (click)="cancelComment(cmt.id)">Cancel</a></li>
-															</ul>
-														</div>
-													</div>
-												</div>	
-											</div>
-
-											<div class="write-commant">
-												<div class="media">
-												<img src="{{currentUser_picture}}" alt="user">
-												<div class="media-body">
-													<div class="custom-msg">
-														
-														<input (keyup.enter)="post_comment(post.id,post.postcomment,post,i)" class="form-control" [(ngModel)]="post.postcomment" name="postcomment"  style="resize:none" type="text" [disabled]="disable_postcomment" placeholder="Write a comment...">
-														<span class="comnt-empji" (click)="onClickEmoji(post.id)">
-															<i class="far fa-smile" aria-hidden="true" ></i>
-														</span>
-													</div>
-												</div>
-												</div>
-												<!-- <div *ngIf="emojiHide" class="emojisShow">
-													<emoji-mart (emojiClick)="addEmoji($event,post)"></emoji-mart>
-												</div> -->
-											</div>
-											<div *ngIf="emojiHide && postcmt==post.id" class="emojisShow custom-emoji" style="margin-left: 55px;">
-												<emoji-mart (emojiClick)="addEmoji($event,post)"></emoji-mart>
-											</div>
-
-										</div>
-									</div>
-								</div>	
-							</div>	
-					</ng-container>			
-					</div>
-					<div class="col-sm-12 col-md-12 col-lg-3 right-part2">
-						<div class="right-part2-inner">
-							<!-- <div class="search-box searchFriends">
+				</div> -->
+                <div class="col-sm-12 right-part">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-9 right-part1">
+                            <app-create-post></app-create-post>
+                            <div *ngIf="loading" class="loader">
+                                <div class="rect2"></div>
+                                <div class="rect3"></div>
+                                <div class="rect4"></div>
+                                <div class="rect5"></div>
+                            </div>
+                            <ng-container *ngIf="showPosts">
+                                <div infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="500" (scrolled)="generalPostAllList()" [scrollWindow]="true">
+                                    <ng-container *ngFor="let post of post_data;let i=index">
+                                        <div class="post-box mt-3">
+                                            <div class="post-hdr">
+                                                <div class="icon-img">
+                                                    <img src="{{img_url}}{{post.profile_picture}}" />
+                                                </div>
+                                                <div class="name-box">
+                                                    <h1 class="hdg" (click)="openUserProfile(post.user_id)"><a href="javascript:void(0)">{{post.username}}</a> <p class="time"><a href="javascript:void(0)">{{toLocalDate(post.post_create_date)}}</a></p></h1>
+                                                    <div class="dropdown dots-dd">
+                                                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                            <i class="fas fa-ellipsis-h"></i>
+                                                        </button>
+                                                        <div class="dropdown-menu" x-placement="bottom-start">
+                                                            <p class="time" (click)="reportSpamPost(post.id,post)" *ngIf="post.user_id != user_id"><a href="javascript:void(0)">Report as spam</a></p>
+                                                            <p class="time" (click)="deletePost(post.id,post)" *ngIf="post.user_id == user_id"><a href="javascript:void(0)">Delete post</a></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="post-des" *ngIf="post.post_description != ''">
+                                                <p class="des">{{convetToEmoji(post.post_description)}}</p>
+                                            </div>
+                                            <div class="post-data" *ngIf="post.post_media != ''">
+                                                <div (click)=viewPhoto(post.post_media);>
+                                                    <img class="img-fluid" src="{{img_url}}{{post.post_media}}" />
+                                                </div>
+                                            </div>
+                                            <div class="like-data">
+                                                <div class="like-total" *ngIf="post.likes != '0'">
+                                                    <div class="total-left">
+                                                        <img class="for-img" src="assets/images/like.png" />
+                                                        <a class="pop-val" *ngIf="post.likes != '0'" href="javascript:void(0)">{{post.likes}}</a>
+                                                    </div>
+                                                </div>
+                                                <div class="like-actual">
+                                                    <div class="parts" *ngIf="post.is_likes == '0'" (click)="like(post,'like')">
+                                                        <img class="for-img" src="assets/images/like2.png" />
+                                                        <span>Like</span>
+                                                    </div>
+                                                    <div class="parts" *ngIf="post.is_likes == '1'" (click)="like(post,'unlike')">
+                                                        <img class="for-img" src="assets/images/dis-like2.png">
+                                                        <span>Unlike</span>
+                                                    </div>
+                                                    <div class="parts">
+                                                        <img class="for-img" src="assets/images/chat.png" />
+                                                        <span *ngIf="post.comments.length>0">Comments({{post.comments.length}})</span>
+                                                        <span *ngIf="post.comments.length==0">Comments</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="commant-data">
+                                                <div class="commant-total">
+                                                    <div class="commant-total-inner">
+                                                        <div class="commant-list" *ngFor="let cmt of post.comments; let i=index">
+                                                            <div class="media">
+                                                                <img src="{{img_url}}{{cmt.profile_picture}}">
+                                                                <div class="media-body">
+                                                                    <p class="comment-block" *ngIf="edit_comment != true || cmt.id != cmtId"><b (click)="openUserProfile(cmt.user_id)">{{cmt.username}}</b>{{convetToEmoji(cmt.comment)}} <span class="comment-time">{{toLocalDate(cmt.comment_create_date)}}</span></p>
+                                                                    <div class="custom-msg" *ngIf="edit_comment && cmt.id == cmtId">
+                                                                        <input class="form-control" (keyup.enter)="updateComment(cmt)" [(ngModel)]="cmt.comment" style="resize:none" type="text">
+                                                                        <span class="comnt-empji" (click)="commentEmoji(cmt.id,cmt)"><i class="far fa-smile" aria-hidden="true" ></i></span>
+                                                                    </div>
+                                                                    <div *ngIf="comntEmoji  && cmt.id == cmtId" class="emojisShow custom-emoji">
+                                                                        <emoji-mart (emojiClick)="addInComment($event,cmt)"></emoji-mart>
+                                                                    </div>
+                                                                    <ul>
+                                                                        <li *ngIf="edit_comment != true || cmt.id != cmtId"><a *ngIf="cmt.user_id == user_id" href="javascript:void(0)" (click)="editComment(cmt.id,cmt)">Edit</a></li>
+                                                                        <li><a *ngIf="cmt.user_id == user_id" href="javascript:void(0)" (click)="delete_comment(cmt)">Delete</a></li>
+                                                                        <li *ngIf="edit_comment && cmt.id == cmtId"><a *ngIf="cmt.user_id == user_id" href="javascript:void(0)" (click)="cancelComment(cmt.id)">Cancel</a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="write-commant">
+                                                        <div class="media">
+                                                            <img src="{{currentUser_picture}}" alt="user">
+                                                            <div class="media-body">
+                                                                <div class="custom-msg">
+                                                                    <input (keyup.enter)="post_comment(post.id,post.postcomment,post,i)" class="form-control" [(ngModel)]="post.postcomment" name="postcomment" style="resize:none" type="text" [disabled]="disable_postcomment" placeholder="Write a comment...">
+                                                                    <span class="comnt-empji" (click)="onClickEmoji(post.id)">
+																<i class="far fa-smile" aria-hidden="true" ></i>
+															</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- <div *ngIf="emojiHide" class="emojisShow">
+															<emoji-mart (emojiClick)="addEmoji($event,post)"></emoji-mart>
+														</div> -->
+                                                    </div>
+                                                    <div *ngIf="emojiHide && postcmt==post.id" class="emojisShow custom-emoji" style="margin-left: 55px;">
+                                                        <emoji-mart (emojiClick)="addEmoji($event,post)"></emoji-mart>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                        
+                                        <div *ngIf="post.advertisement != '' && post.advertisement != []" class="post-box mt-3">
+                                            <ng-container *ngFor="let ads of post.advertisement;let i = index">
+                                                <div class="join-group">
+                                                    <div class="join-image">
+                                                        <a *ngIf="ads.web_url != null && ads.web_url != undefined && ads.web_url != ''" href="{{ads.web_url}}" target="_blank">
+                                                            <img src="{{ads.product_image}}" (click)="onClickAd($event)" id="{{ads.id}}" [attr.data-type]="ads.ad_delivery_type" #myDiv>
+                                                        </a>
+                                                        <a *ngIf="ads.web_url == null || ads.web_url == undefined || ads.web_url == ''" href="javascript:void(0)">
+                                                            <img src="{{ads.product_image}}" (click)="onClickAd($event)" id="{{ads.id}}" [attr.data-type]="ads.ad_delivery_type" #myDiv>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </ng-container>
+                                </div>
+                            </ng-container>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-3 right-part2">
+                            <div class="right-part2-inner">
+                                <!-- <div class="search-box searchFriends">
 									<form>
 										<div class="input-group">
 											<input type="text" class="form-control" [(ngModel)]="search_people" (input)="onKeyPressSearch($event.target.value)" placeholder="Search Friends" name="search_people">
@@ -152,151 +158,133 @@
 											</div>
 											 <ul *ngIf="isSearchUser == true">
 												<ng-container *ngFor="let search of search_user_data;">
-											
 													<li>
-				
 														<span class='name'><a [routerLink]="['/profile',search.id]">{{search.name | titlecase}}</a></span>
-				
-													
-														</li>
-				
+													</li>
 												</ng-container>
 											</ul>
-											
 										</div>
 									</form>
 								</div> -->
-
-						<div class="may-know for-hover-zoom" *ngIf="findFriends">
-							<div class="top-know" >
-								<p class="hdg">People you may know</p>
-								<a href="javascript:void(0)" [routerLink]="['/find-friends']" class="see">See All</a>
-							</div>
-							<div class="bottom-know">
-								<ng-container *ngFor="let user of user_data;let i=index;">
-								<div class="friends" *ngIf="i<4">
-									<div class="pic">
-										<img class="for-img" src="{{img_url}}{{user.profile_picture}}" />										
-									</div>
-									
-									<div class="details">
-										<h2 class="details-heading" (click)="openUserProfile(user.new_users)"><a href="javascript:void(0)">{{user.first_name}} {{user.last_name}}</a></h2>
-										<h2 class="details-heading" (click)="openUserProfile(user.new_users)" *ngIf="user.first_name == null || user.first_name== ''"><a  href="javascript:void(0)">{{user.username}} </a></h2>
-										<h6 class="mutual-frd" (click)="openUserProfile(user.new_users)" *ngIf="user.mutualcount !=0"><a href="javascript:void(0)">{{user.mutualcount}} mutual friend</a></h6>
-										<div class="add-class">
-											<button *ngIf="isSendReq != true || user.new_users != friend" [disabled]="isSendDisabled" (click)="sendFriendReq(user.new_users)" type="button" class="btn btn-grey">Add Friends</button>
-											<button *ngIf="isSendReq != false && user.new_users == friend" type="button"  class="btn btn-grey">Request Sent</button>
-											<button type="button" (click)="removeFriend(user)" class="btn btn-grey">Remove</button>
-										</div>
-									</div>
-								</div>
-							  </ng-container>
-							</div>
-						</div>
-						<div class="Suggested pt-0 for-hover-zoom">
-							<div class="may-know ">
-								<div class="top-know">
-									<p class="hdg">Ads</p>
-									<!-- <a href="" class="see">See All</a> -->
-								</div>
-								<div class="bottom-know">
-									<ng-container *ngFor="let ads of adsArray;let i = index">
-									<div class="join-group" *ngIf="i<1">
-										<div class="join-image">
-												<a *ngIf="ads.web_url != null && ads.web_url != undefined && ads.web_url != ''" href="{{ads.web_url}}" target="_blank">
-														<img src="{{ads.product_image}}" (click)="onClickAd($event)" id="{{ads.id}}" [attr.data-type]="ads.ad_delivery_type" #myDiv>
-														</a>
-														<a *ngIf="ads.web_url == null || ads.web_url == undefined || ads.web_url == ''" href="javascript:void(0)">
-														<img src="{{ads.product_image}}" (click)="onClickAd($event)" id="{{ads.id}}" [attr.data-type]="ads.ad_delivery_type" #myDiv>
-														</a>
-										</div>
-									  <div class="group-know" >
-										<p class="hdg">{{ads.ad_account_name}}</p>
-										<!-- <button type="button" class="btn btn-grey">Join Group</button> -->
-									</div>
-									</div>
-								</ng-container>
-									<!-- <div class="group-know">
-										<p class="hdg">5-Minute Crafts ®<span>1,512,955 members</span></p>
-										<button type="button" class="btn btn-grey">Join Group</button>
-									</div> -->
-								</div>
-							</div>
-						</div>
-					</div>
-						
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+                                <div class="may-know for-hover-zoom" *ngIf="findFriends">
+                                    <div class="top-know">
+                                        <p class="hdg">People you may know</p>
+                                        <a href="javascript:void(0)" [routerLink]="['/find-friends']" class="see">See All</a>
+                                    </div>
+                                    <div class="bottom-know">
+                                        <ng-container *ngFor="let user of user_data;let i=index;">
+                                            <div class="friends" *ngIf="i<4">
+                                                <div class="pic">
+                                                    <img class="for-img" src="{{img_url}}{{user.profile_picture}}" />
+                                                </div>
+                                                <div class="details">
+                                                    <h2 class="details-heading" (click)="openUserProfile(user.new_users)"><a href="javascript:void(0)">{{user.first_name}} {{user.last_name}}</a></h2>
+                                                    <h2 class="details-heading" (click)="openUserProfile(user.new_users)" *ngIf="user.first_name == null || user.first_name== ''"><a  href="javascript:void(0)">{{user.username}} </a></h2>
+                                                    <h6 class="mutual-frd" (click)="openUserProfile(user.new_users)" *ngIf="user.mutualcount !=0"><a href="javascript:void(0)">{{user.mutualcount}} mutual friend</a></h6>
+                                                    <div class="add-class">
+                                                        <button *ngIf="isSendReq != true || user.new_users != friend" [disabled]="isSendDisabled" (click)="sendFriendReq(user.new_users)" type="button" class="btn btn-grey">Add Friends</button>
+                                                        <button *ngIf="isSendReq != false && user.new_users == friend" type="button" class="btn btn-grey">Request Sent</button>
+                                                        <button type="button" (click)="removeFriend(user)" class="btn btn-grey">Remove</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ng-container>
+                                    </div>
+                                </div>
+                                <div class="Suggested pt-0 for-hover-zoom">
+                                    <div class="may-know ">
+                                        <div class="top-know">
+                                            <p class="hdg">Ads</p>
+                                            <!-- <a href="" class="see">See All</a> -->
+                                        </div>
+                                        <div class="bottom-know">
+                                            <ng-container *ngFor="let ads of adsArray;let i = index">
+                                                <div class="join-group" *ngIf="i<1">
+                                                    <div class="join-image">
+                                                        <a *ngIf="ads.web_url != null && ads.web_url != undefined && ads.web_url != ''" href="{{ads.web_url}}" target="_blank">
+                                                            <img src="{{ads.product_image}}" (click)="onClickAd($event)" id="{{ads.id}}" [attr.data-type]="ads.ad_delivery_type" #myDiv>
+                                                        </a>
+                                                        <a *ngIf="ads.web_url == null || ads.web_url == undefined || ads.web_url == ''" href="javascript:void(0)">
+                                                            <img src="{{ads.product_image}}" (click)="onClickAd($event)" id="{{ads.id}}" [attr.data-type]="ads.ad_delivery_type" #myDiv>
+                                                        </a>
+                                                    </div>
+                                                    <div class="group-know">
+                                                        <p class="hdg">{{ads.ad_account_name}}</p>
+                                                        <!-- <button type="button" class="btn btn-grey">Join Group</button> -->
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+                                            <!-- <div class="group-know">
+												<p class="hdg">5-Minute Crafts ®<span>1,512,955 members</span></p>
+												<button type="button" class="btn btn-grey">Join Group</button>
+											</div> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
 <!--Scroll to top-->
 <button [ngClass]="{'show-scroll': showScroll}" (click)="scrollToTop()" class="scroll-to-top">
-	<i class="fas fa-chevron-circle-up"></i>
+    <i class="fas fa-chevron-circle-up"></i>
 </button>
 <div class="modal" id="myModal" backdrop="static" role="dialog" tabindex="-1" style="display: block; background-color: rgba(0, 0, 0, 0.32); z-index: 111111;" [style.display]="isPostModal ? 'block' : 'none'" *ngIf="isPostModal" aria-hidden="true">
-		
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="create-post popupSuccess">
-			<div class="post-hdr">
-			  <p *ngIf="error_msg">Error<button type="button" class="close" (click)="close_modal()"><span aria-hidden="true">&times;</span></button></p>
-			  <p *ngIf="sucess_msg">Success<button type="button" class="close" (click)="close_modal()"><span aria-hidden="true">&times;</span></button></p>  
-		  </div>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="create-post popupSuccess">
+                <div class="post-hdr">
+                    <p *ngIf="error_msg">Error
+                        <button type="button" class="close" (click)="close_modal()"><span aria-hidden="true">&times;</span></button>
+                    </p>
+                    <p *ngIf="sucess_msg">Success
+                        <button type="button" class="close" (click)="close_modal()"><span aria-hidden="true">&times;</span></button>
+                    </p>
+                </div>
 
-			<div class="create-write">
-			  <div class="for-type">
-				<div class="icon-img">
-				  
-				</div>
-				<div *ngIf="error_msg" class="error-msg">
-				{{error_msg}}
-				</div>
-				<div *ngIf="sucess_msg" class="sucess-msg">
-					  {{sucess_msg}}
-					  </div>
-			  </div>
-			
-			</div>
-			
-		  </div>
-	  
-		</div>
-		
-		
+                <div class="create-write">
+                    <div class="for-type">
+                        <div class="icon-img">
 
-	  </div>
-	  
-	  
-	</div>
-	<div class="for-popup-layer" [ngClass]="isShow ? isShow :''"></div>
+                        </div>
+                        <div *ngIf="error_msg" class="error-msg">
+                            {{error_msg}}
+                        </div>
+                        <div *ngIf="sucess_msg" class="sucess-msg">
+                            {{sucess_msg}}
+                        </div>
+                    </div>
 
-	<div class="modal pic-popup" id="myModalPostPhoto" backdrop="static" role="dialog" tabindex="-1" style="display: block; background-color: rgba(0, 0, 0, 0.9); z-index: 111111;" [style.display]="showSlider ? 'block' : 'none'" *ngIf="showSlider" aria-hidden="true">
-		
-	<div class="modal-dialog modal-lg  full-screen-popup" role="document">
-		<div class="modal-content">
-			
-			
-		<div class="popup-inner">
-				<button type="button" class="close" (click)="closePhoto()"><span aria-hidden="true">&times;</span></button>
-		  
-			<div class="icon-img">
-				<img class=""  src="{{photo}}" alt="slideshow">
-			</div>
-			
-		 
-	
-		</div>
-		
-	  
-  
-	</div>
-	
-	
+                </div>
 
-  </div>
-  
-  
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<div class="for-popup-layer" [ngClass]="isShow ? isShow :''"></div>
+
+<div class="modal pic-popup" id="myModalPostPhoto" backdrop="static" role="dialog" tabindex="-1" style="display: block; background-color: rgba(0, 0, 0, 0.9); z-index: 111111;" [style.display]="showSlider ? 'block' : 'none'" *ngIf="showSlider" aria-hidden="true">
+
+    <div class="modal-dialog modal-lg  full-screen-popup" role="document">
+        <div class="modal-content">
+
+            <div class="popup-inner">
+                <button type="button" class="close" (click)="closePhoto()"><span aria-hidden="true">&times;</span></button>
+
+                <div class="icon-img">
+                    <img class="" src="{{photo}}" alt="slideshow">
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </div>

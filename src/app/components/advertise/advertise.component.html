@@ -334,7 +334,7 @@
 			<option value="64">64</option>
 			<option value="65">65</option>
 		</select>
-
+          <span class="date-interval"> To</span>
 		<select class="form-control" id="age2" formControlName="age2" name="age2">
 			<option value="">Select age</option>
 	        <option value="18">18</option>
@@ -413,7 +413,7 @@
 			<label for="email">Language:</label>
 		</div>
 		<div class="col-5 rgt-part">
-			<input type="text" formControlName="language" name="language" class="form-control" placeholder="Enter a languages..">
+			<input type="text" formControlName="language" name="language" class="form-control" placeholder="Enter a language..">
 		</div>
 	</div>
 </div>
@@ -426,7 +426,7 @@
 					<div class="col-4 rgt-part">
 			
 
-		<select class="form-control"  id="adDelivery" name="ad_delivery" formControlName="ad_delivery">
+		<select class="form-control" (change)="onAdChange($event.target.value)" id="adDelivery" name="ad_delivery" formControlName="ad_delivery">
 			<option value="">Please Select</option>
            	<option value="click">Click</option>
 			<option value="impression">Impression</option>
@@ -468,8 +468,8 @@
 			<label for="Actual Amount"></label>
 		</div>
 		<div class="col-4 rgt-part">
-			<input type="text" class="form-control mt-2" name="actual_amount" formControlName="actual_amount" id="actualAmount" value="5"  >
-			<p>Actual amount spend may be vary.</p>
+			<input type="text" class="form-control mt-2" name="actual_amount" disabled formControlName="actual_amount" id="actualAmount" value="5"  >
+			<p>Actual amount spend may be vary on the selection of Ad delivery.</p>
 		</div>
 	</div>
 </div>
@@ -483,7 +483,7 @@
 	
 		<select class="form-control" id="converstaion_window" name="conversion_window" formControlName="conversion_window">
 			<option value="">Please Select</option> 
-			<option value="7_day_click_or_1_day_view">7 day click or 1 day view</option>
+			<option [selected]="true" value="7_day_click_or_1_day_view">7 day click or 1 day view</option>
 			
 	  </select> 
 </div>
@@ -526,7 +526,7 @@
 		<div class="col-4 rgt-part">
 		<select id="currency" name="currency" formControlName="currency">
 			<option value="">Please Select</option>
-			<option value="uzyth">Uzyth</option>
+			<option [selected]="true" value="uzyth">Uzyth</option>
 		</select>
 </div>
 </div>
@@ -535,7 +535,7 @@
 
 
 <div *ngIf="notMatched != ''  && notMatched != undefined" class="alert alert-danger alert-dismissible">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <button type="button" class="close" data-dismiss="alert" (click)="closepopup()">&times;</button>
   <strong>Alert!</strong> {{notMatched}}
 </div>
 <div class="form-group">
@@ -544,7 +544,7 @@
 			<label for="date_from">Start Date</label>
 		</div>
 		<div class="col-4 rgt-part">
-			<ng-datepicker name="from_date" formControlName="from_date"  [options]="options" ></ng-datepicker>
+			<ng-datepicker name="from_date" (ng-change)="changeDate(from_date)" formControlName="from_date"  [options]="options" ></ng-datepicker>
 		</div>
 	</div>
 </div>
@@ -553,10 +553,12 @@
 <div class="form-group">
 	<div class="row">
 		<div class="col-2 lft-part">
-			<label for="date_from">End Date</label>
+			<label for="date_from"></label>
 		</div>
 		<div class="col-4 rgt-part">
-			<ng-datepicker name="to_date" formControlName="to_date" [options]="options" ></ng-datepicker>
+			<!-- <ng-datepicker name="to_date" formControlName="to_date" [options]="options" ></ng-datepicker> -->
+			<!-- <input type="text" name="to_date" formControlName="to_date"  > -->
+			<p>End date will be automatically calculated for next 7 days from the start date</p>
 		</div>
 	</div>
 </div>
@@ -611,7 +613,6 @@
 <div class="form-group">
 	<div class="row">
 		<div class="col-2 lft-part">
-			<label for="email"></label>
 		</div>
 		<div class="col-4 rgt-part">
 			<p>Use your own name or the name of your business you'll advertise.</p>
@@ -619,6 +620,16 @@
 	</div>
 </div>
 
+<div class="form-group">
+	<div class="row">
+		<div class="col-2 lft-part">
+			<label for="accountName">Ad Description</label>
+		</div>
+		<div class="col-10 rgt-part">
+			<input type="text" class="form-control" id="accountDes" placeholder="Ad description" name="account_des" formControlName="account_des">
+		</div>
+	</div>
+</div>
 
 <div class="form-group">
 	<div class="row">

@@ -7,6 +7,7 @@ import * as io from 'socket.io-client';
 import * as CryptoJS from 'crypto-js'; 
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
+//import { setInterval } from 'timers';
 @Component({
   selector: 'app-general-feed',
   templateUrl: './general-feed.component.html',
@@ -64,6 +65,7 @@ export class GeneralFeedComponent implements OnInit {
   showScrollHeight = 200;
   hideScrollHeight = 10;
 
+  new_array = [];
   constructor(
     private data_service: DataService,
     private datePipe: DatePipe,
@@ -76,22 +78,37 @@ export class GeneralFeedComponent implements OnInit {
     this.socket = io.connect(this.socket_url);
    }
 
-   ngOnInit() {
-
+  ngOnInit() {
     setTimeout(()=>{
-    this.userDetails();
-    this.generalPostAllList();
-    this.findFriendList();
-    this.data_service.getsAllAds().subscribe((response) => {
-    this.adsArray=response['body'];
-    this.adsArray=this.adsArray.sort(() => Math.random() - 0.5);
-    } )
-    },2000);
-    
+      this.userDetails();
+      this.generalPostAllList();
+      this.findFriendList();
+      
+    },2000);    
     this.data_service.currentMessage.subscribe(message => {
-    this.post_data.unshift(message);
+      this.post_data.unshift(message);
     })
-    
+    this.getAdd();
+  }
+
+    getAdd(){
+      this.data_service.getsAllAds().subscribe((response) => {
+        this.new_array =response['body'];
+        var i = 0;
+        if(this.new_array[0]){
+          this.adsArray.push(this.new_array[0]);
+        }
+        for(i ; i < this.new_array.length; i++){
+          let item = this.new_array[i];
+          setTimeout(() => {
+            //this.adsArray = [];
+            this.adsArray.unshift(item);
+          }, 5000*(i+1));
+        }
+        //this.adsArray =response['body'];
+        //console.log(this.adsArray);
+        //this.adsArray = this.new_array.sort(() => Math.random() - 0.5);
+      })
     }
 
   @HostListener('window:scroll', [])

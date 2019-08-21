@@ -7,7 +7,7 @@
 			<div class="col-md-12">
 				<div class="top-profile-blk">
 						<div *ngIf="cover_pic"  class="cover-pic">
-								<img class="" src="{{img_url}}{{cover_pic}}" alt="Cover Photo"/>
+								<img class="" src="{{cover_pic}}" alt="Cover Photo"/>
 							</div>
 					<div class="inner-profile">
 						<!-- <button class="btn add"><span><i class="fas fa-camera"></i></span>Add Cover Photo</button> -->
@@ -84,7 +84,7 @@
 					</div>
 					
 					<div class="post-data" *ngIf="post.post_media != ''">
-						<img class="img-fluid" src="{{img_url}}{{post.post_media}}">
+						<img class="img-fluid" src="{{post.post_media}}">
 					</div>
 					
 					<div class="like-data" >
@@ -118,7 +118,8 @@
 							
 							<div class="parts" id="commentbox" (click)="comment_box(post.id)">
 									<img class="for-img" src="assets/images/chat.png">										
-									<span>Comments({{post.comments.length}})</span>
+									<span *ngIf="post.comments.length>0">Comments({{post.comments.length}})</span>
+                                    <span *ngIf="post.comments.length==0">Comments</span>
 							</div>
 							
 						</div>
@@ -127,7 +128,7 @@
 								<div class="commant-total">
 										<div class="commant-list" *ngFor="let cmnt of cmnt_data">
 												<div class="media">
-													<img src="{{img_url}}{{cmnt.profile_picture}}">
+													<img src="{{cmnt.profile_picture}}">
 													<div class="media-body">
 														 <p  *ngIf="edit_comment != true || cmnt.id != cmtId"><strong>{{cmnt.username}}</strong>  {{ convetToEmoji(cmnt.comment)}}</p>
 														 <p class="msg-edit custom-msg" *ngIf="edit_comment && cmnt.id == cmtId"> <input  class="form-control" (keyup.enter)="updateComment(cmnt)" [(ngModel)]="cmnt.comment" style="resize:none" type="text" >
@@ -147,7 +148,7 @@
 											</div>
 									<div class="write-commant">
 										<div class="media">
-										  <img src="{{img_url}}{{currentUserProfile}}">
+										  <img src="{{currentUserProfile}}">
 										  <div class="media-body">
 											<div class="custom-msg">
 
@@ -189,7 +190,7 @@
 												<ng-container  *ngFor="let media of userMedia;let i=index;">
 														<div *ngIf="media.post_media != '' && i<9"  class="col-4 p-1">
 																<div class="photo-img">
-																	<img src="{{img_url}}{{media.post_media}}">
+																	<img src="{{media.post_media}}">
 																</div>
 															</div>
 												</ng-container>			
@@ -210,7 +211,7 @@
 										<div class="row" *ngFor="let user of user_data">
 											<a [routerLink]="['/profile',user.id]" *ngIf="user.user != user_id " class="col-4 p-1">
 												<div class="photo-img">
-													<img src="{{img_url}}/{{user.profile_picture}}">
+													<img src="{{user.profile_picture}}">
 												</div>
 												<a href="">{{user.name}}</a>
 											</a>

@@ -13,8 +13,8 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="top-profile-blk">
-					<div class="cover-pic">
-						<img *ngIf="cover_pic" class="" src="{{img_url}}{{cover_pic}}" />
+					<div class="cover-pic"  (click)= "viewPhoto(cover_pic)">
+						<img *ngIf="cover_pic" class="" src="{{cover_pic}}" />
 					</div>
 					<div class="inner-profile">
 						<span><i class="fas fa-camera"></i></span>
@@ -23,9 +23,9 @@
 							<input id="coverPhoto" type="file" accept="image/*"  #filecover (change)="coverPhoto($event)" name="filecover" >
 						  </div>
 						<div class="name-blk">
-							<div class="overlay-blk" (click)=file.click()>
-								<img *ngIf="profile_picture" src="{{img_url}}{{profile_picture}}" >
-								<div class="hover-layer">
+							<div class="overlay-blk" (click)= "viewPhoto(profile_picture)">
+								<img  src="{{profile_picture}}" >
+								<div class="hover-layer" (click)=file.click()>
 									<i class="fas fa-camera"></i>
 								</div>
 								<div class="attach_file" style="display:none">
@@ -56,7 +56,7 @@
 				<div  class="post-box" *ngFor="let post of new_post_data">
 					<div class="post-hdr">
 						<div class="icon-img">
-							<img src="{{img_url}}{{profile_picture}}">
+							<img src="{{profile_picture}}">
 						</div>
 						<div class="name-box">
 							<h1 class="hdg"><a href="javascript:void(0)">{{post.username}}</a> <p class="time"><a href="javascript:void(0)">{{toLocalDate(post.post_create_date)}}</a></p></h1>
@@ -79,7 +79,7 @@
 					
 					<div class="post-data" *ngIf="post.post_media != ''">
 						<div (click)= viewPhoto(post.post_media);>
-						<img class="img-fluid" src="{{img_url}}{{post.post_media}}">
+						<img class="img-fluid" src="{{post.post_media}}">
 					</div>
 					</div>
 					
@@ -111,7 +111,8 @@
 							
 							<div class="parts" id="commentbox" (click)="comment_box(post.id)">
 								<img class="for-img" src="assets/images/chat.png">										
-								<span>Comments({{post.comments.length}})</span>
+								<span *ngIf="post.comments.length>0">Comments({{post.comments.length}})</span>
+                               <span *ngIf="post.comments.length==0">Comments</span>
 							</div>
 							
 						</div>
@@ -119,7 +120,7 @@
 							<div class="commant-total">
 									<div class="commant-list" *ngFor="let cmnt of cmnt_data">
 											<div class="media">
-												<img src="{{img_url}}{{cmnt.profile_picture}}">
+												<img src="{{cmnt.profile_picture}}">
 												<div class="media-body">
 													 <p  *ngIf="edit_comment != true || cmnt.id != cmtId"><strong>{{cmnt.username}}</strong>  {{convetToEmoji(cmnt.comment)}}</p>
 													 <p class="msg-edit custom-msg" *ngIf="edit_comment && cmnt.id == cmtId"> <input  class="form-control" (keyup.enter)="updateComment(cmnt)" [(ngModel)]="cmnt.comment" style="resize:none" type="text" >
@@ -138,7 +139,7 @@
 										</div>
 								<div class="write-commant">
 									<div class="media">
-									  <img src="{{img_url}}{{profile_picture}}">
+									  <img src="{{profile_picture}}">
 									  <div class="media-body">
 										<div class="custom-msg">
 										<input [disabled]="isPostComment" [disabled]="disable_postcomment" (keyup.enter)="post_comment()" class="form-control" [(ngModel)]="comment" name="comment"  style="resize:none" type="text" placeholder="Write a comment...">
@@ -237,7 +238,7 @@
 										<ng-container  *ngFor="let media of userMedia;let i=index;">
 												<div *ngIf="media.post_media != '' && i<9"  class="col-4 p-1">
 														<div class="photo-img" (click)="viewPhoto(media.post_media)">
-															<img src="{{img_url}}{{media.post_media}}">
+															<img src="{{media.post_media}}">
 														</div>
 													</div>
 										</ng-container>									
@@ -264,7 +265,7 @@
 								<a href="#" class="col-4 p-1" *ngFor="let user of user_data"> -->
 
 									<div class="photo-img"  >
-										<img src="{{img_url}}/{{user.profile_picture}}">
+										<img src="{{user.profile_picture}}">
 									</div>
 									{{user.name}}
 								</a>

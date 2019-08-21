@@ -49,7 +49,6 @@ export class ProfileComponent implements OnInit {
    private socket;
    user_data : any = [];
   constructor(private activatedRoute:ActivatedRoute,private data_service: DataService,private datePipe: DatePipe, private router:Router) {
-   this.img_url = environment.img_url;
   // console.log(this.id)
  //  this.getUserDetail()
     this.socket_url = environment.socket_url;
@@ -123,7 +122,7 @@ export class ProfileComponent implements OnInit {
       this.cover_pic=response['body'][0].cover_pic;
       this.username =response['body'][0].username;
       this.name=response['body'][0].first_name+' '+ response['body'][0].last_name
-      this.profile_picture=this.img_url+''+response['body'][0].profile_picture;
+      this.profile_picture=response['body'][0].profile_picture;
       }else{
        console.log(response['msg']);
       }
