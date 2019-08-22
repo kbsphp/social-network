@@ -40,7 +40,7 @@
       <div class="container-fluid">
          <div class="row">
             <div class="col-md-12">
-               <div class="men-img"><img src="{{img_url}}{{currentUser_picture}}"></div>
+               <div class="men-img"><img src="{{currentUser_picture}}"></div>
             </div>
             <div class="col-md-12">
                <div class="fix-box">
@@ -62,7 +62,7 @@
                      <!----><!---->
                      <div class="network-ul ng-tns-c1-1 ng-star-inserted">
                         <ul class="exchange-sidebar">
-                           <li><a  class="direct" routerLinkActive="active"  [routerLink]="['/profile']"><img class="img-bar-list" src="{{img_url}}{{currentUser_picture}}"> 
+                           <li><a  class="direct" routerLinkActive="active"  [routerLink]="['/profile']"><img class="img-bar-list" src="{{currentUser_picture}}"> 
                             <span class="for-name" *ngIf="username">{{username | titlecase}}</span></a></li>
                            <!-- <li><a routerLinkActive="active" href="#/exchange/exchange-assets"><img class="for-no-active-icon" src="assets/images/exchange-assets.png"><img class="for-active-icon" src="assets/images/exchange-assets-active.png">ASSETS </a></li> -->
                            <li><a  class="direct" routerLinkActive="active" [routerLink]="['/home']"> <i class="far fa-calendar-alt"></i> <span class="for-name"> Timeline</span></a></li>

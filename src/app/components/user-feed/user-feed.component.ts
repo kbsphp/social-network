@@ -499,7 +499,7 @@ export class UserFeedComponent implements OnInit {
       formData.append('userID', this.user_id);
       formData.append('profilePic', input_data.profilePic);
       this.data_service.uploadUserProfilePic(formData).subscribe((response) => {
-      // console.log(response);
+      console.log(response);
         if(response['error'] == false){
         this.profile_picture =  response['body'][0].profile_picture;
         localStorage.setItem('updated_pic',this.profile_picture);

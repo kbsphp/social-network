@@ -2,124 +2,124 @@
 <app-side-bar></app-side-bar>
 <div class="work-block">
 <section class="friend-info photos-info">
-	<div class="container">
+<div class="container">
+<div class="row">
+<div class="col-12">
+<div class="main-name">
+<h1 class="page-name">
+<img class="heading-image" src="assets/images/nett.png">
+<i>PHOTOS</i>
+</h1>
+
+<!-- <div class="line-notification">
+<h1><img src="assets/images/notification2.png">Trade your UZ Coin comissions for BTC in the UZ Exchange!</h1>
+</div> -->
+
+<div class="line-heading">
+<h3>UZYTH Social</h3>
+</div>
+</div>
+</div>
+<div class="col-sm-12 right-part">
+<div class="inner-friend">
+<!-- <div class="about-heading">
+	<h4><span><i class="fas fa-camera"></i></span>Photos</h4>
+
+</div> -->
+<div class="friend-tabs">
+	<div id="tabs">
 			<div class="row">
-					<div class="col-12">
-							<div class="main-name">
-								<h1 class="page-name">
-									<img class="heading-image" src="assets/images/nett.png">
-									<i>PHOTOS</i>
-								</h1>
-			
-								<!-- <div class="line-notification">
-									<h1><img src="assets/images/notification2.png">Trade your UZ Coin comissions for BTC in the UZ Exchange!</h1>
-								</div> -->
-			
-								<div class="line-heading">
-									<h3>UZYTH Social</h3>
+				<div class="col-md-12 ">
+					<nav>
+						<div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+							<a class="nav-item nav-link show" id="nav-home-tab" data-toggle="tab" href="#your-photo" aria-selected="true">Your Photos</a>
+							<a class="nav-item nav-link show" id="nav-profile-tab" data-toggle="tab" href="#your-profile" role="tab" aria-controls="your-album" aria-selected="false">Profile Photos</a>
+							<a class="nav-item nav-link show" id="nav-profile-tab" data-toggle="tab" href="#your-covers" role="tab" aria-controls="your-album" aria-selected="false">Cover Photos</a>
+						</div>
+					</nav>
+					<div class="tab-content friend-content" id="nav-tabContent">
+						<div class="tab-pane fade active show" id="your-photo" role="tabpanel" aria-labelledby="nav-home-tab">
+							<div class="all-frinds">
+								<div class="row mb-3">
+									<div class="col-sm-12 col-xs-12 col-md-6 col-lg-3 col-xl-3" *ngFor="let media of userMedia;let i=index;">
+											<div class="photo-view" (click)= viewPhoto(media.post_media);>
+											<img src="{{media.post_media}}">
+											
+											</div>
+	
+									</div>
 								</div>
+
 							</div>
 						</div>
-					<div class="col-sm-12 right-part">
-							<div class="inner-friend">
-									<!-- <div class="about-heading">
-										<h4><span><i class="fas fa-camera"></i></span>Photos</h4>
-									
-									</div> -->
-									<div class="friend-tabs">
-										<div id="tabs">
-												<div class="row">
-													<div class="col-md-12 ">
-														<nav>
-															<div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-																<a class="nav-item nav-link show" id="nav-home-tab" data-toggle="tab" href="#your-photo" aria-selected="true">Your Photos</a>
-																<a class="nav-item nav-link show" id="nav-profile-tab" data-toggle="tab" href="#your-profile" role="tab" aria-controls="your-album" aria-selected="false">Profile Photos</a>
-																<a class="nav-item nav-link show" id="nav-profile-tab" data-toggle="tab" href="#your-covers" role="tab" aria-controls="your-album" aria-selected="false">Cover Photos</a>
-															</div>
-														</nav>
-														<div class="tab-content friend-content" id="nav-tabContent">
-															<div class="tab-pane fade active show" id="your-photo" role="tabpanel" aria-labelledby="nav-home-tab">
-																<div class="all-frinds">
-																	<div class="row mb-3">
-																		<div class="col-sm-12 col-xs-12 col-md-6 col-lg-3 col-xl-3" *ngFor="let media of userMedia;let i=index;">
-																				<div class="photo-view" (click)= viewPhoto(media.post_media);>
-																				<img src="{{img_url}}{{media.post_media}}">
-																				
-																				</div>
-										
-																		</div>
-																	</div>
-						
-																</div>
-															</div>
-															<div class="tab-pane fade" id="your-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-																<div class="all-frinds">
-																	<div class="row mb-3">
-																		<div class="col-sm-12 col-xs-12 col-md-6 col-lg-3 col-xl-3" *ngFor="let pic of userProfilePics;let i=index;">
-																				<div class="photo-view" (click)= viewPhoto(pic.profile_pic);>
-																				<img src="{{img_url}}{{pic.profile_pic}}">
-																					
-																				</div>
-										
-																		</div>
-																	</div>
-						
-																</div>									
-															</div>
-
-															<div class="tab-pane fade" id="your-covers" role="tabpanel" aria-labelledby="nav-profile-tab">
-																<div class="all-frinds">
-																	<div class="row mb-3">
-																		<div class="col-sm-12 col-xs-12 col-md-6 col-lg-3 col-xl-3" *ngFor="let pic of userCoverPics;let i=index;">
-																				<div class="photo-view" (click)= viewPhoto(pic.cover_pic);>
-																				<img src="{{img_url}}{{pic.cover_pic}}">
-																					
-																				</div>
-										
-																		</div>
-																	</div>
-						
-																</div>									
-															</div>
-														</div>
-														
-													</div>
-												</div>
-										</div>
+						<div class="tab-pane fade" id="your-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+							<div class="all-frinds">
+								<div class="row mb-3">
+									<div class="col-sm-12 col-xs-12 col-md-6 col-lg-3 col-xl-3" *ngFor="let pic of userProfilePics;let i=index;">
+											<div class="photo-view" (click)= viewPhoto(pic.profile_pic);>
+											<img src="{{pic.profile_pic}}">
+												
+											</div>
+	
 									</div>
-								</div>	
-					
+								</div>
+
+							</div>									
+						</div>
+
+						<div class="tab-pane fade" id="your-covers" role="tabpanel" aria-labelledby="nav-profile-tab">
+							<div class="all-frinds">
+								<div class="row mb-3">
+									<div class="col-sm-12 col-xs-12 col-md-6 col-lg-3 col-xl-3" *ngFor="let pic of userCoverPics;let i=index;">
+											<div class="photo-view" (click)= viewPhoto(pic.cover_pic);>
+											<img src="{{pic.cover_pic}}">
+												
+											</div>
+	
+									</div>
+								</div>
+
+							</div>									
+						</div>
 					</div>
-		
-		
+					
+				</div>
+			</div>
 	</div>
-	</div>
+</div>
+</div>	
+
+</div>
+
+
+</div>
+</div>
 </section>
 </div>
 <div class="modal pic-popup" id="myModalPhoto" backdrop="static" role="dialog" tabindex="-1" style="display: block; background-color: rgba(0, 0, 0, 0.9); z-index: 111111;" [style.display]="showSlider ? 'block' : 'none'" *ngIf="showSlider" aria-hidden="true">
-		
-	<div class="modal-dialog modal-lg full-screen-popup" role="document">
-		<div class="modal-content">
-			
-			
-		<div class="popup-inner">
-				<button type="button" class="close" (click)="closePhoto()"><span aria-hidden="true">&times;</span></button>
-		  
-			<div class="icon-img">
-				<img class=""  src="{{photo}}" alt="slideshow">
-			</div>
-			
-		 
-	
-		</div>
-		
-	  
-  
-	</div>
-	
-	
 
-  </div>
-  
-  
+<div class="modal-dialog modal-lg full-screen-popup" role="document">
+<div class="modal-content">
+
+
+<div class="popup-inner">
+<button type="button" class="close" (click)="closePhoto()"><span aria-hidden="true">&times;</span></button>
+
+<div class="icon-img">
+<img class=""  src="{{photo}}" alt="slideshow">
+</div>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+</div>
+
+
 </div>

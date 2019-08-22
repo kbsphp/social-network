@@ -36,7 +36,7 @@
                                         <div class="post-box mt-3">
                                             <div class="post-hdr">
                                                 <div class="icon-img">
-                                                    <img src="{{img_url}}{{post.profile_picture}}" />
+                                                    <img src="{{post.profile_picture}}" />
                                                 </div>
                                                 <div class="name-box">
                                                     <h1 class="hdg" (click)="openUserProfile(post.user_id)"><a href="javascript:void(0)">{{post.username}}</a> <p class="time"><a href="javascript:void(0)">{{toLocalDate(post.post_create_date)}}</a></p></h1>
@@ -56,7 +56,7 @@
                                             </div>
                                             <div class="post-data" *ngIf="post.post_media != ''">
                                                 <div (click)=viewPhoto(post.post_media);>
-                                                    <img class="img-fluid" src="{{img_url}}{{post.post_media}}" />
+                                                    <img class="img-fluid" src="{{post.post_media}}" />
                                                 </div>
                                             </div>
                                             <div class="like-data">
@@ -87,7 +87,7 @@
                                                     <div class="commant-total-inner">
                                                         <div class="commant-list" *ngFor="let cmt of post.comments; let i=index">
                                                             <div class="media">
-                                                                <img src="{{img_url}}{{cmt.profile_picture}}">
+                                                                <img src="{{cmt.profile_picture}}">
                                                                 <div class="media-body">
                                                                     <p class="comment-block" *ngIf="edit_comment != true || cmt.id != cmtId"><b (click)="openUserProfile(cmt.user_id)">{{cmt.username}}</b>{{convetToEmoji(cmt.comment)}} <span class="comment-time">{{toLocalDate(cmt.comment_create_date)}}</span></p>
                                                                     <div class="custom-msg" *ngIf="edit_comment && cmt.id == cmtId">
@@ -175,7 +175,7 @@
                                         <ng-container *ngFor="let user of user_data;let i=index;">
                                             <div class="friends" *ngIf="i<4">
                                                 <div class="pic">
-                                                    <img class="for-img" src="{{img_url}}{{user.profile_picture}}" />
+                                                    <img class="for-img" src="{{user.profile_picture}}" />
                                                 </div>
                                                 <div class="details">
                                                     <h2 class="details-heading" (click)="openUserProfile(user.new_users)"><a href="javascript:void(0)">{{user.first_name}} {{user.last_name}}</a></h2>

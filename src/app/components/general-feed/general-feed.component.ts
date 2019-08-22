@@ -94,6 +94,8 @@ export class GeneralFeedComponent implements OnInit {
     getAdd(){
       this.data_service.getsAllAds().subscribe((response) => {
         this.new_array =response['body'];
+        console.log('Ads');
+        console.log(this.new_array);
         var i = 0;
         if(this.new_array[0]){
           this.adsArray.push(this.new_array[0]);
@@ -142,7 +144,7 @@ export class GeneralFeedComponent implements OnInit {
       this.username =response['body'][0].username;
       this.fullname= response['body'][0].first_name+ ' '+response['body'][0].last_name;
       this.fullname=this.fullname?this.fullname:this.username;
-      this.currentUser_picture=this.img_url+''+response['body'][0].profile_picture;
+      this.currentUser_picture=response['body'][0].profile_picture;
 
       }else{
        console.log(response['msg']);
