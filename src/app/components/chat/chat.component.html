@@ -8,7 +8,7 @@
     <ul *ngIf="isDefaultUser == true">
       <ng-container *ngFor="let user of user_data">
         <li  (click)="chatUser(user)">
-        <img src="{{img_url}}{{user.profile_picture}}">
+        <img src="{{user.profile_picture}}">
         <span class="for-name">{{user.name}}</span>
         <i *ngIf="user.isOnline != false" class="fas fa-circle green-icon"></i>
       </li>
@@ -17,7 +17,7 @@
       <ul *ngIf="isSearchUser == true">
             <ng-container *ngFor="let search of search_user_data;">
                 <li (click)="chatUser(search)" *ngIf="search.id != user_id">
-                    <img src='{{img_url}}/{{search.profile_picture}}' class='picture' alt='' />
+                    <img src='{{search.profile_picture}}' class='picture' alt='' />
                     <span class='name'>{{search.name | titlecase}}</span>
                 </li>
             </ng-container>
@@ -30,7 +30,7 @@
 
 <div class="ballon-chat" *ngIf="ballonChat == true">
     <a class='close-ballon' (click)='closeBallon()'>X</a>
-    <h2 class="chat-top-bar"><img src="{{img_url}}/{{sel_user_profile_pic}}" class=" img-responsive ">{{chat_with | titlecase}}</h2>
+    <h2 class="chat-top-bar"><img src="{{sel_user_profile_pic}}" class=" img-responsive ">{{chat_with | titlecase}}</h2>
     <div class='container-messages' #scrollMe>
         <ng-container *ngFor="let msg of result">
             <div class="date-chat" *ngIf="msg.date != '' && msg.date != undefined && msg.date != null">
@@ -42,7 +42,7 @@
             <div *ngFor="let val of msg.values" [ngClass]="val.username == user_name ? 'base_sent' : 'msg_receive'" class="row msg_container">
                 <!-- *ngIf="user_id == val.send_to" -->
                 <div class="avatar" *ngIf="user_name != val.username">
-                    <img src="{{img_url}}/{{sel_user_profile_pic}}" class=" img-responsive ">
+                    <img src="{{sel_user_profile_pic}}" class=" img-responsive ">
                 </div>
                 <div class="col-md-8 col-xs-8 p-0">
                     <div class="messages msg_sent">

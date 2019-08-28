@@ -43,6 +43,7 @@ export class FriendListComponent implements OnInit {
       this.socket.emit('UserDetail', this.user_id);
       this.socket.on('GetUser',(users) => {
         this.user_data=users
+        console.log(this.user_data)
        //this.user_data = users;console.log(this.user_data);
       // 	users.map(item => {
       //    this.user_data=[ {

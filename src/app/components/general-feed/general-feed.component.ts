@@ -7,6 +7,7 @@ import * as io from 'socket.io-client';
 import * as CryptoJS from 'crypto-js'; 
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
+declare var $;
 //import { setInterval } from 'timers';
 @Component({
   selector: 'app-general-feed',
@@ -59,6 +60,8 @@ export class GeneralFeedComponent implements OnInit {
   comntEmoji:boolean=false;
   adsArray:any=[];
   adsType:string='';
+  selectedItem:string=''
+  storeIds=[];
   @ViewChild('myDiv') myDiv: ElementRef;
 
   showScroll: boolean;
@@ -66,6 +69,8 @@ export class GeneralFeedComponent implements OnInit {
   hideScrollHeight = 10;
 
   new_array = [];
+  topProducts=[];
+  pimages=[];
   constructor(
     private data_service: DataService,
     private datePipe: DatePipe,
@@ -83,13 +88,32 @@ export class GeneralFeedComponent implements OnInit {
       this.userDetails();
       this.generalPostAllList();
       this.findFriendList();
+
+      this.topProductList()
       
+    this.getAdd();
+    //this.slider()
+    //$('.carousel-item').first().addClass('active')
     },2000);    
     this.data_service.currentMessage.subscribe(message => {
       this.post_data.unshift(message);
     })
-    this.getAdd();
+  //$('#market_demo')
+  // $("#market_demo").carousel({
+  //   interval : false
+  // });
+   
+
+   //$('carousel-inner').find('.carousel-item:first').addClass('active');
+
+   //$('carousel-item:first').addClass('active');
+
+
   }
+
+  // ngAfterViewInit() {
+  //   $('#market_demo').carousel();
+  // }
 
     getAdd(){
       this.data_service.getsAllAds().subscribe((response) => {
@@ -124,6 +148,11 @@ export class GeneralFeedComponent implements OnInit {
       { 
         this.showScroll = false; 
       }
+    }
+    
+    slider() {
+      console.log('called')
+       $('.carousel-item').first().addClass('active')
     }
 
     scrollToTop() 
@@ -509,8 +538,9 @@ addInComment(evt,cmt){
 
   viewPhoto(PhotoID) {
    // viewPhoto(PhotoID){
+     //console.log(PhotoID)
     this.showSlider=true;
-    this.photo=this.img_url+''+PhotoID;
+    this.photo=PhotoID;
   //}
   }
 
@@ -545,4 +575,39 @@ addInComment(evt,cmt){
 
      })
   }
+
+  // get top product list 
+
+  topProductList() {
+  
+     this.data_service.getTopproductList().subscribe((response) => {
+        console.log(response)
+        if(response['error']== false){
+           this.topProducts = response['body'];
+           
+
+         var i = 0;
+       
+        for(i ; i < this.topProducts.length; i++){
+          let item2 = this.topProducts[i].product_images;
+          let ids=this.topProducts[i].product_id
+       
+          this.pimages.push({
+            ids: this.topProducts[i].product_id, 
+            link: item2[Object.keys(item2)[0]].image
+        });
+          //this.pimages.concat(this.storeIds)
+
+          console.log(this.pimages)
+
+        }
+  
+
+        }
+
+     })
+
+
+  }
+
 }

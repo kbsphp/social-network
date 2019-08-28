@@ -154,7 +154,7 @@
                     </div>
                 </li>
                 <li class="profile-drop" (click)="openProfileMenu()">
-                    <span class="dd-parent"><img class="money2" src="{{profile_pic}}"><img class="ovel1" src="assets/images/Oval2.png"><img class="menu-arrow" src="assets/images/drop.png"></span>
+                    <span class="dd-parent" *ngIf="profile_pic != ''"><img class="money2" src="{{profile_pic}}"><img class="ovel1" src="assets/images/Oval2.png"><img class="menu-arrow" src="assets/images/drop.png"></span>
                     <div class="profile-menu" [ngClass]="displayProfile?'show':'hide'"><a href="http://devapp.uzyth.com/#/profile" class="" id="11">My Profile</a><a class="for_moblie_blc">Balance<span class="t-uz">2,102 UZ</span><img class="money" src="assets/images/money10.png"></a><a class="btn-small-menu for_mobile_buy" href="javascript:void(0)">BUY UZYTH</a><a class="" id="14" href="http://devapp.uzyth.com/#/support">Support</a><a class="" id="12" href="http://devapp.uzyth.com/#/download">DOWNLOADS</a><a class="" id="13" href="http://devapp.uzyth.com/#/help">HELP</a><a class="" (click)="logout()">LOG OUT</a></div>
 				</li>
 			

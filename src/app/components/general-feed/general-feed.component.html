@@ -129,7 +129,13 @@
                                             </div>
                                         </div>
                         
-                                        <div *ngIf="post.advertisement != '' && post.advertisement != []" class="post-box mt-3">
+                                        <div *ngIf="post.advertisement != '' && post.advertisement != []" class="post-box overlay-post-text mt-3">
+                                            <div class="may-know">
+                                                <div class="top-know">
+                                                    <p class="hdg">Ads</p>
+                                                    <!-- <a href="" class="see">See All</a> -->
+                                                </div> 
+                                            </div>
                                             <ng-container *ngFor="let ads of post.advertisement;let i = index">
                                                 <div class="join-group">
                                                     <div class="join-image">
@@ -141,14 +147,31 @@
                                                         </a>
                                                     </div>
                                                 </div>
+
+                                                 <div class="group-know">
+                                                    <div class="inner-gp">
+                                                        <p class="hdg">{{ads.ad_account_name}}</p>
+                                                        <!-- <button type="button" class="btn btn-grey">Join Group</button> -->
+                                                    </div> 
+                                                </div>
+                                                <div class="overlay-paragraph">
+                                                <div class="inner-paragraph">
+                                                    <p>{{ads.description}}</p>
+                                                </div>
+                                            </div>
                                             </ng-container>
+
+                                            
                                         </div>
                                     </ng-container>
+
+
+                           <!-- marketplace slider end -->
                                 </div>
                             </ng-container>
                         </div>
                         <div class="col-sm-12 col-md-12 col-lg-3 right-part2">
-                            <div class="right-part2-inner">
+                            <div class="right-part2-inner sticky-class">
                                 <!-- <div class="search-box searchFriends">
 									<form>
 										<div class="input-group">
@@ -221,6 +244,56 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <!-- marketplace slider -->
+
+                                <div class="market_slider"> 
+                                    <div class="may-know">
+                                        <div class="top-know">
+                                            <p class="hdg">Marketplace</p>
+                                            <!-- <a href="" class="see">See All</a> -->
+                                        </div>   
+                                     <div id="market_demo" class="carousel slide" data-ride="carousel">
+
+                                      <!-- Indicators -->
+                                      <!-- <ul class="carousel-indicators">
+                                        <li data-target="#demo" data-slide-to="0" class="active"></li>
+                                        <li data-target="#demo" data-slide-to="1"></li>
+                                        <li data-target="#demo" data-slide-to="2"></li>
+                                      </ul> -->
+
+                                      <!-- The slideshow -->
+                                      <div class="carousel-inner" >
+                                        <!-- <ng-container *ngFor="let productImage of topProducts;let i=index"> -->
+                                            <ng-container *ngFor="let images of pimages; let m=index">
+
+                                        <div class="carousel-item" [class.active]="m===0">
+                                          <a href="http://devapp.uzyth.com/market/product-details/{{images.ids}}"><img src="{{images.link}}" alt=""></a>
+                                        </div> 
+                                        </ng-container>
+                                  <!--      </ng-container> -->
+                                   
+                                        <!-- <div class="carousel-item">
+                                          <img src="assets/images/landing-logo.png" alt="Chicago">
+                                        </div>
+                                        <div class="carousel-item">
+                                          <img src="assets/images/event-img.jpg" alt="New York">
+                                        </div> -->
+                                      </div>
+
+                                      <!-- Left and right controls -->
+                                      <a class="carousel-control-prev" href="#market_demo" data-slide="prev">
+                                        <span><i class="fas fa-caret-left"></i></span>
+                                      </a>
+                                      <a class="carousel-control-next" href="#market_demo" data-slide="next">
+                                        <span><i class="fas fa-caret-right"></i></span>
+                                      </a>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                                <!-- End marketplace slider -->
                             </div>
                         </div>
                     </div>

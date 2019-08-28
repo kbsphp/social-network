@@ -237,7 +237,7 @@
 													<strong>Success!</strong> {{genreralSave}}
 												</div>
 											</div>
-								<form [formGroup]="generalSetting">
+								<form [formGroup]="generalSetting" (ngSubmit)="saveGeneralSetting()">
 								<!-- 	<div class="form-group">
 								<div class="row">
 								<div class="col-2 lft-part">
@@ -423,7 +423,7 @@
 					<div class="col-2 lft-part">
 						<label for="adDelivery">Ad delivery</label>
 					</div>
-					<div class="col-4 rgt-part">
+					<div class="col-5 rgt-part">
 			
 
 		<select class="form-control" (change)="onAdChange($event.target.value)" id="adDelivery" name="ad_delivery" formControlName="ad_delivery">
@@ -441,7 +441,7 @@
 		<div class="col-2 lft-part">
 			<label for="email"></label>
 		</div>
-		<div class="col-9 rgt-part">
+		<div class="col-5 rgt-part">
 			<p>Uzyth aims to spend your entire budget and get the most conversion using lowest cost bid strategy.</p>
 		</div>
 	</div>
@@ -453,7 +453,7 @@
 		<div class="col-2 lft-part">
 			<label for="budget">Budget and Scheduled</label>
 		</div>
-		<div class="col-4 rgt-part">
+		<div class="col-5 rgt-part">
    <select class="form-control" id="budgetandscheduled" name="buget_schedule" formControlName="buget_schedule">
 	<option value="">Please Select</option>
 	<option value="daily_budget">Daily Budget</option>
@@ -467,7 +467,7 @@
 		<div class="col-2 lft-part">
 			<label for="Actual Amount"></label>
 		</div>
-		<div class="col-4 rgt-part">
+		<div class="col-5 rgt-part">
 			<input type="text" class="form-control mt-2" name="actual_amount" disabled formControlName="actual_amount" id="actualAmount" value="5"  >
 			<p>Actual amount spend may be vary on the selection of Ad delivery.</p>
 		</div>
@@ -479,7 +479,7 @@
 		<div class="col-2 lft-part">
 			<label for="conversionWindow">Conversion window</label>
 		</div>
-		<div class="col-4 rgt-part">
+		<div class="col-5 rgt-part">
 	
 		<select class="form-control" id="converstaion_window" name="conversion_window" formControlName="conversion_window">
 			<option value="">Please Select</option> 
@@ -496,7 +496,7 @@
 		<div class="col-2 lft-part">
 			<label for="charged">When you get charged:</label>
 		</div>
-		<div class="col-4 rgt-part">
+		<div class="col-5 rgt-part">
 			<p style="margin: 0;">Impression</p>
 		</div>
 	</div>
@@ -507,7 +507,7 @@
 				<div class="col-2 lft-part">
 					<label for="country">Account Country</label>
 				</div>
-				<div class="col-4 rgt-part">
+				<div class="col-5 rgt-part">
 				
 				<select id="country11" name="account_country" formControlName="account_country">
 					
@@ -523,7 +523,7 @@
 		<div class="col-2 lft-part">
 			<label for="currency">Currency</label>
 		</div>
-		<div class="col-4 rgt-part">
+		<div class="col-5 rgt-part">
 		<select id="currency" name="currency" formControlName="currency">
 			<option value="">Please Select</option>
 			<option [selected]="true" value="uzyth">Uzyth</option>
@@ -543,7 +543,7 @@
 		<div class="col-2 lft-part">
 			<label for="date_from">Start Date</label>
 		</div>
-		<div class="col-4 rgt-part">
+		<div class="col-5 rgt-part">
 			<ng-datepicker name="from_date" formControlName="from_date"  [options]="options" ></ng-datepicker>
 		</div>
 	</div>
@@ -555,7 +555,7 @@
 		<div class="col-2 lft-part">
 			<label for="date_from"></label>
 		</div>
-		<div class="col-4 rgt-part">
+		<div class="col-5 rgt-part">
 			<!-- <ng-datepicker name="to_date" formControlName="to_date" [options]="options" ></ng-datepicker> -->
 			<!-- <input type="text" name="to_date" formControlName="to_date"  > -->
 			<p>End date will be automatically calculated for next 7 days from the start date</p>
@@ -566,9 +566,9 @@
 <div class="form-group">
 	<div class="row">
 		<div class="col-2 lft-part">
-			<label for="date_from">Image</label>
+			<label for="date_from">Image *</label>
 		</div>
-		<div class="col-4 rgt-part">
+		<div class="col-5 rgt-part">
 			<input type="file" #file (change)="fileChange($event)" accept="image/x-png,image/jpeg" >
 		</div>
 	</div>
@@ -579,8 +579,8 @@
 		<div class="col-2 lft-part">
 			<label for="date_from">URL</label>
 		</div>
-		<div class="col-4 rgt-part">
-			<input type="text" formControlName="url" >
+		<div class="col-5 rgt-part">
+			<input type="text" formControlName="url" placeholder="Please enter url..">
 		</div>
 	</div>
 </div>
@@ -590,7 +590,7 @@
 		<div class="col-2 lft-part">
 			<label for="timeZone">Time Zone</label>
 		</div>
-		<div class="col-4 rgt-part">
+		<div class="col-5 rgt-part">
 			<select id="currency" name="timezone" formControlName="timezone">
 				<option value="">Please Select</option>
 				<option value="pacific">Pacific</option>
@@ -602,19 +602,45 @@
 <div class="form-group">
 	<div class="row">
 		<div class="col-2 lft-part">
-			<label for="accountName">Ad Account Name</label>
+			<label for="accountName">Ad Account Name *</label>
 		</div>
-		<div class="col-4 rgt-part">
-			<input type="text" class="form-control" id="accountName" placeholder="Account name" name="ad_account_name" formControlName="ad_account_name">
+		<div class="col-5 rgt-part">
+			<input type="text" class="form-control" id="accountName" placeholder="Account name" name="ad_account_name" formControlName="ad_account_name" >
+			<!--  <div *ngIf="submitted && ft.ad_account_name.errors" class="invalid-feedback">
+                <div *ngIf="ft.ad_account_name.errors.required">Account name is required</div>
+             </div> -->
+            
+		</div>
+		  <!-- <div *ngIf="generalSetting.controls['ad_account_name'].invalid && (generalSetting.controls['ad_account_name'].dirty || generalSetting.controls['ad_account_name'].touched)" class="alert alert-danger">
+          <div *ngIf="generalSetting.controls['ad_account_name'].errors.required">
+          Account Name is required.
+        </div>
+      </div> -->
+	</div>
+</div>
+
+  <div class="">
+	<div class="row">
+		<div class="col-2 lft-part">
+			<label>&nbsp;</label>
+		</div>
+		<div class="col-5 rgt-part">
+			 <div *ngIf="generalSetting.controls['ad_account_name'].invalid && (generalSetting.controls['ad_account_name'].dirty || generalSetting.controls['ad_account_name'].touched)" class="alert alert-danger alertMessage">
+          <div *ngIf="generalSetting.controls['ad_account_name'].errors.required">
+          Account Name is required.
+        </div>
+      </div>
 		</div>
 	</div>
 </div>
+
+
 
 <div class="form-group">
 	<div class="row">
 		<div class="col-2 lft-part">
 		</div>
-		<div class="col-4 rgt-part">
+		<div class="col-5 rgt-part">
 			<p>Use your own name or the name of your business you'll advertise.</p>
 		</div>
 	</div>
@@ -623,10 +649,31 @@
 <div class="form-group">
 	<div class="row">
 		<div class="col-2 lft-part">
-			<label for="accountName">Ad Description</label>
+			<label for="accountName">Ad Description *</label>
 		</div>
-		<div class="col-10 rgt-part">
-			<input type="text" class="form-control" id="accountDes" placeholder="Ad description" name="account_des" formControlName="account_des">
+		<div class="col-5 rgt-part">
+			<!-- <input type="text" class="form-control" id="accountDes" placeholder="Ad description" name="account_des" formControlName="account_des"> -->
+			<textarea id="accountDes" placeholder="Ad description" name="account_des" formControlName="account_des"></textarea>
+		</div>
+		 <!--  <div *ngIf="generalSetting.controls['account_des'].invalid && (generalSetting.controls['account_des'].dirty || generalSetting.controls['account_des'].touched)" class="alert alert-danger">
+          <div *ngIf="generalSetting.controls['account_des'].errors.required">
+          Description is required.
+        </div>
+      </div> -->
+	</div>
+</div>
+
+ <div class="">
+	<div class="row">
+		<div class="col-2 lft-part">
+			<label>&nbsp;</label>
+		</div>
+		<div class="col-5 rgt-part">
+			  <div *ngIf="generalSetting.controls['account_des'].invalid && (generalSetting.controls['account_des'].dirty || generalSetting.controls['account_des'].touched)" class="alert alert-danger alertMessage">
+          <div *ngIf="generalSetting.controls['account_des'].errors.required">
+          Description is required.
+        </div>
+      </div>
 		</div>
 	</div>
 </div>
@@ -634,8 +681,9 @@
 <div class="form-group">
 	<div class="row">
 		<div class="col-2">&nbsp;</div>
-		<div class="col-4 rgt-part">
-			<button (click)="saveGeneralSetting()" class="btn-large btn-grey"> SAVE</button>
+		<div class="col-5 rgt-part">
+			<!-- <button (click)="saveGeneralSetting()" class="btn-large btn-grey"> SAVE</button> -->
+			<button [disabled]="generalSetting.pristine || generalSetting.invalid"  class="btn-large btn-grey"> SAVE</button>
 		</div>
 	</div>
 </div>

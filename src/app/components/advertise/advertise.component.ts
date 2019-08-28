@@ -33,6 +33,8 @@ export class AdvertiseComponent implements OnInit {
     from_date: Date;
     notMatched:string='';
     base_url : string = "";
+    end_date:any; 
+    startdate:any;
     options: DatepickerOptions = {
       minYear: 1970,
       maxYear: 2020,
@@ -76,14 +78,14 @@ export class AdvertiseComponent implements OnInit {
       buget_schedule:[''],
       actual_amount:[''],
       conversion_window:[''],
-      account_country:[''],
+      account_country:[''], 
       currency:[''],
       timezone:[''],
-      ad_account_name:[''],
+      ad_account_name:['',Validators.required],
       from_date:new Date(),
       to_date:new Date(),
       url : [''],
-      account_des:['']
+      account_des:['',Validators.required]
     })
    
    // this.adSetting=this.formBuilder.group({
@@ -124,7 +126,7 @@ export class AdvertiseComponent implements OnInit {
 
   }
 
-
+ get ft() { return this.generalSetting.controls; }
   saveInformation() {
 
    //  let name=this.adForm.value.name;
@@ -213,7 +215,8 @@ export class AdvertiseComponent implements OnInit {
   closepopup(){
     this.notMatched='';
   }
-  
+
+ 
 
   saveGeneralSetting() {
     console.log(this.generalSetting.value);
@@ -239,17 +242,25 @@ export class AdvertiseComponent implements OnInit {
     // console.log(this.generalSetting.value.from_date.getDate());
 
       let firstdate = this.generalSetting.value.from_date;
-      let startdate= new Date(firstdate);
-      console.log(startdate);
-     let end_date = new Date(firstdate.setDate(firstdate.getDate()+6));
-     console.log(end_date);
-    var result = Math.round(Math.abs(startdate.getDate() - end_date.getTime()/(1000*60*60*24)));
-     console.log(result);
-return;
-       let  res = Math.abs(this.generalSetting.value.from_date - this.generalSetting.value.to_date) / 1000;
-       console.log(res/ 86400);
-         let days = Math.floor(res / 86400);
-        console.log("days:"+days);
+      this.startdate= new Date(firstdate);
+      console.log(this.startdate);
+     this.end_date = new Date(firstdate.setDate(firstdate.getDate()+6));
+     console.log(this.end_date);
+     let to_date=this.convert(this.end_date)
+
+     console.log(to_date)
+    // var result = Math.round(Math.abs(startdate.getDate() - end_date.getTime()/(1000*60*60*24)));
+    //  console.log(result);
+//return;
+        //let  res = Math.abs(this.generalSetting.value.from_date - this.generalSetting.value.to_date) / 1000;
+       //console.log(res/ 86400);
+        // let days = Math.floor(res / 86400);
+       // console.log("days:"+days);
+          let timeDiff = this.end_date - this.startdate;
+           let days = Math.floor(timeDiff / (1000 * 60 * 60 * 24)) + 1
+     // console.log(days);
+      // return;
+
          if (days === 7) { 
            ////console.log('yes matches')
           // return;
@@ -268,7 +279,7 @@ return;
                "timezone":timezone,
                "ad_account_name":ad_account_name,
                "from_date":from_date,
-               "to_date":'',
+               "to_date":to_date,
                 "product_image" : image,
                 "web_url" : url,
                 "ad_description":account_des

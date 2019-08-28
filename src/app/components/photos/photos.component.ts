@@ -73,7 +73,7 @@ export class PhotosComponent implements OnInit {
 
   viewPhoto(PhotoID){
     this.showSlider=true;
-    this.photo=this.img_url+''+PhotoID;
+    this.photo=PhotoID;
   }
 
 

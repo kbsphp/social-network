@@ -439,6 +439,19 @@ headers : any;
       .catch((error:Error) => {console.log(error);return Observable.throw(error);});
     }
 
+
+
+    getTopproductList() {
+
+     if(sessionStorage.getItem('token') != undefined && sessionStorage.getItem('token') != null){this.token = sessionStorage.getItem('token');}
+    if(sessionStorage.getItem('user_id') != undefined && sessionStorage.getItem('user_id') != null){this.user_id = sessionStorage.getItem('user_id');}
+    const httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json', 'authorization': this.token })};
+    return this._http.get(this.base_url+'topProductList/'+ this.user_id + '/?lang=en', httpOptions )
+    .map((response:Response)=>{const data = response;return data;})
+    .catch((error:Error) => {console.log(error);return Observable.throw(error);});
+
+    }
+
   
 
 }

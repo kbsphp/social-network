@@ -2975,6 +2975,8 @@ img.img-fluid.in-img {
 	outline:none !important;
 	box-shadow:none !important;
 	color:#989898;
+    resize: none;
+    height: 100px;
 }
 label{
   color: orange;
@@ -3984,6 +3986,7 @@ label {
 
 .btn-large{
     padding: 15px 30px;
+    cursor: pointer;
 }
 
 .ngx-datepicker-calendar-container {
@@ -4096,3 +4099,64 @@ p.comment-block .comment-time{
     object-fit: cover;
 }
 
+/*  market_slider slider css  */
+
+.market_slider .carousel-item img {
+    width: 100%;
+    height: 220px;
+}
+.market_slider .carousel-inner {
+
+   /* padding: 10px 10px;*/
+    height: 220px;
+
+}
+.overlay-post-text {
+    position: relative;
+}
+.overlay-paragraph {
+    text-align: center;
+    position: absolute;
+    bottom: 42px;
+    width: 100%;
+}
+.inner-paragraph {
+    color: #fff;
+    background: #00000078;
+    padding: 20px 20px;
+}
+.inner-paragraph p {
+    margin-bottom: 0;
+    font-size: 15px;
+}
+
+.inner-gp p {
+    margin: 0px;
+    font-size: 14px;
+    color: #f6ad21;
+    letter-spacing: .5px;
+    line-height: 23px;
+    font-family: "Prohibition W00 Regular";
+}
+.inner-gp {padding: 10px 10px;}
+.sticky-class {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 64px;
+  }
+  .carousel-control-next span i, .carousel-control-prev span i {
+    color: #f6ad21;
+    font-size: 25px;
+}
+.market_slider #market_demo a.carousel-control-next, .market_slider #market_demo a.carousel-control-prev {
+    opacity: 1;
+}
+.alertMessage {
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 2px;
+}
+.social-form .rgt-part p {
+    margin-bottom: 0;
+}
+/*  market_slider slider css  */

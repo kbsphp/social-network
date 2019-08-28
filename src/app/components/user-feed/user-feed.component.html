@@ -23,8 +23,8 @@
 							<input id="coverPhoto" type="file" accept="image/*"  #filecover (change)="coverPhoto($event)" name="filecover" >
 						  </div>
 						<div class="name-blk">
-							<div class="overlay-blk" (click)= "viewPhoto(profile_picture)">
-								<img  src="{{profile_picture}}" >
+							<div class="overlay-blk" >
+								<img  src="{{profile_picture}}" (click)= "viewPhoto(profile_picture)">
 								<div class="hover-layer" (click)=file.click()>
 									<i class="fas fa-camera"></i>
 								</div>
@@ -168,8 +168,8 @@
 		  </div>
 
 		  <div class="col-sm-12 col-xs-12 col-md-4 col-lg-4 col-xl-4">
-			<div class="sidebar for-top-eight">
-			   <div class="sidebar__inner sidebar sticky">
+			<div class="sidebar for-top-eight sticky-class">
+			   <div class="sidebar__inner sidebar sticky ">
 			       <div class="postion-left-stky">
 			 	<div class="intro-blk for-hover-zoom">
 					<div class="inner-intro-blk">
